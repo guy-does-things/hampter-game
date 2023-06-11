@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://dreadsitereuse/room_connection_editor/room_node.gd" type="Script" id=1]
+
+[node name="GraphNode" type="GraphNode"]
+margin_right = 60.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+title = "sex"
+resizable = true
+script = ExtResource( 1 )
+
+[connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://dreadsitereuse/RoomDataGenerator/room_data_generator.gd" type="Script" id=1]
+[ext_resource path="res://rooms/Gungeon-BossFight.tscn" type="PackedScene" id=2]
+[ext_resource path="res://rooms/Forest-UpperForest.tscn" type="PackedScene" id=3]
+[ext_resource path="res://rooms/Gungeon-Descent.tscn" type="PackedScene" id=4]
+[ext_resource path="res://rooms/Gungeon-Climb.tscn" type="PackedScene" id=5]
+[ext_resource path="res://rooms/Forest-UnderWater.tscn" type="PackedScene" id=6]
+[ext_resource path="res://rooms/Gungeon-Entrance.tscn" type="PackedScene" id=7]
+[ext_resource path="res://rooms/Gungeon-The fall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://rooms/Gungeon-Reward.tscn" type="PackedScene" id=9]
+[ext_resource path="res://rooms/Forest-Lake.tscn" type="PackedScene" id=10]
+[ext_resource path="res://rooms/Gungeon-In the bottom *flushed emoji*.tscn" type="PackedScene" id=11]
+[ext_resource path="res://rooms/Gungeon-SkeleTrio.tscn" type="PackedScene" id=12]
+[ext_resource path="res://rooms/Gungeon-wonderwhatisinhere.tscn" type="PackedScene" id=13]
+[ext_resource path="res://rooms/Forest-CrashSite.tscn" type="PackedScene" id=14]
+[ext_resource path="res://rooms/Gungeon-Ofc there is a double jump.tscn" type="PackedScene" id=15]
+[ext_resource path="res://rooms/Gungeon-GunRoom.tscn" type="PackedScene" id=16]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+rooms = [ ExtResource( 14 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 13 ) ]

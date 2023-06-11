@@ -1,0 +1,460 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://player/player.gd" type="Script" id=1]
+[ext_resource path="res://player/forestchar.png" type="Texture" id=2]
+[ext_resource path="res://player/armthing.png" type="Texture" id=3]
+[ext_resource path="res://scripts/dircomp.gd" type="Script" id=4]
+[ext_resource path="res://scripts/physicsthings.gd" type="Script" id=5]
+[ext_resource path="res://state_machine/state_machine.gd" type="Script" id=6]
+[ext_resource path="res://player/player_states/player_floor.gd" type="Script" id=7]
+[ext_resource path="res://player/player_states/player_air.gd" type="Script" id=8]
+[ext_resource path="res://player/player_animations.gd" type="Script" id=9]
+[ext_resource path="res://player/player_arm.gd" type="Script" id=10]
+[ext_resource path="res://scripts/JumpController.gd" type="Script" id=11]
+[ext_resource path="res://player/Stomp.gd" type="Script" id=12]
+[ext_resource path="res://player/playerspr.gd" type="Script" id=13]
+[ext_resource path="res://player/platform_spawner.gd" type="Script" id=14]
+[ext_resource path="res://state_machine/state.gd" type="Script" id=15]
+[ext_resource path="res://player/StompBreaker.gd" type="Script" id=16]
+
+[sub_resource type="Animation" id=1]
+resource_name = "DASHDASH"
+length = 0.104
+tracks/0/type = "value"
+tracks/0/path = NodePath("Forestchar:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Forestchar/Armthing:a_pos")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Forestchar/Armthing:a_frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "climb"
+length = 0.104
+tracks/0/type = "value"
+tracks/0/path = NodePath("Forestchar:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Forestchar/Armthing:a_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Forestchar/Armthing:a_pos")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -3, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "glide"
+length = 0.059
+tracks/0/type = "value"
+tracks/0/path = NodePath("Forestchar:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Forestchar/Armthing:a_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Forestchar/Armthing:a_pos")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "hurt"
+length = 0.104
+tracks/0/type = "value"
+tracks/0/path = NodePath("Forestchar:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Forestchar/Armthing:a_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Forestchar/Armthing:a_pos")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "idle"
+length = 0.059
+tracks/0/type = "value"
+tracks/0/path = NodePath("Forestchar:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Forestchar/Armthing:a_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Forestchar/Armthing:a_pos")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "thefall"
+length = 0.104
+tracks/0/type = "value"
+tracks/0/path = NodePath("Forestchar:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Forestchar/Armthing:a_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Forestchar/Armthing:a_pos")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "thejump"
+length = 0.104
+tracks/0/type = "value"
+tracks/0/path = NodePath("Forestchar:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Forestchar/Armthing:a_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Forestchar/Armthing:a_pos")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "walk"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Forestchar:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Forestchar/Armthing:a_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Forestchar/Armthing:a_pos")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, 0 ), Vector2( 1, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 2, 3.5 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 1, 12 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" groups=["player"]]
+collision_layer = 161
+script = ExtResource( 1 )
+
+[node name="Forestchar" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 9
+frame = 8
+script = ExtResource( 13 )
+
+[node name="Armthing" type="Sprite" parent="Forestchar"]
+unique_name_in_owner = true
+position = Vector2( 3, 0 )
+texture = ExtResource( 3 )
+hframes = 10
+frame = 2
+script = ExtResource( 10 )
+a_frame = 2
+a_pos = Vector2( 3, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DASHDASH = SubResource( 1 )
+anims/climb = SubResource( 2 )
+anims/glide = SubResource( 9 )
+anims/hurt = SubResource( 3 )
+anims/idle = SubResource( 8 )
+anims/thefall = SubResource( 4 )
+anims/thejump = SubResource( 5 )
+anims/walk = SubResource( 6 )
+script = ExtResource( 9 )
+
+[node name="DirComp" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2.462 )
+shape = SubResource( 7 )
+
+[node name="PhysicsStuff" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 6 )
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+path_fallstate = NodePath("../fall")
+path_floorstate = NodePath("../walk")
+path_jumpstate = NodePath("../jump")
+path_slamstate = NodePath("../stomp")
+
+[node name="walk" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+path_fallstate = NodePath("../fall")
+path_floorstate = NodePath("../idle")
+path_jumpstate = NodePath("../jump")
+is_walk_state = true
+
+[node name="jump" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+path_idlestate = NodePath("../idle")
+path_walk_state = NodePath("../walk")
+path_air_state = NodePath("../fall")
+
+[node name="fall" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+path_idlestate = NodePath("../idle")
+path_walk_state = NodePath("../walk")
+path_air_state = NodePath("../jump")
+is_fall_state = true
+
+[node name="stomp" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+path_idlestate = NodePath("../idle")
+
+[node name="tuberide" type="Node" parent="StateMachine"]
+script = ExtResource( 15 )
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 11 )
+max_jumps = 1
+jump_force = -190
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -10 )
+shape = SubResource( 10 )
+
+[node name="StompBreaker" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 20 )
+script = ExtResource( 16 )
+
+[node name="DashBreaker" type="RayCast2D" parent="."]
+cast_to = Vector2( 20, 0 )
+script = ExtResource( 16 )
+break_man_type = 1
+
+[connection signal="news_recived" from="." to="." method="_on_news_recived"]
+[connection signal="entered" from="StateMachine/idle" to="AnimationPlayer" method="_on_idle_entered"]
+[connection signal="landed" from="StateMachine/idle" to="Node2D" method="reset_jumps"]
+[connection signal="entered" from="StateMachine/walk" to="." method="_on_walk_entered"]
+[connection signal="entered" from="StateMachine/walk" to="AnimationPlayer" method="_on_walk_entered"]
+[connection signal="exited" from="StateMachine/walk" to="." method="_on_walk_exited"]
+[connection signal="entered" from="StateMachine/jump" to="AnimationPlayer" method="_on_jump_entered"]
+[connection signal="entered" from="StateMachine/fall" to="AnimationPlayer" method="_on_fall_entered"]
+[connection signal="start_coyote_time" from="StateMachine/fall" to="Node2D" method="start_coyote_time"]
+[connection signal="entered" from="StateMachine/stomp" to="." method="_on_Stomp_entered"]
+[connection signal="entered" from="StateMachine/stomp" to="StompBreaker" method="enable"]
+[connection signal="exited" from="StateMachine/stomp" to="." method="_on_Stomp_exited"]
+[connection signal="exited" from="StateMachine/stomp" to="StompBreaker" method="disable"]
