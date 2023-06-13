@@ -29,8 +29,6 @@ var igt : int = 0
 # player data
 var current_powerups := []
 var last_position := Vector2(416,255)
-var wpn_card_combo := [0,0]
-var weapon_slots = [[0,0],[0,0],[0,0],[0,0]]
 var waypoint_position := Vector2.INF
 # index 0 is gun, index 1 is card!
 const VERSION = "0.0.0"
@@ -55,8 +53,6 @@ func to_dict():
 		igt = igt,
 		current_powerups = current_powerups,
 		last_position = last_position,
-		wpn_card_combo = wpn_card_combo,
-		weapon_slots = weapon_slots,
 		loaded_room = loaded_room,
 		waypoint_position = waypoint_position
 	}
@@ -74,13 +70,8 @@ func from_dict(dict:Dictionary):
 	igt = dict.get("igt",0)
 	current_powerups = dict.get("current_powerups",[])
 	last_position = dict.get("last_position",last_position)
-	wpn_card_combo = dict.get("wpn_card_combo",wpn_card_combo)
-	weapon_slots = dict.get("weapon_slots",weapon_slots)
 	loaded_room = dict.get("loaded_room",loaded_room)
 	waypoint_position = dict.get("waypoint_position",Vector2.INF)
-	#print(loaded_room)
-
-
 
 
 func room_save_modified(room_path,room_save_info:RoomSaveInfo):

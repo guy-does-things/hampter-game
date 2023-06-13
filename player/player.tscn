@@ -385,6 +385,7 @@ shape = SubResource( 7 )
 
 [node name="PhysicsStuff" type="Node" parent="."]
 script = ExtResource( 5 )
+gravity_only_when_not_on_floor = false
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -427,7 +428,7 @@ script = ExtResource( 15 )
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource( 11 )
 max_jumps = 1
-jump_force = -190
+jump_force = -250
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource( 14 )
@@ -452,6 +453,7 @@ break_man_type = 1
 [connection signal="entered" from="StateMachine/walk" to="AnimationPlayer" method="_on_walk_entered"]
 [connection signal="exited" from="StateMachine/walk" to="." method="_on_walk_exited"]
 [connection signal="entered" from="StateMachine/jump" to="AnimationPlayer" method="_on_jump_entered"]
+[connection signal="exited" from="StateMachine/jump" to="." method="_on_jump_exited"]
 [connection signal="entered" from="StateMachine/fall" to="AnimationPlayer" method="_on_fall_entered"]
 [connection signal="start_coyote_time" from="StateMachine/fall" to="Node2D" method="start_coyote_time"]
 [connection signal="entered" from="StateMachine/stomp" to="." method="_on_Stomp_entered"]

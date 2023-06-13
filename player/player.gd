@@ -71,9 +71,6 @@ func _physics_process(delta):
 	velocity.x += current_dir_x * speed
 	
 	
-	var grav_res = get_floor_normal() if is_on_floor() else Vector2.UP
-	
-	velocity -= grav_res * PhysicsStuff.BASE_GRAVITY
 	
 	
 	#$"%Armthing".aim($"%DirComp".current_dir,Vector2($"%Armthing".scale.x,0))

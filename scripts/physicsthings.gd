@@ -11,6 +11,8 @@ const MAX_TERM_VEL = 900
 export var gravmult = 1.0
 export var gravity_enabled = true
 export var friction_enabled = true
+export var gravity_only_when_not_on_floor = true
+
 
 onready var e = get_parent()
 var term_vel = MAX_TERM_VEL
@@ -21,7 +23,10 @@ func _physics_process(delta):
 	if not ("velocity" in e):return
 	
 	if gravity_enabled:
-		#e.velocity.y = clamp(e.velocity.y + (BASE_GRAVITY * gravmult), -INF, (term_vel) )
+		
+		if not gravity_only_when_not_on_floor or !e.is_on_floor():
+			#if e.has_method("is_on_floor") and e.is_on_floor() or not gravity_only_on_floor:
+			e.velocity.y = clamp(e.velocity.y + (BASE_GRAVITY * gravmult), -INF, (term_vel) )
 		pass
 	
 	if friction_enabled:

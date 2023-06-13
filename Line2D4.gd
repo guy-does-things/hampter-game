@@ -1,3 +1,4 @@
+tool
 class_name Pipe
 extends Line2D
 
@@ -19,7 +20,7 @@ func _ready():
 	cooldown.one_shot = true
 	cooldown.wait_time = .2
 	var shape = RectangleShape2D.new()
-	shape.extents = Vector2(1,8)
+	shape.extents = Vector2(width,width) / 2
 	
 	
 	
@@ -29,13 +30,17 @@ func _ready():
 		
 		#a.global_position = Vector2.ZERO#global_position + points[i]
 		add_child(a)
-		s.position = points[i]
+		s.position = points[i]# + shape.extents / 2
 		s.shape = shape
 		a.add_child(s)
 		a.connect("body_entered",self,"player_entered",[i, 1 if i == 0 else -1])
 
 
 func _physics_process(delta):
+	begin_cap_mode = 1
+	end_cap_mode = 1
+	
+	
 	if is_instance_valid(player):
 		var point = to_global(points[moveindex])
 		

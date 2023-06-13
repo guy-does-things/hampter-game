@@ -55,7 +55,6 @@ func setup_area():
 
 
 func _physics_process(delta):
-	return
 	if Engine.editor_hint:
 		setup_area()
 		setup_shape()
