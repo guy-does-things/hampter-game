@@ -8,9 +8,13 @@ var player :Entity
 var moveindex :int
 var dir :int
 var cooldown = Timer.new()
+export(String) var room_name
+export(int,256) var pipe_to_exit
+
 
 
 func _ready():
+	z_index = 2
 	if points.size() < 2:
 		queue_free()
 		return
@@ -42,6 +46,8 @@ func _physics_process(delta):
 	
 	
 	if is_instance_valid(player):
+		
+	
 		var point = to_global(points[moveindex])
 		
 		
@@ -57,10 +63,10 @@ func _physics_process(delta):
 		if dist < 3:moveindex += dir
 		
 		if moveindex > points.size()-1 or moveindex < 0:
+			player.last_walk_dir = sign(shootdir.x)
 			player.end_moving_on_tube()
 			cooldown.start()
 			player.velocity = shootdir *200
-		
 			
 			player = null
 			
@@ -79,7 +85,9 @@ func player_entered(plr,index,movedir):
 		player = plr
 		moveindex = index
 		player.start_moving_in_tube()	
-		dir = movedir	
+		dir = movedir
+		
+		
 		
 		
 	

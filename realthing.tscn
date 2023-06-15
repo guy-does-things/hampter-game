@@ -88,10 +88,6 @@ can_swim = true
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true
 
-[node name="Testtile" type="Sprite" parent="KinematicBody2D"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 10 )
-
 [node name="Line2D2" type="Line2D" parent="."]
 position = Vector2( 0, -32 )
 points = PoolVector2Array( -552, 72, 80, 72 )
@@ -99,7 +95,7 @@ width = 2.0
 script = ExtResource( 3 )
 
 [node name="Line2D4" type="Line2D" parent="."]
-z_index = 1
+z_index = 2
 points = PoolVector2Array( 48, 96, 272, 96 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://player/Halberd.gd" type="Script" id=1]
+[ext_resource path="res://raw_sprites/player/halberd.png" type="Texture" id=2]
+
+[node name="Halberd" type="Sprite"]
+texture = ExtResource( 2 )
+offset = Vector2( 0, -10 )
+hframes = 2
+script = ExtResource( 1 )

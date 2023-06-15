@@ -9,7 +9,7 @@ enum Locations{
 
 signal news_recived
 
-onready var fc = $Forestchar
+onready var fc = $Node2D2
 onready var jumpcontroller = $Node2D
 export var can_swim = false
 var on_p = false
@@ -22,14 +22,18 @@ func move():
 	velocity = move_and_slide(velocity,Vector2.UP)
 
 func start_moving_in_tube():
+	hide()
+	$Circlething.hide()
+	$AnimatedSprite2.hide()
 	can_slide = false
 	$StateMachine.set_state($StateMachine/tuberide)
 	$PhysicsStuff.friction_enabled = false
 	$PhysicsStuff.gravity_enabled = false
 	velocity = Vector2.ZERO
-	$AnimationPlayer.play("idle")
+	fc.get_node("AnimationPlayer").play("idle")
 	
 func end_moving_on_tube():
+	show()
 
 	can_slide = true
 	$StateMachine.set_state($StateMachine/idle)
@@ -52,21 +56,26 @@ func _physics_process(delta):
 	
 	var current_dir_x = sign($"%DirComp".current_dir.x)
 	if run_time >= 1 :
+		$Circlething.show()
+		$AnimatedSprite2.show()
 		$DashBreaker.enable()
-		$DashBreaker.cast_to.x = 10 * current_dir_x
-		
-		speed *= 2 - (int(!is_on_floor())*.5)
+		$DashBreaker.cast_to.x = 40 * current_dir_x
+		$Circlething.rotation_degrees += 32
+		speed *= 3
 	else:
+		$Circlething.hide()
+		$AnimatedSprite2.hide()
 		$DashBreaker.disable()
 
-		
+	
 
 	
-	if last_walk_dir != current_dir_x or current_dir_x == 0:
+	if last_walk_dir != current_dir_x or current_dir_x == 0 or is_on_wall():
+		if is_on_wall() and run_time > 1:
+			velocity += Vector2(-last_walk_dir,-.25)*450
 		run_time = 0
 		
 	last_walk_dir = current_dir_x
-
 
 	velocity.x += current_dir_x * speed
 	
@@ -76,19 +85,21 @@ func _physics_process(delta):
 	#$"%Armthing".aim($"%DirComp".current_dir,Vector2($"%Armthing".scale.x,0))
 	if current_dir_x != 0:
 		fc.scale.x = current_dir_x
+		$AnimatedSprite2.scale.y = -current_dir_x * 2
 
 	if Input.is_action_just_pressed("jump"):
 		jumpcontroller.jump()
-
+		
 		
 	if Input.is_action_just_released("jump") and velocity.y < 0 :
 		velocity.y = 0
 
 
-	if Input.is_action_pressed("down") and !is_on_floor():
+	if Input.is_action_pressed("down") and !is_on_floor() and Input.is_action_just_pressed("jump"):
 		$StateMachine.set_state($StateMachine/stomp)
 
-
+	if Input.is_action_just_pressed("attack"):
+		$Node2D2/HampterSprite/Halberd.attack()
 	
 	
 	

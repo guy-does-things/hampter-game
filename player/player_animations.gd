@@ -23,5 +23,6 @@ func _on_WallSlide_entered():
 
 
 func _on_WallSlide_started_grace():
+	
 	play("thejump")
-	pass # Replace with function body.
+

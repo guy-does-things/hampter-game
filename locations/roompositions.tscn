@@ -18,10 +18,9 @@
 position = Vector2( 656, 0 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 40, 40 )
+position = Vector2( 1808, 664 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
-position = Vector2( -8, 8 )
 current = true
 
 [node name="A3" parent="." instance=ExtResource( 3 )]
