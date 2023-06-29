@@ -72,7 +72,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 position = Vector2( -957.191, 160 )
 scale = Vector2( 5.832, 1.2 )
 
-[node name="Position2D" parent="Water" index="2"]
+[node name="Position2D" parent="Water" index="0"]
 position = Vector2( 28.3249, -26.6667 )
 
 [node name="TileMap" type="TileMap" parent="."]

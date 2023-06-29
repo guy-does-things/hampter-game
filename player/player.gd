@@ -18,6 +18,8 @@ var run_time = 0.0
 var last_walk_dir = 0
 var snap : Vector2
 
+var attacking = false
+
 func move():
 	velocity = move_and_slide(velocity,Vector2.UP)
 
@@ -49,7 +51,7 @@ func _physics_process(delta):
 	
 
 	
-	if is_gonna_run:
+	if is_gonna_run and !attacking:
 		run_time += delta
 
 	var speed = 15
@@ -77,8 +79,11 @@ func _physics_process(delta):
 		
 	last_walk_dir = current_dir_x
 
-	velocity.x += current_dir_x * speed
-	
+
+	if !attacking or !is_on_floor():
+		velocity.x += current_dir_x * speed
+	else:
+		current_dir_x = 0
 	
 	
 	
@@ -87,21 +92,28 @@ func _physics_process(delta):
 		fc.scale.x = current_dir_x
 		$AnimatedSprite2.scale.y = -current_dir_x * 2
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and !attacking:
 		jumpcontroller.jump()
 		
 		
 	if Input.is_action_just_released("jump") and velocity.y < 0 :
 		velocity.y = 0
 
+	
 
+	$Node2D2/HampterSprite/Node2D.dir.x = fc.scale.x
+	
+	$Node2D2/HampterSprite/Node2D/AttackStateMachine.ex_inputs(is_on_floor())
+	
 	if Input.is_action_pressed("down") and !is_on_floor() and Input.is_action_just_pressed("jump"):
 		$StateMachine.set_state($StateMachine/stomp)
 
 	if Input.is_action_just_pressed("attack"):
-		$Node2D2/HampterSprite/Halberd.attack()
-	
-	
+		$Node2D2/HampterSprite/Node2D.try_shooting()
+		
+	else:
+		$Node2D2/HampterSprite/Node2D.stop_firing()
+		
 	
 
 
@@ -120,3 +132,17 @@ func _on_walk_entered():
 func _on_walk_exited():
 	is_gonna_run = false
 	
+
+
+
+
+func _on_AttackStateMachine_restrict_movement():
+	attacking = true
+
+func _on_AttackStateMachine_resume_movement():
+	attacking = false
+
+
+func _on_AttackStateMachine_uppercut():
+	velocity = Vector2(fc.scale.x * 60,-275)
+	print("why")

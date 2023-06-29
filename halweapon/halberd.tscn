@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/nbasegun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://halweapon/halberd.gd" type="Script" id=2]
+[ext_resource path="res://halweapon/3hitcombo/hals.tres" type="Resource" id=3]
+[ext_resource path="res://halweapon/3hitcombo/halend.tres" type="Resource" id=4]
+[ext_resource path="res://halweapon/3hitcombo/halmid.tres" type="Resource" id=5]
+[ext_resource path="res://halweapon/3hitcombo/snicwave.tres" type="Resource" id=6]
+[ext_resource path="res://halweapon/AttackStateMachine.gd" type="Script" id=7]
+[ext_resource path="res://state_machine/state.gd" type="Script" id=8]
+[ext_resource path="res://halweapon/weapon_anims.gd" type="Script" id=9]
+[ext_resource path="res://hitHurt(1).wav" type="AudioStream" id=10]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 25.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 19.5, 23 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "attack4"
+length = 0.136
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Position2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 17, 0 ) ]
+}
+
+[node name="Node2D" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+_gun_data = ExtResource( 3 )
+hal_at_lookuptable = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ]
+
+[node name="SpriteSheet" parent="." index="0"]
+hframes = 12
+frame = 4
+
+[node name="Position2D" parent="." index="1"]
+visible = false
+position = Vector2( 16, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D" index="0"]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Position2D" index="1"]
+shape = SubResource( 2 )
+
+[node name="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource( 10 )
+
+[node name="AnimationPlayer" parent="." index="5"]
+anims/attack4 = SubResource( 3 )
+script = ExtResource( 9 )
+
+[node name="AttackStateMachine" type="Node" parent="." index="6"]
+script = ExtResource( 7 )
+initial_state = NodePath("None")
+
+[node name="None" type="Node" parent="AttackStateMachine" index="0"]
+script = ExtResource( 8 )
+
+[node name="Attack1" type="Node" parent="AttackStateMachine" index="1"]
+script = ExtResource( 8 )
+
+[node name="Attack2" type="Node" parent="AttackStateMachine" index="2"]
+script = ExtResource( 8 )
+
+[node name="Attack3" type="Node" parent="AttackStateMachine" index="3"]
+script = ExtResource( 8 )
+
+[node name="Uppercut" type="Node" parent="AttackStateMachine" index="4"]
+script = ExtResource( 8 )
+
+[node name="PogoStic" type="Node" parent="AttackStateMachine" index="5"]
+script = ExtResource( 8 )
+
+[node name="SonicSlash" type="Node" parent="AttackStateMachine" index="6"]
+script = ExtResource( 8 )
+
+[node name="DelayTimer" type="Timer" parent="." index="7"]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="fired" from="." to="." method="_on_Node2D_fired"]
+[connection signal="fired" from="." to="AttackStateMachine" method="_on_Node2D_fired"]
+[connection signal="postfired" from="." to="." method="_on_Node2D_postfired"]
+[connection signal="entered" from="AttackStateMachine/None" to="AnimationPlayer" method="_on_None_entered"]
+[connection signal="entered" from="AttackStateMachine/Attack1" to="AnimationPlayer" method="_on_Attack1_entered"]
+[connection signal="entered" from="AttackStateMachine/Attack2" to="AnimationPlayer" method="_on_Attack2_entered"]
+[connection signal="entered" from="AttackStateMachine/Attack3" to="AnimationPlayer" method="_on_Attack3_entered"]
+[connection signal="entered" from="AttackStateMachine/PogoStic" to="AnimationPlayer" method="_on_PogoStic_entered"]
+[connection signal="exited" from="AttackStateMachine/PogoStic" to="AnimationPlayer" method="_on_PogoStic_exited"]
+[connection signal="timeout" from="DelayTimer" to="AttackStateMachine" method="_on_DelayTimer_timeout"]

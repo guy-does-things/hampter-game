@@ -1,27 +1,36 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=2]
 [ext_resource path="res://locations/gate of cage/bigcage.tscn" type="PackedScene" id=3]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://locations/gate of cage/stompitem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://locations/gate of cage/tunneldescent.tscn" type="PackedScene" id=5]
 [ext_resource path="res://locations/gate of cage/waterway.tscn" type="PackedScene" id=6]
 [ext_resource path="res://locations/gate of cage/beforeboss1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://locations/gate of cage/guardianroom.tscn" type="PackedScene" id=8]
 [ext_resource path="res://locations/gate of cage/afterboss1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/cisintroripoff.tscn" type="PackedScene" id=10]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/waterplatformroom.tscn" type="PackedScene" id=11]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/comicalamountofwater.tscn" type="PackedScene" id=12]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/arenaroom.tscn" type="PackedScene" id=13]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/femboyfishingroom.tscn" type="PackedScene" id=14]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/exitroom.tscn" type="PackedScene" id=15]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/swimitemroom.tscn" type="PackedScene" id=16]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/swimsecretroom.tscn" type="PackedScene" id=17]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/secretcomputeroom.tscn" type="PackedScene" id=18]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/movingproom.tscn" type="PackedScene" id=19]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/dayofsexthefall.tscn" type="PackedScene" id=20]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/dashroom.tscn" type="PackedScene" id=21]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="A17" parent="." instance=ExtResource( 16 )]
+position = Vector2( 6728, 1809 )
 
 [node name="A" parent="." instance=ExtResource( 1 )]
 
 [node name="A2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 656, 0 )
-
-[node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1808, 664 )
-
-[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
-current = true
 
 [node name="A3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1696, 496 )
@@ -33,10 +42,49 @@ position = Vector2( 560, 272 )
 position = Vector2( -1104, 1632 )
 
 [node name="A6" parent="." instance=ExtResource( 7 )]
-position = Vector2( 824, 2744 )
+position = Vector2( 824, 2769 )
 
 [node name="A7" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2040, 2872 )
+position = Vector2( 2040, 2897 )
 
 [node name="A8" parent="." instance=ExtResource( 9 )]
-position = Vector2( 2664, 2872 )
+position = Vector2( 2664, 2897 )
+
+[node name="A9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2736, 112 )
+
+[node name="A10" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3176, 2785 )
+
+[node name="A11" parent="." instance=ExtResource( 11 )]
+position = Vector2( 3656, 2769 )
+
+[node name="A12" parent="." instance=ExtResource( 12 )]
+position = Vector2( 4440, 2577 )
+
+[node name="A14" parent="." instance=ExtResource( 14 )]
+position = Vector2( 3656, 3057 )
+
+[node name="A15" parent="." instance=ExtResource( 15 )]
+position = Vector2( 3032, 3153 )
+
+[node name="A13" parent="." instance=ExtResource( 13 )]
+position = Vector2( 3656, 1889 )
+
+[node name="A16" parent="." instance=ExtResource( 11 )]
+position = Vector2( 4488, 1937 )
+
+[node name="A18" parent="." instance=ExtResource( 17 )]
+position = Vector2( 2680, 2257 )
+
+[node name="A20" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1560, 2321 )
+
+[node name="A19" parent="." instance=ExtResource( 19 )]
+position = Vector2( 3656, 1008 )
+
+[node name="A21" parent="." instance=ExtResource( 20 )]
+position = Vector2( 5944, 800 )
+
+[node name="A22" parent="." instance=ExtResource( 21 )]
+position = Vector2( 6904, 1248 )

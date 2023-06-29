@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=1]
+[ext_resource path="res://halweapon/first2hits.tres" type="Resource" id=2]
+[ext_resource path="res://swordThing/GdtBullet.tscn" type="PackedScene" id=3]
+
+[resource]
+script = ExtResource( 1 )
+data_res = ExtResource( 2 )
+bullet = ExtResource( 3 )

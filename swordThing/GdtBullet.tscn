@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://swordThing/thing.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+deletes_on_wall = true
+deletes_on_enemy_hit = true
+deletes_on_ally_hit = false
+deletes_on_timeout = true
+ignores_anti_tunneling_measures = false
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.67931, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.782772 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="GdtBullet" type="Node2D"]
+script = ExtResource( 2 )
+speed = 2.0
+hitbox = SubResource( 2 )
+_bullet_props = SubResource( 1 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[node name="Area2D" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource( 2 )
+
+[node name="Thing" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Thing"]
+show_behind_parent = true
+amount = 16
+lifetime = 0.2
+local_coords = false
+texture = ExtResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 2.01
+gravity = Vector2( 0, 0 )
+scale_amount_curve = SubResource( 3 )
+color_ramp = SubResource( 4 )

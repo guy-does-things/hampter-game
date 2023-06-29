@@ -14,6 +14,7 @@ func _physics_process(delta):
 				platthing = preload("res://scenes/thing/Entity.tscn").instance()
 				platthing.global_position = ziplinedata[0]
 				platthing.zipline = ziplinedata[1]
+				platthing.scale = Vector2.ONE * 2
 				get_tree().current_scene.add_child(platthing)
 			
 			elif !get_parent().on_p:

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 0
+fires_before_charging = false
+pellet_count = 1
+burst_count = 1
+cooldown = 0.437
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 400
+bullet_lifetime = 2.0
+
+[resource]
+script = ExtResource( 2 )
+data_res = SubResource( 1 )
