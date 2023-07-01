@@ -2,14 +2,16 @@ extends AnimationPlayer
 
 
 
+func  play(name: String = "", custom_blend: float = -1, custom_speed: float = 1.0, from_end: bool = false):
+	.play(name,custom_blend,custom_speed,from_end)
+	
 
 func _on_Attack1_entered():
 	play("attack1")
-
+	
 
 func _on_None_entered():
-	stop()
-	$"../SpriteSheet".frame = 0
+	play("RESET")
 
 
 func _on_Attack2_entered():
@@ -21,10 +23,18 @@ func _on_Attack3_entered():
 
 
 func _on_PogoStic_entered():
-	stop()
-	$"../SpriteSheet".frame = 4
+	play("pogo")
 	
 
 
-func _on_PogoStic_exited():
-	$"../SpriteSheet".rotation_degrees = 0
+	
+func _on_Uppercut_entered():
+	play("uppercut")
+
+
+func _on_SpinSlash_entered():
+	play("spinslash")
+
+
+func _on_SonicSlash_entered():
+	play("soulthrow")

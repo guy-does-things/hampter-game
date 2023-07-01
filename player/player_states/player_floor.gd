@@ -27,8 +27,8 @@ func _enter_state(new_state, old_state):
 func get_land_trans():
 
 	if is_walk_state:
-		return abs(entity.velocity.x) < 15
-	return abs(entity.velocity.x) > 15
+		return abs(entity.velocity.x) < 32
+	return abs(entity.velocity.x) > 32
 	
 
 func _get_transition(delta):

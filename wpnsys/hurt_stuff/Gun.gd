@@ -119,8 +119,12 @@ func fire():
 	actually_fire()
 
 
+func fire_condition():
+	return current_state == GunStates.IDLE and !semi_auto_not_released
+
 func actually_fire():
-	if current_state == GunStates.IDLE and !semi_auto_not_released:
+	if fire_condition():
+
 		
 		if _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.SEMIAUTO:
 			semi_auto_not_released = true
@@ -141,13 +145,21 @@ func actually_fire():
 				create_projectile(burst,pellet)
 				
 			
-			$"%Cooldown".wait_time = _gun_data.data_res.cooldown
-			$"%Cooldown".start()
-			# yield is kinda bad, but it works unlees i modify the script/an error happens
-			# both that should NOT happen on any release
-			yield($"%Cooldown","timeout")
+			yield(cooldown(),"completed")
+
+
+		#idk why i forgor
 		yield(get_tree(),"idle_frame")
 		postfire()
+
+
+func cooldown()->GDScriptFunctionState:
+	$"%Cooldown".wait_time = _gun_data.cooldown
+	$"%Cooldown".start()
+	# yield is kinda bad, but it works unlees i modify the script/an error happens
+	# both that should NOT happen on any release
+	yield($"%Cooldown","timeout")
+	return null
 
 
 

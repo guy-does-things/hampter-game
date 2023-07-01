@@ -3,7 +3,7 @@ extends Node
 
 
 const AIR_FRICTION = 0.95
-const FLOOR_FRICTION = 0.89
+const FLOOR_FRICTION = 0.85
 
 const BASE_GRAVITY = 10
 const MAX_TERM_VEL = 900 

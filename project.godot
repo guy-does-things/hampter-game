@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://wpnsys/hurt_stuff/hurt_component.gd"
 }, {
+"base": "GdtGun",
+"class": "MeleeWeapon",
+"language": "GDScript",
+"path": "res://mlegunthing.gd"
+}, {
 "base": "Resource",
 "class": "NewSaveData",
 "language": "GDScript",
@@ -141,6 +146,7 @@ _global_script_class_icons={
 "GdtGun": "",
 "HitBox": "",
 "HurtComponent": "",
+"MeleeWeapon": "",
 "NewSaveData": "",
 "NewestRoom": "",
 "PhysicsStuff": "",
@@ -248,4 +254,3 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"

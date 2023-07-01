@@ -17,8 +17,13 @@ var is_gonna_run = false
 var run_time = 0.0
 var last_walk_dir = 0
 var snap : Vector2
-
+var no_slam = false
 var attacking = false
+var no_movement =  false
+var ctiltmult = 1
+
+
+onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
 
 func move():
 	velocity = move_and_slide(velocity,Vector2.UP)
@@ -46,10 +51,13 @@ func end_moving_on_tube():
 func is_riding():
 	return $StateMachine.state == $StateMachine/tuberide
 
+
+
 func _physics_process(delta):
+	
+	
 	if is_riding():return
 	
-
 	
 	if is_gonna_run and !attacking:
 		run_time += delta
@@ -70,7 +78,7 @@ func _physics_process(delta):
 		$DashBreaker.disable()
 
 	
-
+	weapon_handling()
 	
 	if last_walk_dir != current_dir_x or current_dir_x == 0 or is_on_wall():
 		if is_on_wall() and run_time > 1:
@@ -80,10 +88,13 @@ func _physics_process(delta):
 	last_walk_dir = current_dir_x
 
 
-	if !attacking or !is_on_floor():
+	if (!attacking or !is_on_floor()) and not no_movement:
 		velocity.x += current_dir_x * speed
 	else:
 		current_dir_x = 0
+		velocity.x = 0
+		
+		
 	
 	
 	
@@ -92,29 +103,43 @@ func _physics_process(delta):
 		fc.scale.x = current_dir_x
 		$AnimatedSprite2.scale.y = -current_dir_x * 2
 
+
 	if Input.is_action_just_pressed("jump") and !attacking:
 		jumpcontroller.jump()
+		if Input.is_action_pressed("down") and !is_on_floor() and !no_slam:
+			$StateMachine.set_state($StateMachine/stomp)
 		
 		
 	if Input.is_action_just_released("jump") and velocity.y < 0 :
 		velocity.y = 0
 
-	
 
-	$Node2D2/HampterSprite/Node2D.dir.x = fc.scale.x
-	
-	$Node2D2/HampterSprite/Node2D/AttackStateMachine.ex_inputs(is_on_floor())
-	
-	if Input.is_action_pressed("down") and !is_on_floor() and Input.is_action_just_pressed("jump"):
-		$StateMachine.set_state($StateMachine/stomp)
 
-	if Input.is_action_just_pressed("attack"):
-		$Node2D2/HampterSprite/Node2D.try_shooting()
-		
+
+
+	
+	
+	
+func weapon_handling():	
+	
+	# bitmask input fuckery :3
+	weapon.is_idle = $StateMachine.state == $StateMachine/idle or $StateMachine.state == $StateMachine/walk and $DirComp.current_dir.x == 0
+	weapon.on_floor = is_on_floor()
+	weapon.deal_with_input(MeleeWeapon.Dirs.LEFT & (int(Input.is_action_pressed("left"))<<2))
+	weapon.deal_with_input(MeleeWeapon.Dirs.RIGHT & (int(Input.is_action_pressed("right"))<<3))
+	weapon.deal_with_input(MeleeWeapon.Dirs.UP & int(Input.is_action_pressed("up")))
+	weapon.deal_with_input(MeleeWeapon.Dirs.DOWN & (int(Input.is_action_pressed("down"))<<1))
+	weapon.dir.x = fc.scale.x
+	
+	weapon.stop_pogoin()
+	if Input.is_action_pressed("attack"):
+		weapon.try_shooting()
 	else:
-		$Node2D2/HampterSprite/Node2D.stop_firing()
-		
-	
+		weapon.stop_firing()
+	weapon.start_pogo()
+
+
+
 
 
 func _on_Stomp_entered():
@@ -138,11 +163,42 @@ func _on_walk_exited():
 
 func _on_AttackStateMachine_restrict_movement():
 	attacking = true
+	
+
+func attacked():
+	$Node2D2/HampterSprite.is_attacking = true
+	
+func finished_atk():
+	$Node2D2/HampterSprite.is_attacking = false
+	no_slam = false
 
 func _on_AttackStateMachine_resume_movement():
 	attacking = false
+	no_movement = false
+	finished_atk()
+	$StateMachine.set_state($StateMachine.state)
+	
 
 
-func _on_AttackStateMachine_uppercut():
+
+
+func _on_Node2D_fired(gun):
+	attacked()
+	
+
+
+func _on_Uppercut_entered():
 	velocity = Vector2(fc.scale.x * 60,-275)
-	print("why")
+
+
+
+func _on_AttackStateMachine_stop_ALL_movement():
+	no_movement = true
+
+
+func _on_SpinSlash_entered():
+	no_slam = true
+	$Node2D2/HampterSprite.frame = 3
+
+
+

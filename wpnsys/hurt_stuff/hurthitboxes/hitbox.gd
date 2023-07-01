@@ -5,15 +5,21 @@ signal actually_hit(enemy)
 signal ally_hit(ally)
 
 
-export(HurtComponent.DamageTypes) var damage_type
+export(int) var min_hit_priority = 0
+export(int) var max_hit_priority = 0
+
+
 export(float) var hit_iframes := .1 setget set_hit_iframes
 export(int) var damage = 0
+
 export(int) var knockback = 0
 export(bool) var is_enemy = false
 export(bool) var can_hit_multiple_times = false
 
 onready var timer = $Timer
 onready var parent = get_parent()
+var current_priority = 0
+
 
 var __hurt_comps := []
 var __flush_colliders_instead_of_hurting = false
@@ -38,26 +44,35 @@ func set_hit_iframes(hdelay):
 		
 
 
-func _on_Area2D_area_entered(area:HurtComponent):
+func _on_Area2D_area_entered(area:HurtComponent,is_hurting_again=false):
 #	print_debug(area)
 	if area:
-		if actually_hurt(area):
-			#print_debug("WHAT THE FUck")
-			emit_signal("actually_hit",area)
-		
-			if can_hit_multiple_times:
-				if not area in __hurt_comps:
-					__hurt_comps.append(area)
-					timer.start()
-		
+		while true:
 
+			if actually_hurt(area):
+				#print_debug("WHAT THE FUck")
+				emit_signal("actually_hit",area)
+			
+				if can_hit_multiple_times:
+					if not area in __hurt_comps and not is_hurting_again:
+						__hurt_comps.append(area)
+						timer.start()
+				break
 		
-		elif area.is_enemy == is_enemy:
-			emit_signal("ally_hit",area)
-
+			elif area.is_enemy == is_enemy:
+				emit_signal("ally_hit",area)
+				break
+	
+			if current_priority == max_hit_priority:break
+			current_priority += 1
+			
+	
+	
 func _on_Area2D_area_exited(area:HurtComponent):
 	if area:
 		__hurt_comps.erase(area)
+		
+	current_priority = 0
 
 
 
@@ -68,7 +83,7 @@ func _on_Timer_timeout():
 		__flush_colliders_instead_of_hurting = false
 		
 	for i in __hurt_comps:
-		actually_hurt(i)
+		_on_Area2D_area_entered(i)
 		
 
 		
@@ -76,10 +91,10 @@ func actually_hurt(hc:HurtComponent):
 	#print_debug("da fuck")
 	return hc.hurt(
 		damage,
-		damage_type,
 		global_position.direction_to(hc.global_position).normalized(),
 		knockback,
-		is_enemy
+		is_enemy,
+		current_priority
 	)
 	
 
