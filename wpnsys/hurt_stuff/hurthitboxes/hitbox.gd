@@ -4,7 +4,7 @@ extends Area2D
 signal actually_hit(enemy)
 signal ally_hit(ally)
 
-
+export var knockback_dir :Vector2
 export(int) var min_hit_priority = 0
 export(int) var max_hit_priority = 0
 
@@ -18,7 +18,7 @@ export(bool) var can_hit_multiple_times = false
 
 onready var timer = $Timer
 onready var parent = get_parent()
-var current_priority = 0
+onready var current_priority = min_hit_priority
 
 
 var __hurt_comps := []
@@ -49,7 +49,7 @@ func _on_Area2D_area_entered(area:HurtComponent,is_hurting_again=false):
 	if area:
 		while true:
 
-			if actually_hurt(area):
+			if actually_hurt(area,knockback_dir.normalized()):
 				#print_debug("WHAT THE FUck")
 				emit_signal("actually_hit",area)
 			
@@ -63,7 +63,8 @@ func _on_Area2D_area_entered(area:HurtComponent,is_hurting_again=false):
 				emit_signal("ally_hit",area)
 				break
 	
-			if current_priority == max_hit_priority:break
+			if current_priority == max_hit_priority:
+				break
 			current_priority += 1
 			
 	
@@ -72,7 +73,7 @@ func _on_Area2D_area_exited(area:HurtComponent):
 	if area:
 		__hurt_comps.erase(area)
 		
-	current_priority = 0
+	current_priority = min_hit_priority
 
 
 
@@ -87,11 +88,11 @@ func _on_Timer_timeout():
 		
 
 		
-func actually_hurt(hc:HurtComponent):
+func actually_hurt(hc:HurtComponent,dir=Vector2.ZERO):
 	#print_debug("da fuck")
 	return hc.hurt(
 		damage,
-		global_position.direction_to(hc.global_position).normalized(),
+		dir,
 		knockback,
 		is_enemy,
 		current_priority

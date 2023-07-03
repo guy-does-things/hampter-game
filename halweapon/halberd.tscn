@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://wpnsys/hurt_stuff/nbasegun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://halweapon/realhalberd.gd" type="Script" id=2]
 [ext_resource path="res://halweapon/weapon_state.gd" type="Script" id=3]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://halweapon/AttackStateMachine.gd" type="Script" id=7]
 [ext_resource path="res://state_machine/state.gd" type="Script" id=8]
 [ext_resource path="res://halweapon/weapon_anims.gd" type="Script" id=9]
@@ -87,7 +88,7 @@ gradient = SubResource( 12 )
 shader = SubResource( 8 )
 shader_param/noisecolor = Color( 0.964706, 0, 1, 1 )
 shader_param/texturex = 0.331
-shader_param/has_funny_upgrade = 1
+shader_param/has_funny_upgrade = 0
 shader_param/colorr = SubResource( 13 )
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -110,10 +111,83 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBoxes/Attack1:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBoxes/Attack2:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBoxes/Attack3:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HitBoxes/uppercut:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HitBoxes/SoulThrowBoxes:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("HitBoxes/SpinSlash:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=4]
-resource_name = "REST"
-length = 0.001
+[sub_resource type="Animation" id=22]
+resource_name = "attack1"
+length = 0.187
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteSheet:frame")
 tracks/0/interp = 1
@@ -121,10 +195,134 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.07, 0.17 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04, 0.14 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBoxes/Attack1:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "attack2"
+length = 0.087
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.07 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBoxes/Attack2:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.07 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "attack3"
+length = 0.155
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.09, 0.11, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 6, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.06 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBoxes/Attack3:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.06, 0.14 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "boobthrow"
+length = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
+"values": [ {
+"args": [  ],
+"method": "battack"
+} ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -161,28 +359,42 @@ tracks/0/keys = {
 "values": [ 13, 14, 15, 16, 17, 15, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:position")
+tracks/1/path = NodePath(".:show_behind_parent")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.28 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 17, 0 ) ]
+"values": [ false, true ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:show_behind_parent")
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.28 ),
+"times": PoolRealArray( 0.12 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "soul_attack"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBoxes/SoulThrowBoxes:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.11 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -220,15 +432,27 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.44 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.42 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 2 ]
+"values": [ 3, 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBoxes/SpinSlash:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.41 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=6]
 resource_name = "uppercut"
-length = 0.209
+length = 0.32
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteSheet:frame")
@@ -242,12 +466,36 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 4, 10, 11 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBoxes/uppercut:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.03, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
-[sub_resource type="OpenSimplexNoise" id=10]
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 44, 56 )
 
-[sub_resource type="NoiseTexture" id=11]
-seamless = true
-noise = SubResource( 10 )
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 44, 60 )
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 40, 28 )
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 39, 52 )
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 43.5, 48 )
+
+[sub_resource type="CircleShape2D" id=25]
+radius = 34.9182
 
 [node name="Node2D" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -256,6 +504,7 @@ script = ExtResource( 2 )
 material = SubResource( 9 )
 offset = Vector2( 5, 0 )
 hframes = 18
+frame = 13
 
 [node name="Position2D" parent="." index="1"]
 visible = false
@@ -274,7 +523,10 @@ stream = ExtResource( 10 )
 [node name="AnimationPlayer" parent="." index="5"]
 playback_speed = 0.7
 anims/RESET = SubResource( 5 )
-anims/REST = SubResource( 4 )
+anims/attack1 = SubResource( 22 )
+anims/attack2 = SubResource( 23 )
+anims/attack3 = SubResource( 24 )
+anims/boobthrow = SubResource( 33 )
 anims/pogo = SubResource( 7 )
 anims/soulthrow = SubResource( 3 )
 anims/spinslash = SubResource( 14 )
@@ -284,7 +536,6 @@ script = ExtResource( 9 )
 [node name="AttackStateMachine" type="Node" parent="." index="6"]
 script = ExtResource( 7 )
 initial_state = NodePath("None")
-print_state = true
 
 [node name="None" type="Node" parent="AttackStateMachine" index="0"]
 script = ExtResource( 3 )
@@ -295,26 +546,97 @@ script = ExtResource( 3 )
 [node name="Attack1" type="Node" parent="AttackStateMachine" index="2"]
 script = ExtResource( 8 )
 
-[node name="Attack2" type="Node" parent="AttackStateMachine" index="3"]
+[node name="Unsure" type="Node" parent="AttackStateMachine" index="3"]
 script = ExtResource( 8 )
 
-[node name="Attack3" type="Node" parent="AttackStateMachine" index="4"]
+[node name="Attack2" type="Node" parent="AttackStateMachine" index="4"]
 script = ExtResource( 8 )
 
-[node name="Uppercut" type="Node" parent="AttackStateMachine" index="5"]
+[node name="Attack3" type="Node" parent="AttackStateMachine" index="5"]
 script = ExtResource( 8 )
 
-[node name="SonicSlash" type="Node" parent="AttackStateMachine" index="6"]
+[node name="Uppercut" type="Node" parent="AttackStateMachine" index="6"]
+script = ExtResource( 8 )
+
+[node name="SonicSlash" type="Node" parent="AttackStateMachine" index="7"]
+script = ExtResource( 8 )
+
+[node name="BTrhow" type="Node" parent="AttackStateMachine" index="8"]
 script = ExtResource( 8 )
 
 [node name="DelayTimer" type="Timer" parent="." index="7"]
 wait_time = 0.1
 one_shot = true
 
-[node name="Sprite" type="Sprite" parent="." index="8"]
+[node name="HitBoxes" type="Node2D" parent="." index="8"]
 visible = false
-position = Vector2( -93, 61 )
-texture = SubResource( 11 )
+
+[node name="Attack1" parent="HitBoxes" index="0" instance=ExtResource( 4 )]
+position = Vector2( 21, 0.999996 )
+monitoring = false
+damage = 3
+can_hit_multiple_times = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/Attack1" index="1"]
+position = Vector2( 7, 31 )
+shape = SubResource( 31 )
+
+[node name="Attack2" parent="HitBoxes" index="1" instance=ExtResource( 4 )]
+position = Vector2( 21, 0.999996 )
+monitoring = false
+min_hit_priority = 1
+max_hit_priority = 1
+can_hit_multiple_times = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/Attack2" index="1"]
+position = Vector2( 15, 35 )
+shape = SubResource( 32 )
+
+[node name="Attack3" parent="HitBoxes" index="2" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 21, 0.999996 )
+monitoring = false
+min_hit_priority = 2
+max_hit_priority = 2
+can_hit_multiple_times = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/Attack3" index="1"]
+position = Vector2( 21, 3 )
+shape = SubResource( 30 )
+
+[node name="uppercut" parent="HitBoxes" index="3" instance=ExtResource( 4 )]
+position = Vector2( 21, 0.999996 )
+monitoring = false
+min_hit_priority = 6
+max_hit_priority = 6
+damage = 4
+can_hit_multiple_times = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/uppercut" index="1"]
+position = Vector2( 20, 27 )
+shape = SubResource( 28 )
+
+[node name="SoulThrowBoxes" parent="HitBoxes" index="4" instance=ExtResource( 4 )]
+position = Vector2( 21, 0.999996 )
+monitoring = false
+min_hit_priority = 4
+max_hit_priority = 4
+can_hit_multiple_times = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/SoulThrowBoxes" index="1"]
+position = Vector2( 7.5, 23 )
+shape = SubResource( 29 )
+
+[node name="SpinSlash" parent="HitBoxes" index="5" instance=ExtResource( 4 )]
+position = Vector2( 21, 0.999996 )
+monitoring = false
+min_hit_priority = 6
+max_hit_priority = 16
+damage = 5
+can_hit_multiple_times = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/SpinSlash" index="1"]
+shape = SubResource( 25 )
 
 [connection signal="fired" from="." to="." method="_on_Node2D_fired"]
 [connection signal="postfired" from="." to="." method="_on_Node2D_postfired"]
@@ -329,4 +651,6 @@ texture = SubResource( 11 )
 [connection signal="entered" from="AttackStateMachine/Uppercut" to="AttackStateMachine" method="_on_Uppercut_entered"]
 [connection signal="entered" from="AttackStateMachine/SonicSlash" to="AnimationPlayer" method="_on_SonicSlash_entered"]
 [connection signal="entered" from="AttackStateMachine/SonicSlash" to="AttackStateMachine" method="stop_movement"]
+[connection signal="entered" from="AttackStateMachine/BTrhow" to="AnimationPlayer" method="_on_BTrhow_entered"]
+[connection signal="entered" from="AttackStateMachine/BTrhow" to="AttackStateMachine" method="stop_movement"]
 [connection signal="timeout" from="DelayTimer" to="AttackStateMachine" method="_on_DelayTimer_timeout"]

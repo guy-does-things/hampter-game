@@ -8,7 +8,11 @@ enum Dirs{
 	UP=1,
 	DOWN=2,
 	LEFT=4,
-	RIGHT=8
+	RIGHT=8,
+	
+	# tells stuff to CHECK ACTIONS, not stuff
+	IAUP=10,
+	IADOWN=11
 }
 
 enum FloorRequirementModes{
@@ -19,7 +23,7 @@ enum FloorRequirementModes{
 
 onready var attack_machine :StateMachine= $AttackStateMachine
 
-var input_list := []
+var input_buffer := []
 var attack_list : Array
 var time_since_pressed := 0.0
 var on_floor = false
@@ -33,35 +37,59 @@ class MotionInputFuckery:
 	var requires_idle :int
 	var requires_on_floor : int
 	var inputs : Array
-	var input_bitmask : int
 	var state_required :State
 	var attack_state : State
-	var ignoredirs = []
+	var forgiveness = 0
 	
 	
-	func _init(floor_req:int,input_req:Array,state,attack,requiresidle,keystoignore := []):
+	func _init(floor_req:int,input_req:Array,state,attack,requiresidle,forgiveness=1):
 		requires_on_floor = floor_req
 		inputs = input_req
 		state_required = state
 		attack_state = attack
-		ignoredirs = keystoignore
 		requires_idle =requires_idle
+		self.forgiveness = forgiveness 
 		
-		for input in inputs:input_bitmask |= input
 	
 
 	func compare(input_list:Array):
-		var testcmpmask = 0
+		var inputidx = 0
+		var total_forgiveness :int= inputs.size() + forgiveness
+		var iters = 0
+		if inputs.size() == 0: return true
+		
+		
+		for input in inputs:
+			if input == Dirs.IADOWN:
+				if Input.is_action_pressed("down"):
+					inputidx += 1 
+			elif input == Dirs.IAUP:				
+				if Input.is_action_pressed("up"):
+					inputidx += 1 
+					
 		
 		
 		for input in input_list:
-			if input in ignoredirs:continue
-			testcmpmask |= input
-		
-					
+			
+			
+			if inputidx >= inputs.size():return true
+			if iters > forgiveness:return false
+
+
+
+			elif input == inputs[inputidx]:
+				inputidx += 1
 				
-		return (testcmpmask == input_bitmask) or input_bitmask == 0
+			iters += 1
+		
+		if inputidx >= inputs.size():return true
 	
+
+
+			
+
+
+
 	
 	func match_floor_state(of:bool,fs=requires_on_floor):
 		if fs == FloorRequirementModes.ALL:return true
@@ -84,41 +112,44 @@ func on_fired(gun):
 																
 	
 		if (!attack_machine.state == attack_thing.state_required or 
-			!attack_thing.compare(input_list) or 
+			!attack_thing.compare(input_buffer) or 
 			!attack_thing.match_floor_state(on_floor) or 
 			!attack_thing.match_floor_state(is_idle,attack_thing.requires_on_floor)
 		):
-			
 			continue
 		attack = attack_thing.attack_state
-		#print(attack_thing.attack_state)
 	
 	
 	if attack != null:
+		input_buffer = []
 		attack_machine.set_state(attack)
 		
-	input_list = []
 	
 	
 
 
-func deal_with_input(input:int):
-	if input != 0:
-		if input_list.size() > 0 and input_list[-1] != input:
-			time_since_pressed = 0
-			pass
+func deal_with_input(i:int):
+	if time_since_pressed <= .02:
+		if not (input_buffer.size() == 0 or i != input_buffer[-1] ):
+			return
 		
-		input_list.append(input)
-		
+	time_since_pressed = 0
+	input_buffer.append(i)
+	
+
+
 
 
 func _physics_process(delta):
-	if input_list.size() > 0:
+#	print(time_since_pressed)
+	if input_buffer.size() > 0:
+		if time_since_pressed > .20:
+			input_buffer.remove(0)
+			time_since_pressed = 0
 		time_since_pressed += delta
-	
-	if time_since_pressed > .16:
+	else:
 		time_since_pressed = 0
-		input_list.clear()
+	
 		
 	
 	

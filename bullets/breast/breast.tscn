@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://bullets/breast/breast.png" type="Texture" id=4]
+[ext_resource path="res://bullets/breast/breast_launcher.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 7.0
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+deletes_on_wall = false
+deletes_on_enemy_hit = true
+deletes_on_ally_hit = false
+deletes_on_timeout = true
+ignores_anti_tunneling_measures = false
+
+[sub_resource type="Animation" id=4]
+resource_name = "breastjiggleX"
+length = 0.295
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.18 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "breastjiggleY"
+length = 0.295
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.18 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[node name="GdtBullet" type="Node2D"]
+script = ExtResource( 2 )
+speed = 2.0
+hitbox = SubResource( 5 )
+_bullet_props = SubResource( 3 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[node name="Thing" type="Sprite" parent="."]
+position = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+hframes = 3
+script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Thing"]
+anims/breastjiggleX = SubResource( 4 )
+anims/breastjiggleY = SubResource( 6 )
+
+[node name="Area2D" parent="." instance=ExtResource( 3 )]
+monitorable = true
+min_hit_priority = 33
+max_hit_priority = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource( 5 )
+
+[connection signal="collided" from="." to="Thing" method="_on_GdtBullet_collided"]
+[connection signal="startup" from="." to="Thing" method="_on_GdtBullet_startup"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

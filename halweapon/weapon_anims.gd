@@ -38,3 +38,7 @@ func _on_SpinSlash_entered():
 
 func _on_SonicSlash_entered():
 	play("soulthrow")
+
+
+func _on_BTrhow_entered():
+	play("boobthrow")

@@ -21,9 +21,46 @@ var no_slam = false
 var attacking = false
 var no_movement =  false
 var ctiltmult = 1
-
+var previous_stone_frame = 0
 
 onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
+
+func compare(eventa:InputEvent,eventb):
+	if eventa is InputEventKey and eventb is InputEventKey:
+		return eventa.scancode == eventb.scancode
+	if eventa is InputEventJoypadButton and eventb is InputEventJoypadButton:
+		
+		return (eventa as InputEventJoypadButton).button_index == eventb.button_index
+
+#
+func _input(event:InputEvent):
+	var relevant_actions := [
+		"up","down","left","right"
+	]
+#
+	if (event is InputEventKey):
+		if event.echo:return
+	
+	if (event is InputEventJoypadButton):
+		pass
+
+
+	for i in range(relevant_actions.size()):
+		var actionstr = relevant_actions[i]
+		var alist = InputMap.get_action_list(actionstr)
+
+		for a in (alist):
+			if compare(event,a):
+				var inputmask = int(Input.is_action_just_pressed(actionstr))<<i
+				if inputmask != 0:
+					weapon.deal_with_input(inputmask)
+
+				return
+				
+				
+				
+		
+	
 
 func move():
 	velocity = move_and_slide(velocity,Vector2.UP)
@@ -125,10 +162,11 @@ func weapon_handling():
 	# bitmask input fuckery :3
 	weapon.is_idle = $StateMachine.state == $StateMachine/idle or $StateMachine.state == $StateMachine/walk and $DirComp.current_dir.x == 0
 	weapon.on_floor = is_on_floor()
-	weapon.deal_with_input(MeleeWeapon.Dirs.LEFT & (int(Input.is_action_pressed("left"))<<2))
-	weapon.deal_with_input(MeleeWeapon.Dirs.RIGHT & (int(Input.is_action_pressed("right"))<<3))
-	weapon.deal_with_input(MeleeWeapon.Dirs.UP & int(Input.is_action_pressed("up")))
-	weapon.deal_with_input(MeleeWeapon.Dirs.DOWN & (int(Input.is_action_pressed("down"))<<1))
+#	weapon.deal_with_input(MeleeWeapon.Dirs.LEFT & (int(Input.is_action_pressed("left"))<<2))
+#	weapon.deal_with_input(MeleeWeapon.Dirs.RIGHT & (int(Input.is_action_pressed("right"))<<3))
+#	weapon.deal_with_input(MeleeWeapon.Dirs.UP & int(Input.is_action_pressed("up")))
+#	weapon.deal_with_input(MeleeWeapon.Dirs.DOWN & (int(Input.is_action_pressed("down"))<<1))
+#
 	weapon.dir.x = fc.scale.x
 	
 	weapon.stop_pogoin()
@@ -200,5 +238,33 @@ func _on_SpinSlash_entered():
 	no_slam = true
 	$Node2D2/HampterSprite.frame = 3
 
+
+
+
+
+func _on_stomp_entered():
+	$AnimatedSprite/Area2D.monitoring = true
+
+
+func _on_stomp_exited():
+	$AnimatedSprite/Area2D.monitoring = false
+	Signals.emit_signal("screenshake",Vector2.DOWN,32)
+	for i in [-1,1,0]:
+		var stone = preload("res://bullets/rockandstone.tscn").instance()
+		stone.damage = 5
+		stone.global_position = global_position + (Vector2.UP *5)
+		stone.velocity.y = -250
+		stone.velocity.x = 75 * i
+		
+		previous_stone_frame += 1
+		previous_stone_frame %= 2
+		if i != 0:
+			stone.customdata.frame = previous_stone_frame
+		else:
+			stone.velocity.y -= 40
+		
+		get_tree().current_scene.add_child(stone)
+
+		pass
 
 

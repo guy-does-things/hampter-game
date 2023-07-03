@@ -24,7 +24,7 @@ func _physics_process(delta):
 	
 	if gravity_enabled:
 		
-		if not gravity_only_when_not_on_floor or !e.is_on_floor():
+		if not gravity_only_when_not_on_floor or (e.has_method("is_on_floor") and !e.is_on_floor()):
 			#if e.has_method("is_on_floor") and e.is_on_floor() or not gravity_only_on_floor:
 			e.velocity.y = clamp(e.velocity.y + (BASE_GRAVITY * gravmult), -INF, (term_vel) )
 		pass

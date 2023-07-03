@@ -1,10 +1,17 @@
 extends MeleeWeapon
 
+enum EXSKILLS{
+	SOULBLAST=1,
+	RISINGSLASH=2,
+	BROKENASSSLASH=4,
+	PIPEBOMB=8,
+	BREAST=16,
+	BLADEUP=32
+}
+#"filo del alma"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+func unloked_halberd_upgrade():
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,14 +31,18 @@ func _ready():
 	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.ALL,[],$AttackStateMachine/None,$AttackStateMachine/Attack1,FloorRequirementModes.ALL))
 
 	# EX skills
-	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.NO,[Dirs.UP],$AttackStateMachine/None,$AttackStateMachine/SpinSlash,FloorRequirementModes.ALL, [Dirs.LEFT,Dirs.RIGHT]))
+	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.NO,[Dirs.IAUP],$AttackStateMachine/None,$AttackStateMachine/SpinSlash,FloorRequirementModes.ALL,32))
+	
+	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.NO,[Dirs.IAUP],$AttackStateMachine/Unsure,$AttackStateMachine/SpinSlash,FloorRequirementModes.ALL,32))
+	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.IADOWN],$AttackStateMachine/Unsure,$AttackStateMachine/SonicSlash,FloorRequirementModes.YES,1 ))
 	
 	
-	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.DOWN],$AttackStateMachine/None,$AttackStateMachine/SonicSlash,FloorRequirementModes.YES, [Dirs.LEFT,Dirs.RIGHT]))
-	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.UP],$AttackStateMachine/None,$AttackStateMachine/Uppercut,FloorRequirementModes.YES, [Dirs.LEFT,Dirs.RIGHT]))
+	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.IADOWN],$AttackStateMachine/None,$AttackStateMachine/SonicSlash,FloorRequirementModes.YES,1 ))
+	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.IAUP],$AttackStateMachine/None,$AttackStateMachine/Uppercut,FloorRequirementModes.YES,1 ))
 	
-	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.ALL,[Dirs.DOWN,Dirs.LEFT],$AttackStateMachine/None,State.new() ,FloorRequirementModes.YES))
-	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.ALL,[Dirs.DOWN,Dirs.RIGHT],$AttackStateMachine/None,State.new() ,FloorRequirementModes.YES))
+	
+	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.DOWN,Dirs.LEFT],$AttackStateMachine/None,$AttackStateMachine/BTrhow ,FloorRequirementModes.YES,4))
+	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.DOWN,Dirs.RIGHT],$AttackStateMachine/None,$AttackStateMachine/BTrhow ,FloorRequirementModes.YES,4))
 
 
 
@@ -42,12 +53,11 @@ func stop_pogoin():
 		
 func start_pogo():
 	pass
-		
-		
 
-#func fire_condition():
-#	return !$AnimationPlayer.is_playing() and .fire_condition()
+
+
 	
+
 		
 func _on_Node2D_postfired(gun):
 	$DelayTimer.start()
@@ -57,4 +67,28 @@ func _on_Node2D_postfired(gun):
 func _on_Node2D_fired(gun):
 	$DelayTimer.stop()
 
+func soul_attack():
+	var sattack = preload("res://bullets/soul_attack.tscn").instance()
+	sattack.global_position = global_position + Vector2.DOWN *4
+	sattack.scale.x = dir.x
+	sattack.speed = 386
+	sattack.damage = 3
+	sattack.lifetime = 1	
+	sattack.dir = dir
+	sattack.dir.y -= .05
+	
+	get_tree().current_scene.add_child(sattack)
 
+
+
+func battack():
+	var sattack = preload("res://bullets/breast/breast.tscn").instance()
+	sattack.global_position = global_position + Vector2.DOWN *4
+	sattack.scale.x = dir.x
+	sattack.speed = 386
+	sattack.damage = 3
+	sattack.lifetime = 4
+	sattack.dir = dir
+	sattack.dir.y -= .05
+	
+	get_tree().current_scene.add_child(sattack)

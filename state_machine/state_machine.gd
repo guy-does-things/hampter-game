@@ -39,7 +39,7 @@ func _physics_process(delta):
 	
 	
 func set_state(new_state : State):
-	if !new_state._can_transition_to(): return		
+	if !new_state._can_transition_to(): return
 	previous_state = state
 	emit_signal("changed_state", new_state, previous_state)
 	if previous_state != null:previous_state._exit_state(previous_state, new_state)

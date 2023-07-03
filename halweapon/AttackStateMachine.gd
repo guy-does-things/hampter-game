@@ -30,3 +30,8 @@ func _on_Uppercut_entered():
 
 func _on_idle_landed():
 	set_state($None)
+	$"../HitBoxes/SpinSlash".monitoring = false
+
+
+
+	

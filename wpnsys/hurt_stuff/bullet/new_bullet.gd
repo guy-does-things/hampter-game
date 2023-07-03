@@ -45,13 +45,23 @@ var last_collider = null
 
 
 func set_velocity(nvel : Vector2):	
-	if Engine.editor_hint or !Globals.get_if_world_frozen()[0]:
-		velocity = nvel
+	#if Engine.editor_hint or !Globals.get_if_world_frozen()[0]:
+	velocity = nvel
 
-	
+#
+#func _on_Area2D_body_entered(body):
+#
+#
+
+
+
+
 func _ready():
 	area = $Area2D
 	area.add_to_group("bullet")
+#	area.connect("actually_hit",self,"_on_Area2D_actually_hit")
+#	area.connect("ally_hit",self,"_on_Area2D_ally_hit")
+#	area.connect("body_entered",self,"_on_Area2D_body_entered")
 
 	#Globals.connect("changed_frozen_state",self,"world_frozen")
 	
@@ -165,7 +175,6 @@ func parse_shape_coli_results(result:Dictionary):
 	
 	collider = instance_from_id(collider_id)
 	
-
 	
 	if collider is HurtComponent:
 		# last collider is ambigous because i standed there and realized that it would be bad if
