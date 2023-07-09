@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scenes/fly/idle.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=3]
+[ext_resource path="res://state_machine/state_machine.gd" type="Script" id=4]
+[ext_resource path="res://scenes/introscorpion/enemy.gd" type="Script" id=5]
+[ext_resource path="res://scripts/physicsthings.gd" type="Script" id=6]
+[ext_resource path="res://scenes/introscorpion/Flippables.gd" type="Script" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://scenes/fly/LaunchAtPlayer.gd" type="Script" id=9]
+[ext_resource path="res://scenes/introscorpion/idunno.gd" type="Script" id=10]
+[ext_resource path="res://n_plr_detector.gd" type="Script" id=11]
+[ext_resource path="res://stun.gd" type="Script" id=12]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 240.533
+
+[node name="TestScorpionE" type="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
+collision_layer = 2
+collision_mask = 12
+script = ExtResource( 5 )
+
+[node name="Flippables" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 7 )
+
+[node name="Icon" type="Sprite" parent="Flippables"]
+unique_name_in_owner = true
+texture = ExtResource( 8 )
+
+[node name="HurtComponent" type="Area2D" parent="."]
+script = ExtResource( 2 )
+is_enemy = true
+path_entitystatus = NodePath("../StatusThing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+shape = SubResource( 7 )
+
+[node name="StatusThing" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 3 )
+MAX_HP = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
+
+[node name="PhysicsStuff" type="Node" parent="."]
+script = ExtResource( 6 )
+gravity_enabled = false
+friction_enabled = false
+gravity_only_when_not_on_floor = false
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+initial_state = NodePath("idunno")
+
+[node name="State" type="Node" parent="StateMachine"]
+script = ExtResource( 1 )
+tmult = 5
+vel_mult = 160
+
+[node name="LaunchAtPlayer" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+ohshitimstuckpath = NodePath("../StuckAttack")
+speed = 500.0
+
+[node name="Timer" type="Timer" parent="StateMachine/LaunchAtPlayer"]
+wait_time = 1.5
+one_shot = true
+
+[node name="idunno" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+idle_state_path = NodePath("../State")
+attack_state_path = NodePath("../LaunchAtPlayer")
+
+[node name="StuckAttack" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+can_go_to_hurtstate = false
+
+[node name="NewPlayerDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlayerDetector"]
+shape = SubResource( 8 )
+
+[connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
+[connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="timeout" from="StateMachine/LaunchAtPlayer/Timer" to="StateMachine/LaunchAtPlayer" method="_on_Timer_timeout"]
+[connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]

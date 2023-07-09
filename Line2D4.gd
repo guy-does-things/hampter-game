@@ -30,15 +30,21 @@ func _ready():
 	
 	for i in [0,points.size()-1]:
 		var a = Area2D.new()
+		var sob = StaticBody2D.new()
 		var s = CollisionShape2D.new()
 		
 		#a.global_position = Vector2.ZERO#global_position + points[i]
 		add_child(a)
+		add_child(sob)
 		s.position = points[i]# + shape.extents / 2
 		s.shape = shape
+		sob.collision_layer = 8
+		sob.collision_mask = 8
+		
 		a.add_child(s)
 		a.connect("body_entered",self,"player_entered",[i, 1 if i == 0 else -1])
-
+		sob.add_child(s.duplicate())
+		
 
 func _physics_process(delta):
 	begin_cap_mode = 1

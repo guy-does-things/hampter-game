@@ -22,7 +22,7 @@ enum FloorRequirementModes{
 }
 
 onready var attack_machine :StateMachine= $AttackStateMachine
-
+var playerstatus : StatusThing
 var input_buffer := []
 var attack_list : Array
 var time_since_pressed := 0.0
@@ -40,9 +40,11 @@ class MotionInputFuckery:
 	var state_required :State
 	var attack_state : State
 	var forgiveness = 0
+	var item_req
 	
-	
-	func _init(floor_req:int,input_req:Array,state,attack,requiresidle,forgiveness=1):
+	# def value is 1
+	func _init(floor_req:int,input_req:Array,state,attack,requiresidle,forgiveness,itemrequired):
+		item_req = itemrequired
 		requires_on_floor = floor_req
 		inputs = input_req
 		state_required = state
@@ -84,10 +86,10 @@ class MotionInputFuckery:
 		
 		if inputidx >= inputs.size():return true
 	
-
-
-			
-
+	
+	
+	func item_check(status:StatusThing):
+		return status.has_item(item_req) or item_req == 0
 
 
 	
@@ -114,7 +116,8 @@ func on_fired(gun):
 		if (!attack_machine.state == attack_thing.state_required or 
 			!attack_thing.compare(input_buffer) or 
 			!attack_thing.match_floor_state(on_floor) or 
-			!attack_thing.match_floor_state(is_idle,attack_thing.requires_on_floor)
+			!attack_thing.match_floor_state(is_idle,attack_thing.requires_on_floor) or 
+			!attack_thing.item_check(playerstatus)
 		):
 			continue
 		attack = attack_thing.attack_state
@@ -129,9 +132,9 @@ func on_fired(gun):
 
 
 func deal_with_input(i:int):
-	if time_since_pressed <= .02:
-		if not (input_buffer.size() == 0 or i != input_buffer[-1] ):
-			return
+	#if time_since_pressed <= .02:
+	#	if not (input_buffer.size() == 0 or i != input_buffer[-1] ):
+	#		return
 		
 	time_since_pressed = 0
 	input_buffer.append(i)
@@ -143,7 +146,7 @@ func deal_with_input(i:int):
 func _physics_process(delta):
 #	print(time_since_pressed)
 	if input_buffer.size() > 0:
-		if time_since_pressed > .20:
+		if time_since_pressed > .24:
 			input_buffer.remove(0)
 			time_since_pressed = 0
 		time_since_pressed += delta

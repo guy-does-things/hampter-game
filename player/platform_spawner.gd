@@ -9,7 +9,7 @@ func _physics_process(delta):
 	var ziplinedata = get_collision_point() 
 #	print(ziplinedata)
 	if ziplinedata and not get_parent().is_riding():
-		if Input.is_action_just_pressed("platform"):
+		if Input.is_action_just_pressed("platform") and get_parent().status.has_item(Globals.Items.PLATFORM):
 			if !is_instance_valid(platthing):
 				platthing = preload("res://scenes/thing/Entity.tscn").instance()
 				platthing.global_position = ziplinedata[0]

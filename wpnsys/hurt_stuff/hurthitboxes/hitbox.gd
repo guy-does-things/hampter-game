@@ -3,6 +3,8 @@ extends Area2D
 
 signal actually_hit(enemy)
 signal ally_hit(ally)
+signal timer_finished()
+signal disabled()
 
 export var knockback_dir :Vector2
 export(int) var min_hit_priority = 0
@@ -23,11 +25,13 @@ onready var current_priority = min_hit_priority
 
 var __hurt_comps := []
 var __flush_colliders_instead_of_hurting = false
+var was_monitoring_last_frame= false
 
 
 func _init():add_to_group("hitbox")
 
 func _ready():
+	
 	add_to_group("hitbox")
 	#set_collision_mask_bit(3,true)
 	timer.wait_time = hit_iframes
@@ -42,6 +46,14 @@ func set_hit_iframes(hdelay):
 		timer.stop()
 		#timer.start()
 		
+
+# animation players don't trigger setgets and im too lazy to make a custom one
+func _physics_process(delta):
+	if !monitoring and was_monitoring_last_frame:
+		emit_signal("disabled")
+		
+	was_monitoring_last_frame = monitoring
+	
 
 
 func _on_Area2D_area_entered(area:HurtComponent,is_hurting_again=false):
@@ -83,6 +95,8 @@ func _on_Timer_timeout():
 		__hurt_comps = []
 		__flush_colliders_instead_of_hurting = false
 		
+	emit_signal("timer_finished")
+		
 	for i in __hurt_comps:
 		_on_Area2D_area_entered(i)
 		
@@ -102,7 +116,6 @@ func actually_hurt(hc:HurtComponent,dir=Vector2.ZERO):
 
 func flush_colliders():
 	__flush_colliders_instead_of_hurting = true
-
 
 
 

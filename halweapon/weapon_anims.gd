@@ -42,3 +42,7 @@ func _on_SonicSlash_entered():
 
 func _on_BTrhow_entered():
 	play("boobthrow")
+
+
+func _on_PipeBomb_entered():
+	play("pipebomb so cool")

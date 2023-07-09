@@ -1,0 +1,59 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform vec4 blue_tint : hint_color;
+uniform vec4 blue_tint2 : hint_color;
+uniform sampler2D noisetext;
+
+uniform vec2 offset_amount;
+uniform float timescale;
+
+uniform float water_top_point = .2;
+uniform float UVtop_multiplier = 10.0;
+uniform float wave_offset_multiplier = 2.0;
+void fragment(){
+	float noise = texture(noisetext, UV + vec2(TIME* timescale,0) ).r;
+	
+	
+	
+
+	vec2 offset = (noise * vec2(offset_amount) ) ;
+	
+	
+	float texturealpha = texture(TEXTURE,UV).a;
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV + offset );
+	
+	color = mix(color, blue_tint, 0.3);
+	
+	if ( (UV.y + offset.y)*wave_offset_multiplier < water_top_point)
+	{
+		
+		float flippedv = UV.y * UVtop_multiplier;
+		color.rgb = mix(blue_tint2.rgb,color.rgb,flippedv  );
+		//color.rgb *= 2.25;
+		//color.rgb *= UV.y+.4;
+	}
+	
+//	color.rgb = mix(vec3(0.5), color.rgb, 1.2);
+	COLOR = color * texturealpha;
+
+}"
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+seamless = true
+noise = SubResource( 3 )
+
+[resource]
+shader = SubResource( 6 )
+shader_param/blue_tint = Color( 0.121569, 0.670588, 0.878431, 1 )
+shader_param/blue_tint2 = Color( 0.690196, 1, 0.992157, 1 )
+shader_param/offset_amount = Vector2( 0.008, 0.008 )
+shader_param/timescale = 0.24
+shader_param/water_top_point = 0.0
+shader_param/UVtop_multiplier = 6.843
+shader_param/wave_offset_multiplier = 1.376
+shader_param/noisetext = SubResource( 4 )

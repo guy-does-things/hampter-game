@@ -26,8 +26,8 @@ func _physics_process(delta):
 		
 		if not gravity_only_when_not_on_floor or (e.has_method("is_on_floor") and !e.is_on_floor()):
 			#if e.has_method("is_on_floor") and e.is_on_floor() or not gravity_only_on_floor:
-			e.velocity.y = clamp(e.velocity.y + (BASE_GRAVITY * gravmult), -INF, (term_vel) )
-		pass
+			e.velocity.y = clamp(e.velocity.y + (BASE_GRAVITY * gravmult)*Engine.time_scale, -INF, (term_vel) )
+		
 	
 	if friction_enabled:
 		if e.has_method("is_on_floor") and e.is_on_floor():

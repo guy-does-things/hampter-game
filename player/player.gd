@@ -1,17 +1,7 @@
 extends Entity
 
-
-enum Locations{
-	DOOR,
-	RECEPTION,
-	HOSPITAL_ROOM
-}
-
-signal news_recived
-
 onready var fc = $Node2D2
 onready var jumpcontroller = $Node2D
-export var can_swim = false
 var on_p = false
 var is_gonna_run = false
 var run_time = 0.0
@@ -20,10 +10,19 @@ var snap : Vector2
 var no_slam = false
 var attacking = false
 var no_movement =  false
+var on_water = false
 var ctiltmult = 1
 var previous_stone_frame = 0
 
+onready var status = $StatusThing
 onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
+
+
+func _ready():
+	weapon.playerstatus = status
+	
+
+
 
 func compare(eventa:InputEvent,eventb):
 	if eventa is InputEventKey and eventb is InputEventKey:
@@ -32,7 +31,6 @@ func compare(eventa:InputEvent,eventb):
 		
 		return (eventa as InputEventJoypadButton).button_index == eventb.button_index
 
-#
 func _input(event:InputEvent):
 	var relevant_actions := [
 		"up","down","left","right"
@@ -90,13 +88,16 @@ func is_riding():
 
 
 
+
+func get_speed_mult(lowoverride=.5): return (lowoverride if on_water else 1.0)
+
+
 func _physics_process(delta):
-	
-	
+	if $StateMachine.state == $StateMachine/Hurt:return
 	if is_riding():return
 	
 	
-	if is_gonna_run and !attacking:
+	if is_gonna_run and !attacking and status.has_item(Globals.Items.SPEEDBOOSTER):
 		run_time += delta
 
 	var speed = 15
@@ -108,7 +109,7 @@ func _physics_process(delta):
 		$DashBreaker.enable()
 		$DashBreaker.cast_to.x = 40 * current_dir_x
 		$Circlething.rotation_degrees += 32
-		speed *= 3
+		speed *= 2.5 if is_on_floor() else 1.25
 	else:
 		$Circlething.hide()
 		$AnimatedSprite2.hide()
@@ -119,21 +120,25 @@ func _physics_process(delta):
 	
 	if last_walk_dir != current_dir_x or current_dir_x == 0 or is_on_wall():
 		if is_on_wall() and run_time > 1:
-			velocity += Vector2(-last_walk_dir,-.25)*450
+			velocity += (Vector2(-last_walk_dir,-.25)*450)*get_speed_mult()
 		run_time = 0
 		
 	last_walk_dir = current_dir_x
 
-
-	if (!attacking or !is_on_floor()) and not no_movement:
-		velocity.x += current_dir_x * speed
+	
+	if (
+		(!attacking or !is_on_floor()) and 
+		not no_movement
+	):
+	
+		velocity.x += current_dir_x * (speed*get_speed_mult()) 
+	
 	else:
 		current_dir_x = 0
 		velocity.x = 0
 		
 		
-	
-	
+	Engine.time_scale = 1	
 	
 	#$"%Armthing".aim($"%DirComp".current_dir,Vector2($"%Armthing".scale.x,0))
 	if current_dir_x != 0:
@@ -142,14 +147,14 @@ func _physics_process(delta):
 
 
 	if Input.is_action_just_pressed("jump") and !attacking:
-		jumpcontroller.jump()
-		if Input.is_action_pressed("down") and !is_on_floor() and !no_slam:
+		jumpcontroller.jump(get_speed_mult(.8))
+		
+		if (Input.is_action_pressed("down") and !is_on_floor() and !no_slam) and status.has_item(Globals.Items.STOMP):
 			$StateMachine.set_state($StateMachine/stomp)
 		
 		
 	if Input.is_action_just_released("jump") and velocity.y < 0 :
 		velocity.y = 0
-
 
 
 
@@ -162,11 +167,7 @@ func weapon_handling():
 	# bitmask input fuckery :3
 	weapon.is_idle = $StateMachine.state == $StateMachine/idle or $StateMachine.state == $StateMachine/walk and $DirComp.current_dir.x == 0
 	weapon.on_floor = is_on_floor()
-#	weapon.deal_with_input(MeleeWeapon.Dirs.LEFT & (int(Input.is_action_pressed("left"))<<2))
-#	weapon.deal_with_input(MeleeWeapon.Dirs.RIGHT & (int(Input.is_action_pressed("right"))<<3))
-#	weapon.deal_with_input(MeleeWeapon.Dirs.UP & int(Input.is_action_pressed("up")))
-#	weapon.deal_with_input(MeleeWeapon.Dirs.DOWN & (int(Input.is_action_pressed("down"))<<1))
-#
+
 	weapon.dir.x = fc.scale.x
 	
 	weapon.stop_pogoin()
@@ -226,8 +227,7 @@ func _on_Node2D_fired(gun):
 
 
 func _on_Uppercut_entered():
-	velocity = Vector2(fc.scale.x * 60,-275)
-
+	velocity = Vector2(fc.scale.x * 60,-275*get_speed_mult())#
 
 
 func _on_AttackStateMachine_stop_ALL_movement():
@@ -248,6 +248,7 @@ func _on_stomp_entered():
 
 func _on_stomp_exited():
 	$AnimatedSprite/Area2D.monitoring = false
+	if !is_on_floor():return
 	Signals.emit_signal("screenshake",Vector2.DOWN,32)
 	for i in [-1,1,0]:
 		var stone = preload("res://bullets/rockandstone.tscn").instance()
@@ -268,3 +269,60 @@ func _on_stomp_exited():
 		pass
 
 
+
+
+func _on_SpinSlash_jump():
+	return
+	velocity.y = -300
+
+
+
+
+func _on_HurtComponent_hurted(dam):
+	$StateMachine.set_state($StateMachine/Hurt)
+	velocity.x = -170 * fc.scale.x
+	velocity.y = -150
+	velocity *=get_speed_mult()
+	Hitfreeze.set_realtimescale(.01)
+	create_tween().tween_property(
+		Engine,
+		"time_scale",
+		1,
+		0.125
+	)
+	
+	
+	return
+	if dam >= 20:
+		velocity.x *= 4
+		velocity.y *= 2
+
+
+func _on_Hurt_entered():
+	$PhysicsStuff.friction_enabled = false
+	run_time = 0
+	$Circlething.hide()
+	$AnimatedSprite2.hide()
+	$DashBreaker.disable()
+
+
+func _on_Hurt_exited():
+	
+	$PhysicsStuff.friction_enabled = true
+
+
+func _on_Area2D_body_entered(body):
+	if !status.has_item(Globals.Items.WATERBREATHING):
+		
+		return
+	on_water = true
+	$Node2D.on_water = true
+	$PhysicsStuff.gravmult = .1
+	velocity *= .1
+
+
+func _on_Area2D_body_exited(body):
+	$Node2D.on_water = false
+	$Node2D.reset_jumps()
+	on_water = false
+	$PhysicsStuff.gravmult = 1

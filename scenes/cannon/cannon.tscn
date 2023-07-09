@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scripts/physicsthings.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=3]
+[ext_resource path="res://state_machine/state_machine.gd" type="Script" id=4]
+[ext_resource path="res://raw_sprites/cannonhead.png" type="Texture" id=5]
+[ext_resource path="res://scenes/introscorpion/enemy.gd" type="Script" id=6]
+[ext_resource path="res://n_plr_detector.gd" type="Script" id=7]
+[ext_resource path="res://scenes/introscorpion/idunno.gd" type="Script" id=8]
+[ext_resource path="res://scenes/cannon/aimatplayer.gd" type="Script" id=9]
+[ext_resource path="res://scenes/introscorpion/Flippables.gd" type="Script" id=10]
+[ext_resource path="res://raw_sprites/cannonbase.png" type="Texture" id=11]
+[ext_resource path="res://raw_sprites/cannonsupport_texture.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=84]
+extents = Vector2( 9, 4 )
+
+[sub_resource type="RectangleShape2D" id=86]
+extents = Vector2( 10, 19 )
+
+[sub_resource type="CircleShape2D" id=85]
+radius = 240.533
+
+[node name="TEstSpinner2" type="KinematicBody2D"]
+position = Vector2( 64, -8 )
+collision_layer = 0
+collision_mask = 12
+script = ExtResource( 6 )
+
+[node name="Flippable" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="Wheelattack" type="Sprite" parent="Flippable"]
+unique_name_in_owner = true
+position = Vector2( 1, -9 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 5 )
+offset = Vector2( -2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 17 )
+shape = SubResource( 84 )
+
+[node name="HurtComponent" type="Area2D" parent="."]
+position = Vector2( 0, 17 )
+script = ExtResource( 3 )
+is_enemy = true
+path_entitystatus = NodePath("../StatusThing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+position = Vector2( 0, -15 )
+shape = SubResource( 86 )
+
+[node name="StatusThing" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 2 )
+MAX_HP = 32
+
+[node name="PhysicsStuff" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+initial_state = NodePath("idunno")
+
+[node name="idunno" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+attack_state_path = NodePath("../State")
+
+[node name="State" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="NewPlayerDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlayerDetector"]
+shape = SubResource( 85 )
+
+[node name="CannonsupportTexture" type="Sprite" parent="."]
+position = Vector2( 0, 13 )
+texture = ExtResource( 12 )
+offset = Vector2( 0, -12 )
+
+[node name="Cannonbase" type="Sprite" parent="."]
+position = Vector2( 0, 5 )
+texture = ExtResource( 11 )
+
+[connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
+[connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
+[connection signal="target_invisible" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_invisible"]

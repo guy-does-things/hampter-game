@@ -1,3 +1,22 @@
 extends Node
 
 
+enum Items{
+	# misc
+	HPUP=1,
+	# gating
+	STOMP=2,
+	WATERBREATHING=4,
+	PLATFORM=8,
+	SPEEDBOOSTER=16,
+
+	# skills
+	SOULBLAST=32,
+	RISINGSLASH=64,
+	BROKENASSSLASH=128,
+	PIPEBOMB=256,
+	BREAST=512,
+	BLADEUP=1024
+}
+
+

@@ -1,0 +1,130 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://sillyboom/brightsmoke.png" type="Texture" id=1]
+[ext_resource path="res://bullets/explosion/explosiontex.png" type="Texture" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=4]
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=5]
+[ext_resource path="res://bullets/explosion/Explosiontex.gd" type="Script" id=6]
+[ext_resource path="res://explosion.wav" type="AudioStream" id=8]
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 32.0
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 5 )
+deletes_on_wall = false
+deletes_on_enemy_hit = false
+deletes_on_ally_hit = false
+deletes_on_timeout = true
+ignores_anti_tunneling_measures = false
+
+[sub_resource type="AudioStreamRandomPitch" id=12]
+audio_stream = ExtResource( 8 )
+random_pitch = 1.5
+
+[sub_resource type="Animation" id=9]
+resource_name = "explosion"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Explosiontex:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 2,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Explosiontex/CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Explosiontex/AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource( 12 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.812339, 0 ), -1.74055, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.0710383, 0.240437, 0.393443, 0.806011, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.732422, 0, 1, 1, 0.216797, 0, 1, 0.120117, 0.115707, 0.114487, 1, 0.101961, 0.0941176, 0.0901961, 1, 0.0888672, 0.0728989, 0.0728989, 0.0509804 )
+
+[node name="GdtBullet" type="Node2D"]
+script = ExtResource( 4 )
+speed = 2.0
+hitbox = SubResource( 10 )
+_bullet_props = SubResource( 11 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 0.55
+one_shot = true
+
+[node name="Area2D" parent="." instance=ExtResource( 3 )]
+monitorable = true
+min_hit_priority = 64
+max_hit_priority = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource( 10 )
+
+[node name="Explosiontex" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 2 )
+script = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Explosiontex"]
+root_node = NodePath("../..")
+autoplay = "explosion"
+anims/explosion = SubResource( 9 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Explosiontex"]
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 1 )
+emission_shape = 1
+emission_sphere_radius = 8.36
+direction = Vector2( 0, -1 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.5
+damping = 300.0
+damping_random = 0.5
+scale_amount = 1.5
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 7 )
+color_ramp = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Explosiontex"]
+stream = ExtResource( 8 )
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]
+[connection signal="actually_hit" from="Area2D" to="." method="_on_Area2D_actually_hit"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

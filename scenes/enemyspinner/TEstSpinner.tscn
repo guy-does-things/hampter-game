@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=4]
+[ext_resource path="res://raw_sprites/wheelattack.png" type="Texture" id=5]
+[ext_resource path="res://TEstSpinner.gd" type="Script" id=6]
+
+[sub_resource type="CircleShape2D" id=83]
+
+[node name="TEstSpinner" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource( 6 )
+
+[node name="Area2D" parent="." instance=ExtResource( 3 )]
+damage = 1
+is_enemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 83 )
+
+[node name="Wheelattack" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 83 )
+
+[node name="HurtComponent" type="Area2D" parent="."]
+script = ExtResource( 2 )
+is_enemy = true
+path_entitystatus = NodePath("../StatusThing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+shape = SubResource( 83 )
+
+[node name="StatusThing" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[connection signal="died" from="HurtComponent" to="." method="DIE"]

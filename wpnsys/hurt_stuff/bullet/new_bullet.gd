@@ -142,7 +142,6 @@ func _physics_process(delta):
 func try_moving(delta):
 	_funnyphysparms.transform = global_transform
 	_funnyphysparms.motion = get_velocity(delta)
-	
 	var excuded = [area.get_rid()]
 	if is_instance_valid(last_collider):
 		excuded.append(last_collider.get_rid())

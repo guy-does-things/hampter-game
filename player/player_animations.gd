@@ -35,3 +35,7 @@ func _on_WallSlide_started_grace():
 
 
 
+
+
+func _on_Hurt_entered():
+	play("hurt")

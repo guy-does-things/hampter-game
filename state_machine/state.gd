@@ -3,6 +3,7 @@ extends Node
 signal entered()
 signal exited()
 
+export var can_go_to_hurtstate := true
 var entity:Node2D
 var state_machine
 
@@ -20,4 +21,6 @@ func _exit_state(old_state, new_state):emit_signal("exited")
 func _get_transition(delta):pass
 func _can_transition_to()-> bool:return true
 
+
+func _can_transition_to_hurtstate()->bool:return can_go_to_hurtstate
 

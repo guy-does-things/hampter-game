@@ -20,4 +20,6 @@ func _physics_process(delta):
 		var l = Label.new()
 		l.text = text
 		$CanvasLayer/HBoxContainer.add_child(l)
-		
+	
+	
+

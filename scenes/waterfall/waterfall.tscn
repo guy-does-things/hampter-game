@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/waterfall/waterfall.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=83]
+code = "shader_type canvas_item;
+
+uniform vec4 blue_tint : hint_color;
+uniform vec4 blue_tint2 : hint_color;
+uniform sampler2D noisetext;
+
+uniform vec2 offset_amount;
+uniform float timescale;
+
+uniform float water_top_point = .2;
+uniform float UVtop_multiplier = 10.0;
+uniform float wave_offset_multiplier = 2.0;
+
+uniform float SPEED = 1.0;
+
+
+//
+//void fragment(){
+//	float noise = texture(noisetext,vec2(UV.x,UV.y/3.0 - TIME * SPEED)).r;
+//
+//
+//
+//	COLOR = vec4(vec3(noise),1.0);	
+//
+//}
+
+vec2 calcnoiseuv(vec2 uv,vec4 fragcoord)
+{
+	return vec2(
+		uv.x,
+		uv.y/3.0-TIME*SPEED
+	);
+}
+
+
+
+void fragment(){
+	float noise = texture(noisetext, UV + vec2(.0,TIME* timescale) ).r;
+	
+	float waterfallcolornoise = texture(noisetext, calcnoiseuv(UV,FRAGCOORD) ).r;
+	
+	
+
+	vec2 offset = (noise * vec2(offset_amount) ) ;
+	
+	
+	float texturealpha = texture(TEXTURE,UV).a;
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV + offset );
+	
+	color = mix(color, blue_tint, 0.3);
+	
+
+	
+	color.rgb = mix(vec3(0.5), color.rgb, 1.2);
+	
+	if (waterfallcolornoise > .5)
+	{
+		color.rgb = mix(color.rgb,blue_tint2.rgb,.5);
+	}
+	
+	//color.rgb = vec3(waterfallcolornoise);
+	COLOR = color * texturealpha;
+
+}"
+
+[sub_resource type="OpenSimplexNoise" id=85]
+period = 60.8
+persistence = 1.0
+lacunarity = 3.01
+
+[sub_resource type="NoiseTexture" id=86]
+seamless = true
+noise = SubResource( 85 )
+
+[sub_resource type="ShaderMaterial" id=84]
+shader = SubResource( 83 )
+shader_param/blue_tint = Color( 0.121569, 0.670588, 0.878431, 1 )
+shader_param/blue_tint2 = Color( 0.690196, 1, 0.992157, 1 )
+shader_param/offset_amount = Vector2( 0.008, 0.024 )
+shader_param/timescale = 1.0
+shader_param/water_top_point = 0.2
+shader_param/UVtop_multiplier = 10.0
+shader_param/wave_offset_multiplier = 2.0
+shader_param/SPEED = 1.0
+shader_param/noisetext = SubResource( 86 )
+
+[sub_resource type="Gradient" id=88]
+offsets = PoolRealArray( 0, 0.858847 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.341176 )
+
+[node name="ColorRect2" type="ColorRect"]
+material = SubResource( 84 )
+margin_left = 240.0
+margin_top = -80.0
+margin_right = 272.0
+margin_bottom = 16.0
+script = ExtResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2( 16, 96 )
+amount = 32
+lifetime = 0.31
+emission_shape = 2
+emission_rect_extents = Vector2( 16, 2 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 20.0
+scale_amount = 15.0
+color_ramp = SubResource( 88 )

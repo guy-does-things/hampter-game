@@ -44,6 +44,8 @@ func _ready():
 	collision_mask = 16
 	collision_layer = 16
 	
+	
+	
 	if is_enemy:
 		add_to_group("enemy")
 	else:
@@ -63,11 +65,12 @@ func flash(STOP=false):
 	
 	
 func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int):
+	if dam == 0:return
+	
 	if hit_priority <= current_priority:
 		return false
 
 	if hit_is_enemy == is_enemy or !can_hurt:return false
-	print(hit_priority)
 	
 	if "velocity" in entity:
 		entity.velocity += (dir * kbstr) * KBmult

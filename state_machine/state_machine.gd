@@ -18,7 +18,7 @@ func _ready():
 		if thestate != null:
 			add_state(thestate)
 	
-	if get_node(initial_state):
+	if get_node(initial_state) as State:
 		set_state(get_node(initial_state) as State)
 
 
@@ -32,8 +32,8 @@ func _physics_process(delta):
 	var transition = state._get_transition(delta)			
 	
 	
-	if transition == null:return
-	
+	if transition == null:
+		return
 	set_state(transition)
 	
 	
