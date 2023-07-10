@@ -1,0 +1,18 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://autoloads/globals.gd" type="Script" id=1]
+[ext_resource path="res://item_data/BROKENASSSLASH.tres" type="Resource" id=2]
+[ext_resource path="res://item_data/SPEEDBOOSTER.tres" type="Resource" id=3]
+[ext_resource path="res://item_data/BREAST.tres" type="Resource" id=4]
+[ext_resource path="res://item_data/hpup.tres" type="Resource" id=5]
+[ext_resource path="res://item_data/PLATFORM.tres" type="Resource" id=6]
+[ext_resource path="res://item_data/SOULBLAST.tres" type="Resource" id=7]
+[ext_resource path="res://item_data/RISINGSLASH.tres" type="Resource" id=8]
+[ext_resource path="res://item_data/STOMP.tres" type="Resource" id=9]
+[ext_resource path="res://item_data/BLADEUP.tres" type="Resource" id=10]
+[ext_resource path="res://item_data/WATERBREATHING.tres" type="Resource" id=11]
+[ext_resource path="res://item_data/PIPEBOMB.tres" type="Resource" id=12]
+
+[node name="Node" type="Node"]
+script = ExtResource( 1 )
+item_data = [ ExtResource( 10 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 11 ) ]

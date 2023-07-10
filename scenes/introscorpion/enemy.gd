@@ -13,7 +13,7 @@ func _ready():
 	$StateMachine.add_state(hitstun)
 	hitstun.name = "hitstun"
 	hitstun.connect("entered",self,"emit_signal",["entered_hitstun"])
-	hitstun.can_go_to_hurtstate = false
+	hitstun.can_go_to_hurtstate = true
 
 func _on_HurtComponent_hurted(dam):
 	if $StateMachine.state and $StateMachine.state._can_transition_to_hurtstate():

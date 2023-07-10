@@ -573,6 +573,7 @@ visible = false
 position = Vector2( 1, 8 )
 z_index = 1
 frames = SubResource( 19 )
+frame = 2
 playing = true
 
 [node name="Area2D" parent="AnimatedSprite" instance=ExtResource( 22 )]
@@ -591,7 +592,7 @@ rotation = 1.5708
 scale = Vector2( 2, -2 )
 z_index = 1
 frames = SubResource( 19 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Circlething" type="Sprite" parent="."]
@@ -611,13 +612,14 @@ shape = SubResource( 10 )
 
 [node name="StatusThing" type="Node" parent="."]
 script = ExtResource( 24 )
-MAX_HP = 5
+MAX_HP = 6
 
 [node name="HurtComponent" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 16
 monitoring = false
 script = ExtResource( 23 )
+damage_override = 1
 path_entitystatus = NodePath("../StatusThing")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]

@@ -96,7 +96,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = SubResource( 8 )
-shader_param/has_funny_upgrade = 1
+shader_param/has_funny_upgrade = 0
 shader_param/woodhandcolor = Color( 0.545098, 0.313726, 0.0941176, 1 )
 shader_param/woodhandshadowcolor = Color( 0.407843, 0.223529, 0.0941176, 1 )
 shader_param/colorr = ExtResource( 5 )

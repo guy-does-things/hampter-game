@@ -1,0 +1,409 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://menu_cursor_handler.gd" type="Script" id=1]
+[ext_resource path="res://InventoryBorder.gd" type="Script" id=2]
+[ext_resource path="res://raw_sprites/cursorhand.png" type="Texture" id=3]
+[ext_resource path="res://raw_sprites/portraitofhampter.png" type="Texture" id=4]
+[ext_resource path="res://raw_sprites/hampterborder.png" type="Texture" id=5]
+[ext_resource path="res://cursor_hand.gd" type="Script" id=6]
+[ext_resource path="res://item_menu.gd" type="Script" id=7]
+[ext_resource path="res://scenes/inventory/QuitMenu.gd" type="Script" id=8]
+[ext_resource path="res://scenes/inventory/soundbutton.gd" type="Script" id=9]
+[ext_resource path="res://scenes/inventory/swap_label.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/inventory/settingsmenu.gd" type="Script" id=11]
+[ext_resource path="res://scenes/inventory/map_menu.gd" type="Script" id=12]
+
+[sub_resource type="StyleBoxTexture" id=83]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 48, 48 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id=86]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.133333, 0.443137, 0.74902, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=84]
+
+[sub_resource type="StyleBoxFlat" id=85]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.121569, 0.670588, 0.878431, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=91]
+
+[sub_resource type="StyleBoxFlat" id=87]
+bg_color = Color( 0.192157, 0.192157, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_color = Color( 0.121569, 0.670588, 0.878431, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=88]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=90]
+bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color( 0.133333, 0.443137, 0.74902, 1 )
+anti_aliasing = false
+
+[node name="InventoryBorder" type="Panel"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = 1.0
+custom_styles/panel = SubResource( 83 )
+script = ExtResource( 2 )
+cr_path = NodePath("../ColorRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 80.0
+margin_bottom = 80.0
+texture = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 40.0
+margin_top = 144.0
+margin_right = 104.0
+margin_bottom = 236.0
+script = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 14.0
+custom_styles/hover = SubResource( 86 )
+custom_styles/pressed = SubResource( 84 )
+custom_styles/focus = SubResource( 85 )
+custom_styles/disabled = SubResource( 84 )
+custom_styles/normal = SubResource( 84 )
+text = "ITEMS"
+align = 0
+script = ExtResource( 9 )
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 64.0
+margin_bottom = 32.0
+custom_styles/hover = SubResource( 86 )
+custom_styles/pressed = SubResource( 84 )
+custom_styles/focus = SubResource( 85 )
+custom_styles/disabled = SubResource( 84 )
+custom_styles/normal = SubResource( 84 )
+text = "MAP"
+align = 0
+script = ExtResource( 9 )
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 64.0
+margin_bottom = 50.0
+custom_styles/hover = SubResource( 86 )
+custom_styles/pressed = SubResource( 84 )
+custom_styles/focus = SubResource( 85 )
+custom_styles/disabled = SubResource( 84 )
+custom_styles/normal = SubResource( 84 )
+text = "SETTINGS"
+align = 0
+script = ExtResource( 9 )
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 64.0
+margin_bottom = 68.0
+custom_styles/hover = SubResource( 86 )
+custom_styles/pressed = SubResource( 84 )
+custom_styles/focus = SubResource( 85 )
+custom_styles/disabled = SubResource( 84 )
+custom_styles/normal = SubResource( 84 )
+text = "EXIT"
+align = 0
+script = ExtResource( 9 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+margin_left = 96.0
+margin_top = 40.0
+margin_right = 295.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+margin_top = 4.0
+margin_right = 199.0
+margin_bottom = 18.0
+size_flags_vertical = 6
+text = "insert name of save file here :3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+margin_top = 26.0
+margin_right = 199.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
+margin_right = 22.0
+margin_bottom = 14.0
+text = "HP:"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer2/HBoxContainer"]
+margin_left = 26.0
+margin_right = 199.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MenuStuff" type="Panel" parent="."]
+margin_left = 120.0
+margin_top = 32.0
+margin_right = 440.0
+margin_bottom = 228.0
+custom_styles/panel = SubResource( 91 )
+
+[node name="ItemStuff" type="VBoxContainer" parent="MenuStuff"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 10
+script = ExtResource( 7 )
+
+[node name="ItemButtonContainer" type="ScrollContainer" parent="MenuStuff/ItemStuff"]
+margin_right = 320.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.45
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="GridContainer" type="GridContainer" parent="MenuStuff/ItemStuff/ItemButtonContainer"]
+custom_constants/hseparation = 32
+columns = 2
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStuff/ItemStuff"]
+margin_top = 67.0
+margin_right = 320.0
+margin_bottom = 196.0
+size_flags_vertical = 3
+
+[node name="name" type="Label" parent="MenuStuff/ItemStuff/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 14.0
+text = "ITEM_NAME"
+
+[node name="desc" type="Label" parent="MenuStuff/ItemStuff/VBoxContainer"]
+margin_top = 41.0
+margin_right = 320.0
+margin_bottom = 106.0
+size_flags_vertical = 6
+text = "dsadaolkdsajldaldflkdasjdas
+dasjdslkdsajkldsajldsldsadsa
+dsdsaklñjdsalksdajlkdasjldsalkdsajldsakljldsalkdsa
+dsadsajdsaldsjaldajdaslkjsadlkjdsalkjdlkajljdslkajd"
+autowrap = true
+
+[node name="QuitMenu" type="Control" parent="MenuStuff"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="MenuStuff/QuitMenu"]
+anchor_top = 0.216837
+anchor_right = 1.0
+anchor_bottom = 0.375
+text = "do you really wanna quit?, 
+your unsaved data will be lost."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="Button" parent="MenuStuff/QuitMenu"]
+margin_left = 32.0
+margin_top = 120.0
+margin_right = 128.0
+margin_bottom = 144.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "yes"
+script = ExtResource( 9 )
+
+[node name="Button2" type="Button" parent="MenuStuff/QuitMenu"]
+margin_left = 192.0
+margin_top = 120.0
+margin_right = 288.0
+margin_bottom = 144.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "no"
+script = ExtResource( 9 )
+
+[node name="Settings" type="Control" parent="MenuStuff"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 11 )
+
+[node name="TabContainer" type="TabContainer" parent="MenuStuff/Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 8.0
+custom_styles/tab_fg = SubResource( 87 )
+custom_styles/tab_disabled = SubResource( 88 )
+custom_styles/tab_bg = SubResource( 90 )
+custom_styles/panel = SubResource( 90 )
+
+[node name="Main" type="ScrollContainer" parent="MenuStuff/Settings/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 16.0
+margin_right = -1.0
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="settings" type="VBoxContainer" parent="MenuStuff/Settings/TabContainer/Main"]
+margin_right = 318.0
+margin_bottom = 172.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="MenuStuff/Settings/TabContainer/Main/settings"]
+margin_top = 31.0
+margin_right = 318.0
+margin_bottom = 45.0
+text = "MASTER"
+
+[node name="HSlider" type="HSlider" parent="MenuStuff/Settings/TabContainer/Main/settings"]
+margin_top = 49.0
+margin_right = 318.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="Label2" type="Label" parent="MenuStuff/Settings/TabContainer/Main/settings"]
+margin_top = 69.0
+margin_right = 318.0
+margin_bottom = 83.0
+text = "SFX"
+
+[node name="HSlider2" type="HSlider" parent="MenuStuff/Settings/TabContainer/Main/settings"]
+margin_top = 87.0
+margin_right = 318.0
+margin_bottom = 103.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="Label3" type="Label" parent="MenuStuff/Settings/TabContainer/Main/settings"]
+margin_top = 107.0
+margin_right = 318.0
+margin_bottom = 121.0
+text = "MUSIC"
+
+[node name="HSlider3" type="HSlider" parent="MenuStuff/Settings/TabContainer/Main/settings"]
+margin_top = 125.0
+margin_right = 318.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="Settings" type="VBoxContainer" parent="MenuStuff/Settings/TabContainer"]
+visible = false
+margin_top = 14.0
+margin_bottom = 14.0
+
+[node name="Panel" parent="MenuStuff/Settings" instance=ExtResource( 10 )]
+
+[node name="Panel2" parent="MenuStuff/Settings" instance=ExtResource( 10 )]
+margin_left = 288.0
+margin_right = 320.0
+
+[node name="Map" type="VBoxContainer" parent="MenuStuff"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.38
+script = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="MenuStuff/Map"]
+margin_right = 320.0
+margin_bottom = 14.0
+text = "area_name_heredsahdsalklljljlkj"
+align = 1
+
+[node name="ColorRect" type="ColorRect" parent="MenuStuff/Map"]
+margin_top = 18.0
+margin_right = 320.0
+margin_bottom = 172.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MenuStuff/Map/ColorRect"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "can you pls imagine a map here"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuStuff/Map"]
+margin_top = 176.0
+margin_right = 320.0
+margin_bottom = 196.0
+alignment = 1
+
+[node name="Button" type="Button" parent="MenuStuff/Map/HBoxContainer"]
+margin_left = 49.0
+margin_right = 109.0
+margin_bottom = 20.0
+text = "j: zoom"
+
+[node name="Button3" type="Button" parent="MenuStuff/Map/HBoxContainer"]
+margin_left = 113.0
+margin_right = 181.0
+margin_bottom = 20.0
+text = "E:marker"
+
+[node name="Button2" type="Button" parent="MenuStuff/Map/HBoxContainer"]
+margin_left = 185.0
+margin_right = 270.0
+margin_bottom = 20.0
+text = "K: zoomout"
+
+[node name="Cursorhand" type="Sprite" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 152, 144 )
+texture = ExtResource( 3 )
+script = ExtResource( 6 )
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="MenuStuff/QuitMenu/Button" to="MenuStuff/QuitMenu" method="_on_Button_pressed"]
+[connection signal="pressed" from="MenuStuff/QuitMenu/Button2" to="." method="deselect"]

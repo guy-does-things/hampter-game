@@ -22,7 +22,9 @@ enum FloorRequirementModes{
 }
 
 onready var attack_machine :StateMachine= $AttackStateMachine
-var playerstatus : StatusThing
+var playerstatus : StatusThing setget set_playerstatus;func set_playerstatus(ps):playerstatus = ps
+	
+	
 var input_buffer := []
 var attack_list : Array
 var time_since_pressed := 0.0

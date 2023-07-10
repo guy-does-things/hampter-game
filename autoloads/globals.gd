@@ -1,3 +1,5 @@
+# only reason it's a class name is so i can acess Items as an export
+class_name GlobalData
 extends Node
 
 
@@ -18,5 +20,8 @@ enum Items{
 	BREAST=512,
 	BLADEUP=1024
 }
+
+
+export(Array,Resource) var item_data = null
 
 

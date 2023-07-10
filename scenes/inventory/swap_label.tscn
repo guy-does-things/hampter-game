@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=90]
+bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color( 0.133333, 0.443137, 0.74902, 1 )
+anti_aliasing = false
+
+[node name="Panel" type="Panel"]
+margin_top = 8.0
+margin_right = 32.0
+margin_bottom = 23.0
+custom_styles/panel = SubResource( 90 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 32.0
+margin_bottom = 14.0
+text = "J"
+align = 1
+valign = 1

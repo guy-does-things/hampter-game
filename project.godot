@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://wpnsys/hurt_stuff/Gun.gd"
 }, {
+"base": "Node",
+"class": "GlobalData",
+"language": "GDScript",
+"path": "res://autoloads/globals.gd"
+}, {
 "base": "Area2D",
 "class": "HitBox",
 "language": "GDScript",
@@ -68,6 +73,11 @@ _global_script_classes=[ {
 "class": "HurtComponent",
 "language": "GDScript",
 "path": "res://wpnsys/hurt_stuff/hurt_component.gd"
+}, {
+"base": "Resource",
+"class": "ItemData",
+"language": "GDScript",
+"path": "res://scripts/item_data.gd"
 }, {
 "base": "GdtGun",
 "class": "MeleeWeapon",
@@ -165,8 +175,10 @@ _global_script_class_icons={
 "Entity": "",
 "GdtBullet": "",
 "GdtGun": "",
+"GlobalData": "",
 "HitBox": "",
 "HurtComponent": "",
+"ItemData": "",
 "MeleeWeapon": "",
 "NewPlayerDetector": "",
 "NewSaveData": "",
@@ -196,7 +208,7 @@ config/icon="res://icon.png"
 
 NewRoomAutoload="*res://dreadsitereuse/room_autoload/room_autoload.tscn"
 Signals="*res://autoloads/signals.gd"
-Globals="*res://autoloads/globals.gd"
+Globals="*res://autoloads/globals.tscn"
 MapManager="*res://autoloads/MapManager/map_manager.gd"
 InputBuffer="*res://input_buffer.gd"
 Hitfreeze="*res://autoloads/hitfreeze.gd"
@@ -240,6 +252,14 @@ texture={
 
 [input]
 
+ui_focus_next={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_focus_prev={
+"deadzone": 0.5,
+"events": [  ]
+}
 up={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
@@ -279,6 +299,11 @@ attack={
 platform={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+show_inv={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

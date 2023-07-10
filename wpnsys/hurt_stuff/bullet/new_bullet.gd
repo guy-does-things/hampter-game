@@ -110,7 +110,7 @@ func set_hitbox(nhbox : Shape2D):
 		
 
 func set_damage(ndamage):
-	damage = ndamage
+	damage = ceil(ndamage)
 	if area:
 		area.damage = damage
 		

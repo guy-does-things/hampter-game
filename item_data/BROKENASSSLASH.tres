@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/item_data.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+item_id = 128
+item_name = "spin slash"
+item_desc = "hold up then attack while in the air for a 6-16 priority attack"

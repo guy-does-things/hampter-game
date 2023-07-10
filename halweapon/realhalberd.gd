@@ -1,24 +1,39 @@
 extends MeleeWeapon
 
 
+var dmgmult = 1.0
 
-#"filo del alma"
+
+func set_playerstatus(ps:StatusThing):
+	.set_playerstatus(ps)
+	ps.connect("item_unlocked",self,"has_unlocked_hitbox")
+	if ps.has_item(Globals.Items.BLADEUP):
+		unloked_halberd_upgrade()
+	
+	
+		
+func has_unlocked_hitbox(item):
+	if item == Globals.Items.BLADEUP:unloked_halberd_upgrade()
+
+
+# mispelled, don care
 func unloked_halberd_upgrade():
 	$SpriteSheet.material.set_shader_param(
 		"has_funny_upgrade",
 		1
 	)
+	dmgmult = 1.1
 	
-	for hitbox in $HitBoxes:
-		hitbox.damage *= 2
+	# basically the bisexual flag in shader param
+	# increases damage by 1.1 hmmmm
+	for hitbox in $HitBoxes.get_children():
+		hitbox.damage = ceil(hitbox.damage*dmgmult)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#floor_req:int,input_req:Array,state,attack
 	
-	
 
-	# the fall
 
 
 	# first hit
@@ -75,8 +90,8 @@ func soul_attack():
 	sattack.global_position = global_position + Vector2.DOWN *4
 	sattack.scale.x = dir.x
 	sattack.speed = 386
-	sattack.damage = 3
-	sattack.lifetime = 1	
+	sattack.damage = 3*dmgmult
+	sattack.lifetime = 1
 	sattack.dir = dir
 	sattack.dir.y -= .05
 	
@@ -89,7 +104,7 @@ func battack():
 	sattack.global_position = global_position + Vector2.DOWN *4
 	sattack.scale.x = dir.x
 	sattack.speed = 386
-	sattack.damage = 3
+	sattack.damage = 3*dmgmult
 	sattack.lifetime = 10
 	sattack.dir = dir
 	
@@ -100,7 +115,7 @@ func pipebombattack():
 	
 	sattack.global_position = global_position + Vector2.DOWN *4
 	sattack.scale.x = dir.x
-	sattack.damage = 5
+	sattack.damage = 5*1
 	sattack.lifetime = 10
 	sattack.dir = dir
 	sattack.speed = 200

@@ -8,7 +8,7 @@ export var is_enemy := false
 
 
 
-
+export var damage_override = -1
 
 signal hurted(dam)
 signal died(dam)
@@ -66,6 +66,7 @@ func flash(STOP=false):
 	
 func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int):
 	if dam == 0:return
+	if damage_override != -1:dam =damage_override
 	
 	if hit_priority <= current_priority:
 		return false
