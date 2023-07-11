@@ -20,6 +20,8 @@ func _ready():
 		it.text = item.item_name
 		item_buttons.append(it)
 		it.pressed = true
+		it.disabled = item.item_id == Globals.Items.HPUP
+		
 		it.connect("focus_entered",self,"toggle_hovered",[it])
 	item_buttons.sort_custom(
 		self,
@@ -35,7 +37,7 @@ func _ready():
 			current_button_pos_thing.x = 0
 			
 		button_grid[current_button_pos_thing] = [it,it.get_path()]
-		$ItemButtonContainer/GridContainer.add_child(it)
+		$"%GridContainer".add_child(it)
 		
 		current_button_pos_thing.x += 1
 	
@@ -51,7 +53,7 @@ func _ready():
 
 
 
-	$ItemButtonContainer/GridContainer.connect_focus_signals()
+	$"%GridContainer".connect_focus_signals()
 
 
 func get_neighbor_in_dir(
@@ -65,13 +67,13 @@ func get_neighbor_in_dir(
 
 
 func toggle_hovered(toggle:ItemToggle):
-	$VBoxContainer/name.text = toggle.text
-	$VBoxContainer/desc.text = toggle.item_data.item_desc
+	#$VBoxContainer/name.text = toggle.text
+	$"%desc".text = toggle.item_data.item_desc
 
 
 func selected():
 	show()
-	$ItemButtonContainer/GridContainer.get_child(0).grab_focus()
+	$"%GridContainer".get_child(0).grab_focus()
 
 
 func deselect():hide()

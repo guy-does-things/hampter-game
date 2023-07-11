@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/quit_menu/QuitMenu.gd" type="Script" id=1]
+[ext_resource path="res://scenes/inventory/soundbutton.gd" type="Script" id=2]
+[ext_resource path="res://raw_sprites/cursorhand.png" type="Texture" id=3]
+[ext_resource path="res://cursor_hand.gd" type="Script" id=4]
+
+[node name="QuitMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -352, 24 )
+script = ExtResource( 1 )
+cursorpath = NodePath("Cursorhand")
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 0.216837
+anchor_right = 1.0
+anchor_bottom = 0.375
+text = "do you really wanna quit?, 
+your unsaved data will be lost."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Quit" type="Button" parent="."]
+margin_left = 32.0
+margin_top = 120.0
+margin_right = 128.0
+margin_bottom = 144.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../Deny")
+focus_neighbour_bottom = NodePath(".")
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "yes"
+script = ExtResource( 2 )
+
+[node name="Deny" type="Button" parent="."]
+margin_left = 192.0
+margin_top = 120.0
+margin_right = 288.0
+margin_bottom = 144.0
+focus_neighbour_left = NodePath("../Quit")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "no"
+script = ExtResource( 2 )
+
+[node name="Cursorhand" type="Sprite" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 152, 144 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

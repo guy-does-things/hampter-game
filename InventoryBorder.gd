@@ -66,6 +66,9 @@ func deselect(is_rs=false):
 	$VBoxContainer2.visible = !is_rs
 
 
+func setup_player(plr,plrstatus):
+	pass
+
 func select_menu(menu):
 	deselect(true)
 	menu.selected()

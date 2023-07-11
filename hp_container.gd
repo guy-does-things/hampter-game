@@ -17,8 +17,8 @@ func _physics_process(delta):
 	show()
 	
 	var max_hp = playerstatus.MAX_HP
-	
-	if playerstatus.current_hp < get_child_count() and playerstatus.current_hp > 0:
+
+	if playerstatus.current_hp <= get_child_count() and playerstatus.current_hp > 0:
 		var cheart :TextureRect= get_child(playerstatus.current_hp-1)
 		cheart.texture.region.position.x = 13 * frame
 		

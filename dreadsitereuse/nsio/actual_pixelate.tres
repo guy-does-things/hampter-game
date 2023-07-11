@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float pixelSize = 4;
+
+void fragment()
+{
+	
+	ivec2 size = ivec2(TEXTURE_PIXEL_SIZE);//textureSize(TEXTURE, 0);
+	
+	int xRes = size.x;
+	int yRes = size.y;
+	
+	float xFactor = float(xRes) / float(pixelSize);
+	float yFactor = float(yRes) / float(pixelSize);
+	
+	float grid_uv_x = round(UV.x * xFactor) / xFactor;
+	float grid_uv_y = round(UV.y * yFactor) / yFactor;
+	
+	vec4 text = texture(TEXTURE, vec2(grid_uv_x, grid_uv_y));
+	
+	COLOR = text;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/pixelSize = 2

@@ -6,6 +6,7 @@ var current_control : Control
 var t = 0
 
 func request(control):
+	z_index = 1
 	current_control = control
 	t = 0
 	show()

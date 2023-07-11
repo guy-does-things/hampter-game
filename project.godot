@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://mlegunthing.gd"
 }, {
+"base": "Node2D",
+"class": "NewMapScreen",
+"language": "GDScript",
+"path": "res://dreadsitereuse/nsio/msiotest.gd"
+}, {
 "base": "Area2D",
 "class": "NewPlayerDetector",
 "language": "GDScript",
@@ -180,6 +185,7 @@ _global_script_class_icons={
 "HurtComponent": "",
 "ItemData": "",
 "MeleeWeapon": "",
+"NewMapScreen": "",
 "NewPlayerDetector": "",
 "NewSaveData": "",
 "NewestRoom": "",

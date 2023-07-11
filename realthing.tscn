@@ -830,8 +830,7 @@ margin_bottom = 128.0
 color = Color( 0.121569, 0.670588, 0.878431, 1 )
 
 [node name="TestScorpionE" parent="." instance=ExtResource( 1 )]
-position = Vector2( 80, 384 )
-collision_layer = 10
+position = Vector2( 56, 368 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( -23, 86 )
@@ -940,10 +939,10 @@ text = "forbidden area
 (need to draw destoryed props)"
 
 [node name="TEstSpinner" parent="." instance=ExtResource( 3 )]
-position = Vector2( -96, 336 )
+position = Vector2( -200, 94 )
 
 [node name="TEstSpinner2" parent="." instance=ExtResource( 7 )]
-position = Vector2( -276, 27 )
+position = Vector2( -360, -48 )
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 
