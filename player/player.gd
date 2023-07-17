@@ -20,8 +20,10 @@ onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
 
 func _ready():
 	weapon.playerstatus = status
-	
-
+	status.unlocked_item(GlobalData.Items.RISINGSLASH)
+#	for i in GlobalData.Items.values():
+#		status.unlocked_item(i)
+#		print(i)
 
 
 func compare(eventa:InputEvent,eventb):
@@ -278,11 +280,14 @@ func _on_SpinSlash_jump():
 
 
 
-func _on_HurtComponent_hurted(dam):
+func _on_HurtComponent_hurted(dam,on_water):
 	$StateMachine.set_state($StateMachine/Hurt)
-	velocity.x = -170 * fc.scale.x
-	velocity.y = -150
-	velocity *=get_speed_mult()
+	if !on_water:
+		velocity.x = -170 * fc.scale.x
+		velocity.y = -150
+		velocity *=get_speed_mult()
+	else:
+		velocity = Vector2.ZERO
 	Hitfreeze.set_realtimescale(.01)
 	create_tween().tween_property(
 		Engine,
@@ -313,16 +318,21 @@ func _on_Hurt_exited():
 
 func _on_Area2D_body_entered(body):
 	if !status.has_item(Globals.Items.WATERBREATHING):
-		
+		$HurtComponent.hurt(1,Vector2.ZERO,0,true,4000,true)
+		global_position = body.get_eject_pos()
 		return
 	on_water = true
+	status.on_water = true
 	$Node2D.on_water = true
 	$PhysicsStuff.gravmult = .1
-	velocity *= .1
+	$PhysicsStuff.term_vel = PhysicsStuff.MAX_TERM_VEL *.1
+	velocity.y = min(velocity.y,90.0)
 
 
 func _on_Area2D_body_exited(body):
+	status.on_water = false
 	$Node2D.on_water = false
 	$Node2D.reset_jumps()
 	on_water = false
 	$PhysicsStuff.gravmult = 1
+	$PhysicsStuff.term_vel = PhysicsStuff.MAX_TERM_VEL

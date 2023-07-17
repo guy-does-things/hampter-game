@@ -1,11 +1,40 @@
 extends VBoxContainer
 
 
+var status :StatusThing setget set_status;
+
+func set_status(sthing):
+	status = sthing
+	for child in $ItemButtonContainer/GridContainer.get_children():
+		child.status = status
+
 class ItemToggle extends CheckBox:
 	var item_data : ItemData
 	var item_obtained = true
 	var item_disabled = true
+	var status : StatusThing
 	
+	func _physics_process(delta):
+		if !status:return
+		
+		disabled = (
+			item_data.item_id == Globals.Items.WATERBREATHING and status.on_water or
+			item_data.item_id == Globals.Items.HPUP or
+			item_data.item_id == Globals.Items.BLADEUP
+		)
+	
+	func _toggled(button_pressed):
+		if not status:return
+		
+		var index = GlobalData.item_to_id(item_data.item_id)
+		
+		if (button_pressed):
+			status.disabled_bitmask &= ~(1 << index);
+		else:
+			status.disabled_bitmask |= 1 << index;
+		
+
+
 	
 static func sort_item_toggles(ita:ItemToggle,itb:ItemToggle):
 	return ita.item_data.item_id < itb.item_data.item_id
@@ -13,9 +42,9 @@ static func sort_item_toggles(ita:ItemToggle,itb:ItemToggle):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var item_buttons = []
-	
 	for item in Globals.item_data:
 		var it = ItemToggle.new()
+		it.status = status
 		it.item_data = item
 		it.text = item.item_name
 		item_buttons.append(it)
@@ -31,13 +60,14 @@ func _ready():
 	var button_grid := {}
 	var current_button_pos_thing : Vector2
 
+
 	for it in item_buttons:
 		if current_button_pos_thing.x > 1:
 			current_button_pos_thing.y += 1
 			current_button_pos_thing.x = 0
 			
-		button_grid[current_button_pos_thing] = [it,it.get_path()]
 		$"%GridContainer".add_child(it)
+		button_grid[current_button_pos_thing] = [it,it.get_path()]
 		
 		current_button_pos_thing.x += 1
 	

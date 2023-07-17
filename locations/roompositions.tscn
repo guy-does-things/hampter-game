@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://locations/gate of cage/waterway.tscn" type="PackedScene" id=6]
 [ext_resource path="res://locations/gate of cage/beforeboss1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://locations/gate of cage/guardianroom.tscn" type="PackedScene" id=8]
-[ext_resource path="res://locations/gate of cage/afterboss1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://locations/gate of cage/bossreward.tscn" type="PackedScene" id=9]
 [ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/cisintroripoff.tscn" type="PackedScene" id=10]
 [ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/waterplatformroom.tscn" type="PackedScene" id=11]
 [ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/comicalamountofwater.tscn" type="PackedScene" id=12]
@@ -27,6 +27,27 @@
 [ext_resource path="res://hp_container.gd" type="Script" id=25]
 [ext_resource path="res://raw_sprites/heart.png" type="Texture" id=26]
 [ext_resource path="res://scenes/inventory/Inventory.tscn" type="PackedScene" id=27]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/beforefishsave.tscn" type="PackedScene" id=28]
+[ext_resource path="res://locations/gate of cage/entrancegating.tscn" type="PackedScene" id=29]
+[ext_resource path="res://locations/fuckedupplace/destroyedfor.tscn" type="PackedScene" id=30]
+[ext_resource path="res://locations/fuckedupplace/cavent.tscn" type="PackedScene" id=31]
+[ext_resource path="res://locations/fuckedupplace/cavebossroom.tscn" type="PackedScene" id=32]
+[ext_resource path="res://locations/fuckedupplace/cave_gating_exit_room.tscn" type="PackedScene" id=33]
+[ext_resource path="res://locations/fuckedupplace/zipline_room.tscn" type="PackedScene" id=34]
+[ext_resource path="res://locations/gate of cage/highwaygating.tscn" type="PackedScene" id=35]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/waterliftroom.tscn" type="PackedScene" id=36]
+[ext_resource path="res://locations/gate of cage/combotutorialroom.tscn" type="PackedScene" id=37]
+[ext_resource path="res://locations/gate of cage/combotestroom.tscn" type="PackedScene" id=38]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/sealroom.tscn" type="PackedScene" id=39]
+[ext_resource path="res://locations/gate of cage/highwayjump.tscn" type="PackedScene" id=40]
+[ext_resource path="res://locations/roomtranspipe.gd" type="Script" id=42]
+[ext_resource path="res://locations/nitrotasticman/highway_entrance.tscn" type="PackedScene" id=43]
+[ext_resource path="res://locations/nitrotasticman/car_jumpscare.tscn" type="PackedScene" id=44]
+[ext_resource path="res://locations/nitrotasticman/mallsection.tscn" type="PackedScene" id=45]
+[ext_resource path="res://raw_sprites/hamptertube.png" type="Texture" id=46]
+[ext_resource path="res://scripts/boss1/bootlegeo.tscn" type="PackedScene" id=47]
+[ext_resource path="res://scenes/boss_door/BossDoor2.tscn" type="PackedScene" id=48]
+[ext_resource path="res://locations/VBoxContainer.gd" type="Script" id=49]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 26 )
@@ -40,84 +61,82 @@ region = Rect2( 26, 0, 13, 13 )
 script = ExtResource( 24 )
 
 [node name="A17" parent="." instance=ExtResource( 16 )]
-position = Vector2( 6728, 1809 )
+position = Vector2( 6301, 2216 )
 
 [node name="A" parent="." instance=ExtResource( 1 )]
+position = Vector2( -67, 8 )
 
 [node name="A2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 656, 0 )
+position = Vector2( 589, 8 )
 
 [node name="A3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1696, 496 )
+position = Vector2( 1629, 504 )
 
-[node name="A4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 560, 272 )
+[node name="layeredcages" parent="." instance=ExtResource( 5 )]
+position = Vector2( 493, 296 )
 
-[node name="A5" parent="." instance=ExtResource( 6 )]
-position = Vector2( -1104, 1632 )
+[node name="waterway" parent="." instance=ExtResource( 6 )]
+position = Vector2( -515, 1816 )
 
 [node name="A6" parent="." instance=ExtResource( 7 )]
-position = Vector2( 824, 2769 )
+position = Vector2( 397, 3176 )
 
 [node name="A7" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2040, 2897 )
+position = Vector2( 1613, 3304 )
 
 [node name="A8" parent="." instance=ExtResource( 9 )]
-position = Vector2( 2664, 2897 )
+position = Vector2( 2237, 3304 )
 
 [node name="A9" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2736, 112 )
+position = Vector2( 2669, 120 )
 
 [node name="A10" parent="." instance=ExtResource( 10 )]
-position = Vector2( 3176, 2785 )
+position = Vector2( 2749, 3192 )
 
-[node name="A11" parent="." instance=ExtResource( 11 )]
-position = Vector2( 3656, 2769 )
+[node name="A31" parent="." instance=ExtResource( 36 )]
+position = Vector2( 3229, 3272 )
 
 [node name="A12" parent="." instance=ExtResource( 12 )]
-position = Vector2( 4440, 2577 )
+position = Vector2( 3949, 3096 )
 
 [node name="A14" parent="." instance=ExtResource( 14 )]
-position = Vector2( 3656, 3057 )
+position = Vector2( 2669, 3576 )
 
-[node name="A15" parent="." instance=ExtResource( 15 )]
-position = Vector2( 3032, 3153 )
+[node name="cisexit" parent="." instance=ExtResource( 15 )]
+position = Vector2( 2045, 3672 )
 
 [node name="A13" parent="." instance=ExtResource( 13 )]
-position = Vector2( 3656, 1889 )
+position = Vector2( 3229, 2296 )
 
 [node name="A16" parent="." instance=ExtResource( 11 )]
-position = Vector2( 4488, 1937 )
+position = Vector2( 4061, 2344 )
 
 [node name="A18" parent="." instance=ExtResource( 17 )]
-position = Vector2( 2680, 2257 )
+position = Vector2( 2253, 2664 )
 
 [node name="A20" parent="." instance=ExtResource( 18 )]
-position = Vector2( 1560, 2321 )
+position = Vector2( 1133, 2728 )
 
 [node name="A19" parent="." instance=ExtResource( 19 )]
-position = Vector2( 3656, 1008 )
+position = Vector2( 3229, 1384 )
+
+[node name="A30" parent="." instance=ExtResource( 19 )]
+position = Vector2( 3229, 1384 )
 
 [node name="A21" parent="." instance=ExtResource( 20 )]
-position = Vector2( 5944, 800 )
+position = Vector2( 5517, 1176 )
 
 [node name="A22" parent="." instance=ExtResource( 21 )]
-position = Vector2( 6904, 1248 )
-
-[node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 144, 160 )
-
-[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
-current = true
-script = ExtResource( 23 )
+position = Vector2( 6477, 1624 )
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 
 [node name="GridContainer" type="GridContainer" parent="Inventory"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 97.0
-margin_bottom = 48.0
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 89.0
+margin_bottom = 40.0
 rect_scale = Vector2( 2, 2 )
 custom_constants/vseparation = 0
 custom_constants/hseparation = -2
@@ -212,6 +231,25 @@ margin_bottom = 26.0
 texture = SubResource( 2 )
 stretch_mode = 6
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -46.0
+margin_bottom = 2.0
+script = ExtResource( 49 )
+
+[node name="Label" type="Label" parent="Inventory/VBoxContainer"]
+margin_right = 480.0
+margin_bottom = 14.0
+text = "the gate guardian"
+
+[node name="ProgressBar" type="ProgressBar" parent="Inventory/VBoxContainer"]
+margin_top = 18.0
+margin_right = 480.0
+margin_bottom = 48.0
+size_flags_vertical = 3
+
 [node name="InventoryBorder" parent="Inventory" instance=ExtResource( 27 )]
 visible = false
 
@@ -221,3 +259,174 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
+
+[node name="A34" parent="." instance=ExtResource( 39 )]
+position = Vector2( 2269, 1320 )
+
+[node name="A11" parent="." instance=ExtResource( 28 )]
+position = Vector2( 3453, 3672 )
+
+[node name="A23" parent="." instance=ExtResource( 29 )]
+position = Vector2( 1629, -344 )
+
+[node name="A24" parent="." instance=ExtResource( 30 )]
+position = Vector2( 2109, -344 )
+
+[node name="A25" parent="." instance=ExtResource( 31 )]
+position = Vector2( 3069, -344 )
+
+[node name="A26" parent="." instance=ExtResource( 32 )]
+position = Vector2( 4109, -344 )
+
+[node name="A27" parent="." instance=ExtResource( 33 )]
+position = Vector2( 4109, -760 )
+
+[node name="A28" parent="." instance=ExtResource( 34 )]
+position = Vector2( 4861, -344 )
+
+[node name="A29" parent="." instance=ExtResource( 35 )]
+position = Vector2( 109, -424 )
+
+[node name="training" parent="." instance=ExtResource( 37 )]
+position = Vector2( -3219, 2056 )
+
+[node name="A33" parent="." instance=ExtResource( 38 )]
+position = Vector2( 2237, 1880 )
+
+[node name="Pipe" type="Line2D" parent="."]
+z_index = 2
+points = PoolVector2Array( 125, 2024, 509, 2024 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+
+[node name="Pipe2" type="Line2D" parent="."]
+z_index = 2
+points = PoolVector2Array( 509, 1864, 429, 1864, 429, 1960, 429, 2728, 237, 2728, 237, 3384, 413, 3384 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+extra_speed = 3
+room_a = NodePath("../layeredcages")
+room_b = NodePath("../A6")
+
+[node name="Pipe3" type="Line2D" parent="."]
+z_index = 2
+points = PoolVector2Array( -1603, 2280, -1987, 2280 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+room_a = NodePath("../waterway")
+room_b = NodePath("../training")
+
+[node name="Pipe4" type="Line2D" parent="."]
+z_index = 2
+points = PoolVector2Array( -1603, 2184, -1699, 2184, -1699, 1624, -1827, 1624, -1827, 1528, -1747, 1528, -1491, 1528, -1491, 1688, -1907, 1688, -1907, 1352, -1699, 1352, -1699, 648, -1443, 648, -1443, 424, -1283, 424, -1283, 648, -835, 648, -835, 552, -899, 552, -899, 792, -499, 792, 189, 792, 189, 520, 77, 520, 77, 296, 253, 296, 253, -104, 285, -104 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+extra_speed = 5
+room_a = NodePath("../waterway")
+room_b = NodePath("../A")
+
+[node name="Pipe6" type="Line2D" parent="."]
+z_index = 2
+points = PoolVector2Array( 941, -776, 1037, -776, 1037, -1096, 973, -1096, 973, -1736, 1053, -1736 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+extra_speed = 5
+room_a = NodePath("../waterway")
+room_b = NodePath("../A")
+
+[node name="Pipe5" type="Line2D" parent="."]
+z_index = 2
+points = PoolVector2Array( 109, 3512, 157, 3512, 157, 3640, -131, 3640, -131, 3704, -131, 3928, 13, 3928, 13, 3768, 685, 3768, 685, 4056, 765, 4056, 765, 3944, 493, 3944, 493, 3640, 1309, 3640, 1309, 3912, 1197, 3912, 1197, 3800, 1853, 3800, 1853, 3912, 2061, 3912 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+extra_speed = 3
+room_a = NodePath("../waterway")
+room_b = NodePath("../cisexit")
+
+[node name="Pipe7" type="Line2D" parent="."]
+z_index = 2
+points = PoolVector2Array( 4717, -1480, 5309, -1480, 5309, -920, 5373, -920, 5373, -808, 5325, -808 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+extra_speed = 3
+room_a = NodePath("../A32")
+room_b = NodePath("../A28")
+
+[node name="Pipe8" type="Line2D" parent="."]
+z_index = 2
+points = PoolVector2Array( 3917, -1768, 4045, -1768, 4045, -1480, 4269, -1480 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+extra_speed = 3
+room_a = NodePath("../teslabridge")
+room_b = NodePath("../A32")
+
+[node name="A4" parent="." instance=ExtResource( 40 )]
+position = Vector2( 589, -1000 )
+
+[node name="A5" parent="." instance=ExtResource( 43 )]
+position = Vector2( 893, -1944 )
+
+[node name="teslabridge" parent="." instance=ExtResource( 44 )]
+position = Vector2( 1821, -1944 )
+
+[node name="A32" parent="." instance=ExtResource( 45 )]
+position = Vector2( 4253, -1944 )
+
+[node name="BossDoor2" parent="." instance=ExtResource( 48 )]
+position = Vector2( 1637, 3313 )
+can_move = false
+
+[node name="BossDoor3" parent="." instance=ExtResource( 48 )]
+position = Vector2( 2213, 3312 )
+can_move = false
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
+position = Vector2( 1696, 3360 )
+
+[node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
+current = true
+script = ExtResource( 23 )
+
+[node name="Entity" parent="." instance=ExtResource( 47 )]
+position = Vector2( 2048, 3312 )

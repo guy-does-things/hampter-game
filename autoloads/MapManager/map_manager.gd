@@ -25,15 +25,15 @@ func set_current_room(ncur_room:NewestRoom):
 	current_room_in = ncur_room
 	
 	if set_room_visit_state(ncur_room.filename,RoomSaveInfo.VisitStates.VISITED):
-		pass
-		#SavesManager.current_save.room_entered(ncur_room.room_area)
+		SavesManager.current_save.room_entered(ncur_room.room_area)
 
 
 
 
 
 func set_room_visit_state(room_path:String,new_state:int):
-	var last_state = (NewRoomAutoload.room_save_data.get(load(room_path)) as RoomSaveInfo)#rooms_discovered.get(room_path,RoomSaveInfo.VisitStates.HIDDEN)
+	
+	var last_state = (NewRoomAutoload.room_save_data.get(load(room_path)) as RoomSaveInfo)#.rooms_discovered.get(room_path,RoomSaveInfo.VisitStates.HIDDEN)
 	if last_state == null:return
 	
 	

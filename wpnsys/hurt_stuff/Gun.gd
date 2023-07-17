@@ -80,6 +80,8 @@ func create_projectile(current_burst, current_pellet):
 	if b:
 		b.is_enemy = is_enemy
 		b.global_position = muzzle.global_position
+		
+		
 		b.dir = dir.rotated(get_bullet_rotation(current_burst,current_pellet))
 		get_tree().current_scene.add_child(b)
 		
@@ -154,7 +156,7 @@ func actually_fire():
 
 
 func cooldown()->GDScriptFunctionState:
-	$"%Cooldown".wait_time = _gun_data.cooldown
+	$"%Cooldown".wait_time = _gun_data.data_res.cooldown
 	$"%Cooldown".start()
 	# yield is kinda bad, but it works unlees i modify the script/an error happens
 	# both that should NOT happen on any release

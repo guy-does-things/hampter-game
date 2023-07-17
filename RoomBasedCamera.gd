@@ -1,3 +1,4 @@
+class_name RoomBasedCamera
 extends Camera2D
 
 var __not_entered_anything = true
@@ -65,7 +66,7 @@ func shake_based_on_position(pos, inte : float):
 	)
 
 func shake_to_dir(dir : Vector2, inte : float):
-	offset -= dir.normalized() * (inte)# * SavesManager.settings.screenshake) 
+	offset -= dir.normalized() * (inte * SavesManager.settings.screenshake)
 
 
 func _physics_process(delta):

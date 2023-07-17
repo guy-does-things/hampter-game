@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/quit_menu/quit_menu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/inventory/soundbutton.gd" type="Script" id=9]
 [ext_resource path="res://scenes/settingsmenu/Settings.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/inventory/map_menu.gd" type="Script" id=12]
+[ext_resource path="res://scenes/mapscreen/mapscreen.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxTexture" id=83]
 texture = ExtResource( 5 )
@@ -217,60 +217,8 @@ visible = false
 [node name="Settings" parent="MenuStuff" instance=ExtResource( 10 )]
 visible = false
 
-[node name="Map" type="VBoxContainer" parent="MenuStuff"]
-unique_name_in_owner = true
+[node name="Map" parent="MenuStuff" instance=ExtResource( 11 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.38
-script = ExtResource( 12 )
-
-[node name="Label" type="Label" parent="MenuStuff/Map"]
-margin_right = 320.0
-margin_bottom = 14.0
-text = "area_name_heredsahdsalklljljlkj"
-align = 1
-
-[node name="ColorRect" type="ColorRect" parent="MenuStuff/Map"]
-margin_top = 18.0
-margin_right = 320.0
-margin_bottom = 172.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MenuStuff/Map/ColorRect"]
-modulate = Color( 0, 0, 0, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "can you pls imagine a map here"
-align = 1
-valign = 1
-autowrap = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuStuff/Map"]
-margin_top = 176.0
-margin_right = 320.0
-margin_bottom = 196.0
-alignment = 1
-
-[node name="Button" type="Button" parent="MenuStuff/Map/HBoxContainer"]
-margin_left = 49.0
-margin_right = 109.0
-margin_bottom = 20.0
-text = "j: zoom"
-
-[node name="Button3" type="Button" parent="MenuStuff/Map/HBoxContainer"]
-margin_left = 113.0
-margin_right = 181.0
-margin_bottom = 20.0
-text = "E:marker"
-
-[node name="Button2" type="Button" parent="MenuStuff/Map/HBoxContainer"]
-margin_left = 185.0
-margin_right = 270.0
-margin_bottom = 20.0
-text = "K: zoomout"
 
 [node name="Cursorhand" type="Sprite" parent="."]
 visible = false

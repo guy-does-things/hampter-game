@@ -74,6 +74,8 @@ persistence = 1.0
 lacunarity = 3.01
 
 [sub_resource type="NoiseTexture" id=86]
+width = 1024
+height = 1024
 seamless = true
 noise = SubResource( 85 )
 

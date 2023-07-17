@@ -14,20 +14,7 @@ onready var plrspr = $Yoyoprojtest
 var pnis : Node2D
 var save_points := []
 var waypoint := SaveSprite.new(Vector2.ZERO,true,null,true)
-var elevator_lines := Node2D.new()
 
-
-class Elevator extends Sprite:
-	var Eledata :EData
-	
-	
-#	func _init():
-#		texture = preload("res://lowreselevator.png")
-#
-#	func _process(delta):
-#		if is_instance_valid(Eledata.current_e):
-#			global_position = (Eledata.current_e.get_node("KinematicBody2D").global_position / 8)
-#
 
 class SaveSprite extends Sprite:
 	var real_position : Vector2
@@ -99,9 +86,6 @@ func move_cam():
 	
 
 func _ready():
-	add_child(elevator_lines)
-	move_child(elevator_lines,0)
-	
 	waypoint.z_index = 1
 	waypoint.visible = SavesManager.current_save.waypoint_position != Vector2.INF
 	waypoint.modulate = Color.red
@@ -109,9 +93,10 @@ func _ready():
 	waypoint.global_position = SavesManager.current_save.waypoint_position
 	Signals.connect("waypoint_moved",self,"waypoint_info_changed")
 	
+	add_tilemap("TEST")
 	
 	# setup tilemaps used for map rendering
-	for area in SaveData.Areas.values():
+	for area in NewSaveData.Areas.values():
 		var area_tilemap = add_tilemap(area)
 		area_tilemap.modulate = MapManager.get_area_color(area)
 		
@@ -164,7 +149,7 @@ func room_discovered(room_path:String,visit_state:int):
 
 
 
-	var rtm :TileMap= tilemaps[rdata.area]
+	var rtm :TileMap= tilemaps["TEST"]#[rdata.area]
 	var room_tile_global_position = rdata.room_position/8
 
 	for c in tm.get_used_cells():
@@ -175,10 +160,10 @@ func room_discovered(room_path:String,visit_state:int):
 
 
 	if visit_state == RoomSaveInfo.VisitStates.VISITED:
-		for c in ro.get_node("rope").get_used_cells():
-			tilemaps["ROPE"].set_cellv(c + room_tile_global_position,0)
-		for c in ro.get_node("Water").get_used_cells():
-			tilemaps["WATER"].set_cellv(c + room_tile_global_position,0)
+#		for c in ro.get_node("rope").get_used_cells():
+#			tilemaps["ROPE"].set_cellv(c + room_tile_global_position,0)
+#		for c in ro.get_node("Water").get_used_cells():
+#			tilemaps["WATER"].set_cellv(c + room_tile_global_position,0)
 
 	
 		for i in ro.get_children():
@@ -193,31 +178,6 @@ func room_discovered(room_path:String,visit_state:int):
 
 
 
-		for i in rdata.elevators:
-			var data :EData = i
-			
-			var line = Line2D.new()
-			var points = [
-				(data.start/8).floor(),
-				(data.end/8).floor(),
-			]
-
-			#print()
-
-
-			line.position = room_tile_global_position + (ro.get_node("RoomObjectManager").get_child(data.ind).position / 8).floor() + Vector2.DOWN * 2
-			line.width= 12
-			line.points = points
-			line.texture_mode = Line2D.LINE_TEXTURE_TILE
-			elevator_lines.add_child(line)
-			
-			
-			var elevator = Elevator.new()
-			var positioninc = data.end if data.get_istatus() else data.start
-			elevator.global_position = room_tile_global_position + (ro.get_node("RoomObjectManager").get_child(data.ind).position / 8).floor() + (positioninc / 8).floor()
-			elevator.Eledata = data
-			add_child(elevator)
-
 
 
 
@@ -227,7 +187,7 @@ func room_discovered(room_path:String,visit_state:int):
 
 
 func waypoint_info_changed():
-
+	pass
 	waypoint.global_position = SavesManager.current_save.waypoint_position
 	waypoint.visible = SavesManager.current_save.waypoint_position != Vector2.INF
 

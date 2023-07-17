@@ -1,4 +1,4 @@
-extends CustomWindow
+extends Control
 
 signal started_fast_travel()
 

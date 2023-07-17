@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/torch/Torch.gd" type="Script" id=1]
+[ext_resource path="res://raw_sprites/torch.png" type="Texture" id=2]
+[ext_resource path="res://lmask.png" type="Texture" id=3]
+[ext_resource path="res://raw_sprites/circletex.png" type="Texture" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=7]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=5]
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.01015, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.0295567, 0.182266, 0.597734, 0.852691, 0.988669 )
+colors = PoolColorArray( 1, 0.962264, 0, 0, 0.984314, 0.94902, 0.211765, 1, 1, 0, 0, 1, 0, 0, 0, 0.501961, 0, 0, 0, 0 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "thing"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.25, 0.25 ) ]
+}
+
+[node name="Torch" type="Sprite"]
+position = Vector2( 400, 148 )
+z_index = -2
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.364706, 0, 1 )
+material = SubResource( 7 )
+position = Vector2( 0, -5 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource( 5 )
+position = Vector2( 0, -4 )
+amount = 32
+lifetime = 0.5
+randomness = 1.0
+texture = ExtResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 1.94
+direction = Vector2( 0, -1 )
+spread = 10.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 64.0
+damping = 75.0
+scale_amount_random = 0.44
+scale_amount_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "thing"
+anims/thing = SubResource( 8 )

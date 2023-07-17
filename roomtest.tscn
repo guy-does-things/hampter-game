@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://locations/gate of cage/guardianroom.tscn" type="PackedScene" id=1]
+[ext_resource path="res://RoomBasedCamera.gd" type="Script" id=2]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://locations/gate of cage/bossreward.tscn" type="PackedScene" id=4]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 1613, 3304 )
+
+[node name="A7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 152 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 80, 104 )
+
+[node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
+current = true
+script = ExtResource( 2 )
+
+[node name="A8" parent="." instance=ExtResource( 4 )]
+position = Vector2( 624, 152 )

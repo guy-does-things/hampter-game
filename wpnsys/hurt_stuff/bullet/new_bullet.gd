@@ -202,6 +202,7 @@ func _on_Area2D_body_entered(body):
 
 func _on_Area2D_actually_hit(target):
 	if (_bullet_props as BulletPropeties).deletes_on_enemy_hit:
+		emit_signal("collided",Colliders.ENEMY,self,{})	
 		queue_free()
 
 

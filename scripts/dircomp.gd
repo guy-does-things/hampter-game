@@ -11,6 +11,8 @@ var rstr = "right"
 var ustr = "up"
 var dstr = "down"
 
+var can_get_dir = true
+
 func __get_dir()-> Vector2:
 	return Vector2(
 			(Input.get_action_strength(rstr) - Input.get_action_strength(lstr)), 
@@ -19,7 +21,15 @@ func __get_dir()-> Vector2:
 	
 
 func _process(delta):
+	if not can_get_dir:return
+	
 	current_dir = __get_dir()
 	
 	if current_dir != Vector2.ZERO:
 		last_dir = current_dir
+
+
+func dir_wait(t):
+	can_get_dir = false
+	yield(get_tree().create_timer(t),"timeout")
+	can_get_dir = true

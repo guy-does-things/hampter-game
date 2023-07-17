@@ -18,23 +18,19 @@ var save_path : String
 var room_data := {}
 var area_counts := {}
 
-#index 0 is items, index 1 is rooms
-
-
 # game data
 var area : int = Areas.CAVES
 var igt : int = 0
 
 
 # player data
-var current_powerups := []
+var current_powerups :int=0
+var disabled_shit :int = 0
 var last_position := Vector2(416,255)
 var waypoint_position := Vector2.INF
-# index 0 is gun, index 1 is card!
-const VERSION = "0.0.0"
-
 
 var map_rooms := {}
+var global_data ={}
 
 
 func _init():
@@ -44,8 +40,6 @@ func _init():
 
 func to_dict():
 	return {
-		initial_creation = initial_creation,
-		version = version,
 		name = name,
 		area_counts = area_counts,
 		room_data = room_data,
@@ -54,7 +48,9 @@ func to_dict():
 		current_powerups = current_powerups,
 		last_position = last_position,
 		loaded_room = loaded_room,
-		waypoint_position = waypoint_position
+		waypoint_position = waypoint_position,
+		disabled_shit=disabled_shit,
+		globals=global_data
 	}
 
 func as_buffer():
@@ -62,16 +58,17 @@ func as_buffer():
 
 func from_dict(dict:Dictionary):
 	initial_creation = dict.get("initial_creation",0)
-	version = dict.get("version",VERSION)
 	name = dict.get("name","name")
 	area_counts = dict.get("area_counts",{})
 	room_data = dict.get("room_data",{})
 	area = dict.get("area",Areas.CAVES)
 	igt = dict.get("igt",0)
-	current_powerups = dict.get("current_powerups",[])
+	current_powerups = dict.get("current_powerups",0)
+	disabled_shit = dict.get("disabled_shit",0)
 	last_position = dict.get("last_position",last_position)
 	loaded_room = dict.get("loaded_room",loaded_room)
 	waypoint_position = dict.get("waypoint_position",Vector2.INF)
+	global_data = dict.get("globals",{})
 
 
 func room_save_modified(room_path,room_save_info:RoomSaveInfo):

@@ -28,7 +28,6 @@ _bullet_props = SubResource( 6 )
 
 [node name="Thing" type="Sprite" parent="."]
 texture = ExtResource( 5 )
-offset = Vector2( 0, -1 )
 script = ExtResource( 2 )
 
 [node name="Area2D" parent="." instance=ExtResource( 1 )]
@@ -46,7 +45,6 @@ script = ExtResource( 6 )
 gravity_only_when_not_on_floor = false
 
 [connection signal="collided" from="." to="Thing" method="_on_GdtBullet_collided"]
-[connection signal="startup" from="." to="Thing" method="_on_GdtBullet_startup"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]
 [connection signal="actually_hit" from="Area2D" to="." method="_on_Area2D_actually_hit"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -113,7 +113,9 @@ func battack():
 func pipebombattack():
 	var sattack = preload("res://bullets/pipebomb/pipebomb.tscn").instance()
 	
+	
 	sattack.global_position = global_position + Vector2.DOWN *4
+	
 	sattack.scale.x = dir.x
 	sattack.damage = 5*1
 	sattack.lifetime = 10

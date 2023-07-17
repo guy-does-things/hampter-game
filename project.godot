@@ -114,6 +114,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Line2D4.gd"
 }, {
+"base": "Camera2D",
+"class": "RoomBasedCamera",
+"language": "GDScript",
+"path": "res://RoomBasedCamera.gd"
+}, {
 "base": "Resource",
 "class": "RoomDictContainer",
 "language": "GDScript",
@@ -133,6 +138,16 @@ _global_script_classes=[ {
 "class": "RoomSaveInfo",
 "language": "GDScript",
 "path": "res://dreadsitereuse/new_save/room_save_data.gd"
+}, {
+"base": "Pipe",
+"class": "RoomTransPipe",
+"language": "GDScript",
+"path": "res://locations/roomtranspipe.gd"
+}, {
+"base": "Reference",
+"class": "Settings",
+"language": "GDScript",
+"path": "res://dreadsitereuse/settings.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -158,6 +173,11 @@ _global_script_classes=[ {
 "class": "WaterFall",
 "language": "GDScript",
 "path": "res://scenes/waterfall/waterfall.gd"
+}, {
+"base": "TileMap",
+"class": "WaterTileMap",
+"language": "GDScript",
+"path": "res://water_tm.gd"
 }, {
 "base": "Line2D",
 "class": "ZipLine",
@@ -191,15 +211,19 @@ _global_script_class_icons={
 "NewestRoom": "",
 "PhysicsStuff": "",
 "Pipe": "",
+"RoomBasedCamera": "",
 "RoomDictContainer": "",
 "RoomNode": "",
 "RoomObjectManager": "",
 "RoomSaveInfo": "",
+"RoomTransPipe": "",
+"Settings": "",
 "State": "",
 "StateMachine": "",
 "StatusThing": "",
 "Stun": "",
 "WaterFall": "",
+"WaterTileMap": "",
 "ZipLine": "",
 "nTransitionTrigger": ""
 }
@@ -218,6 +242,7 @@ Globals="*res://autoloads/globals.tscn"
 MapManager="*res://autoloads/MapManager/map_manager.gd"
 InputBuffer="*res://input_buffer.gd"
 Hitfreeze="*res://autoloads/hitfreeze.gd"
+SavesManager="*res://autoloads/SavesManager/saves_manager.gd"
 
 [display]
 

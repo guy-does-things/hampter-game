@@ -1,3 +1,4 @@
+tool
 class_name ZipLine
 extends Line2D
 
@@ -9,6 +10,11 @@ extends Line2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	default_color = Color.white
+	texture = preload("res://rope.png")
+	texture_mode =Line2D.LINE_TEXTURE_TILE
+	if Engine.editor_hint:return
+	
 	var a = Area2D.new()
 	a.add_to_group("zipline")
 	

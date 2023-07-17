@@ -1,0 +1,99 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://raw_sprites/seal.png" type="Texture" id=1]
+[ext_resource path="res://halweapon/oggrad.tres" type="Texture" id=2]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+
+uniform sampler2D colorr;
+
+uniform int has_funny_upgrade = 00;
+uniform vec4 woodhandcolor : hint_color;
+uniform vec4 woodhandshadowcolor : hint_color;
+
+
+vec4 darken(vec4 base, vec4 blend){
+	return min(base, blend);
+}
+
+
+float abssin(float x)
+{
+	return ((sin(x)+1.0)/(2.0));
+	
+}
+vec4 hard_light(vec4 base, vec4 blend){
+	vec4 limit = step(0.5, blend);
+	return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
+}
+vec4 soft_light(vec4 base, vec4 blend){
+	vec4 limit = step(0.5, blend);
+	return mix(2.0 * base * blend + base * base * (1.0 - 2.0 * blend), sqrt(base) * (2.0 * blend - 1.0) + (2.0 * base) * (1.0 - blend), limit);
+}
+
+vec4 overlay(vec4 base, vec4 blend){
+	vec4 limit = step(0.5, base);
+	return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
+}
+
+
+
+vec4 color_burn(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) / blend;
+}
+
+
+bool colorMatch(vec3 c1, vec3 c2, float maxDiff) {
+    return (
+        abs(c1.r - c2.r) < maxDiff
+        && abs(c1.b - c2.b) < maxDiff
+        && abs(c1.b - c2.b) < maxDiff
+    );
+}
+
+
+
+void fragment()
+{
+	
+	vec4 rgba = texture(TEXTURE,UV);
+
+	
+	float gs = ((rgba.r + rgba.g + rgba.b) / 3.0) * float(has_funny_upgrade);
+	
+	
+	vec4 truenoisecol = texture(colorr,vec2(abssin( (TIME*3.5)+UV.y*4.0),0));//noisecolor * (abssin(TIME*4.0));
+	// only modify the blade's color
+	float MDIFF = .01;
+	if (
+	
+		gs > 0.0 && 
+		!colorMatch(rgba.rgb,woodhandcolor.rgb,MDIFF) && 
+		!colorMatch(rgba.rgb,woodhandshadowcolor.rgb,MDIFF)
+		
+	)
+	{
+		float alphamale = rgba.a;
+		rgba *= darken(rgba,truenoisecol) * 1.75;
+		rgba.a = alphamale;
+	}
+	
+	
+	COLOR = rgba;
+}
+
+
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/has_funny_upgrade = 1
+shader_param/woodhandcolor = Color( 0.545098, 0.313726, 0.0941176, 1 )
+shader_param/woodhandshadowcolor = Color( 0.407843, 0.223529, 0.0941176, 1 )
+shader_param/colorr = ExtResource( 2 )
+
+[node name="Seal" type="Sprite"]
+material = SubResource( 4 )
+texture = ExtResource( 1 )

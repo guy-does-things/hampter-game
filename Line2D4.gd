@@ -8,13 +8,15 @@ var player :Entity
 var moveindex :int
 var dir :int
 var cooldown = Timer.new()
-export(String) var room_name
-export(int,256) var pipe_to_exit
-
+export var extra_speed := 0
 
 
 func _ready():
+	
 	z_index = 2
+	width = 32
+	default_color = Color.white
+	if Engine.editor_hint:return
 	if points.size() < 2:
 		queue_free()
 		return
@@ -49,10 +51,10 @@ func _ready():
 func _physics_process(delta):
 	begin_cap_mode = 1
 	end_cap_mode = 1
-	
+	texture_mode = 1
+	texture = preload("res://raw_sprites/hamptertube.png")
 	
 	if is_instance_valid(player):
-		
 	
 		var point = to_global(points[moveindex])
 		
@@ -60,40 +62,41 @@ func _physics_process(delta):
 		
 		var dist = player.global_position.distance_to(
 			to_global(points[moveindex])
-		)
+		)+.000001
 		
 		var shootdir = player.global_position.direction_to(point)
 		
-		player.global_position = player.global_position.linear_interpolate(point,3 / dist)
+		var speed = 3+extra_speed
 		
-		if dist < 3:moveindex += dir
+		
+		player.global_position = player.global_position.linear_interpolate(point,speed / dist)
+		
+		if dist < 3.01+extra_speed:moveindex += dir
 		
 		if moveindex > points.size()-1 or moveindex < 0:
 			player.last_walk_dir = sign(shootdir.x)
 			player.end_moving_on_tube()
 			cooldown.start()
 			player.velocity = shootdir *200
-			
 			player = null
-			
-		
-		
-		
-
-		
 
 
 
 func player_entered(plr,index,movedir):
-	if not cooldown.is_stopped():return
+	if not cooldown.is_stopped():return false
 	
 	if plr.is_in_group("player") and not plr.is_riding():
 		player = plr
 		moveindex = index
 		player.start_moving_in_tube()	
 		dir = movedir
+		on_riding(plr,index,movedir)
+		return true
+	
+	return false
 		
 		
-		
+func on_riding(plr,index,movedir):
+	pass	
 		
 	

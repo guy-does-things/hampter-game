@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://dreadsitereuse/mapscreenfuckery/map_window.gd" type="Script" id=1]
-[ext_resource path="res://raw_sprites/maptile.png" type="Texture" id=2]
 [ext_resource path="res://scripts/dircomp.gd" type="Script" id=4]
 [ext_resource path="res://dreadsitereuse/mapscreenfuckery/controllable_map_screen.gd" type="Script" id=7]
 
@@ -13,7 +12,7 @@ border_color = Color( 0.0784314, 0.105882, 0.12549, 1 )
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.14902, 0.196078, 0.219608, 1 )
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=12]
 code = "shader_type canvas_item;
 
 uniform vec4 color : hint_color = vec4(1.0);
@@ -78,7 +77,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 4 )
+shader = SubResource( 12 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/width = 1.0
 shader_param/pattern = 2
@@ -112,22 +111,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true, false ]
 }
-
-[sub_resource type="TileSet" id=12]
-0/name = "maptile.png 0"
-0/texture = ExtResource( 2 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 1, 1 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
 
 [node name="Panel2" type="Panel"]
 pause_mode = 2
@@ -197,11 +180,5 @@ align = 1
 
 [node name="PopUpAnimation" type="AnimationPlayer" parent="."]
 anims/minimize = SubResource( 9 )
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 12 )
-collision_layer = 0
-collision_mask = 0
-format = 1
 
 [connection signal="visibility_changed" from="." to="Panel/ViewportContainer/Viewport/Map" method="_on_Panel2_visibility_changed"]

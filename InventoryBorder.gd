@@ -67,7 +67,7 @@ func deselect(is_rs=false):
 
 
 func setup_player(plr,plrstatus):
-	pass
+	$"%ItemStuff".status = plrstatus
 
 func select_menu(menu):
 	deselect(true)

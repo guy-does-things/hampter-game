@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=3]
+[ext_resource path="res://raw_sprites/circletex.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+deletes_on_wall = true
+deletes_on_enemy_hit = true
+deletes_on_ally_hit = false
+deletes_on_timeout = true
+ignores_anti_tunneling_measures = false
+
+[sub_resource type="CanvasItemMaterial" id=3]
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.01015, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.0295567, 0.182266, 0.597734, 0.852691, 0.988669 )
+colors = PoolColorArray( 1, 0.962264, 0, 0, 0.984314, 0.94902, 0.211765, 1, 1, 0, 0, 1, 0, 0, 0, 0.501961, 0, 0, 0, 0 )
+
+[node name="GdtBullet" type="Node2D"]
+script = ExtResource( 3 )
+speed = 2.0
+hitbox = SubResource( 2 )
+_bullet_props = SubResource( 6 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[node name="Area2D" parent="." instance=ExtResource( 2 )]
+min_hit_priority = 5
+max_hit_priority = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+material = SubResource( 3 )
+amount = 32
+lifetime = 0.4
+randomness = 1.0
+local_coords = false
+texture = ExtResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 1.94
+direction = Vector2( 0, -1 )
+spread = 10.0
+gravity = Vector2( 0, 0 )
+damping = 75.0
+scale_amount = 1.5
+scale_amount_random = 0.44
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]
+[connection signal="actually_hit" from="Area2D" to="." method="_on_Area2D_actually_hit"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

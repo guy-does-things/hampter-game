@@ -57,9 +57,7 @@ func _physics_process(delta):
 			
 			if overlapped_point:
 				point_position = Vector2.INF
-			
-			#print(overlapped_point)
-			
+	
 			SavesManager.current_save.waypoint_position = point_position
 			Signals.emit_signal("waypoint_moved")			
 			return

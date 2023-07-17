@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://raw_sprites/boss_door.png" type="Texture" id=1]
+[ext_resource path="res://scenes/boss_door/BossDoor2.gd" type="Script" id=2]
+[ext_resource path="res://scenes/boss_door/DoorSprite.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 48 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 48 )
+
+[node name="BossDoor2" type="StaticBody2D"]
+position = Vector2( 72, -80 )
+collision_layer = 5
+script = ExtResource( 2 )
+
+[node name="Trigger" type="Area2D" parent="."]
+position = Vector2( 0, 48 )
+
+[node name="TriggerHitbox" type="CollisionShape2D" parent="Trigger"]
+scale = Vector2( 4, 1 )
+shape = SubResource( 1 )
+
+[node name="DoorSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -8, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 96 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 48 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
+[connection signal="body_exited" from="Trigger" to="." method="_on_Trigger_body_exited"]

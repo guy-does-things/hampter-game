@@ -19,7 +19,7 @@ func _ready():
 func setup(data):
 	assigned_room_data = data
 	emit_signal("setup",assigned_room_data)
-
+	
 	
 	for i in data.transition_rooms.size():
 		

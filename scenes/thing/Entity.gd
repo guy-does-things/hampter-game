@@ -21,8 +21,11 @@ func _physics_process(delta):
 		if $WallCheck.is_colliding():return
 		
 		
+
+
+		
 		global_position = global_position.linear_interpolate(
-			zipline.to_global(point), 6 / global_position.distance_to(point)
+			zipline.to_global(point), 32 / global_position.distance_to(point)
 		)
 		
 		
@@ -31,7 +34,7 @@ func _physics_process(delta):
 
 func teleport_plr(plr):
 	#print(global_position)
-	plr.global_position = global_position + Vector2.DOWN* 17
+	plr.global_position = global_position + Vector2.DOWN* 6
 	plr.velocity.x = 0
 
 

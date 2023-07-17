@@ -39,9 +39,9 @@ func regenerate_room_save_data():
 		var room_save_info := RoomSaveInfo.new()
 		room_save_data[i] = room_save_info
 		room_save_info.room = i
-		#room_save_data[i].from_dict(SavesManager.current_save.room_data.get(i.resource_path,{}))
+		room_save_data[i].from_dict(SavesManager.current_save.room_data.get(i.resource_path,{}))
 		
-		#room_save_info.connect("value_changed",SavesManager.current_save, "room_save_modified", [i.resource_path,room_save_info])
+		room_save_info.connect("value_changed",SavesManager.current_save, "room_save_modified", [i.resource_path,room_save_info])
 		
 
 
@@ -58,9 +58,6 @@ func setup_dict():
 		room_dictionary[rr.room_scene] = rr
 		_name_2_scene_dict[rr.room_name] = rr.room_scene
 		
-		#for e in rr.elevators:
-			#(e as EData).setup()
-
 
 
 

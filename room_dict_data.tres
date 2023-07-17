@@ -1,9 +1,261 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=23 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_resources/room_dict_container.gd" type="Script" id=1]
+[ext_resource path="res://locations/gate of cage/waterway.tscn" type="PackedScene" id=2]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/comicalamountofwater.tscn" type="PackedScene" id=3]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/arenaroom.tscn" type="PackedScene" id=4]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/dayofsexthefall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://locations/gate of cage/beforeboss1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/movingproom.tscn" type="PackedScene" id=7]
+[ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=8]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/swimitemroom.tscn" type="PackedScene" id=9]
+[ext_resource path="res://locations/gate of cage/guardianroom.tscn" type="PackedScene" id=10]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/exitroom.tscn" type="PackedScene" id=11]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/dashroom.tscn" type="PackedScene" id=12]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/swimsecretroom.tscn" type="PackedScene" id=13]
+[ext_resource path="res://locations/gate of cage/stompitem.tscn" type="PackedScene" id=14]
+[ext_resource path="res://locations/gate of cage/bossreward.tscn" type="PackedScene" id=15]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/waterplatformroom.tscn" type="PackedScene" id=16]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/cisintroripoff.tscn" type="PackedScene" id=17]
+[ext_resource path="res://locations/gate of cage/tunneldescent.tscn" type="PackedScene" id=18]
+[ext_resource path="res://locations/gate of cage/bigcage.tscn" type="PackedScene" id=19]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/femboyfishingroom.tscn" type="PackedScene" id=20]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/secretcomputeroom.tscn" type="PackedScene" id=21]
+[ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=22]
 
 [resource]
 script = ExtResource( 1 )
 room_data_dict = {
+ExtResource( 2 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "waterway",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( -1104, -160, 1760, 1896 ),
+"room_scene": ExtResource( 2 ),
+"transition_rooms": [  ]
+},
+ExtResource( 3 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "comicalamountofwater",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -256, 1568, 1120 ),
+"room_scene": ExtResource( 3 ),
+"transition_rooms": [  ]
+},
+ExtResource( 4 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "arenaroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -128, 832, 464 ),
+"room_scene": ExtResource( 4 ),
+"transition_rooms": [  ]
+},
+ExtResource( 5 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "dayofsexthefall",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, 0, 960, 736 ),
+"room_scene": ExtResource( 5 ),
+"transition_rooms": [  ]
+},
+ExtResource( 6 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "beforeboss1",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -160, 1216, 430 ),
+"room_scene": ExtResource( 6 ),
+"transition_rooms": [  ]
+},
+ExtResource( 7 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "movingproom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -192, 2288, 544 ),
+"room_scene": ExtResource( 7 ),
+"transition_rooms": [  ]
+},
+ExtResource( 8 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "entrance",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -160, 656, 430 ),
+"room_scene": ExtResource( 8 ),
+"transition_rooms": [  ]
+},
+ExtResource( 9 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "swimitemroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -48, 496, 336 ),
+"room_scene": ExtResource( 9 ),
+"transition_rooms": [  ]
+},
+ExtResource( 10 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "guardianroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -160, 624, 304 ),
+"room_scene": ExtResource( 10 ),
+"transition_rooms": [  ]
+},
+ExtResource( 11 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "exitroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, 0, 496, 288 ),
+"room_scene": ExtResource( 11 ),
+"transition_rooms": [  ]
+},
+ExtResource( 12 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "dashroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, 0, 496, 512 ),
+"room_scene": ExtResource( 12 ),
+"transition_rooms": [  ]
+},
+ExtResource( 13 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "swimsecretroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( -624, -128, 1120, 480 ),
+"room_scene": ExtResource( 13 ),
+"transition_rooms": [  ]
+},
+ExtResource( 14 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "stompitem",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 14 ),
+"transition_rooms": [  ]
+},
+ExtResource( 15 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "afterboss1",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -160, 530, 270 ),
+"room_scene": ExtResource( 15 ),
+"transition_rooms": [  ]
+},
+ExtResource( 16 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "waterplatformroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -192, 2288, 544 ),
+"room_scene": ExtResource( 16 ),
+"transition_rooms": [  ]
+},
+ExtResource( 17 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "cisintroripoff",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -1864, 480, 2134 ),
+"room_scene": ExtResource( 17 ),
+"transition_rooms": [  ]
+},
+ExtResource( 18 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "tunneldescent",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, 0, 1136, 2048 ),
+"room_scene": ExtResource( 18 ),
+"transition_rooms": [  ]
+},
+ExtResource( 19 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "bigcage",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -352, 1040, 704 ),
+"room_scene": ExtResource( 19 ),
+"transition_rooms": [  ]
+},
+ExtResource( 20 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "femboyfishingroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( -128, 0, 912, 400 ),
+"room_scene": ExtResource( 20 ),
+"transition_rooms": [  ]
+},
+ExtResource( 21 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "secretcomputeroom",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, 0, 496, 288 ),
+"room_scene": ExtResource( 21 ),
+"transition_rooms": [  ]
+},
+ExtResource( 22 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "inside",
+"room_position": Vector2( 0, 0 ),
+"room_rect": Rect2( 0, -352, 1040, 640 ),
+"room_scene": ExtResource( 22 ),
+"transition_rooms": [  ]
+}
 }
 connection_editor_connections = [  ]

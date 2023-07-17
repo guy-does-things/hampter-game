@@ -10,7 +10,7 @@ export var is_enemy := false
 
 export var damage_override = -1
 
-signal hurted(dam)
+signal hurted(dam,is_water)
 signal died(dam)
 export var KBmult = Vector2.ONE
 export var path_entitystatus : NodePath
@@ -35,7 +35,7 @@ func _ready():
 	hurtsfx.stream = preload("res://hitHurt(2).wav")
 	hurtsfx.bus = "SFX"
 	iframetimer.one_shot = true
-	iframetimer.wait_time = 1.5
+	iframetimer.wait_time = 1.0
 	iframe_flash_timer.wait_time = 0.15
 	iframe_flash_timer.connect("timeout",self,"flash")
 	
@@ -64,7 +64,7 @@ func flash(STOP=false):
 
 	
 	
-func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int):
+func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int,is_water=false):
 	if dam == 0:return
 	if damage_override != -1:dam =damage_override
 	
@@ -90,7 +90,7 @@ func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int):
 	iframe_flash_timer.start()
 	hit_fuckery()
 	
-	emit_signal("hurted",dam)
+	emit_signal("hurted",dam,is_water)
 
 	
 	

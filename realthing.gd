@@ -7,6 +7,7 @@ extends Node2D
 
 func _ready():
 	$Inventory/GridContainer.playerstatus = $KinematicBody2D/StatusThing
+	$Inventory/InventoryBorder.setup_player($KinematicBody2D,$KinematicBody2D.status)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
