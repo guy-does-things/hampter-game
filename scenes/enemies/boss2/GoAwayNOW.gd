@@ -12,6 +12,9 @@ func _state_logic(dt):
 	
 	
 func _get_transition(dt):
+	$"%Flippables".disabled = true
+	$"%Flippables".flip(dir.x)
+	
 	var rr = MapManager.current_room_in.roomrect.get_global_rect()
 	$"../../CollisionShape2D".disabled = true
 	
@@ -24,6 +27,7 @@ func _get_transition(dt):
 func _exit_state(o,n):
 	._exit_state(o,n)
 	
+	$"%Flippables".disabled = false
 	if n.name == "DownDash":
 		return
 		

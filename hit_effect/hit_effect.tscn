@@ -10,7 +10,7 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.890208, 0 ), 0.61969, 0.0,
 script = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.7
 one_shot = true
 autostart = true
 

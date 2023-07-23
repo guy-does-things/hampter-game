@@ -6,7 +6,7 @@
 [ext_resource path="res://raw_sprites/portraitofhampter.png" type="Texture" id=4]
 [ext_resource path="res://raw_sprites/hampterborder.png" type="Texture" id=5]
 [ext_resource path="res://cursor_hand.gd" type="Script" id=6]
-[ext_resource path="res://item_menu.gd" type="Script" id=7]
+[ext_resource path="res://scenes/item_menu/ItemStuff.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/quit_menu/quit_menu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/inventory/soundbutton.gd" type="Script" id=9]
 [ext_resource path="res://scenes/settingsmenu/Settings.tscn" type="PackedScene" id=10]
@@ -153,62 +153,7 @@ margin_right = 440.0
 margin_bottom = 228.0
 custom_styles/panel = SubResource( 91 )
 
-[node name="ItemStuff" type="VBoxContainer" parent="MenuStuff"]
-unique_name_in_owner = true
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/separation = 15
-script = ExtResource( 7 )
-
-[node name="Cursorhand2" type="Sprite" parent="MenuStuff/ItemStuff"]
-visible = false
-position = Vector2( 152, 144 )
-texture = ExtResource( 3 )
-script = ExtResource( 6 )
-
-[node name="ItemButtonContainer" type="ScrollContainer" parent="MenuStuff/ItemStuff"]
-margin_right = 320.0
-margin_bottom = 69.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-follow_focus = true
-scroll_horizontal_enabled = false
-
-[node name="GridContainer" type="GridContainer" parent="MenuStuff/ItemStuff/ItemButtonContainer"]
-unique_name_in_owner = true
-custom_constants/hseparation = 32
-columns = 2
-script = ExtResource( 1 )
-cursorpath = NodePath("../../Cursorhand2")
-
-[node name="PanelContainer" type="PanelContainer" parent="MenuStuff/ItemStuff"]
-margin_top = 79.0
-margin_right = 320.0
-margin_bottom = 196.0
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.83
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuStuff/ItemStuff/PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 313.0
-margin_bottom = 110.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="desc" type="Label" parent="MenuStuff/ItemStuff/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-margin_right = 306.0
-margin_bottom = 99.0
-size_flags_vertical = 1
-text = "dsadaolkdsajldaldflkdasjdas
-dasjdslkdsajkldsajldsldsadsa
-dsdsaklñjdsalksdajlkdasjldsalkdsajldsakljldsalkdsa
-dsadsajdsaldsjaldajdaslkjsadlkjdsalkjdlkajljdslkajd"
-autowrap = true
-max_lines_visible = 7
+[node name="ItemStuff" parent="MenuStuff" instance=ExtResource( 7 )]
 
 [node name="QuitMenu" parent="MenuStuff" instance=ExtResource( 8 )]
 unique_name_in_owner = true

@@ -24,3 +24,7 @@ func _can_transition_to()-> bool:return true
 
 func _can_transition_to_hurtstate()->bool:return can_go_to_hurtstate
 
+
+
+
+

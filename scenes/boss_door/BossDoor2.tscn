@@ -5,13 +5,12 @@
 [ext_resource path="res://scenes/boss_door/DoorSprite.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 48 )
+extents = Vector2( 16, 48 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 48 )
 
 [node name="BossDoor2" type="StaticBody2D"]
-position = Vector2( 72, -80 )
 collision_layer = 32
 collision_mask = 0
 script = ExtResource( 2 )
@@ -22,7 +21,7 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="TriggerHitbox" type="CollisionShape2D" parent="Trigger"]
-scale = Vector2( 4, 1 )
+scale = Vector2( 2, 1 )
 shape = SubResource( 1 )
 
 [node name="DoorSprite" type="Sprite" parent="."]

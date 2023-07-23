@@ -1,5 +1,8 @@
 extends State
 
+export var max_snipes = 4
+
+var snipes = 0
 
 func _enter_state(o,n):
 	._enter_state(o,n)
@@ -10,7 +13,7 @@ func _exit_state(o,n):
 	._exit_state(o,n)
 	$SnipeTime.stop()
 	$"%getsnipedidiet".visible = false
-		
+	snipes = 0
 	
 
 func _state_logic(dt):
@@ -18,6 +21,10 @@ func _state_logic(dt):
 	$"%getsnipedidiet".visible = true
 	$"%getsnipedidiet".global_position = $"%StatusThing".target.global_position
 	
+	
+func _get_transition(dt):
+	if snipes >= max_snipes:
+		return $"%FuckitGoBack"
 
 
 func _on_SnipeTime_timeout():
@@ -27,4 +34,5 @@ func _on_SnipeTime_timeout():
 	$"%SnipeBox".monitoring = false
 	
 	yield(get_tree().create_timer(.25,false),"timeout")
+	snipes += 1
 	$SnipeTime.start()

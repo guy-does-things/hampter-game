@@ -60,7 +60,7 @@ _bullet_props = SubResource( 3 )
 [node name="Thing" type="Sprite" parent="."]
 scale = Vector2( 1.05516, 1 )
 texture = ExtResource( 4 )
-offset = Vector2( 0, 0.891287 )
+offset = Vector2( 0, 0.891623 )
 hframes = 2
 script = ExtResource( 6 )
 

@@ -23,7 +23,7 @@ func flip(dirx):
 		scale.x = 1
 		scale.y = dirx* scalemult
 		return
-	
+	scale.y = 1
 	scale.x = dirx* scalemult
 
 

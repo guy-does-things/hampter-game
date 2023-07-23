@@ -10,12 +10,23 @@ func set_status(sthing):
 
 class ItemToggle extends CheckBox:
 	var item_data : ItemData
-	var item_obtained = true
+	var item_obtained = false
 	var item_disabled = true
 	var status : StatusThing
 	
 	func _physics_process(delta):
-		if !status:return
+		
+		
+		if !status:
+			hide()
+			return
+		
+		item_obtained = status.raw_hasitem(item_data.item_id)
+		
+		if !item_obtained:
+			hide()
+			return
+		
 		
 		disabled = (
 			item_data.item_id == Globals.Items.WATERBREATHING and status.on_water or
@@ -103,8 +114,11 @@ func toggle_hovered(toggle:ItemToggle):
 
 func selected():
 	show()
-	$"%GridContainer".get_child(0).grab_focus()
-
+	for i in $"%GridContainer".get_children():
+		if i.visible:
+			
+			i.grab_focus()
+			break
 
 func deselect():hide()
 

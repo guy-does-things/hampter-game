@@ -16,16 +16,20 @@ var amode = AnimModes.NONE
 export var can_move = true
 
 export(int) var initial_door_size_y =96
+export(int) var door_sizex =16
 
 func _ready():
 	$DoorSprite.region_size_y = initial_door_size_y
-
+	#$DoorSprite.region_rect.size.x = door_sizex
+	
+	
 func _process(delta):
 	
 	
 	
 	$CollisionShape2D.shape = shape
 	$CollisionShape2D.position.y = $DoorSprite.region_rect.size.y / 2
+	
 	shape.extents = $DoorSprite.region_rect.size /2
 	if Engine.editor_hint:
 		_ready()

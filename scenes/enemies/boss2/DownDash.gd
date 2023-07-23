@@ -8,6 +8,9 @@ var enemyspawned = false
 
 
 func _enter_state(new,o):
+	$"%SwimBox".monitoring = true
+	$"%Flippables".disabled = true
+	$"%Flippables".is_moving_y = true
 	._enter_state(new,o)
 	start_timer()
 
@@ -37,7 +40,9 @@ func _get_transition(dt):
 		return $"%Delay"
 		
 
-func _exit_state(o,n):
+func _exit_state(o,n):	
+	$"%Flippables".is_moving_y = false
+	$"%Flippables".disabled = false
 	._exit_state(o,n)
 	yield(get_tree().create_timer(.15,false),"timeout")
 	$"../../CollisionShape2D".disabled = false
@@ -51,6 +56,7 @@ func _state_logic(delta):
 	if not room:return
 	var rrect :Rect2 = room.roomrect.get_global_rect()
 	
+	$"%Flippables".flip(-diry)
 	
 	if dashes > MAX_DASHES:
 		set_ypos(rrect)
@@ -69,6 +75,7 @@ func _state_logic(delta):
 		
 		if not $"%DummyRect".get_global_rect().intersects(rrect) and $DashResetDelay.is_stopped():
 			$DashResetDelay.start()
+		
 		return
 	
 	
@@ -79,7 +86,7 @@ func _state_logic(delta):
 	if $Timer.time_left >= .5:
 		set_ypos(rrect)
 		entity.global_position.x = $"%StatusThing".target.global_position.x
-	elif dashes <= 3:
+	
 		$"%Nukingisnowlegal".enable = true
 		$"%Line2D".points = [
 			Vector2.ZERO,
@@ -101,6 +108,7 @@ func set_ypos(rrect:Rect2):
 
 
 func _on_Timer_timeout():
+	
 	$"%Nukingisnowlegal".hide()
 	$"%Nukingisnowlegal".enable = true
 

@@ -1,9 +1,9 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://scenes/enemies/boss2/evilfemboyfishingbelike.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
 [ext_resource path="res://raw_sprites/fish.png" type="Texture" id=3]
-[ext_resource path="res://scenes/enemies/boss2/getsnipedidet.gd" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/boss2/FuckitGoBack.gd" type="Script" id=4]
 [ext_resource path="res://scenes/enemies/boss1/RandomAttacks.gd" type="Script" id=5]
 [ext_resource path="res://n_plr_detector.gd" type="Script" id=6]
 [ext_resource path="res://scenes/enemies/boss2/GoAwayNOW.gd" type="Script" id=7]
@@ -24,6 +24,9 @@
 [ext_resource path="res://scenes/enemies/boss2/FireBallz.gd" type="Script" id=22]
 [ext_resource path="res://scenes/enemies/boss2/warning.gd" type="Script" id=23]
 [ext_resource path="res://state_machine/state_machine.gd" type="Script" id=24]
+[ext_resource path="res://scenes/enemies/boss2/getsnipedidet.gd" type="Script" id=25]
+[ext_resource path="res://scenes/enemies/boss2/speeeen.gd" type="Script" id=26]
+[ext_resource path="res://raw_sprites/circletex.png" type="Texture" id=27]
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 15 )
@@ -56,20 +59,29 @@ gun_fire_mode = 1
 fires_before_charging = false
 pellet_count = 1
 burst_count = 1
-cooldown = 0.5
+cooldown = 0.05
 max_charge = 0.0
 spread = 0.0
 recoil = 0.0
 rotation_recoil = 0.0
 damage = 1
 speed = 200
-bullet_lifetime = 5.0
+bullet_lifetime = 2.0
 no_cooldown = false
 
 [sub_resource type="Resource" id=18]
 script = ExtResource( 14 )
 data_res = SubResource( 17 )
 bullet = ExtResource( 21 )
+
+[sub_resource type="CanvasItemMaterial" id=21]
+
+[sub_resource type="Curve" id=22]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.01015, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=23]
+offsets = PoolRealArray( 0.0295567, 0.182266, 0.597734, 0.852691, 0.988669 )
+colors = PoolColorArray( 1, 0.962264, 0, 0, 0.984314, 0.94902, 0.211765, 1, 1, 0, 0, 1, 0, 0, 0, 0.501961, 0, 0, 0, 0 )
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
@@ -98,6 +110,9 @@ void fragment()
 resource_local_to_scene = true
 shader = SubResource( 9 )
 shader_param/rep_col = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CapsuleShape2D" id=20]
+radius = 11.51
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 16.0
@@ -165,6 +180,11 @@ collision_layer = 0
 collision_mask = 40
 script = ExtResource( 1 )
 
+[node name="PhysicsStuff" type="Node" parent="."]
+script = ExtResource( 9 )
+gravity_enabled = false
+gravity_only_when_not_on_floor = false
+
 [node name="SpitGun" parent="." instance=ExtResource( 12 )]
 unique_name_in_owner = true
 _gun_data = SubResource( 15 )
@@ -175,10 +195,43 @@ unique_name_in_owner = true
 _gun_data = SubResource( 18 )
 is_enemy = true
 
-[node name="PhysicsStuff" type="Node" parent="."]
-script = ExtResource( 9 )
-gravity_enabled = false
-gravity_only_when_not_on_floor = false
+[node name="SpeengunL" parent="." instance=ExtResource( 12 )]
+unique_name_in_owner = true
+_gun_data = SubResource( 18 )
+is_enemy = true
+
+[node name="SpeengunB" parent="." instance=ExtResource( 12 )]
+unique_name_in_owner = true
+_gun_data = SubResource( 18 )
+is_enemy = true
+
+[node name="SpeengunT" parent="." instance=ExtResource( 12 )]
+unique_name_in_owner = true
+_gun_data = SubResource( 18 )
+is_enemy = true
+
+[node name="EXparts" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = SubResource( 21 )
+emitting = false
+amount = 128
+lifetime = 0.5
+randomness = 1.0
+local_coords = false
+texture = ExtResource( 27 )
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2( 0, -1 )
+spread = 10.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 160.0
+initial_velocity_random = 0.2
+damping = 75.0
+scale_amount = 4.0
+scale_amount_random = 0.44
+scale_amount_curve = SubResource( 22 )
+color_ramp = SubResource( 23 )
+hue_variation = 0.3
 
 [node name="Flippables" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -189,7 +242,16 @@ material = SubResource( 16 )
 texture = ExtResource( 3 )
 offset = Vector2( -4, 0 )
 hframes = 10
-frame = 2
+
+[node name="SwimBox" parent="Flippables" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( -4, -4 )
+monitoring = false
+damage = 1
+is_enemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/SwimBox"]
+shape = SubResource( 20 )
 
 [node name="HurtComponent" type="Area2D" parent="Flippables"]
 script = ExtResource( 18 )
@@ -217,16 +279,17 @@ initial_state = NodePath("Intro")
 script = ExtResource( 8 )
 can_go_to_hurtstate = false
 idle_state_path = NodePath(".")
-attack_state_path = NodePath("../GoAwayAndShootPlayer")
+attack_state_path = NodePath("../FireBallz")
 
 [node name="RandomAttacks" type="Node" parent="StateMachine"]
 unique_name_in_owner = true
 script = ExtResource( 5 )
 can_go_to_hurtstate = false
-attacks = [ NodePath("../FireBallz"), NodePath("../GoAwayNOW") ]
+attacks = [ NodePath("../FireBallz"), NodePath("../GoAwayNOW"), NodePath("../GoAwayAndShootPlayer"), NodePath("../GotoCenterToBecomeBhell") ]
 
 [node name="GoAwayNOW" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
+can_go_to_hurtstate = false
 speed = 500.0
 srt = NodePath("../DownDash")
 
@@ -248,6 +311,7 @@ unique_name_in_owner = true
 script = ExtResource( 13 )
 can_go_to_hurtstate = false
 wait_time = 5.0
+return_override = NodePath("../FuckitGoBack")
 
 [node name="FireBallz" type="Node" parent="StateMachine"]
 script = ExtResource( 22 )
@@ -255,13 +319,37 @@ can_go_to_hurtstate = false
 
 [node name="GoAwayAndShootPlayer" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
+can_go_to_hurtstate = false
 speed = 500.0
 srt = NodePath("../getsnipedidet")
 
 [node name="getsnipedidet" type="Node" parent="StateMachine"]
-script = ExtResource( 4 )
+script = ExtResource( 25 )
+can_go_to_hurtstate = false
 
 [node name="SnipeTime" type="Timer" parent="StateMachine/getsnipedidet"]
+one_shot = true
+
+[node name="FuckitGoBack" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 4 )
+can_go_to_hurtstate = false
+speed = 200
+tate_to_return = NodePath("../RandomAttacks")
+
+[node name="GotoCenterToBecomeBhell" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 4 )
+can_go_to_hurtstate = false
+speed = 100
+tate_to_return = NodePath("../RandomAttacks")
+
+[node name="Speeeen" type="Node" parent="StateMachine"]
+script = ExtResource( 26 )
+can_go_to_hurtstate = false
+
+[node name="FIreDelay" type="Timer" parent="StateMachine/Speeeen"]
+wait_time = 2.0
 one_shot = true
 
 [node name="NewPlayerDetector" type="Area2D" parent="."]
@@ -333,18 +421,14 @@ shape = SubResource( 19 )
 [connection signal="funnyrecoil" from="SpitGun" to="." method="_on_SpitGun_funnyrecoil"]
 [connection signal="postfired" from="SpitGun" to="StateMachine/FireBallz" method="_on_SpitGun_postfired"]
 [connection signal="proj_created" from="SpitGun" to="." method="_on_SpitGun_proj_created"]
-[connection signal="charging" from="Speengun" to="." method="_on_SpitGun_charging"]
-[connection signal="fullypoweredup" from="Speengun" to="." method="_on_SpitGun_fullypoweredup"]
-[connection signal="funnyrecoil" from="Speengun" to="." method="_on_SpitGun_funnyrecoil"]
-[connection signal="postfired" from="Speengun" to="StateMachine/FireBallz" method="_on_SpitGun_postfired"]
-[connection signal="proj_created" from="Speengun" to="." method="_on_SpitGun_proj_created"]
 [connection signal="died" from="Flippables/HurtComponent" to="." method="_on_HurtComponent_died"]
-[connection signal="hurted" from="Flippables/HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="hurted" from="Flippables/HurtComponent" to="." method="hp_check"]
+[connection signal="hurted" from="Flippables/HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="entered" from="StateMachine/DownDash" to="AnimationPlayer" method="_on_DownDash_entered"]
 [connection signal="exited" from="StateMachine/DownDash" to="AnimationPlayer" method="_on_DownDash_exited"]
 [connection signal="timeout" from="StateMachine/DownDash/Timer" to="StateMachine/DownDash" method="_on_Timer_timeout"]
 [connection signal="timeout" from="StateMachine/DownDash/DashResetDelay" to="StateMachine/DownDash" method="_on_DashResetDelay_timeout"]
 [connection signal="entered" from="StateMachine/FireBallz" to="AnimationPlayer" method="_on_FireBallz_entered"]
 [connection signal="timeout" from="StateMachine/getsnipedidet/SnipeTime" to="StateMachine/getsnipedidet" method="_on_SnipeTime_timeout"]
+[connection signal="timeout" from="StateMachine/Speeeen/FIreDelay" to="StateMachine/Speeeen" method="_on_FIreDelay_timeout"]
 [connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]

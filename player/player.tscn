@@ -604,6 +604,7 @@ visible = false
 position = Vector2( 1, 8 )
 z_index = 1
 frames = SubResource( 19 )
+frame = 2
 playing = true
 
 [node name="Area2D" parent="AnimatedSprite" instance=ExtResource( 22 )]
@@ -622,7 +623,7 @@ rotation = 1.5708
 scale = Vector2( 2, -2 )
 z_index = 1
 frames = SubResource( 19 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Circlething" type="Sprite" parent="."]

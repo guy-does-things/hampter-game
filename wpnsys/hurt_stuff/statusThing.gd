@@ -16,8 +16,12 @@ var target : Node2D
 var hp_stacks = 0
 
 
+func raw_hasitem(item):
+	return bool(item_bitmask & item)
+
 func has_item(item):
 	return bool(item_bitmask & item) and not bool(disabled_bitmask & item)
+
 
 func unlocked_item(item):
 	if item == GlobalData.Items.HPUP:

@@ -30,6 +30,10 @@ func _get_transition(dt):
 func _exit_state(o,n):
 	._exit_state(o,n)
 
+
+	entity.rotation_degrees = 0
+	$"%Flippables".is_moving_y = false
+	$"%Flippables".disabled = false
 	entity.o_color = 0
 	ready_to_attack = false
 	attacks_done = 0
