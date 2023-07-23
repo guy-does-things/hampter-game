@@ -19,7 +19,7 @@
 [ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/cisintroripoff.tscn" type="PackedScene" id=17]
 [ext_resource path="res://locations/gate of cage/tunneldescent.tscn" type="PackedScene" id=18]
 [ext_resource path="res://locations/gate of cage/bigcage.tscn" type="PackedScene" id=19]
-[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/femboyfishingroom.tscn" type="PackedScene" id=20]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/boss2room.tscn" type="PackedScene" id=20]
 [ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/secretcomputeroom.tscn" type="PackedScene" id=21]
 [ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=22]
 

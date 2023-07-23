@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://sillyboom/brightsmoke.png" type="Texture" id=1]
 [ext_resource path="res://hit_effect/hit_effect.gd" type="Script" id=2]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.726115, 0 ), -5.61988, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.890208, 0 ), 0.61969, 0.0, 0, 0 ]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -15,17 +16,21 @@ autostart = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 6
-lifetime = 0.3
+amount = 32
+lifetime = 0.5
 one_shot = true
-preprocess = 0.03
-explosiveness = 0.86
-randomness = 0.5
+explosiveness = 1.0
+texture = ExtResource( 1 )
+emission_shape = 1
+emission_sphere_radius = 8.0
 spread = 180.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 225.0
-initial_velocity_random = 0.34
-scale_amount = 10.0
+initial_velocity = 128.0
+angular_velocity = 32.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.1
+damping = 400.0
+scale_amount = 2.0
 scale_amount_curve = SubResource( 1 )
 
 [connection signal="timeout" from="Timer" to="." method="queue_free"]

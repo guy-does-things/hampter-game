@@ -23,6 +23,7 @@ func _ready():
 
 	# the timer is to avoid you getting sucked immediatly after reaching the end	
 	add_child(cooldown)
+	
 	cooldown.one_shot = true
 	cooldown.wait_time = .2
 	var shape = RectangleShape2D.new()
@@ -38,6 +39,7 @@ func _ready():
 		#a.global_position = Vector2.ZERO#global_position + points[i]
 		add_child(a)
 		add_child(sob)
+		a.add_to_group("pipe")
 		s.position = points[i]# + shape.extents / 2
 		s.shape = shape
 		sob.collision_layer = 8

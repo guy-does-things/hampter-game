@@ -13,7 +13,7 @@ func _enter_state(new_state, old_state):
 	
 
 func _state_logic(dt):
-	entity.velocity.y = 700 * entity.get_speed_mult(.3)
+	entity.velocity.y = 700 * entity.get_speed_mult(.6)
 
  
 

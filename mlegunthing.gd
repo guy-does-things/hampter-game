@@ -112,8 +112,6 @@ func on_fired(gun):
 	
 	for at in attack_list:
 		var attack_thing :MotionInputFuckery = at
-																# somehow forgot about the ENTIRE REASON I MADE THIS FUCKING SYSTEM
-																
 	
 		if (!attack_machine.state == attack_thing.state_required or 
 			!attack_thing.compare(input_buffer) or 
@@ -122,6 +120,7 @@ func on_fired(gun):
 			!attack_thing.item_check(playerstatus)
 		):
 			continue
+		
 		attack = attack_thing.attack_state
 	
 	

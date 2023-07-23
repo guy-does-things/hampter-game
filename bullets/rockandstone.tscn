@@ -10,11 +10,12 @@
 [sub_resource type="CircleShape2D" id=2]
 
 [sub_resource type="Resource" id=3]
+resource_local_to_scene = true
 script = ExtResource( 1 )
 deletes_on_wall = true
 deletes_on_enemy_hit = false
 deletes_on_ally_hit = false
-deletes_on_timeout = false
+deletes_on_timeout = true
 ignores_anti_tunneling_measures = false
 
 [node name="GdtBullet" type="Node2D"]
@@ -35,7 +36,6 @@ script = ExtResource( 6 )
 monitorable = true
 min_hit_priority = 33
 max_hit_priority = 33
-damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 unique_name_in_owner = true

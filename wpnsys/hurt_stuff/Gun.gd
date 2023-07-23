@@ -9,6 +9,7 @@ enum GunStates{
 	CUSTOMSTOP
 }
 
+signal proj_created(proj)
 signal fired(gun)
 signal postfired(gun)
 signal stopped_firing(gun)
@@ -44,14 +45,10 @@ var projectile_charge_index : int
 func get_gun_data()->DarkPistolResourcePacker:return _gun_data
 
 # should store the real direction somewhere
-func deal_with_dir(ndir : Vector2):
-	dir = ndir.sign()
+func deal_with_dir(pressed_dir: Vector2):
+	dir = pressed_dir
 	
-	position.x = funnyposition.x * dir.x
-	muzzle.position.x = muzzlepos.x * dir.x
-	spr.scale.x = dir.x
-	dir = ndir
-	emit_signal("dir_fuckery",ndir)
+	emit_signal("dir_fuckery",dir)
 
 
 
@@ -64,6 +61,7 @@ func create_proj_instance(current_burst, current_pellet):
 	b.muzzle = muzzle
 	b.damage = _gun_data.data_res.damage
 	b.speed = _gun_data.data_res.speed
+	emit_signal("proj_created",b)
 	return b
 
 # gets the bullet dir rotation,
@@ -91,8 +89,15 @@ func create_projectile(current_burst, current_pellet):
 
 
 
+
+
+
+
+
+
 func try_shooting():
-	fire()
+	if fire_condition():
+		fire()
 
 
 func fire():
@@ -102,7 +107,7 @@ func fire():
 			prev_data= _gun_data
 			projectile_charge_index = 0
 			
-			if _gun_data.fires_before_charging:
+			if _gun_data.data_res.fires_before_charging:
 				fire_specific_charge_shot()
 
 		
@@ -112,7 +117,7 @@ func fire():
 			
 		if current_charge >= _gun_data.data_res.max_charge:
 			emit_signal("fullypoweredup",self)
-		current_charge = min(_gun_data.data_res.max_charge, current_charge + .016)
+		current_charge = min(_gun_data.data_res.max_charge, current_charge + (.016*Engine.time_scale) )
 
 		
 		emit_signal("charging",self)
@@ -125,7 +130,6 @@ func fire_condition():
 	return current_state == GunStates.IDLE and !semi_auto_not_released
 
 func actually_fire():
-	if fire_condition():
 
 		
 		if _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.SEMIAUTO:
@@ -146,12 +150,13 @@ func actually_fire():
 			for pellet in _gun_data.data_res.pellet_count:
 				create_projectile(burst,pellet)
 				
-			
-			yield(cooldown(),"completed")
+			if not _gun_data.data_res.no_cooldown:
+				yield(cooldown(),"completed")
 
 
 		#idk why i forgor
-		yield(get_tree(),"idle_frame")
+		if not _gun_data.data_res.no_cooldown:
+			yield(get_tree(),"idle_frame")
 		postfire()
 
 

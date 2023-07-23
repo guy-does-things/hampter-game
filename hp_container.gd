@@ -23,7 +23,7 @@ func _physics_process(delta):
 		cheart.texture.region.position.x = 13 * frame
 		
 		
-		if t > .20/max(1,max_hp-playerstatus.current_hp):
+		if t > .30:#/max(1,max_hp-playerstatus.current_hp):
 			frame += 1
 			frame %= 3
 			t = 0

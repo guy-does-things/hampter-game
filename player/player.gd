@@ -21,9 +21,14 @@ onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
 func _ready():
 	weapon.playerstatus = status
 	status.unlocked_item(GlobalData.Items.RISINGSLASH)
-#	for i in GlobalData.Items.values():
-#		status.unlocked_item(i)
-#		print(i)
+	status.unlocked_item(GlobalData.Items.WATERBREATHING)
+	status.unlocked_item(GlobalData.Items.PIPEBOMB)
+	status.unlocked_item(GlobalData.Items.STOMP)
+	status.unlocked_item(GlobalData.Items.BROKENASSSLASH)
+	status.unlocked_item(GlobalData.Items.SOULBLAST)
+	for i in GlobalData.Items.values():
+		status.unlocked_item(i)
+		print(i)
 
 
 func compare(eventa:InputEvent,eventb):
@@ -105,6 +110,8 @@ func _physics_process(delta):
 	var speed = 15
 	
 	var current_dir_x = sign($"%DirComp".current_dir.x)
+	
+	
 	if run_time >= 1 :
 		$Circlething.show()
 		$AnimatedSprite2.show()
@@ -246,9 +253,10 @@ func _on_SpinSlash_entered():
 
 func _on_stomp_entered():
 	$AnimatedSprite/Area2D.monitoring = true
-
+	$PhysicsStuff.gravity_enabled = false
 
 func _on_stomp_exited():
+	$PhysicsStuff.gravity_enabled = true
 	$AnimatedSprite/Area2D.monitoring = false
 	if !is_on_floor():return
 	Signals.emit_signal("screenshake",Vector2.DOWN,32)
@@ -258,6 +266,7 @@ func _on_stomp_exited():
 		stone.global_position = global_position + (Vector2.UP *5)
 		stone.velocity.y = -250
 		stone.velocity.x = 75 * i
+		stone.lifetime = 2
 		
 		previous_stone_frame += 1
 		previous_stone_frame %= 2
@@ -316,20 +325,21 @@ func _on_Hurt_exited():
 	$PhysicsStuff.friction_enabled = true
 
 
-func _on_Area2D_body_entered(body):
+func on_water(water):
 	if !status.has_item(Globals.Items.WATERBREATHING):
 		$HurtComponent.hurt(1,Vector2.ZERO,0,true,4000,true)
-		global_position = body.get_eject_pos()
+		global_position = water.get_eject_pos()
 		return
 	on_water = true
 	status.on_water = true
 	$Node2D.on_water = true
-	$PhysicsStuff.gravmult = .1
-	$PhysicsStuff.term_vel = PhysicsStuff.MAX_TERM_VEL *.1
-	velocity.y = min(velocity.y,90.0)
+	$PhysicsStuff.gravmult = .4
+	$PhysicsStuff.term_vel = PhysicsStuff.MAX_TERM_VEL *.2
+	if !on_water:
+		velocity.y = min(velocity.y,PhysicsStuff.MAX_TERM_VEL *.2)
 
 
-func _on_Area2D_body_exited(body):
+func out_of_water():
 	status.on_water = false
 	$Node2D.on_water = false
 	$Node2D.reset_jumps()

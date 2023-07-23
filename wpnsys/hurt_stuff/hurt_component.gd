@@ -17,7 +17,6 @@ export var path_entitystatus : NodePath
 onready var entitystatus :StatusThing= get_node(path_entitystatus)
 onready var entity := get_parent()
 
-var hurtsfx = AudioStreamPlayer.new()
 var can_hurt = true
 var current_priority = -1
 var iframetimer = Timer.new()
@@ -30,10 +29,8 @@ func _ready():
 	
 	add_child(iframe_flash_timer)
 	add_child(iframetimer)
-	add_child(hurtsfx)
 	iframetimer.connect("timeout",self,"no_iframes")
-	hurtsfx.stream = preload("res://hitHurt(2).wav")
-	hurtsfx.bus = "SFX"
+	
 	iframetimer.one_shot = true
 	iframetimer.wait_time = 1.0
 	iframe_flash_timer.wait_time = 0.15
@@ -88,7 +85,7 @@ func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int,is
 	iframetimer.start()
 	flash()
 	iframe_flash_timer.start()
-	hit_fuckery()
+	Globals.hit_fuckery(global_position)
 	
 	emit_signal("hurted",dam,is_water)
 
@@ -97,20 +94,13 @@ func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int,is
 	
 	if entitystatus.current_hp <= 0:
 		emit_signal("died",dam)
+		Globals.died(global_position)
 		
 	return true
 
 
 
 
-func hit_fuckery():
-	hurtsfx.play()
-	var hit_fx = preload("res://hit_effect/hit_effect.tscn").instance()
-	hit_fx.global_position = global_position
-	get_tree().current_scene.add_child(hit_fx)
-
-#	yield(get_tree().create_timer(.1),"timeout")
-#	entity.modulate = Color(1,1,1)
 
 	
 

@@ -1,0 +1,138 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=2]
+[ext_resource path="res://state_machine/state_machine.gd" type="Script" id=3]
+[ext_resource path="res://scripts/physicsthings.gd" type="Script" id=4]
+[ext_resource path="res://raw_sprites/scorpion.png" type="Texture" id=5]
+[ext_resource path="res://scenes/enemies/introscorpion/enemy.gd" type="Script" id=6]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/introscorpion/walk.gd" type="Script" id=10]
+[ext_resource path="res://scenes/enemies/introscorpion/scorpiona.gd" type="Script" id=11]
+[ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=12]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "attack"
+length = 0.283
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "idle"
+length = 0.003
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk"
+length = 0.221
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 20.5, 10.5 )
+
+[node name="TestScorpionE" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 40
+script = ExtResource( 6 )
+
+[node name="Flippables" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 12 )
+
+[node name="Icon" type="Sprite" parent="Flippables"]
+unique_name_in_owner = true
+texture = ExtResource( 5 )
+hframes = 5
+frame = 2
+
+[node name="HurtComponent" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 2 )
+is_enemy = true
+path_entitystatus = NodePath("../StatusThing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+shape = SubResource( 7 )
+
+[node name="StatusThing" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 1 )
+MAX_HP = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 12 )
+shape = SubResource( 7 )
+
+[node name="PhysicsStuff" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
+initial_state = NodePath("State")
+
+[node name="State" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+dist_to_flip = inf
+speed = 20
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+modulate = Color( 0.788235, 0, 0, 1 )
+enabled = true
+cast_to = Vector2( -32, 32 )
+collision_mask = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 10 )
+anims/idle = SubResource( 11 )
+anims/walk = SubResource( 9 )
+script = ExtResource( 11 )
+
+[node name="Area2D" parent="." instance=ExtResource( 7 )]
+damage = 1
+is_enemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.5, 16.5 )
+shape = SubResource( 12 )
+
+[connection signal="entered_hitstun" from="." to="AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
+[connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
+[connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="entered" from="StateMachine/State" to="AnimationPlayer" method="_on_State_entered"]

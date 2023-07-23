@@ -59,5 +59,6 @@ func minimize(is_controller_input:bool):
 
 func _on_Panel2_show_travel_map():
 	$"%Map".can_fast_travel = false
+	Globals
 	yield(get_tree().create_timer(.2),"timeout")
 	$"%Map".can_fast_travel  = true

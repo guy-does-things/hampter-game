@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=3]
+[ext_resource path="res://raw_sprites/spikeball.png" type="Texture" id=4]
+[ext_resource path="res://bullets/bullet_friction.gd" type="Script" id=5]
+[ext_resource path="res://bullets/spikeball.gd" type="Script" id=6]
+[ext_resource path="res://wpnsys/hurt_stuff/Gun.gd" type="Script" id=7]
+[ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=8]
+[ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=9]
+[ext_resource path="res://bullets/stinger_bullet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://raw_sprites/smallfish.png" type="Texture" id=11]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+deletes_on_wall = true
+deletes_on_enemy_hit = false
+deletes_on_ally_hit = false
+deletes_on_timeout = false
+ignores_anti_tunneling_measures = false
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 9 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 1
+burst_count = 1
+cooldown = 0.05
+max_charge = 1.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 200
+bullet_lifetime = 5.0
+no_cooldown = true
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 8 )
+data_res = SubResource( 7 )
+bullet = ExtResource( 10 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "spitit"
+length = 0.233
+
+[node name="GdtBullet" type="Node2D"]
+script = ExtResource( 3 )
+speed = 2.0
+hitbox = SubResource( 2 )
+_bullet_props = SubResource( 3 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[node name="Thing" type="Sprite" parent="."]
+scale = Vector2( 1.05516, 1 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, 0.891287 )
+hframes = 2
+script = ExtResource( 6 )
+
+[node name="Node2D" type="Node2D" parent="Thing"]
+script = ExtResource( 7 )
+_gun_data = SubResource( 5 )
+is_enemy = true
+
+[node name="SpriteSheet" type="Sprite" parent="Thing/Node2D"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource( 11 )
+hframes = 3
+frame = 2
+
+[node name="Position2D" type="Position2D" parent="Thing/Node2D"]
+
+[node name="Cooldown" type="Timer" parent="Thing/Node2D"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Thing/Node2D"]
+
+[node name="Node" type="Node" parent="Thing/Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Thing/Node2D"]
+unique_name_in_owner = true
+anims/spitit = SubResource( 6 )
+
+[node name="Area2D" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource( 2 )
+
+[node name="PhysicsStuff" type="Node" parent="."]
+script = ExtResource( 5 )
+gravity_enabled = false
+gravity_only_when_not_on_floor = false
+affects_speed = true
+
+[connection signal="startup" from="." to="Thing" method="_on_GdtBullet_startup"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="LifeTimer" to="Thing" method="_on_LifeTimer_timeout"]
+[connection signal="proj_created" from="Thing/Node2D" to="Thing" method="_on_Node2D_proj_created"]

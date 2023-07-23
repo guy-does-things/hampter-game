@@ -5,6 +5,7 @@ signal actually_hit(enemy)
 signal ally_hit(ally)
 signal timer_finished()
 signal disabled()
+signal processed()
 
 export var knockback_dir :Vector2
 export(int) var min_hit_priority = 0
@@ -53,7 +54,7 @@ func _physics_process(delta):
 		emit_signal("disabled")
 		
 	was_monitoring_last_frame = monitoring
-	
+	emit_signal("processed")
 
 
 func _on_Area2D_area_entered(area:HurtComponent,is_hurting_again=false):
@@ -79,8 +80,10 @@ func _on_Area2D_area_entered(area:HurtComponent,is_hurting_again=false):
 				break
 			current_priority += 1
 			
-	
-	
+
+
+
+
 func _on_Area2D_area_exited(area:HurtComponent):
 	if area:
 		__hurt_comps.erase(area)

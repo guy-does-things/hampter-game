@@ -18,7 +18,7 @@ var line := Line2D.new()
 
 
 func _ready():
-	collision_mask = 16
+	collision_mask = 56
 	
 	#collision_layer = 16
 	
@@ -63,7 +63,7 @@ func target_visib_check(tget,cannotmovey):
 		global_position,
 		targetpos, 
 		get_tree().get_nodes_in_group(ally_group) + get_tree().get_nodes_in_group("hitbox"),
-		16 | 4
+		56
 		,true,true
 	)
 	

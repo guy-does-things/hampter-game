@@ -12,7 +12,7 @@ radius = 7.0
 [sub_resource type="Resource" id=3]
 script = ExtResource( 1 )
 deletes_on_wall = false
-deletes_on_enemy_hit = true
+deletes_on_enemy_hit = false
 deletes_on_ally_hit = false
 deletes_on_timeout = true
 ignores_anti_tunneling_measures = false

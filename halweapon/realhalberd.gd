@@ -1,6 +1,5 @@
 extends MeleeWeapon
 
-
 var dmgmult = 1.0
 
 
@@ -57,7 +56,7 @@ func _ready():
 	
 	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.DOWN,Dirs.LEFT],$AttackStateMachine/None,$AttackStateMachine/BTrhow ,FloorRequirementModes.ALL,4,Globals.Items.BREAST))
 	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.YES,[Dirs.DOWN,Dirs.RIGHT],$AttackStateMachine/None,$AttackStateMachine/BTrhow ,FloorRequirementModes.ALL,4,Globals.Items.BREAST))
-
+						#floor_req:int,input_req:Array,state,attack,requiresidle,forgiveness,itemrequired
 
 	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.ALL,[Dirs.DOWN,Dirs.RIGHT,Dirs.UP],$AttackStateMachine/None,$AttackStateMachine/PipeBomb ,FloorRequirementModes.ALL,4,Globals.Items.PIPEBOMB))
 	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.ALL,[Dirs.DOWN,Dirs.LEFT,Dirs.UP],$AttackStateMachine/None,$AttackStateMachine/PipeBomb ,FloorRequirementModes.ALL,4,Globals.Items.PIPEBOMB))

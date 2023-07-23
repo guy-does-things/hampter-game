@@ -253,6 +253,10 @@ window/size/test_height=540
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/imrp/plugin.cfg" )
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -341,6 +345,9 @@ show_inv={
 [layer_names]
 
 2d_physics/layer_4="pipes"
+2d_physics/layer_5="hurtcomps"
+2d_physics/layer_6="tilemaps"
+2d_physics/layer_7="water"
 
 [mono]
 

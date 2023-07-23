@@ -41,8 +41,9 @@ func animate_cr(start_val=1,end_val=0,extra_yield_time=0,initial_yield=.5):
 
 	cr.show()
 	cr.modulate.a = start_val
+	
 	if initial_yield > .05:
-		yield(get_tree().create_timer(.5),"timeout")
+		yield(get_tree().create_timer(initial_yield),"timeout")
 	
 	yield(create_tween().tween_property(cr,"modulate:a",end_val,.2),"finished")
 	cr.modulate.a = 1

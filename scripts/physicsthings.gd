@@ -30,10 +30,21 @@ func _physics_process(delta):
 		
 	
 	if friction_enabled:
-		if e.has_method("is_on_floor") and e.is_on_floor():
-			e.velocity.x *= FLOOR_FRICTION
-			return
-		e.velocity.x *= actual_air_fric
+		floor_friction()
+		air_friction()
+
+
+
+
+func floor_friction():
+	if e.has_method("is_on_floor") and e.is_on_floor():
+		e.velocity.x *= FLOOR_FRICTION
+		return
+
+func air_friction():
+	e.velocity.x *= actual_air_fric
+	
+
 
 
 func _on_WallSlide_entered():

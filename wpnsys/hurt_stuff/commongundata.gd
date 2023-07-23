@@ -26,3 +26,6 @@ export var damage = 1
 export var speed = 400
 export var bullet_lifetime := 2.0
 
+export var no_cooldown := false
+
+

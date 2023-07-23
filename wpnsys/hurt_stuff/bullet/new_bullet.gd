@@ -5,7 +5,8 @@ extends Node2D
 enum Colliders{
 	ALLY,
 	ENEMY,
-	BODY
+	BODY,
+	NONE
 }
 
 signal movement(bullet)
@@ -48,10 +49,7 @@ func set_velocity(nvel : Vector2):
 	#if Engine.editor_hint or !Globals.get_if_world_frozen()[0]:
 	velocity = nvel
 
-#
-#func _on_Area2D_body_entered(body):
-#
-#
+
 
 
 
@@ -99,6 +97,7 @@ func set_is_enemy(nise):
 func change_propeties(nprops):
 	_bullet_props = nprops
 
+func get_data()->BulletPropeties:return _bullet_props
 
 
 func set_hitbox(nhbox : Shape2D):
@@ -120,6 +119,7 @@ func set_damage(ndamage):
 # by then it dosen't matter because by then it's gonna get deleted or 
 # one of the bullet's special effects is related to that
 func _physics_process(delta):	
+
 	#print_debug(last_collider is TileMap)
 	if !Engine.is_editor_hint():
 		if canmove:# and not Globals.get_if_world_frozen()[0]:
@@ -131,8 +131,15 @@ func _physics_process(delta):
 		_funnyphysparms.motion = Vector2.ZERO
 		
 		var result = space_state.get_rest_info(_funnyphysparms)
-		
-		parse_shape_coli_results(result)
+		var coli_type = parse_shape_coli_results(result)
+		if coli_type == Colliders.ENEMY:
+			yield(area,"actually_hit")
+		elif coli_type == Colliders.ALLY:
+			yield(area,"ally_hit")
+			
+			
+		#yield(get_tree(),"physics_frame")
+		thing_hit(coli_type)
 		
 	
 	else:
@@ -164,16 +171,20 @@ func try_moving(delta):
 
 
 func parse_shape_coli_results(result:Dictionary):
+	
 
-	if result.empty():return
+	if result.empty():return Colliders.NONE
 	
 	var collider_id = result.get("collider_id")
 	var collider = null
 	
-	if !collider_id:return
+	if !collider_id:return Colliders.NONE
 	
 	collider = instance_from_id(collider_id)
 	
+	if not is_instance_valid(collider):
+		return Colliders.NONE
+
 	
 	if collider is HurtComponent:
 		# last collider is ambigous because i standed there and realized that it would be bad if
@@ -181,32 +192,63 @@ func parse_shape_coli_results(result:Dictionary):
 		last_collider = collider
 		var is_enemy_or_ally = Colliders.ALLY if collider.is_enemy == area.is_enemy else Colliders.ENEMY
 		emit_signal("collided",is_enemy_or_ally,self,result)
-		return
+		
+		return is_enemy_or_ally
+	
+	
 	
 	if collider is StaticBody2D or collider is TileMap:
-
-		emit_signal("collided",Colliders.BODY,self,result)	
+		emit_signal("collided",Colliders.BODY,self,result)
+		return Colliders.BODY
 	
 	
+	if collider.is_in_group("pipe"):
+		emit_signal("collided",Colliders.BODY,self,result)
+		return Colliders.BODY
+	
+	
+	return Colliders.NONE
 
 
 func get_velocity(delta : float)-> Vector2:return ( velocity + (dir.normalized() * speed) ) * (delta)
 
 
 
+func thing_hit(coltype):
+	if coltype == Colliders.NONE:
+		
+		return
+	
+
+
+	
+	var props := _bullet_props as BulletPropeties
+	
+	if (
+		props.deletes_on_wall and coltype == Colliders.BODY or
+		props.deletes_on_enemy_hit and coltype == Colliders.ENEMY or
+		props.deletes_on_ally_hit and coltype == Colliders.ALLY
+	):
+		queue_free()
+	
+	
+
 
 func _on_Area2D_body_entered(body):
+	return
 	if (_bullet_props as BulletPropeties).deletes_on_wall:
 		queue_free()
 	
 
 func _on_Area2D_actually_hit(target):
+	return
 	if (_bullet_props as BulletPropeties).deletes_on_enemy_hit:
 		emit_signal("collided",Colliders.ENEMY,self,{})	
 		queue_free()
 
 
 func _on_Area2D_ally_hit(ally):
+	return
 	if (_bullet_props as BulletPropeties).deletes_on_ally_hit:
 		queue_free()
 

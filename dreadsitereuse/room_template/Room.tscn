@@ -19,7 +19,7 @@ script = ExtResource( 1 )
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
-collision_layer = 5
+collision_layer = 33
 format = 1
 
 [node name="Special" type="TileMap" parent="."]

@@ -6,6 +6,7 @@
 [ext_resource path="res://swordThing/thing.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
