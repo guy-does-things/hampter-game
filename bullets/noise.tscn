@@ -1,0 +1,105 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=3]
+[ext_resource path="res://raw_sprites/newnoise.png" type="Texture" id=4]
+[ext_resource path="res://bullets/Bounce.gd" type="Script" id=5]
+[ext_resource path="res://raw_sprites/newbluenoise.png" type="Texture" id=6]
+[ext_resource path="res://bullets/noisething.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 15, 10 )
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 1 )
+deletes_on_wall = false
+deletes_on_enemy_hit = false
+deletes_on_ally_hit = false
+deletes_on_timeout = true
+ignores_anti_tunneling_measures = false
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "blue",
+"speed": 20.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[node name="GdtBullet" type="Node2D"]
+script = ExtResource( 3 )
+speed = 2.0
+hitbox = SubResource( 10 )
+_bullet_props = SubResource( 11 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[node name="Area2D" parent="." instance=ExtResource( 2 )]
+min_hit_priority = 5
+max_hit_priority = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource( 10 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 17 )
+frame = 4
+playing = true
+script = ExtResource( 7 )
+
+[node name="Bounce" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[connection signal="collided" from="." to="Bounce" method="_on_GdtBullet_collided"]
+[connection signal="startup" from="." to="AnimatedSprite" method="_on_GdtBullet_startup"]
+[connection signal="startup" from="." to="Bounce" method="_on_GdtBullet_startup"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]
+[connection signal="actually_hit" from="Area2D" to="." method="_on_Area2D_actually_hit"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

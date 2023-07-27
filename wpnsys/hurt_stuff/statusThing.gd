@@ -8,12 +8,12 @@ onready var current_hp = MAX_HP
 
 var item_bitmask : int = 0
 var disabled_bitmask : int = 0
+var hp_stacks = 0
 
 var on_water = false
 
 # enemy specific babyeeeee 
 var target : Node2D
-var hp_stacks = 0
 
 
 func raw_hasitem(item):

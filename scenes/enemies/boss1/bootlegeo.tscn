@@ -372,6 +372,7 @@ radius = 11.0
 collision_layer = 0
 collision_mask = 40
 script = ExtResource( 22 )
+hitstun_starts_once_on_floor = true
 hitstun_time = 1.1
 o_color = 0.111364
 
@@ -575,8 +576,8 @@ disabled = true
 [connection signal="lowhp" from="." to="StateMachine/JumpTowardsPlayer" method="_on_Entity_lowhp"]
 [connection signal="proj_created" from="Flippables/Gun" to="." method="_on_Gun_proj_created"]
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
-[connection signal="hurted" from="HurtComponent" to="." method="hp_check"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="hurted" from="HurtComponent" to="." method="hp_check"]
 [connection signal="changed_state" from="StateMachine" to="AnimationPlayer" method="_on_StateMachine_changed_state"]
 [connection signal="entered" from="StateMachine/RunTowardsPlayer" to="AnimationPlayer" method="_on_RunTowardsPlayer_entered"]
 [connection signal="entered" from="StateMachine/UpperCutCharge" to="AnimationPlayer" method="_on_UpperCutCharge_entered"]

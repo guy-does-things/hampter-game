@@ -1,69 +1,201 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=38 format=2]
 
-[ext_resource path="res://boss.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=3]
+[ext_resource path="res://wpnsys/hurt_stuff/nbasegun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/boss3/bat.gd" type="Script" id=5]
 [ext_resource path="res://n_plr_detector.gd" type="Script" id=6]
+[ext_resource path="res://wpnsys/hurt_stuff/draculaballz.gd" type="Script" id=7]
 [ext_resource path="res://scenes/enemies/introscorpion/idunno.gd" type="Script" id=8]
-[ext_resource path="res://raw_sprites/player/bootlegeo.png" type="Texture" id=11]
+[ext_resource path="res://scenes/enemies/boss3/fireballz.gd" type="Script" id=9]
+[ext_resource path="res://wpnsys/hurt_stuff/noisescreech.gd" type="Script" id=10]
+[ext_resource path="res://bullets/noise.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/boss3/TheNoise.gd" type="Script" id=12]
+[ext_resource path="res://scenes/enemies/boss3/noise_detector.gd" type="Script" id=13]
+[ext_resource path="res://stun.gd" type="Script" id=14]
+[ext_resource path="res://scenes/enemies/boss3/BloodSuck.gd" type="Script" id=15]
 [ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=16]
+[ext_resource path="res://scenes/enemies/boss3/dashfly.gd" type="Script" id=17]
 [ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=18]
+[ext_resource path="res://bullets/fire_blast.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/enemies/boss3/shortestjavaclassname.gd" type="Script" id=20]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/enemies/boss1/RandomAttacks.gd" type="Script" id=22]
 [ext_resource path="res://scripts/physicsthings.gd" type="Script" id=23]
 [ext_resource path="res://state_machine/state_machine.gd" type="Script" id=24]
 
-[sub_resource type="Shader" id=9]
-code = "shader_type canvas_item;
+[sub_resource type="Resource" id=8]
+script = ExtResource( 1 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 1
+burst_count = 1
+cooldown = 1.2
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 300
+bullet_lifetime = 2.5
+no_cooldown = false
 
-uniform vec4 rep_col : hint_color;
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+data_res = SubResource( 8 )
+bullet = ExtResource( 11 )
 
-
-
-void fragment()
-{
-	
-	vec4 rgba = texture(TEXTURE,UV);
-	float gs = (rgba.r +rgba.g + rgba.b) / 3.0;
-	
-	if (gs==0.0)
-	{
-		rgba.rgb = rep_col.rgb;
-	}
-	
-	COLOR = rgba;
-	
-}
-"
-
-[sub_resource type="ShaderMaterial" id=23]
-resource_local_to_scene = true
-shader = SubResource( 9 )
-shader_param/rep_col = Color( 0, 0, 0, 1 )
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 14.5, 180.5 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13, 22.5 )
+extents = Vector2( 15.5, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7.5, 15.5 )
+extents = Vector2( 15.5, 32 )
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 240.533
+[sub_resource type="CircleShape2D" id=11]
+radius = 500.0
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 3
+burst_count = 1
+cooldown = 2.5
+max_charge = 0.0
+spread = 5.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 200
+bullet_lifetime = 4.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 3 )
+data_res = SubResource( 4 )
+bullet = ExtResource( 19 )
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 1 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 3
+burst_count = 1
+cooldown = 0.25
+max_charge = 0.0
+spread = 5.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 200
+bullet_lifetime = 4.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 3 )
+data_res = SubResource( 12 )
+bullet = ExtResource( 19 )
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 8
+burst_count = 1
+cooldown = 7.0
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 150
+bullet_lifetime = 6.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+data_res = SubResource( 6 )
+bullet = ExtResource( 11 )
+
+[sub_resource type="Animation" id=14]
+resource_name = "teleport_out"
+length = 0.167
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.123893 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -32 ) ]
+}
 
 [node name="Entity" type="KinematicBody2D"]
 collision_layer = 0
 collision_mask = 40
-script = ExtResource( 1 )
+script = ExtResource( 5 )
+hitstun_starts_once_on_floor = true
 
 [node name="PhysicsStuff" type="Node" parent="."]
 script = ExtResource( 23 )
+gravity_enabled = false
+gravity_only_when_not_on_floor = false
 
-[node name="Flippables" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 0, -32 )
+scale = Vector2( 1e-05, 2 )
+
+[node name="Flippables" type="Node2D" parent="Node2D"]
 unique_name_in_owner = true
 script = ExtResource( 2 )
 
-[node name="Bootlegeo" type="Sprite" parent="Flippables"]
-material = SubResource( 23 )
-texture = ExtResource( 11 )
-hframes = 10
-frame = 3
+[node name="ColorRect" type="ColorRect" parent="Node2D/Flippables"]
+margin_left = -15.0
+margin_top = -32.0
+margin_right = 16.0
+margin_bottom = 32.0
+
+[node name="NoiseShot" parent="Node2D/Flippables" instance=ExtResource( 4 )]
+unique_name_in_owner = true
+position = Vector2( 48, 0 )
+_gun_data = SubResource( 9 )
+is_enemy = true
+
+[node name="Area2D" type="Area2D" parent="Node2D/Flippables"]
+position = Vector2( -0.002, 0 )
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Flippables/Area2D"]
+position = Vector2( 0.501999, -148.5 )
+shape = SubResource( 10 )
 
 [node name="HurtComponent" type="Area2D" parent="."]
 script = ExtResource( 18 )
@@ -71,16 +203,16 @@ is_enemy = true
 path_entitystatus = NodePath("../StatusThing")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
-position = Vector2( 1, 9.5 )
+position = Vector2( 0.5, 0 )
 shape = SubResource( 1 )
 
 [node name="StatusThing" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 16 )
-MAX_HP = 150
+MAX_HP = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 2.5, 16.5 )
+position = Vector2( 0.5, 0 )
 shape = SubResource( 2 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -88,24 +220,165 @@ script = ExtResource( 24 )
 initial_state = NodePath("Intro")
 
 [node name="Intro" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
 script = ExtResource( 8 )
 can_go_to_hurtstate = false
+attack_state_path = NodePath("../TheNoise")
+
+[node name="FireAttack" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+can_go_to_hurtstate = false
+gun = NodePath("../../FireSHot")
+
+[node name="PanicFireAttack" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+can_go_to_hurtstate = false
+gun = NodePath("../../PanicFireSHot")
+is_desp = true
+max_tps = 6
+
+[node name="TheNoise" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+can_go_to_hurtstate = false
+
+[node name="Timer" type="Timer" parent="StateMachine/TheNoise"]
+one_shot = true
+
+[node name="NoiseDelay" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 14 )
+can_go_to_hurtstate = false
+wait_time = 3.0
+return_override = NodePath("../Rattacks")
+
+[node name="SuckDownDelay" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 14 )
+can_go_to_hurtstate = false
+wait_time = 2.0
+return_override = NodePath("../Rattacks")
+
+[node name="BloodSuck" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 15 )
+can_go_to_hurtstate = false
+
+[node name="Timer" type="Timer" parent="StateMachine/BloodSuck"]
+wait_time = 1.2
+one_shot = true
+
+[node name="DashFly" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 17 )
+
+[node name="Timer" type="Timer" parent="StateMachine/DashFly"]
+wait_time = 0.2
+one_shot = true
+
+[node name="WhenSheSuckingYouNutsButYouGangsta" type="Node" parent="StateMachine"]
+script = ExtResource( 20 )
+can_go_to_hurtstate = false
+
+[node name="Rattacks" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 22 )
+can_go_to_hurtstate = false
+attacks = [ NodePath("../FireAttack"), NodePath("../PanicFireAttack"), NodePath("../TheNoise"), NodePath("../BloodSuck") ]
 
 [node name="NewPlayerDetector" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 6 )
-cantaimY = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlayerDetector"]
-shape = SubResource( 3 )
+shape = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 
-[node name="Ptest" type="Node2D" parent="."]
-z_index = 1
+[node name="FireSHot" parent="." instance=ExtResource( 4 )]
+unique_name_in_owner = true
+script = ExtResource( 7 )
+customfire = true
+_gun_data = SubResource( 5 )
+is_enemy = true
 
+[node name="PanicFireSHot" parent="." instance=ExtResource( 4 )]
+unique_name_in_owner = true
+script = ExtResource( 7 )
+customfire = true
+_gun_data = SubResource( 13 )
+is_enemy = true
+
+[node name="BouncyShoot" parent="." instance=ExtResource( 4 )]
+unique_name_in_owner = true
+script = ExtResource( 10 )
+_gun_data = SubResource( 7 )
+is_enemy = true
+data = {
+0: 30,
+1: 20,
+2: 0,
+3: 180,
+4: 160,
+5: 150,
+6: 120,
+7: 60
+}
+
+[node name="NoiseHolder" type="Area2D" parent="." groups=["bullet_trigger"]]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseHolder"]
+position = Vector2( 0.5, 0 )
+shape = SubResource( 1 )
+
+[node name="SuckDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2( 0, 2 )
+collision_layer = 0
+collision_mask = 128
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SuckDetector"]
+position = Vector2( 0.5, 0 )
+scale = Vector2( 0.769, 0.922 )
+shape = SubResource( 1 )
+
+[node name="SuckHitbox" parent="." instance=ExtResource( 21 )]
+unique_name_in_owner = true
+monitoring = false
+max_hit_priority = 1
+hit_iframes = 2.0
+damage = 1
+is_enemy = true
+can_hit_multiple_times = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SuckHitbox"]
+position = Vector2( 0.5, 0 )
+scale = Vector2( 0.769, 1 )
+shape = SubResource( 1 )
+
+[node name="ScaleFuckery" type="AnimationPlayer" parent="."]
+anims/teleport_out = SubResource( 14 )
+
+[connection signal="entered_hitstun" from="." to="." method="_on_Entity_entered_hitstun"]
+[connection signal="exited_hitstun" from="." to="." method="_on_Entity_exited_hitstun"]
+[connection signal="fired" from="Node2D/Flippables/NoiseShot" to="StateMachine/TheNoise" method="_on_NoiseShot_fired"]
+[connection signal="proj_created" from="Node2D/Flippables/NoiseShot" to="StateMachine/TheNoise" method="_on_NoiseShot_proj_created"]
+[connection signal="body_entered" from="Node2D/Flippables/Area2D" to="StateMachine/BloodSuck" method="_on_Area2D_body_entered"]
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
+[connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="timeout" from="StateMachine/TheNoise/Timer" to="StateMachine/TheNoise" method="_on_Timer_timeout"]
+[connection signal="timeout" from="StateMachine/BloodSuck/Timer" to="StateMachine/BloodSuck" method="_on_Timer_timeout"]
+[connection signal="exited" from="StateMachine/DashFly" to="." method="_on_DashFly_exited"]
+[connection signal="timeout" from="StateMachine/DashFly/Timer" to="StateMachine/DashFly" method="_on_Timer_timeout"]
 [connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
+[connection signal="postfired" from="FireSHot" to="StateMachine/FireAttack" method="_on_FireSHot_postfired"]
+[connection signal="postfired" from="PanicFireSHot" to="StateMachine/PanicFireAttack" method="_on_FireSHot_postfired"]
+[connection signal="proj_created" from="BouncyShoot" to="BouncyShoot" method="_on_BouncyShoot_proj_created"]
+[connection signal="supercharged" from="NoiseHolder" to="StateMachine/TheNoise" method="_on_NoiseHolder_supercharged"]
+[connection signal="body_entered" from="SuckDetector" to="." method="_on_SuckDetector_body_entered"]
+[connection signal="actually_hit" from="SuckHitbox" to="StateMachine/WhenSheSuckingYouNutsButYouGangsta" method="_on_SuckHitbox_actually_hit"]

@@ -23,6 +23,7 @@ var iframetimer = Timer.new()
 var total_combo_damage = 0
 var current_tweenk :SceneTreeTween
 var iframe_flash_timer := Timer.new()
+var is_fucking_dead = false
 
 
 func _ready():
@@ -62,6 +63,7 @@ func flash(STOP=false):
 	
 	
 func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int,is_water=false):
+	if is_fucking_dead:return
 	if dam == 0:return
 	if damage_override != -1:dam =damage_override
 	
@@ -95,6 +97,8 @@ func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int,is
 	if entitystatus.current_hp <= 0:
 		emit_signal("died",dam)
 		Globals.died(global_position)
+		no_iframes()
+		is_fucking_dead = true
 		
 	return true
 

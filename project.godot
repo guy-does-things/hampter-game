@@ -349,6 +349,8 @@ show_inv={
 2d_physics/layer_5="hurtcomps"
 2d_physics/layer_6="tilemaps"
 2d_physics/layer_7="water"
+2d_physics/layer_8="playeronly"
+2d_physics/layer_9="bullets"
 
 [mono]
 

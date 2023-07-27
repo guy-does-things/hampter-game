@@ -3,6 +3,7 @@ extends State
 var ready_to_attack = false
 var attacks_done = 0
 
+
 func _state_logic(dt):
 	
 	if attacks_done >= 4:
@@ -46,4 +47,5 @@ func _on_Entity_is_gonna_fire():
 
 func _on_SpitGun_postfired(gun):
 	ready_to_attack = false
+
 	attacks_done += 1

@@ -20,6 +20,7 @@ func _enter_state(new_state, old_state):
 	emit_signal("entered")
 	
 	if is_walk_state:return
+	
 	if old_state in [fallstate,jumpstate,slamstate]:
 		emit_signal("landed")
 

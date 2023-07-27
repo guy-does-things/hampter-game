@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=2]
@@ -46,7 +46,13 @@
 [ext_resource path="res://locations/nitrotasticman/car_jumpscare.tscn" type="PackedScene" id=44]
 [ext_resource path="res://locations/nitrotasticman/mallsection.tscn" type="PackedScene" id=45]
 [ext_resource path="res://raw_sprites/hamptertube.png" type="Texture" id=46]
+[ext_resource path="res://locations/gate of cage/hiddenroom.tscn" type="PackedScene" id=47]
+[ext_resource path="res://locations/gate of cage/hiddenroom2.tscn" type="PackedScene" id=48]
 [ext_resource path="res://locations/VBoxContainer.gd" type="Script" id=49]
+[ext_resource path="res://locations/gate of cage/hiddenroom3.tscn" type="PackedScene" id=50]
+[ext_resource path="res://locations/nitrotasticman/mallsave.tscn" type="PackedScene" id=51]
+[ext_resource path="res://locations/nitrotasticman/diningroom.tscn" type="PackedScene" id=52]
+[ext_resource path="res://locations/nitrotasticman/car_jumpscare_2_electric_bogaloo.tscn" type="PackedScene" id=53]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 26 )
@@ -58,7 +64,6 @@ region = Rect2( 26, 0, 13, 13 )
 
 [sub_resource type="Environment" id=3]
 background_mode = 4
-glow_enabled = true
 glow_intensity = 1.5
 glow_strength = 1.3
 glow_hdr_threshold = 0.9
@@ -67,7 +72,7 @@ glow_hdr_threshold = 0.9
 script = ExtResource( 24 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 4224, -192 )
+position = Vector2( 1989, -1823 )
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
 current = true
@@ -350,7 +355,7 @@ room_b = NodePath("../training")
 [node name="Pipe4" type="Line2D" parent="."]
 position = Vector2( -13, 8 )
 z_index = 2
-points = PoolVector2Array( -1603, 2184, -1699, 2184, -1699, 1624, -1827, 1624, -1827, 1528, -1747, 1528, -1491, 1528, -1491, 1688, -1907, 1688, -1907, 1352, -1699, 1352, -1699, 648, -1443, 648, -1443, 424, -1283, 424, -1283, 648, -835, 648, -835, 552, -899, 552, -899, 792, -499, 792, 189, 792, 189, 520, 77, 520, 77, 296, 253, 296, 253, -104, 285, -104 )
+points = PoolVector2Array( -1603, 2184, -1699, 2184, -1699, 1624, -1827, 1624, -1827, 1528, -1747, 1528, -1491, 1528, -1491, 1688, -1907, 1688, -1907, 1352, -1699, 1352, -1699, 648, -1443, 648, -1443, 424, -1283, 424, -1283, 712, -835, 712, -835, 632, -899, 632, -899, 792, -499, 792, 189, 792, 189, 520, 77, 520, 77, 296, 253, 296, 253, -104, 285, -104 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 46 )
@@ -434,8 +439,26 @@ position = Vector2( 1808, -1936 )
 [node name="A32" parent="." instance=ExtResource( 45 )]
 position = Vector2( 4240, -1936 )
 
-[node name="Entity" parent="." instance=ExtResource( 41 )]
-position = Vector2( 4352, -160 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
+
+[node name="Entity" parent="." instance=ExtResource( 41 )]
+position = Vector2( 4487, -144 )
+
+[node name="A15" parent="." instance=ExtResource( 47 )]
+position = Vector2( -592, -64 )
+
+[node name="A35" parent="." instance=ExtResource( 48 )]
+position = Vector2( -1168, 208 )
+
+[node name="A36" parent="." instance=ExtResource( 50 )]
+position = Vector2( -688, 208 )
+
+[node name="A37" parent="." instance=ExtResource( 51 )]
+position = Vector2( 4720, -2256 )
+
+[node name="A38" parent="." instance=ExtResource( 52 )]
+position = Vector2( 3760, -2256 )
+
+[node name="A39" parent="." instance=ExtResource( 53 )]
+position = Vector2( 5200, -2544 )

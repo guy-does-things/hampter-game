@@ -25,10 +25,8 @@ func _ready():
 #	status.unlocked_item(GlobalData.Items.PIPEBOMB)
 #	status.unlocked_item(GlobalData.Items.STOMP)
 #	status.unlocked_item(GlobalData.Items.BROKENASSSLASH)
-	status.unlocked_item(GlobalData.Items.SOULBLAST)
-#	for i in GlobalData.Items.values():
-#		status.unlocked_item(i)
-#		print(i)
+	for i in GlobalData.Items.values():
+		status.unlocked_item(i)
 
 
 func compare(eventa:InputEvent,eventb):

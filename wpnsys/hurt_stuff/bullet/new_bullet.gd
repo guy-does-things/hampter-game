@@ -14,7 +14,7 @@ signal collided(type, bul, collider)
 signal startup(bullet)
 signal frozen(bullet)
 signal unfrozen(bullet)
-
+signal triggered(bullet,collider)
 
 
 export var damage := 0 setget set_damage
@@ -71,6 +71,7 @@ func _ready():
 	set_hitbox(hitbox)
 	set_is_enemy(is_enemy)
 	
+	area.set_collision_mask_bit(8,true)
 	_funnyphysparms.collision_layer = area.collision_mask
 	_funnyphysparms.exclude = [area.get_rid()]
 	
@@ -132,13 +133,15 @@ func _physics_process(delta):
 		
 		var result = space_state.get_rest_info(_funnyphysparms)
 		var coli_type = parse_shape_coli_results(result)
+		
+		
 		if coli_type == Colliders.ENEMY:
 			yield(area,"actually_hit")
 		elif coli_type == Colliders.ALLY:
 			yield(area,"ally_hit")
+		
 			
 			
-		#yield(get_tree(),"physics_frame")
 		thing_hit(coli_type)
 		
 	
@@ -185,6 +188,11 @@ func parse_shape_coli_results(result:Dictionary):
 	if not is_instance_valid(collider):
 		return Colliders.NONE
 
+	if collider.is_in_group("bullet_trigger"):
+		emit_signal("triggered",self,collider)
+		if collider.has_method("bullet_hit"):
+			collider.bullet_hit(self)
+	
 	
 	if collider is HurtComponent:
 		# last collider is ambigous because i standed there and realized that it would be bad if
@@ -195,8 +203,9 @@ func parse_shape_coli_results(result:Dictionary):
 		
 		return is_enemy_or_ally
 	
-	
-	
+		
+		
+		
 	if collider is StaticBody2D or collider is TileMap:
 		emit_signal("collided",Colliders.BODY,self,result)
 		return Colliders.BODY
