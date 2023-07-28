@@ -38,6 +38,7 @@ shape = SubResource( 7 )
 [node name="StatusThing" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 1 )
+MAX_HP = 9223372036854776
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 1.5 )

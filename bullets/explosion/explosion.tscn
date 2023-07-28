@@ -92,6 +92,7 @@ unique_name_in_owner = true
 shape = SubResource( 10 )
 
 [node name="Explosiontex" type="Sprite" parent="."]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 2 )
 script = ExtResource( 6 )
