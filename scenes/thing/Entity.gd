@@ -33,7 +33,7 @@ func _physics_process(delta):
 
 
 func teleport_plr(plr):
-	#print(global_position)
+	#print_debug(global_position)
 	plr.global_position = global_position + Vector2.DOWN* 6
 	plr.velocity.x = 0
 

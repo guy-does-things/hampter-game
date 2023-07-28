@@ -4,6 +4,7 @@ extends Node
 export var initial_state : NodePath
 onready var state :State = null setget set_state
 
+var prev_prev_state = null
 var previous_state :State = null
 signal changed_state(state, old_state)
 onready var entity :Node2D= get_parent()
@@ -26,7 +27,7 @@ func _physics_process(delta):
 	if state == null or not enabled:return
 	
 	if print_state:
-		print(state)
+		print_debug(state)
 
 	state._state_logic(delta)
 	var transition = state._get_transition(delta)			
@@ -40,6 +41,7 @@ func _physics_process(delta):
 	
 func set_state(new_state : State):
 	if !new_state._can_transition_to(): return
+	prev_prev_state = previous_state
 	previous_state = state
 	emit_signal("changed_state", new_state, previous_state)
 	if previous_state != null:previous_state._exit_state(previous_state, new_state)

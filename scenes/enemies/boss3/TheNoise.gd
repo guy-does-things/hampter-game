@@ -7,12 +7,14 @@ var bullet_scale_mult = 1
 var big_shots = 0
 var should_trans_out = false
 var can_fire_noise = false
+signal moving()
 
 func _state_logic(delta):
 	
 	if should_trans_out:return
-	#print("whast")
-	if can_fire_noise:fire_noise_shot()
+	#print_debug("whast")
+	if can_fire_noise:
+		fire_noise_shot()
 	
 	
 	
@@ -21,7 +23,7 @@ func teleport():
 
 	var pos = Vector2(rr.get_center().x+8,entity.global_position.y)
 	
-	yield(entity.tp_to_pos(pos),"completed")
+	yield(entity.tp_to_pos(pos,self),"completed")
 
 
 func _enter_state(new_state, old_state):
@@ -50,14 +52,17 @@ func _can_transition_to()-> bool:return true
 
 
 func fire_noise_shot(soverride=false):
+	
 	$"%NoiseShot".deal_with_dir(Vector2($"%Flippables".scale.x,0))
 	$"%NoiseShot".try_shooting()
 
 
 func _on_NoiseShot_fired(gun):
+	
 	needs_to_fire_up_noise = !needs_to_fire_up_noise
 	
 	var rr= entity.get_roomr(true)
+	yield(get_tree().create_timer(.1,false),"timeout")
 
 	create_tween().tween_property(
 		entity,
@@ -66,11 +71,12 @@ func _on_NoiseShot_fired(gun):
 		# the floor
 		(rr.end.y-78) - (dist_from_floor_after_noise if needs_to_fire_up_noise else 0)*bullet_scale_mult,
 		.2
-
 	)
+	emit_signal("moving",needs_to_fire_up_noise)
 
 
 func _on_NoiseShot_proj_created(proj):
+	$"%Bat".frame = 5
 	proj.customdata.chargablenoise = true
 	proj.scale *= bullet_scale_mult
 	

@@ -1,12 +1,12 @@
 extends "res://boss.gd"
 
 
-func _physics_process(delta):
-	if Input.is_key_pressed(KEY_L) and !Engine.get_idle_frames()%10:
-		ripoffdraculateleport()
+
 		
 
-func tp_to_pos(pos:Vector2):
+func tp_to_pos(pos:Vector2,caller,mname=""):
+	#if $StateMachine.state == $StateMachine/BloodSuck:
+	print_debug($StateMachine.previous_state," ",$StateMachine.prev_prev_state," ",caller,": ",mname)
 	global_position = pos
 	$ScaleFuckery.play("teleport_out")
 	yield($ScaleFuckery,"animation_finished")
@@ -14,7 +14,9 @@ func tp_to_pos(pos:Vector2):
 	$ScaleFuckery.play_backwards("teleport_out")
 	yield($ScaleFuckery,"animation_finished")
 		
-func ripoffdraculateleport():
+		
+func ripoffdraculateleport(caller,m=""):
+	yield(get_tree(),"idle_frame")
 	var emptryrglobal = get_roomr()
 	
 	if not emptryrglobal:return
@@ -30,10 +32,11 @@ func ripoffdraculateleport():
 		if dist > farthest_dist_from_player:farthest_position_from_player = rolled_pos
 	
 	
-	yield(tp_to_pos(Vector2(farthest_position_from_player,global_position.y)),"completed")
+	yield(tp_to_pos(Vector2(farthest_position_from_player,global_position.y),caller,m),"completed")
 	
 
-func teleport_to_side(isleft):
+func teleport_to_side(isleft,caller,m=""):
+	yield(get_tree(),"idle_frame")
 	var rr = get_roomr(false)
 	if not rr:return
 	
@@ -47,7 +50,7 @@ func teleport_to_side(isleft):
 	else:pos.x = rr.end.x -32
 	
 	
-	yield(tp_to_pos(pos),"completed")
+	yield(tp_to_pos(pos,caller,m),"completed")
 	
 	
 	
@@ -67,7 +70,7 @@ func get_roomr(gets_real_roomr:=false):
 
 func _on_Entity_entered_hitstun():
 	$PhysicsStuff.gravity_enabled = true
-	print("???")
+	print_debug("???")
 
 
 func _on_Entity_exited_hitstun():

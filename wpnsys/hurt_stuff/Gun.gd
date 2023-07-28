@@ -98,6 +98,8 @@ func create_projectile(current_burst, current_pellet):
 func try_shooting():
 	if fire_condition():
 		fire()
+		return true
+	return false
 
 
 func fire():
@@ -109,7 +111,7 @@ func fire():
 			
 			if _gun_data.data_res.fires_before_charging:
 				fire_specific_charge_shot()
-
+				
 		
 		if projectile_charge_info.size() > 0:
 			projectile_charge_index = (int((current_charge / (_gun_data.data_res.max_charge) ) * (projectile_charge_info.size()) ) ) 
@@ -118,10 +120,7 @@ func fire():
 		if current_charge >= _gun_data.data_res.max_charge:
 			emit_signal("fullypoweredup",self)
 		current_charge = min(_gun_data.data_res.max_charge, current_charge + (.016*Engine.time_scale) )
-
-		
 		emit_signal("charging",self)
-		return
 		
 	actually_fire()
 
@@ -132,32 +131,32 @@ func fire_condition():
 func actually_fire():
 
 		
-		if _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.SEMIAUTO:
-			semi_auto_not_released = true
+	if _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.SEMIAUTO:
+		semi_auto_not_released = true
 
-		current_state = GunStates.FIRING		
-		if customfire:
-			current_state = GunStates.CUSTOMSTOP
+	current_state = GunStates.FIRING		
+	if customfire:
+		current_state = GunStates.CUSTOMSTOP
+	
+	
+	for burst in _gun_data.data_res.burst_count:
+		
+		emit_signal("consume_mana")
+		emit_signal("fired",self)
+		emit_signal("funnyrecoil",dir,_gun_data.data_res.recoil)
 		
 		
-		for burst in _gun_data.data_res.burst_count:
+		for pellet in _gun_data.data_res.pellet_count:
+			create_projectile(burst,pellet)
 			
-			emit_signal("consume_mana")
-			emit_signal("fired",self)
-			emit_signal("funnyrecoil",dir,_gun_data.data_res.recoil)
-			
-			
-			for pellet in _gun_data.data_res.pellet_count:
-				create_projectile(burst,pellet)
-				
-			if not _gun_data.data_res.no_cooldown:
-				yield(cooldown(),"completed")
-
-
-		#idk why i forgor
 		if not _gun_data.data_res.no_cooldown:
-			yield(get_tree(),"idle_frame")
-		postfire()
+			yield(cooldown(),"completed")
+
+
+	#idk why i forgor
+	if not _gun_data.data_res.no_cooldown:
+		yield(get_tree(),"idle_frame")
+	postfire()
 
 
 func cooldown()->GDScriptFunctionState:

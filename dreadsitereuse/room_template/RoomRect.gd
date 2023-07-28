@@ -29,7 +29,7 @@ func _on_player_entered_room(player, room):
 	
 	
 func setup_shape():
-	#print("WHY")
+	#print_debug("WHY")
 	rect_shape.extents = rect_size / 2
 	rect_shape.extents *= size_mult
 	initialized = true

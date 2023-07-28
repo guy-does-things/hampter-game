@@ -25,6 +25,6 @@ func _process(delta):
 	ct = get_cellv(mp)
 	
 	if ct != -1:
-		print(get_cell_autotile_coord(mp.x,mp.y))
+		print_debug(get_cell_autotile_coord(mp.x,mp.y))
 		update()
 	

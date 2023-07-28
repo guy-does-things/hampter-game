@@ -41,7 +41,7 @@ func setup_menu():
 
 func _on_menu_item_pressed(ID):
 	# Check for added context menu items
-#	print(menu.get_item_text(ID))
+#	print_debug(menu.get_item_text(ID))
 	if menu.get_item_text(ID) == "Line Numbers":
 		# Line Number Toggle Method
 		if editor.show_line_numbers: # Line numbers On
@@ -81,7 +81,7 @@ func loadfile(path):
 	return content
 
 func quit():
-#	print("Save File: " + str(save_prompt))
+#	print_debug("Save File: " + str(save_prompt))
 	txtChg = 0
 
 	if save_prompt == true:
@@ -98,8 +98,8 @@ func quit():
 
 func _on_FileDialog_file_selected(path):
 	if $FileDialog.MODE_SAVE_FILE:
-#		print(ProjectSettings.globalize_path($FileDialog.current_path))
-#		print($FileDialog.current_file)
+#		print_debug(ProjectSettings.globalize_path($FileDialog.current_path))
+#		print_debug($FileDialog.current_file)
 		if not $FileDialog.current_file == "":
 			savefile(editor.text, ProjectSettings.globalize_path($FileDialog.current_path))
 
@@ -108,7 +108,7 @@ func _on_snippet_editor_hide():
 
 func _on_code_text_changed():
 	txtChg += 1 # Increment when text changes
-#	print(txtChg)
+#	print_debug(txtChg)
 	if txtChg > 2: # 2 is the default # of times txt changed when loading file
 		# Hightlight Save Button
 		$vbox/menu/btnSave.disabled = false

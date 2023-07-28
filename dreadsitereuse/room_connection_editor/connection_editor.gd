@@ -50,9 +50,9 @@ func _physics_process(delta):
 		var result = ResourceSaver.save(data.resource_path,data)
 		
 		if result == OK:
-			print("SAVED!")
+			print_debug("SAVED!")
 		else:
-			print("ERROR:",result)
+			print_debug("ERROR:",result)
 
 
 

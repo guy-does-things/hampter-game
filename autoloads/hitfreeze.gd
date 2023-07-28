@@ -33,7 +33,7 @@ func hitstop(duration:float):
 	set_realtimescale(HITFREEZETIMEMULT)
 	timer.wait_time = duration * Engine.time_scale
 	timer.start()
-#	print(timer.wait_time)
+#	print_debug(timer.wait_time)
 	yield(timer,"timeout")
 	
 	set_realtimescale(1)

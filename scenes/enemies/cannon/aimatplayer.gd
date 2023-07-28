@@ -36,7 +36,7 @@ func _state_logic(delta):
 
 
 func pipebombattack(vel,dir=Vector2.RIGHT,speed=200):
-	print(dir)
+	print_debug(dir)
 	var sattack = preload("res://bullets/pipebomb/pipebomb.tscn").instance()
 
 	sattack.global_position = entity.global_position + Vector2.DOWN *4

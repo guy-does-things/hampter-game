@@ -33,6 +33,7 @@ func _init():add_to_group("hitbox")
 
 func _ready():
 	
+	current_priority = min_hit_priority
 	add_to_group("hitbox")
 	#set_collision_mask_bit(3,true)
 	timer.wait_time = hit_iframes
@@ -60,6 +61,7 @@ func _physics_process(delta):
 func _on_Area2D_area_entered(area:HurtComponent,is_hurting_again=false):
 #	print_debug(area)
 	if area:
+		current_priority = min_hit_priority
 		while true:
 
 			if actually_hurt(area,knockback_dir.normalized()):

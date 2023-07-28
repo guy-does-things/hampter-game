@@ -4,7 +4,7 @@ extends ViewportContainer
 
 func _on_ViewportContainer_resized():
 	$Viewport.size = rect_size
-	print(get_parent().rect_size)
+	print_debug(get_parent().rect_size)
 	
 func _ready():
 	_on_ViewportContainer_resized()

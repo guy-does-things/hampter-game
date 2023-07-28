@@ -29,7 +29,7 @@ func _on_Shoryuken_entered():
 
 
 func _on_StateMachine_changed_state(state, old_state):
-	print(state,old_state)
+	print_debug(state,old_state)
 	
 	if state.name == "hitstun":
 		play("knocked")

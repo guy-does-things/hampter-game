@@ -50,5 +50,5 @@ func _physics_process(delta):
 		"res://room_dict_data.tres",rdictcont
 	)
 	modify_resource = false
-	print(r ==OK)
+	print_debug(r ==OK)
 

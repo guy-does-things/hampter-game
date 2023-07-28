@@ -43,14 +43,14 @@ func _physics_process(delta):
 		# makes it so it can actually do collisions again
 		triggered = false
 		return
-	#print(result.normal)
+	#print_debug(result.normal)
 	# make it only work on initial enter to avoid
 	# spawning 500000 DreadILLION rooms
 	if triggered:
 		return
 
 	triggered = true
-#	print(result.normal, normal_to_ignore, room_to_load)
+#	print_debug(result.normal, normal_to_ignore, room_to_load)
 
 	if result.normal == normal_to_ignore:
 		return

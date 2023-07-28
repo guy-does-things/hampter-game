@@ -145,7 +145,7 @@ func deal_with_input(i:int):
 
 
 func _physics_process(delta):
-#	print(time_since_pressed)
+#	print_debug(time_since_pressed)
 	if input_buffer.size() > 0:
 		if time_since_pressed > .24:
 			input_buffer.remove(0)

@@ -5,9 +5,9 @@ export var is_desp = false
 export var max_tps = 3
 var tps = 0
 var gonna_exit = false
-
+var cfire = false
 func _state_logic(delta):
-	if gonna_exit:return
+	if gonna_exit or !cfire:return
 	
 	gun.deal_with_dir(Vector2($"%Flippables".scale.x,0))
 	gun.try_shooting()
@@ -17,15 +17,19 @@ func _state_logic(delta):
 func _enter_state(new_state, old_state):
 	._enter_state(new_state, old_state)
 	
+	cfire = false
+	yield(entity.ripoffdraculateleport(self,"_enter_state"),"completed")
+	cfire = true
+	
 	
 func _exit_state(old_state, new_state):
 	._exit_state(old_state, new_state)
 	tps = 0
 	gonna_exit = false
-	#_on_FireSHot_postfired(null)
+
 
 func _get_transition(delta):
-	if tps >= max_tps:
+	if tps >= max_tps and gonna_exit:
 		return $"%Rattacks"
 
 
@@ -34,15 +38,15 @@ func _can_transition_to()-> bool:
 
 
 func _on_FireSHot_postfired(gun:GdtGun):
-	yield(entity.ripoffdraculateleport(),"completed")
+	yield(entity.ripoffdraculateleport(self,"_on_FireSHot_postfired"),"completed")
+	
 	if not gun:return
 	
 	if gun.current_state != GdtGun.GunStates.CUSTOMSTOP:return
-	yield(get_tree().create_timer(.6,false),"timeout")
 	if (tps + 1) > max_tps:
 		gonna_exit = true
-		yield(get_tree().create_timer(.2,false),"timeout")
 		
+	yield(get_tree().create_timer(.45,false),"timeout")
 	gun.custom_state_reset()
 	tps += 1
 	

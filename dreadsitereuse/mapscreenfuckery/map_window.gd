@@ -41,7 +41,7 @@ func _on_Map_fast_travel(save_point:NewMapScreen.SaveSprite):
 	
 	emit_signal("started_fast_travel")
 	if is_instance_valid(plr):
-		print(save_point.real_position)
+		print_debug(save_point.real_position)
 		plr.global_position = save_point.real_position
 	
 	

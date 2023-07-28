@@ -20,7 +20,7 @@ func setup(room_data:Dictionary,index=0):
 	var room_inst : NewestRoom = room_data.room_scene.instance()
 	name = room_data.room_name
 	title = room_data.room_name
-	#print(room_data)
+	#print_debug(room_data)
 	for i in range(room_data.transition_rooms.size()):
 		var r = room_inst.get_node("Transitions").get_child(i)
 		var l = Label.new()

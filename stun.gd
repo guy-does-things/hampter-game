@@ -1,6 +1,7 @@
 class_name Stun 
 extends State
 
+signal t_started()
 var t := Timer.new()
 export var starts_once_on_floor = false
 export var wait_time = 1.2
@@ -31,6 +32,7 @@ func start_timer():
 	if not (entity.is_on_floor() or not starts_once_on_floor):return
 	t.start()
 	t_started = true
+	emit_signal("t_started")
 	
 
 	

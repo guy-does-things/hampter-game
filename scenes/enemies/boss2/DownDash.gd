@@ -15,7 +15,7 @@ func _enter_state(new,o):
 	start_timer()
 
 func start_timer():
-	#print(dashes,MAX_DASHES)
+	#print_debug(dashes,MAX_DASHES)
 	
 	if dashes > MAX_DASHES:
 		$Timer.stop()

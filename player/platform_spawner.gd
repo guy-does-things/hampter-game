@@ -7,7 +7,7 @@ var platthing = null
 
 func _physics_process(delta):
 	var ziplinedata = get_collision_point() 
-#	print(ziplinedata)
+#	print_debug(ziplinedata)
 
 
 	if ziplinedata and not get_parent().is_riding():

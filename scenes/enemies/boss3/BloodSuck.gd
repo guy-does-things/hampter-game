@@ -1,13 +1,13 @@
 extends State
 
+signal started_dash()
 
 var is_tping = false
 var exit_mode = 3
 
-
-
 var teleport_position : Vector2
 const MAX_DIST = 608
+
 
 
 func _enter_state(new_state, old_state):
@@ -21,13 +21,13 @@ func _enter_state(new_state, old_state):
 
 
 func _state_logic(delta):
-	
 	if exit_mode == 0:
 		$"%Flippables".disabled = true
 		$"%Flippables".flip(1)
 		
 		entity.velocity.x = 400
 		
+
 
 		
 		if entity.global_position.distance_to(teleport_position) > MAX_DIST:
@@ -58,7 +58,7 @@ func teleport():
 	if is_tping:return
 	
 	is_tping = true
-	var thing = entity.teleport_to_side(true)
+	var thing = entity.teleport_to_side(true,self)
 	if thing is GDScriptFunctionState:
 		yield(thing,"completed")
 	
@@ -72,5 +72,6 @@ func _on_Area2D_body_entered(body):
 
 func _on_Timer_timeout():
 	if state_machine.state != self:return
+	emit_signal("started_dash")
 	exit_mode = 0
 	$"%SuckDetector".monitoring = true

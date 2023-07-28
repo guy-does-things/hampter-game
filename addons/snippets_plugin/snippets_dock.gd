@@ -72,7 +72,7 @@ func list_files_in_directory(path):
 		if file == "":
 			break
 		elif dir.current_is_dir():
-			#print("folder found") # skip
+			#print_debug("folder found") # skip
 			pass
 		elif file.ends_with(".txt"):
 			files.append(file)
@@ -167,8 +167,8 @@ func _on_SnipMenu_id_pressed(ID):
 				# Popup error msg if ext editor not defined
 				update_statusbar("External Editor not configured...")
 		2: # Show file in file manager
-			print("Show in File Manager")
-	#		print($menu/Tree.get_selected().get_metadata(0).get_base_dir())
+			print_debug("Show in File Manager")
+	#		print_debug($menu/Tree.get_selected().get_metadata(0).get_base_dir())
 			update_statusbar("Opened in File Manager...")
 			OS.shell_open($menu/Tree.get_selected().get_metadata(0).get_base_dir())
 
@@ -195,14 +195,14 @@ func int_editor():
 	$snippet_editor.popup_centered()
 
 func _on_Tree_item_rmb_selected(position):
-#		print("Right Mouse Button")
+#		print_debug("Right Mouse Button")
 		$menu/Tree/SnipMenu.rect_position = get_global_mouse_position()
 		$menu/Tree/SnipMenu.visible = true
 		$menu/Tree/SnipMenu.popup()
 
 func _on_btnAddSnippet_pressed():
 	# Add Clipboard to New Snippet
-#	print("Copy Clipboard to Snippet")
+#	print_debug("Copy Clipboard to Snippet")
 	# paste resource (script) from clipboard
 	$FileDialog.set_mode(FileDialog.MODE_SAVE_FILE)
 	$FileDialog.current_dir = snippets_path
@@ -225,7 +225,7 @@ func _on_msgTimer_timeout():
 
 
 func _on_FileDialog_file_selected(path):
-#	print(OS.get_clipboard() + "\n" + $FileDialog.current_path)
+#	print_debug(OS.get_clipboard() + "\n" + $FileDialog.current_path)
 	savefile(OS.get_clipboard(),path) # Paste from clipboard to file
 	update_statusbar("Snippet Added...")
 	get_snippets()

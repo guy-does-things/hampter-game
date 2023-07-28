@@ -35,7 +35,7 @@ func _ready():
 	#save(current_save)
 	var sat = Time.get_unix_time_from_system() - st
 	
-	print(str("load time:",lt, "  save time:", sat))
+	print_debug(str("load time:",lt, "  save time:", sat))
 	
 
 

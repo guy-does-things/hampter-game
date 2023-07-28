@@ -32,7 +32,7 @@ func setup(data:RoomSaveInfo):
 
 
 func add_child_below_node(n,cn,lun=false):move_child(null,INF)
-func move_child(node,p):print("no.")
+func move_child(node,p):print_debug("no.")
 	
 	
 

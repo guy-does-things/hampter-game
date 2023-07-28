@@ -10,7 +10,7 @@ signal fast_travel(save_point)
 
 
 func move_cam():
-	#print(invisible)
+	#print_debug(invisible)
 	if invisible:
 		.move_cam()
 		return

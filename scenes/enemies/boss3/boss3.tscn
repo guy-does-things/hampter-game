@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://scenes/enemies/boss1/RandomAttacks.gd" type="Script" id=22]
 [ext_resource path="res://scripts/physicsthings.gd" type="Script" id=23]
 [ext_resource path="res://state_machine/state_machine.gd" type="Script" id=24]
+[ext_resource path="res://raw_sprites/bat.png" type="Texture" id=25]
+[ext_resource path="res://scenes/enemies/boss3/bats.gd" type="Script" id=26]
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 1 )
@@ -59,6 +61,55 @@ extents = Vector2( 15.5, 32 )
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 500.0
+
+[sub_resource type="Animation" id=16]
+resource_name = "draculaballthing"
+length = 0.314
+tracks/0/type = "value"
+tracks/0/path = NodePath("SprPivot/Flippables/Bat:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "fall"
+length = 0.021
+tracks/0/type = "value"
+tracks/0/path = NodePath("SprPivot/Flippables/Bat:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "fly"
+length = 0.251
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SprPivot/Flippables/Bat:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 1 )
@@ -133,7 +184,7 @@ bullet = ExtResource( 11 )
 resource_name = "teleport_out"
 length = 0.167
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D:scale")
+tracks/0/path = NodePath("SprPivot:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -145,7 +196,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0, 2 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D:position")
+tracks/1/path = NodePath("SprPivot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -168,36 +219,45 @@ script = ExtResource( 23 )
 gravity_enabled = false
 gravity_only_when_not_on_floor = false
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 0, -32 )
-scale = Vector2( 1e-05, 2 )
+[node name="SprPivot" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="Flippables" type="Node2D" parent="Node2D"]
+[node name="Flippables" type="Node2D" parent="SprPivot"]
 unique_name_in_owner = true
 script = ExtResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="Node2D/Flippables"]
+[node name="ColorRect" type="ColorRect" parent="SprPivot/Flippables"]
+visible = false
 margin_left = -15.0
 margin_top = -32.0
 margin_right = 16.0
 margin_bottom = 32.0
 
-[node name="NoiseShot" parent="Node2D/Flippables" instance=ExtResource( 4 )]
+[node name="NoiseShot" parent="SprPivot/Flippables" instance=ExtResource( 4 )]
 unique_name_in_owner = true
 position = Vector2( 48, 0 )
 _gun_data = SubResource( 9 )
 is_enemy = true
 
-[node name="Area2D" type="Area2D" parent="Node2D/Flippables"]
+[node name="Area2D" type="Area2D" parent="SprPivot/Flippables"]
+visible = false
 position = Vector2( -0.002, 0 )
 collision_layer = 0
 collision_mask = 128
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Flippables/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SprPivot/Flippables/Area2D"]
 position = Vector2( 0.501999, -148.5 )
 shape = SubResource( 10 )
 
+[node name="Bat" type="Sprite" parent="SprPivot/Flippables"]
+unique_name_in_owner = true
+texture = ExtResource( 25 )
+offset = Vector2( -3, 0 )
+hframes = 9
+frame = 4
+
 [node name="HurtComponent" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 18 )
 is_enemy = true
 path_entitystatus = NodePath("../StatusThing")
@@ -209,7 +269,7 @@ shape = SubResource( 1 )
 [node name="StatusThing" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 16 )
-MAX_HP = 500
+MAX_HP = 250
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, 0 )
@@ -223,6 +283,7 @@ initial_state = NodePath("Intro")
 unique_name_in_owner = true
 script = ExtResource( 8 )
 can_go_to_hurtstate = false
+idle_state_path = NodePath(".")
 attack_state_path = NodePath("../TheNoise")
 
 [node name="FireAttack" type="Node" parent="StateMachine"]
@@ -255,7 +316,8 @@ return_override = NodePath("../Rattacks")
 unique_name_in_owner = true
 script = ExtResource( 14 )
 can_go_to_hurtstate = false
-wait_time = 2.0
+starts_once_on_floor = true
+wait_time = 1.0
 return_override = NodePath("../Rattacks")
 
 [node name="BloodSuck" type="Node" parent="StateMachine"]
@@ -295,6 +357,10 @@ shape = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+anims/draculaballthing = SubResource( 16 )
+anims/fall = SubResource( 17 )
+anims/fly = SubResource( 15 )
+script = ExtResource( 26 )
 
 [node name="FireSHot" parent="." instance=ExtResource( 4 )]
 unique_name_in_owner = true
@@ -327,6 +393,7 @@ data = {
 }
 
 [node name="NoiseHolder" type="Area2D" parent="." groups=["bullet_trigger"]]
+visible = false
 collision_layer = 256
 collision_mask = 0
 script = ExtResource( 13 )
@@ -337,6 +404,7 @@ shape = SubResource( 1 )
 
 [node name="SuckDetector" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2( 0, 2 )
 collision_layer = 0
 collision_mask = 128
@@ -349,6 +417,7 @@ shape = SubResource( 1 )
 
 [node name="SuckHitbox" parent="." instance=ExtResource( 21 )]
 unique_name_in_owner = true
+visible = false
 monitoring = false
 max_hit_priority = 1
 hit_iframes = 2.0
@@ -364,20 +433,37 @@ shape = SubResource( 1 )
 [node name="ScaleFuckery" type="AnimationPlayer" parent="."]
 anims/teleport_out = SubResource( 14 )
 
+[node name="PositionA" type="Position2D" parent="."]
+unique_name_in_owner = true
+position = Vector2( 0, 24 )
+
 [connection signal="entered_hitstun" from="." to="." method="_on_Entity_entered_hitstun"]
+[connection signal="entered_hitstun" from="." to="AnimationPlayer" method="_on_Entity_entered_hitstun"]
 [connection signal="exited_hitstun" from="." to="." method="_on_Entity_exited_hitstun"]
-[connection signal="fired" from="Node2D/Flippables/NoiseShot" to="StateMachine/TheNoise" method="_on_NoiseShot_fired"]
-[connection signal="proj_created" from="Node2D/Flippables/NoiseShot" to="StateMachine/TheNoise" method="_on_NoiseShot_proj_created"]
-[connection signal="body_entered" from="Node2D/Flippables/Area2D" to="StateMachine/BloodSuck" method="_on_Area2D_body_entered"]
+[connection signal="exited_hitstun" from="." to="AnimationPlayer" method="_on_Entity_exited_hitstun"]
+[connection signal="fired" from="SprPivot/Flippables/NoiseShot" to="StateMachine/TheNoise" method="_on_NoiseShot_fired"]
+[connection signal="proj_created" from="SprPivot/Flippables/NoiseShot" to="StateMachine/TheNoise" method="_on_NoiseShot_proj_created"]
+[connection signal="body_entered" from="SprPivot/Flippables/Area2D" to="StateMachine/BloodSuck" method="_on_Area2D_body_entered"]
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="entered" from="StateMachine/TheNoise" to="AnimationPlayer" method="_on_TheNoise_entered"]
+[connection signal="moving" from="StateMachine/TheNoise" to="AnimationPlayer" method="_on_TheNoise_moving"]
 [connection signal="timeout" from="StateMachine/TheNoise/Timer" to="StateMachine/TheNoise" method="_on_Timer_timeout"]
+[connection signal="t_started" from="StateMachine/SuckDownDelay" to="AnimationPlayer" method="_on_SuckDownDelay_t_started"]
+[connection signal="entered" from="StateMachine/BloodSuck" to="AnimationPlayer" method="_on_BloodSuck_entered"]
+[connection signal="started_dash" from="StateMachine/BloodSuck" to="AnimationPlayer" method="_on_BloodSuck_started_dash"]
 [connection signal="timeout" from="StateMachine/BloodSuck/Timer" to="StateMachine/BloodSuck" method="_on_Timer_timeout"]
 [connection signal="exited" from="StateMachine/DashFly" to="." method="_on_DashFly_exited"]
 [connection signal="timeout" from="StateMachine/DashFly/Timer" to="StateMachine/DashFly" method="_on_Timer_timeout"]
+[connection signal="exited" from="StateMachine/WhenSheSuckingYouNutsButYouGangsta" to="AnimationPlayer" method="_on_WhenSheSuckingYouNutsButYouGangsta_exited"]
+[connection signal="reachedtop" from="StateMachine/WhenSheSuckingYouNutsButYouGangsta" to="AnimationPlayer" method="_on_WhenSheSuckingYouNutsButYouGangsta_reachedtop"]
 [connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
+[connection signal="fired" from="FireSHot" to="AnimationPlayer" method="fire_fired"]
 [connection signal="postfired" from="FireSHot" to="StateMachine/FireAttack" method="_on_FireSHot_postfired"]
+[connection signal="postfired" from="FireSHot" to="AnimationPlayer" method="Fire_postfired"]
+[connection signal="fired" from="PanicFireSHot" to="AnimationPlayer" method="fire_fired"]
 [connection signal="postfired" from="PanicFireSHot" to="StateMachine/PanicFireAttack" method="_on_FireSHot_postfired"]
+[connection signal="postfired" from="PanicFireSHot" to="AnimationPlayer" method="Fire_postfired"]
 [connection signal="proj_created" from="BouncyShoot" to="BouncyShoot" method="_on_BouncyShoot_proj_created"]
 [connection signal="supercharged" from="NoiseHolder" to="StateMachine/TheNoise" method="_on_NoiseHolder_supercharged"]
 [connection signal="body_entered" from="SuckDetector" to="." method="_on_SuckDetector_body_entered"]
