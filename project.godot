@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "State",
+"class": "ActionState",
+"language": "GDScript",
+"path": "res://scenes/enemies/boss4/ActionState.gd"
+}, {
+"base": "CanvasLayer",
+"class": "BG",
+"language": "GDScript",
+"path": "res://locations/nitrotasticman/CanvasLayer.gd"
+}, {
 "base": "StaticBody2D",
 "class": "BreakableBlock",
 "language": "GDScript",
@@ -48,6 +58,11 @@ _global_script_classes=[ {
 "class": "Entity",
 "language": "GDScript",
 "path": "res://scripts/entity.gd"
+}, {
+"base": "State",
+"class": "FoxActionState",
+"language": "GDScript",
+"path": "res://scenes/enemies/boss4/State.gd"
 }, {
 "base": "Node2D",
 "class": "GdtBullet",
@@ -190,6 +205,8 @@ _global_script_classes=[ {
 "path": "res://dreadsitereuse/room_transition_trigger.gd"
 } ]
 _global_script_class_icons={
+"ActionState": "",
+"BG": "",
 "BreakableBlock": "",
 "BreakerCast": "",
 "BulletPropeties": "",
@@ -198,6 +215,7 @@ _global_script_class_icons={
 "DataStructures": "",
 "DirComp": "",
 "Entity": "",
+"FoxActionState": "",
 "GdtBullet": "",
 "GdtGun": "",
 "GlobalData": "",

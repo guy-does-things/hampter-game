@@ -6,6 +6,8 @@ signal item_unlocked(item)
 export var MAX_HP = 0
 onready var current_hp = MAX_HP
 
+
+
 var item_bitmask : int = 0
 var disabled_bitmask : int = 0
 var hp_stacks = 0
@@ -14,6 +16,16 @@ var on_water = false
 
 # enemy specific babyeeeee 
 var target : Node2D
+export var MAX_STAMINA = 0
+export var stamina_regen = 2
+onready var stamina = MAX_STAMINA
+
+
+func decrease_stamina(dec):
+	stamina = max(0,stamina-dec)
+	
+func is_full():
+	return stamina == MAX_STAMINA
 
 
 func raw_hasitem(item):

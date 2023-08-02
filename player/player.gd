@@ -172,6 +172,11 @@ func _physics_process(delta):
 func weapon_handling():	
 	
 	# bitmask input fuckery :3
+	weapon.setup_ip_status(
+		Input.is_action_pressed("up"),
+		Input.is_action_pressed("down")
+	)
+	
 	weapon.is_idle = $StateMachine.state == $StateMachine/idle or $StateMachine.state == $StateMachine/walk and $DirComp.current_dir.x == 0
 	weapon.on_floor = is_on_floor()
 
@@ -273,6 +278,7 @@ func _on_stomp_exited():
 		else:
 			stone.velocity.y -= 40
 		
+		stone.add_to_group("plrproj")
 		get_tree().current_scene.add_child(stone)
 
 		pass

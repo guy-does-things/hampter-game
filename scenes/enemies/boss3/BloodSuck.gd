@@ -6,7 +6,7 @@ var is_tping = false
 var exit_mode = 3
 
 var teleport_position : Vector2
-const MAX_DIST = 608
+const MAX_DIST = 616
 
 
 

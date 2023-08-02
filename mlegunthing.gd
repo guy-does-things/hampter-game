@@ -29,8 +29,10 @@ var input_buffer := []
 var attack_list : Array
 var time_since_pressed := 0.0
 var on_floor = false
-var is_idle
+var is_idle = false
 
+# used for IAUP and IADOWN
+var currently_pressed_status = 0
 
 func _init():
 	connect("fired",self,"on_fired")
@@ -56,7 +58,7 @@ class MotionInputFuckery:
 		
 	
 
-	func compare(input_list:Array):
+	func compare(input_list:Array,curpressedmask:int):
 		var inputidx = 0
 		var total_forgiveness :int= inputs.size() + forgiveness
 		var iters = 0
@@ -65,10 +67,10 @@ class MotionInputFuckery:
 		
 		for input in inputs:
 			if input == Dirs.IADOWN:
-				if Input.is_action_pressed("down"):
+				if curpressedmask & 2:
 					inputidx += 1 
-			elif input == Dirs.IAUP:				
-				if Input.is_action_pressed("up"):
+			elif input == Dirs.IAUP:
+				if curpressedmask & 1:
 					inputidx += 1 
 					
 		
@@ -114,9 +116,9 @@ func on_fired(gun):
 		var attack_thing :MotionInputFuckery = at
 	
 		if (!attack_machine.state == attack_thing.state_required or 
-			!attack_thing.compare(input_buffer) or 
+			!attack_thing.compare(input_buffer,currently_pressed_status) or 
 			!attack_thing.match_floor_state(on_floor) or 
-			!attack_thing.match_floor_state(is_idle,attack_thing.requires_on_floor) or 
+			!attack_thing.match_floor_state(is_idle,attack_thing.requires_idle) or 
 			!attack_thing.item_check(playerstatus)
 		):
 			continue
@@ -139,7 +141,13 @@ func deal_with_input(i:int):
 		
 	time_since_pressed = 0
 	input_buffer.append(i)
-	
+
+
+func setup_ip_status(
+	up:bool,
+	down:bool
+):
+	currently_pressed_status =  int(up) | int(down)<<1
 
 
 

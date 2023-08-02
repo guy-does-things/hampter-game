@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
+[ext_resource path="res://raw_sprites/hamptertube.png" type="Texture" id=2]
 [ext_resource path="res://Line2D4.gd" type="Script" id=3]
+[ext_resource path="res://locations/nitrotasticman/CanvasLayer.gd" type="Script" id=4]
+[ext_resource path="res://raw_sprites/bgs/sand/sand.png" type="Texture" id=5]
 
 [node name="A" instance=ExtResource( 1 )]
 
@@ -17,6 +20,8 @@ z_index = 2
 points = PoolVector2Array( 736, 160, 64, 160, 64, 1008, 496, 1008 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 3 )
@@ -26,6 +31,72 @@ z_index = 2
 points = PoolVector2Array( 1056, 1008, 1056, 1584, 672, 1584 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 3 )
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="." index="6"]
+layer = -6
+follow_viewport_enable = true
+follow_viewport_scale = 0.5
+script = ExtResource( 4 )
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer3" index="0"]
+scale = Vector2( 2, 2 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer3/Node2D" index="0"]
+margin_left = -309.0
+margin_top = 200.0
+margin_right = 1863.0
+margin_bottom = 284.0
+color = Color( 0.976471, 0.666667, 0.121569, 1 )
+
+[node name="City" type="Sprite" parent="CanvasLayer3/Node2D" index="1"]
+position = Vector2( -309.5, -51 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 322.014, 67 )
+
+[node name="City2" type="Sprite" parent="CanvasLayer3/Node2D" index="2"]
+position = Vector2( -309.5, 252 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 322.014, 67 )
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer3/Node2D" index="3"]
+margin_left = -328.0
+margin_top = 516.0
+margin_right = 716.0
+margin_bottom = 612.0
+color = Color( 0.976471, 0.666667, 0.121569, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer3/Node2D" index="4"]
+margin_left = -328.0
+margin_top = 516.0
+margin_right = 716.0
+margin_bottom = 612.0
+color = Color( 0.976471, 0.666667, 0.121569, 1 )
+
+[node name="City3" type="Sprite" parent="CanvasLayer3/Node2D" index="5"]
+position = Vector2( -388, 676 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 322.014, 67 )
+
+[node name="CanvasLayer4" type="CanvasLayer" parent="." index="7"]
+layer = -7
+follow_viewport_scale = 0.5
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer4" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.121569, 0.670588, 0.878431, 1 )

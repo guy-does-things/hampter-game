@@ -12,11 +12,11 @@ export var damage_override = -1
 
 signal hurted(dam,is_water)
 signal died(dam)
-export var KBmult = Vector2.ONE
-export var path_entitystatus : NodePath
 onready var entitystatus :StatusThing= get_node(path_entitystatus)
 onready var entity := get_parent()
-
+export var is_dummy = false
+export var KBmult = Vector2.ONE
+export var path_entitystatus : NodePath
 var can_hurt = true
 var current_priority = -1
 var iframetimer = Timer.new()
@@ -24,6 +24,7 @@ var total_combo_damage = 0
 var current_tweenk :SceneTreeTween
 var iframe_flash_timer := Timer.new()
 var is_fucking_dead = false
+
 
 
 func _ready():
@@ -42,6 +43,10 @@ func _ready():
 	collision_mask = 16
 	collision_layer = 16
 	
+	if is_dummy:
+		collision_mask = 512
+		collision_layer = 512
+			
 	
 	
 	if is_enemy:

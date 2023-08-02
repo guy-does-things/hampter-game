@@ -11,7 +11,7 @@
 [ext_resource path="res://halweapon/weapon_anims.gd" type="Script" id=9]
 [ext_resource path="res://hitHurt(1).wav" type="AudioStream" id=10]
 
-[sub_resource type="Shader" id=8]
+[sub_resource type="Shader" id=42]
 code = "shader_type canvas_item;
 
 
@@ -95,8 +95,8 @@ void fragment()
 
 "
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 8 )
+[sub_resource type="ShaderMaterial" id=43]
+shader = SubResource( 42 )
 shader_param/has_funny_upgrade = 0
 shader_param/woodhandcolor = Color( 0.545098, 0.313726, 0.0941176, 1 )
 shader_param/woodhandshadowcolor = Color( 0.407843, 0.223529, 0.0941176, 1 )
@@ -502,22 +502,22 @@ tracks/1/keys = {
 "values": [ false, true, false ]
 }
 
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=44]
 extents = Vector2( 35, 26.5 )
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 44, 33 )
 
-[sub_resource type="RectangleShape2D" id=30]
+[sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 42, 22.5 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=47]
 extents = Vector2( 35, 43 )
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=48]
 extents = Vector2( 43.5, 34 )
 
-[sub_resource type="CircleShape2D" id=25]
+[sub_resource type="CircleShape2D" id=49]
 radius = 34.9182
 
 [node name="Node2D" instance=ExtResource( 1 )]
@@ -525,7 +525,7 @@ light_mask = 48
 script = ExtResource( 2 )
 
 [node name="SpriteSheet" parent="." index="0"]
-material = SubResource( 9 )
+material = SubResource( 43 )
 texture = ExtResource( 6 )
 offset = Vector2( 5, 0 )
 hframes = 18
@@ -599,7 +599,7 @@ can_hit_multiple_times = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/Attack1" index="1"]
 position = Vector2( 7, 31 )
-shape = SubResource( 31 )
+shape = SubResource( 44 )
 
 [node name="Attack2" parent="HitBoxes" index="1" instance=ExtResource( 4 )]
 position = Vector2( 21, 0.999996 )
@@ -611,7 +611,7 @@ can_hit_multiple_times = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/Attack2" index="1"]
 position = Vector2( 15, 35 )
-shape = SubResource( 32 )
+shape = SubResource( 45 )
 
 [node name="Attack3" parent="HitBoxes" index="2" instance=ExtResource( 4 )]
 visible = false
@@ -624,30 +624,31 @@ can_hit_multiple_times = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/Attack3" index="1"]
 position = Vector2( 21, 3 )
-shape = SubResource( 30 )
+shape = SubResource( 46 )
 
 [node name="uppercut" parent="HitBoxes" index="3" instance=ExtResource( 4 )]
 position = Vector2( 21, 0.999996 )
 monitoring = false
 min_hit_priority = 6
 max_hit_priority = 6
-damage = 4
+damage = 6
 can_hit_multiple_times = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/uppercut" index="1"]
 position = Vector2( 16, 18 )
-shape = SubResource( 28 )
+shape = SubResource( 47 )
 
 [node name="SoulThrowBoxes" parent="HitBoxes" index="4" instance=ExtResource( 4 )]
 position = Vector2( 21, 0.999996 )
 monitoring = false
 min_hit_priority = 4
 max_hit_priority = 4
+damage = 4
 can_hit_multiple_times = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/SoulThrowBoxes" index="1"]
 position = Vector2( 7.5, 23 )
-shape = SubResource( 29 )
+shape = SubResource( 48 )
 
 [node name="SpinSlash" parent="HitBoxes" index="5" instance=ExtResource( 4 )]
 position = Vector2( 21, 0.999996 )
@@ -658,7 +659,7 @@ damage = 1
 can_hit_multiple_times = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/SpinSlash" index="1"]
-shape = SubResource( 25 )
+shape = SubResource( 49 )
 
 [connection signal="fired" from="." to="." method="_on_Node2D_fired"]
 [connection signal="postfired" from="." to="." method="_on_Node2D_postfired"]

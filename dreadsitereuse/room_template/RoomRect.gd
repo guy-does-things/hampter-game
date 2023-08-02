@@ -74,17 +74,17 @@ func _physics_process(delta):
 		#Signals.emit_signal("player_exited_room",get_parent())
 #
 #	last_e_state = r
-	
-	#if NewRoomAutoload.get_current_room() == get_parent() and MapManager.current_room_in == get_parent() or Globals.IS_EDITOR:
-	get_parent().show()
-	#	return
-	#elif !r:
-	#	get_parent().hide()
+#
+#	if NewRoomAutoload.get_current_room() == get_parent() and MapManager.current_room_in == get_parent():
+#		get_parent().show()
+#		return
+#	elif !r:
+#		get_parent().hide()
 
-	
+	get_parent().visible = MapManager.current_room_in == get_parent()	
 	
 	if r:
-		get_parent().show()		
+		#get_parent().show()		
 		NewRoomAutoload.entered_room(get_parent(), get_parent().assigned_room_data)		
 		
 		if MapManager.current_room_in != get_parent():

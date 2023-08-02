@@ -15,6 +15,3 @@ tile_data = PoolIntArray( 0, 5, 65536, 1, 5, 65536, 2, 5, 65536, 3, 5, 65536, 4,
 position = Vector2( 344, 224 )
 texture = ExtResource( 3 )
 flip_h = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="7"]
-layer = -2

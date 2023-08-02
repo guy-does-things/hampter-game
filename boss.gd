@@ -9,7 +9,7 @@ func on_spawned():
 
 
 
-	
+
 
 func _on_HurtComponent_died(dam):
 	if not $StateMachine.enabled:return

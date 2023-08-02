@@ -8,11 +8,14 @@ export var has_sthing = true
 
 
 func _physics_process(delta):
-	if not has_sthing:return
+	if not disabled:update_flip()
 	
+func update_flip():
+	if not has_sthing:return
 	var targ = $"%StatusThing".target
-	if is_instance_valid(targ) and not disabled:
+	if is_instance_valid(targ):
 		flip(global_position.direction_to(targ.global_position).x)
+		
 		
 		
 func flip(dirx):

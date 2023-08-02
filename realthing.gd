@@ -21,6 +21,10 @@ func _physics_process(delta):
 	
 	
 	if Input.is_key_pressed(KEY_L):
-		Globals.died(get_global_mouse_position())
+		$BisexualGun.dir.x = -1
+		$BisexualGun.try_shooting()
+		#Globals.hit_fuckery(get_global_mouse_position())
+		#print(get_tree().get_nodes_in_group("plrproj"))
+		#Globals.died(get_global_mouse_position())
 	
 	

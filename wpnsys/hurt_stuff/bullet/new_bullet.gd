@@ -149,6 +149,8 @@ func _physics_process(delta):
 		set_hitbox(hitbox)
 
 
+
+
 func try_moving(delta):
 	_funnyphysparms.transform = global_transform
 	_funnyphysparms.motion = get_velocity(delta)
@@ -170,7 +172,8 @@ func try_moving(delta):
 		
 		global_position += _funnyphysparms.motion * castraymovmult
 		
-	
+
+
 
 
 func parse_shape_coli_results(result:Dictionary):

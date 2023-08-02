@@ -43,5 +43,6 @@ func died(gp:Vector2)->Node2D:
 	var hit_fx = preload("res://hit_effect/hit_effect.tscn").instance()
 	hit_fx.global_position = gp
 	get_tree().current_scene.add_child(hit_fx)
+	
 	return hit_fx
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/enemies/introscorpion/introscorpion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://scenes/boss_door/BossDoor2.tscn" type="PackedScene" id=13]
 [ext_resource path="res://realthing.gd" type="Script" id=14]
 [ext_resource path="res://raw_sprites/hamptertube.png" type="Texture" id=15]
+[ext_resource path="res://weapons/BisexualGun.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Environment" id=8]
 background_mode = 4
@@ -44,7 +45,7 @@ color = Color( 0.121569, 0.670588, 0.878431, 1 )
 position = Vector2( 56, 368 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -96, 320 )
+position = Vector2( -96, -176 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 rotating = true
@@ -165,7 +166,7 @@ text = "forbidden area
 position = Vector2( -200, 94 )
 
 [node name="TEstSpinner2" parent="." instance=ExtResource( 7 )]
-position = Vector2( -360, -48 )
+position = Vector2( -352, -56 )
 
 [node name="BossDoor2" parent="." instance=ExtResource( 13 )]
 
@@ -279,3 +280,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
+
+[node name="BisexualGun" parent="." instance=ExtResource( 16 )]

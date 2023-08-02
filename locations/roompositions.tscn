@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=2]
@@ -53,6 +53,9 @@
 [ext_resource path="res://locations/nitrotasticman/mallsave.tscn" type="PackedScene" id=51]
 [ext_resource path="res://locations/nitrotasticman/diningroom.tscn" type="PackedScene" id=52]
 [ext_resource path="res://locations/nitrotasticman/car_jumpscare_2_electric_bogaloo.tscn" type="PackedScene" id=53]
+[ext_resource path="res://locations/nitrotasticman/car_jumpscare_3_electric_bogaloo.tscn" type="PackedScene" id=54]
+[ext_resource path="res://locations/nitrotasticman/boss4.tscn" type="PackedScene" id=55]
+[ext_resource path="res://scenes/enemies/boss4/killerfox.tscn" type="PackedScene" id=56]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 26 )
@@ -65,13 +68,13 @@ region = Rect2( 26, 0, 13, 13 )
 [sub_resource type="Environment" id=3]
 background_mode = 4
 glow_enabled = true
-glow_bloom = 0.06
+glow_bloom = 0.01
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 24 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 2453, 1972 )
+position = Vector2( 11952, -1776 )
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
 current = true
@@ -249,6 +252,7 @@ texture = SubResource( 2 )
 stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Inventory"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -442,7 +446,7 @@ position = Vector2( 4240, -1936 )
 environment = SubResource( 3 )
 
 [node name="Entity" parent="." instance=ExtResource( 41 )]
-position = Vector2( 4487, -144 )
+position = Vector2( 4487, 30 )
 
 [node name="A15" parent="." instance=ExtResource( 47 )]
 position = Vector2( -592, -64 )
@@ -461,3 +465,12 @@ position = Vector2( 3760, -2256 )
 
 [node name="A39" parent="." instance=ExtResource( 53 )]
 position = Vector2( 5200, -2544 )
+
+[node name="A40" parent="." instance=ExtResource( 54 )]
+position = Vector2( 7408, -2544 )
+
+[node name="A41" parent="." instance=ExtResource( 55 )]
+position = Vector2( 11921, -2544 )
+
+[node name="Entity2" parent="." instance=ExtResource( 56 )]
+position = Vector2( 12357, -1787 )

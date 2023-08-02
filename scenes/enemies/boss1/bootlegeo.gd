@@ -21,9 +21,6 @@ export var o_color = 0.0 setget set_ocolor; func set_ocolor(val):
 
 
 
-func _ready():
-	$HurtComponent.hurt(100,Vector2.ZERO,false,0,false)
-
 
 
 func hp_check(dam, is_water):

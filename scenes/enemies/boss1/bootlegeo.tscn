@@ -17,7 +17,7 @@
 [ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=16]
 [ext_resource path="res://raw_sprites/circletex.png" type="Texture" id=17]
 [ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=18]
-[ext_resource path="res://bullets/fire_blast.tscn" type="PackedScene" id=19]
+[ext_resource path="res://bullets/fire_blast_bullet/fire_blast.tscn" type="PackedScene" id=19]
 [ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/enemies/boss1/bossanims.gd" type="Script" id=21]
 [ext_resource path="res://scenes/enemies/boss1/bootlegeo.gd" type="Script" id=22]
@@ -93,8 +93,8 @@ extents = Vector2( 13, 22.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.5, 15.5 )
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 240.533
+[sub_resource type="CircleShape2D" id=24]
+radius = 500.0
 
 [sub_resource type="Animation" id=17]
 length = 0.032
@@ -539,14 +539,13 @@ wait_time = 0.1
 one_shot = true
 
 [node name="NewPlayerDetector" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 6 )
 cantaimY = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlayerDetector"]
-shape = SubResource( 3 )
+shape = SubResource( 24 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

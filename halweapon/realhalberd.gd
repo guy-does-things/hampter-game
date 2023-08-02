@@ -28,6 +28,8 @@ func unloked_halberd_upgrade():
 	for hitbox in $HitBoxes.get_children():
 		hitbox.damage = ceil(hitbox.damage*dmgmult)
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#floor_req:int,input_req:Array,state,attack
@@ -60,7 +62,8 @@ func _ready():
 
 	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.ALL,[Dirs.DOWN,Dirs.RIGHT,Dirs.UP],$AttackStateMachine/None,$AttackStateMachine/PipeBomb ,FloorRequirementModes.ALL,4,Globals.Items.PIPEBOMB))
 	attack_list.append(MotionInputFuckery.new(FloorRequirementModes.ALL,[Dirs.DOWN,Dirs.LEFT,Dirs.UP],$AttackStateMachine/None,$AttackStateMachine/PipeBomb ,FloorRequirementModes.ALL,4,Globals.Items.PIPEBOMB))
-
+	for hitbox in $HitBoxes.get_children():
+		hitbox.is_enemy = is_enemy
 
 
 func stop_pogoin():
@@ -89,10 +92,12 @@ func soul_attack():
 	sattack.global_position = global_position + Vector2.DOWN *4
 	sattack.scale.x = dir.x
 	sattack.speed = 386
-	sattack.damage = 3*dmgmult
+	sattack.damage = 7*dmgmult
 	sattack.lifetime = 1
 	sattack.dir = dir
 	sattack.dir.y -= .05
+	sattack.is_enemy = is_enemy
+	sattack.add_to_group("plrproj")
 	
 	get_tree().current_scene.add_child(sattack)
 
@@ -103,24 +108,28 @@ func battack():
 	sattack.global_position = global_position + Vector2.DOWN *4
 	sattack.scale.x = dir.x
 	sattack.speed = 386
-	sattack.damage = 3*dmgmult
+	sattack.damage = 5*dmgmult
 	sattack.lifetime = 10
 	sattack.dir = dir
+	
+	sattack.is_enemy = is_enemy
+	sattack.add_to_group("plrproj")
 	
 	get_tree().current_scene.add_child(sattack)
 
 func pipebombattack():
 	var sattack = preload("res://bullets/pipebomb/pipebomb.tscn").instance()
 	
-	
 	sattack.global_position = global_position + Vector2.DOWN *4
 	
 	sattack.scale.x = dir.x
-	sattack.damage = 5*1
+	sattack.damage = 15*dmgmult
 	sattack.lifetime = 10
 	sattack.dir = dir
 	sattack.speed = 200
 	sattack.velocity = Vector2(0,-150)
+	sattack.is_enemy = is_enemy
+	sattack.add_to_group("plrproj")
 	
 	get_tree().current_scene.add_child(sattack)
 	

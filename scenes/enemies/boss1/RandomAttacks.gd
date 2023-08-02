@@ -7,5 +7,5 @@ func _ready():
 
 func _get_transition(delta):
 	var rindex =randi() % attacks.size()
-	rindex = 3
+	#rindex = 3
 	return get_node(attacks[rindex])
