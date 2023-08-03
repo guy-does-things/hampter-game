@@ -6,11 +6,23 @@ var slashes = 0
 var can_slash = true
 export var slash_move_speed = 450
 var dir = 0
+var active = false
+var can_exit = false
+var is_animating_exit = false
+
+
 
 
 func _state_logic(dt):
+	if not active:return
+	
 	if slashes <= 3:
 		do_combo()
+	elif not is_animating_exit:
+		is_animating_exit = true
+		yield($"%AnimationPlayer".play_anim("pickupswd",2,true),"completed")
+		can_exit = true
+		
 	
 
 func _enter_state(new_state, old_state):
@@ -18,16 +30,21 @@ func _enter_state(new_state, old_state):
 	$"%Flippables".disabled = true
 	$"%Flippables".update_flip()
 	dir = $"%Flippables".scale.x
+	yield($"%AnimationPlayer".play_anim("pickupswd",2),"completed")
+	active = true
 
 
 func _exit_state(old_state, new_state):
 	._exit_state(old_state, new_state)
 	$"%Flippables".disabled = false
 	slashes = 0
+	can_exit = false
+	is_animating_exit = false
+	active = false
 
 
 func _get_transition(dt):
-	if slashes >= 3:
+	if slashes >= 3 and can_exit:
 		return state_machine.get_node(state_machine.initial_state)
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/enemies/introscorpion/introscorpion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://realthing.gd" type="Script" id=14]
 [ext_resource path="res://raw_sprites/hamptertube.png" type="Texture" id=15]
 [ext_resource path="res://weapons/BisexualGun.tscn" type="PackedScene" id=16]
+[ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=17]
+[ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=18]
+[ext_resource path="res://bullets/pipebomb/pipebomb.tscn" type="PackedScene" id=19]
+[ext_resource path="res://weapons/pipebomblauncher.gd" type="Script" id=20]
 
 [sub_resource type="Environment" id=8]
 background_mode = 4
@@ -31,6 +35,29 @@ region = Rect2( 0, 0, 13, 13 )
 atlas = ExtResource( 9 )
 region = Rect2( 26, 0, 13, 13 )
 
+[sub_resource type="Resource" id=85]
+script = ExtResource( 17 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 3
+burst_count = 1
+cooldown = 0.5
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 700
+bullet_lifetime = 5.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=86]
+script = ExtResource( 18 )
+data_res = SubResource( 85 )
+bullet = ExtResource( 19 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 14 )
 
@@ -45,7 +72,7 @@ color = Color( 0.121569, 0.670588, 0.878431, 1 )
 position = Vector2( 56, 368 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -96, -176 )
+position = Vector2( -95, -312 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 rotating = true
@@ -282,3 +309,7 @@ mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="BisexualGun" parent="." instance=ExtResource( 16 )]
+position = Vector2( 64, -312 )
+scale = Vector2( -1, 1 )
+script = ExtResource( 20 )
+_gun_data = SubResource( 86 )

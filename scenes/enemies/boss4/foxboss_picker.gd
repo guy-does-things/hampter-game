@@ -20,8 +20,6 @@ func _get_transition(dt):
 		var rindex = randi() % get_child_count()
 		var child :FoxActionState = get_children()[rindex]
 		
-	
-		
 		
 		if child.stamina_requirement <= $"%StatusThing".stamina:
 			if child != state_machine.previous_state:
@@ -35,5 +33,7 @@ func _get_transition(dt):
 		$"%StatusThing".decrease_stamina(valid_state.stamina_requirement)
 		return valid_state
 	
-	return null
+	
+	if $"%StatusThing".stamina == 0:
+		return fallback
 	

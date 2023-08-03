@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://scenes/enemies/boss4/killerfox.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
@@ -20,7 +20,7 @@
 [ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=18]
 [ext_resource path="res://raw_sprites/twinkle.png" type="Texture" id=19]
 [ext_resource path="res://halweapon/oggrad.tres" type="Texture" id=20]
-[ext_resource path="res://scenes/enemies/boss1/bossanims.gd" type="Script" id=21]
+[ext_resource path="res://scenes/enemies/boss4/foxanims.gd" type="Script" id=21]
 [ext_resource path="res://state_machine/state.gd" type="Script" id=22]
 [ext_resource path="res://scripts/physicsthings.gd" type="Script" id=23]
 [ext_resource path="res://state_machine/state_machine.gd" type="Script" id=24]
@@ -34,66 +34,10 @@
 [ext_resource path="res://scenes/enemies/boss4/TripleSlash.gd" type="Script" id=32]
 [ext_resource path="res://weapons/BisexualGun.tscn" type="PackedScene" id=33]
 [ext_resource path="res://scenes/enemies/boss4/backdash.gd" type="Script" id=34]
-
-[sub_resource type="Resource" id=26]
-script = ExtResource( 15 )
-gun_name = ""
-gun_desc = ""
-gun_fire_mode = 1
-fires_before_charging = false
-pellet_count = 1
-burst_count = 1
-cooldown = 1.0
-max_charge = 0.0
-spread = 0.0
-recoil = 0.0
-rotation_recoil = 0.0
-damage = 1
-speed = 6000
-bullet_lifetime = 2.0
-no_cooldown = false
-
-[sub_resource type="Resource" id=25]
-script = ExtResource( 13 )
-data_res = SubResource( 26 )
-bullet = ExtResource( 14 )
-
-[sub_resource type="Shader" id=9]
-code = "shader_type canvas_item;
-
-uniform vec4 rep_col : hint_color;
-
-
-
-void fragment()
-{
-	
-	vec4 rgba = texture(TEXTURE,UV);
-	float gs = (rgba.r +rgba.g + rgba.b) / 3.0;
-	
-	if (gs==0.0)
-	{
-		rgba.rgb = rep_col.rgb;
-	}
-	
-	COLOR = rgba;
-	
-}
-"
-
-[sub_resource type="ShaderMaterial" id=29]
-resource_local_to_scene = true
-shader = SubResource( 9 )
-shader_param/rep_col = Color( 0, 0, 0, 1 )
-
-[sub_resource type="Curve" id=27]
-max_value = 2.0
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.364407, 1.96591 ), -1.93091, -2.62222, 0, 0, Vector2( 1, 0 ), 0.526786, 0.0, 0, 0 ]
-
-[sub_resource type="Gradient" id=28]
-interpolation_mode = 2
-offsets = PoolRealArray( 0.00938967, 0.652582, 0.849765, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+[ext_resource path="res://raw_sprites/player/fox.png" type="Texture" id=35]
+[ext_resource path="res://scenes/enemies/boss4/Tired.gd" type="Script" id=36]
+[ext_resource path="res://scenes/enemies/boss4/foxscaler.gd" type="Script" id=37]
+[ext_resource path="res://scenes/enemies/boss4/State.gd" type="Script" id=38]
 
 [sub_resource type="Resource" id=30]
 script = ExtResource( 15 )
@@ -626,6 +570,66 @@ extents = Vector2( 43.5, 34 )
 [sub_resource type="CircleShape2D" id=49]
 radius = 34.9182
 
+[sub_resource type="Resource" id=26]
+script = ExtResource( 15 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 1
+burst_count = 1
+cooldown = 1.0
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 6000
+bullet_lifetime = 2.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 13 )
+data_res = SubResource( 26 )
+bullet = ExtResource( 14 )
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+uniform vec4 rep_col : hint_color;
+
+
+
+void fragment()
+{
+	
+	vec4 rgba = texture(TEXTURE,UV);
+	float gs = (rgba.r +rgba.g + rgba.b) / 3.0;
+	
+	if (gs==0.0)
+	{
+		rgba.rgb = rep_col.rgb;
+	}
+	
+	COLOR = rgba;
+	
+}
+"
+
+[sub_resource type="ShaderMaterial" id=29]
+resource_local_to_scene = true
+shader = SubResource( 9 )
+shader_param/rep_col = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Curve" id=27]
+max_value = 2.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.364407, 1.96591 ), -1.93091, -2.62222, 0, 0, Vector2( 1, 0 ), 0.526786, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=28]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.00938967, 0.652582, 0.849765, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 22.5 )
 
@@ -638,31 +642,278 @@ radius = 500.0
 [sub_resource type="Animation" id=17]
 length = 0.032
 
-[sub_resource type="Animation" id=16]
-resource_name = "dropkick"
+[sub_resource type="Animation" id=52]
+resource_name = "backdash"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=50]
+resource_name = "fall"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "hurtair"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=54]
+resource_name = "hurtfloor"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=51]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=15]
 resource_name = "jump"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
 
-[sub_resource type="Animation" id=22]
-resource_name = "knocked"
-length = 0.032
+[sub_resource type="Animation" id=56]
+resource_name = "pickupgun"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flippables/Glock:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flippables/Glock:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 135.0, 0.0 ]
+}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=57]
+resource_name = "pickuprifle"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flippables/BisexualGun:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flippables/BisexualGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 135.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Flippables/Halb:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Flippables/Halb:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 135.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=58]
+resource_name = "pickupswd"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flippables/Halb:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flippables/Halb:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 135.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=59]
 resource_name = "run"
 length = 0.181
 loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
 
-[sub_resource type="Animation" id=7]
-resource_name = "shoot"
-length = 0.24
-
-[sub_resource type="Animation" id=14]
-resource_name = "uppercut"
-
-[sub_resource type="Animation" id=8]
-resource_name = "uppercutcharge"
-length = 0.063
+[sub_resource type="Animation" id=55]
+resource_name = "tired"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
 
 [node name="Entity" type="KinematicBody2D"]
 collision_layer = 0
@@ -677,49 +928,17 @@ unique_name_in_owner = true
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="Flippables"]
+visible = false
 margin_left = -18.0
 margin_top = -11.0
 margin_right = 18.0
 margin_bottom = 32.0
 
-[node name="WallCast" type="RayCast2D" parent="Flippables"]
-unique_name_in_owner = true
-enabled = true
-cast_to = Vector2( -35, 0 )
-collision_mask = 32
-
-[node name="Glock" parent="Flippables" instance=ExtResource( 11 )]
-unique_name_in_owner = true
-position = Vector2( 23, 11 )
-_gun_data = SubResource( 25 )
-is_enemy = true
-
-[node name="SpriteSheet" parent="Flippables/Glock" index="0"]
-material = SubResource( 29 )
-texture = ExtResource( 12 )
-offset = Vector2( 2, -1 )
-
-[node name="Position2D" parent="Flippables/Glock" index="1"]
-position = Vector2( 8, -2 )
-
-[node name="Twinkl" type="CPUParticles2D" parent="Flippables/Glock"]
-unique_name_in_owner = true
-position = Vector2( 8, -2 )
-emitting = false
-amount = 1
-lifetime = 0.6
-one_shot = true
-texture = ExtResource( 19 )
-gravity = Vector2( 0, 0 )
-angular_velocity = 360.0
-scale_amount_curve = SubResource( 27 )
-color_ramp = SubResource( 28 )
-
 [node name="Halb" type="Node2D" parent="Flippables"]
 unique_name_in_owner = true
-show_behind_parent = true
 light_mask = 48
-position = Vector2( 18, 5 )
+position = Vector2( 7, 16 )
+scale = Vector2( 1e-05, 1e-05 )
 script = ExtResource( 27 )
 _gun_data = SubResource( 31 )
 is_enemy = true
@@ -872,12 +1091,60 @@ can_hit_multiple_times = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/Halb/HitBoxes/SpinSlash"]
 shape = SubResource( 49 )
 
+[node name="Node2D" type="Node2D" parent="Flippables"]
+position = Vector2( 0, 12 )
+script = ExtResource( 37 )
+go_up_tweenT = 0.3
+tweenT = 0.3
+
+[node name="Sprite" type="Sprite" parent="Flippables/Node2D"]
+texture = ExtResource( 35 )
+hframes = 10
+frame = 2
+
+[node name="Glock" parent="Flippables" instance=ExtResource( 11 )]
+unique_name_in_owner = true
+position = Vector2( 7, 16 )
+scale = Vector2( 1e-05, 1e-05 )
+_gun_data = SubResource( 25 )
+is_enemy = true
+
+[node name="SpriteSheet" parent="Flippables/Glock" index="0"]
+material = SubResource( 29 )
+texture = ExtResource( 12 )
+offset = Vector2( 2, -1 )
+
+[node name="Position2D" parent="Flippables/Glock" index="1"]
+position = Vector2( 8, -2 )
+
+[node name="Twinkl" type="CPUParticles2D" parent="Flippables/Glock"]
+unique_name_in_owner = true
+position = Vector2( 8, -2 )
+emitting = false
+amount = 1
+lifetime = 0.6
+one_shot = true
+texture = ExtResource( 19 )
+gravity = Vector2( 0, 0 )
+angular_velocity = 360.0
+scale_amount_curve = SubResource( 27 )
+color_ramp = SubResource( 28 )
+
+[node name="WallCast" type="RayCast2D" parent="Flippables"]
+unique_name_in_owner = true
+enabled = true
+cast_to = Vector2( -35, 0 )
+collision_mask = 32
+
 [node name="BisexualGun" parent="Flippables" instance=ExtResource( 33 )]
 unique_name_in_owner = true
-position = Vector2( 16, 14 )
+position = Vector2( 10, 15 )
+scale = Vector2( 1e-05, 1e-05 )
 
 [node name="SpriteSheet" parent="Flippables/BisexualGun" index="0"]
 material = SubResource( 29 )
+position = Vector2( 0, 2 )
+offset = Vector2( 4, -3 )
 
 [node name="Twinkl2" type="CPUParticles2D" parent="Flippables/BisexualGun"]
 unique_name_in_owner = true
@@ -920,39 +1187,48 @@ initial_state = NodePath("StatePicker")
 
 [node name="StatePicker" type="Node" parent="StateMachine"]
 script = ExtResource( 3 )
-fallback = NodePath("../WalkTowards")
+fallback = NodePath("../Tired")
 
 [node name="BackDash" type="Node" parent="StateMachine/StatePicker"]
 script = ExtResource( 34 )
 can_go_to_hurtstate = false
 stamina_requirement = 1
-speed = 400
+speed = 300
 
 [node name="JumpTowards" type="Node" parent="StateMachine/StatePicker"]
 script = ExtResource( 10 )
 can_go_to_hurtstate = false
-stamina_requirement = 6
+stamina_requirement = 5
 
 [node name="Gun" type="Node" parent="StateMachine/StatePicker"]
 script = ExtResource( 17 )
 can_go_to_hurtstate = false
-stamina_requirement = 5
+stamina_requirement = 7
 max_shots = 4
 
 [node name="TripleSlash" type="Node" parent="StateMachine/StatePicker"]
 script = ExtResource( 32 )
 can_go_to_hurtstate = false
-stamina_requirement = 30
+stamina_requirement = 25
 slash_move_speed = 250
 
 [node name="BikePingPong" type="Node" parent="StateMachine/StatePicker"]
 script = ExtResource( 5 )
 can_go_to_hurtstate = false
-stamina_requirement = 20
+stamina_requirement = 15
 
-[node name="WalkTowards" type="Node" parent="StateMachine"]
+[node name="WalkTowards" type="Node" parent="StateMachine/StatePicker"]
 script = ExtResource( 4 )
-speed = 20
+can_go_to_hurtstate = false
+stamina_requirement = 20000
+speed = 25
+max_time = 1.0
+
+[node name="FoxActionState" type="Node" parent="StateMachine/StatePicker"]
+script = ExtResource( 38 )
+
+[node name="Tired" type="Node" parent="StateMachine"]
+script = ExtResource( 36 )
 
 [node name="NewPlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -966,16 +1242,26 @@ shape = SubResource( 24 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 anims/RESET = SubResource( 17 )
-anims/dropkick = SubResource( 16 )
+anims/backdash = SubResource( 52 )
+anims/fall = SubResource( 50 )
+anims/hurtair = SubResource( 53 )
+anims/hurtfloor = SubResource( 54 )
+anims/idle = SubResource( 51 )
 anims/jump = SubResource( 15 )
-anims/knocked = SubResource( 22 )
-anims/run = SubResource( 6 )
-anims/shoot = SubResource( 7 )
-anims/uppercut = SubResource( 14 )
-anims/uppercutcharge = SubResource( 8 )
+anims/pickupgun = SubResource( 56 )
+anims/pickuprifle = SubResource( 57 )
+anims/pickupswd = SubResource( 58 )
+anims/run = SubResource( 59 )
+anims/tired = SubResource( 55 )
 script = ExtResource( 21 )
 
 [node name="Jumper" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 7 )
+max_jumps = 1
+jump_force = -100
+
+[node name="Jumper2" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 7 )
 max_jumps = 1
@@ -1019,8 +1305,12 @@ margin_top = -64.0
 margin_right = 40.0
 margin_bottom = -50.0
 
-[connection signal="fired" from="Flippables/Glock" to="StateMachine/StatePicker/Gun" method="_on_Glock_fired"]
-[connection signal="postfired" from="Flippables/Glock" to="StateMachine/StatePicker/Gun" method="_on_Glock_postfired"]
+[connection signal="entered_hitstun" from="." to="AnimationPlayer" method="_on_Entity_entered_hitstun"]
+[connection signal="exited_hitstun" from="." to="AnimationPlayer" method="stop"]
+[connection signal="recharged" from="." to="Flippables/Node2D" method="stop"]
+[connection signal="recharged" from="." to="StateMachine/Tired" method="_on_Entity_recharged"]
+[connection signal="recharged" from="." to="AnimationPlayer" method="_on_Entity_recharged"]
+[connection signal="tired" from="." to="Flippables/Node2D" method="start"]
 [connection signal="postfired" from="Flippables/Halb" to="StateMachine/StatePicker/TripleSlash" method="_on_Halb_postfired"]
 [connection signal="entered" from="Flippables/Halb/AttackStateMachine/None" to="Flippables/Halb/AnimationPlayer" method="_on_None_entered"]
 [connection signal="entered" from="Flippables/Halb/AttackStateMachine/SpinSlash" to="Flippables/Halb/AnimationPlayer" method="_on_SpinSlash_entered"]
@@ -1041,13 +1331,24 @@ margin_bottom = -50.0
 [connection signal="actually_hit" from="Flippables/Halb/HitBoxes/SpinSlash" to="Flippables/Halb/AttackStateMachine/SpinSlash" method="_on_SpinSlash_actually_hit"]
 [connection signal="disabled" from="Flippables/Halb/HitBoxes/SpinSlash" to="Flippables/Halb/AttackStateMachine/SpinSlash" method="_on_SpinSlash_disabled"]
 [connection signal="timer_finished" from="Flippables/Halb/HitBoxes/SpinSlash" to="Flippables/Halb/AttackStateMachine/SpinSlash" method="_on_SpinSlash_timer_finished"]
+[connection signal="fired" from="Flippables/Glock" to="StateMachine/StatePicker/Gun" method="_on_Glock_fired"]
+[connection signal="postfired" from="Flippables/Glock" to="StateMachine/StatePicker/Gun" method="_on_Glock_postfired"]
 [connection signal="proj_created" from="Flippables/BisexualGun" to="StateMachine/StatePicker/BikePingPong" method="_on_BisexualGun_proj_created"]
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="entered" from="StateMachine/StatePicker/BackDash" to="AnimationPlayer" method="_on_BackDash_entered"]
+[connection signal="exited" from="StateMachine/StatePicker/BackDash" to="AnimationPlayer" method="_on_BackDash_exited"]
+[connection signal="entered" from="StateMachine/StatePicker/WalkTowards" to="AnimationPlayer" method="_on_WalkTowards_entered"]
+[connection signal="exited" from="StateMachine/StatePicker/WalkTowards" to="AnimationPlayer" method="_on_WalkTowards_exited"]
+[connection signal="entered" from="StateMachine/Tired" to="AnimationPlayer" method="_on_Tired_entered"]
 [connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
+[connection signal="entered" from="ActionStateMachine/idle" to="AnimationPlayer" method="_on_idle_entered"]
 [connection signal="landed" from="ActionStateMachine/idle" to="StateMachine/StatePicker/BackDash" method="_on_idle_landed"]
 [connection signal="landed" from="ActionStateMachine/idle" to="StateMachine/StatePicker/JumpTowards" method="_on_idle_landed"]
+[connection signal="landed" from="ActionStateMachine/idle" to="AnimationPlayer" method="_on_idle_landed"]
 [connection signal="landed" from="ActionStateMachine/idle" to="Jumper" method="reset_jumps"]
+[connection signal="entered" from="ActionStateMachine/jump" to="AnimationPlayer" method="_on_jump_entered"]
+[connection signal="entered" from="ActionStateMachine/fall" to="AnimationPlayer" method="_on_fall_entered"]
 [connection signal="start_coyote_time" from="ActionStateMachine/fall" to="Jumper" method="start_coyote_time"]
 
 [editable path="Flippables/Glock"]

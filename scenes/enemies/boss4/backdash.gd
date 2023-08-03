@@ -25,7 +25,7 @@ func _enter_state(new_state, old_state):
 	).x) * speed *( speedmult)
 
 
-	$"%Jumper".jump_force = -100 if speedmult == 1 else -400
+	$"%Jumper".jump_force = -100 if speedmult == 1 else -300
 	$"%Jumper".jump()
 	
 

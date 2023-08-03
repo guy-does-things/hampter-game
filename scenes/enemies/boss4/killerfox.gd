@@ -5,6 +5,10 @@ var outline_colors =[
 	Color.white,	
 ]
 
+signal tired()
+signal recharged()
+var recharging = false
+
 export var o_color = 0.0 setget set_ocolor; func set_ocolor(val):
 	if not is_inside_tree():return
 	
@@ -21,6 +25,10 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	if $"%StatusThing".stamina == 0:
+	if $"%StatusThing".stamina == 0 and not recharging:
+		recharging = true 
+		emit_signal("tired")
 		yield(get_tree().create_timer(5.0/$"%StatusThing".stamina_regen,false),"timeout")
 		$"%StatusThing".stamina = $"%StatusThing".MAX_STAMINA
+		emit_signal("recharged")
+		recharging = false

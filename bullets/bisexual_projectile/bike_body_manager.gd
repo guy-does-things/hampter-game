@@ -8,6 +8,7 @@ var speedmult = 1
 var wall_hit  = false
 
 signal bullet_hit(enemy)
+signal wall_hit()
 
 
 func _on_GdtBullet_startup(bullet:GdtBullet):
@@ -37,6 +38,8 @@ func _on_GdtBullet_movement(bullet):
 	#	bike.rotation_degrees = 0
 		
 		if wall_hit:
+			emit_signal("wall_hit")
+			bullet.customdata.on_wall = true
 			bike.velocity.y = -200
 			bike.velocity.x = -bul.dir.x * 100
 			bul.damage = 0

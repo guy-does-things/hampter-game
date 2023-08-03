@@ -6,6 +6,7 @@ extends Node2D
 # var b = "text"
 
 func _ready():
+	
 	$Inventory/GridContainer.playerstatus = $KinematicBody2D/StatusThing
 	$Inventory/InventoryBorder.setup_player($KinematicBody2D,$KinematicBody2D.status)
 
@@ -21,7 +22,14 @@ func _physics_process(delta):
 	
 	
 	if Input.is_key_pressed(KEY_L):
-		$BisexualGun.dir.x = -1
+		print(
+						$BisexualGun.global_position.direction_to(get_global_mouse_position())
+
+		)
+
+		$BisexualGun.dir = $BisexualGun.global_position.direction_to(get_global_mouse_position())
+		
+		
 		$BisexualGun.try_shooting()
 		#Globals.hit_fuckery(get_global_mouse_position())
 		#print(get_tree().get_nodes_in_group("plrproj"))

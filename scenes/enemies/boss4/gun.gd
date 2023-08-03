@@ -5,13 +5,33 @@ export var max_shots = 0
 var shots = 0
 var can_fire = true
 
+var active = false
+var can_exit = false
+var is_animating_exit = false
+
+func _enter_state(new_state, old_state):
+	._enter_state(new_state, old_state)
+	yield($"%AnimationPlayer".play_anim("pickupgun",2),"completed")
+	active = true
+
 func _exit_state(old_state, new_state):
 	._exit_state(old_state, new_state)
 	shots = 0
 
 
+
+
+
 func _state_logic(dt):
-	if shots >= max_shots:return
+	if not active:return
+	if shots >= max_shots:
+		if not is_animating_exit:
+			
+			is_animating_exit = true
+			yield($"%AnimationPlayer".play_anim("pickupgun",2,true),"completed")
+			can_exit = true
+			
+		return
 	fire()
 
 func fire():
@@ -31,7 +51,11 @@ func fire():
 
 
 func _get_transition(delta):
-	if shots >= max_shots:
+	if shots >= max_shots and can_exit:
+		can_exit = false
+		is_animating_exit = false
+		active = false
+		
 		return state_machine.get_node(state_machine.initial_state)
 
 func _on_Glock_fired(gun):
