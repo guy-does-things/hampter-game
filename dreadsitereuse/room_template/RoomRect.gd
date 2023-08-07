@@ -70,21 +70,9 @@ func _physics_process(delta):
 	var r = a.get_overlapping_bodies().size() > 0
 
 
-#	if NewRoomAutoload.get_current_room() != get_parent() and last_e_state:
-		#Signals.emit_signal("player_exited_room",get_parent())
-#
-#	last_e_state = r
-#
-#	if NewRoomAutoload.get_current_room() == get_parent() and MapManager.current_room_in == get_parent():
-#		get_parent().show()
-#		return
-#	elif !r:
-#		get_parent().hide()
-
 	get_parent().visible = MapManager.current_room_in == get_parent()	
 	
 	if r:
-		#get_parent().show()		
 		NewRoomAutoload.entered_room(get_parent(), get_parent().assigned_room_data)		
 		
 		if MapManager.current_room_in != get_parent():

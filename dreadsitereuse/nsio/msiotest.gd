@@ -149,7 +149,7 @@ func room_discovered(room_path:String,visit_state:int):
 
 
 
-	var rtm :TileMap= tilemaps["TEST"]#[rdata.area]
+	var rtm :TileMap= tilemaps[rdata.area]
 	var room_tile_global_position = rdata.room_position/8
 
 	for c in tm.get_used_cells():
@@ -171,7 +171,7 @@ func room_discovered(room_path:String,visit_state:int):
 				var save : Node2D = i
 				
 				# adds a save point icon :3
-				var s = SaveSprite.new(save.position+rdata.room_position,save.can_fast_travel,room)
+				var s = SaveSprite.new(save.position+rdata.room_position,false,room)
 				save_points.append(s)
 				s.global_position = room_tile_global_position + (save.position / 8)
 				add_child(s)

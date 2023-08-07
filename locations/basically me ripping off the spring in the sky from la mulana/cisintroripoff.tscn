@@ -210,7 +210,7 @@ margin_bottom = 216.0
 margin_left = 368.0
 margin_top = -1096.0
 margin_right = 464.0
-margin_bottom = -624.0
+margin_bottom = 215.0
 
 [node name="ColorRect3" parent="." index="10" instance=ExtResource( 2 )]
 margin_left = 16.0

@@ -3,8 +3,8 @@ extends Node
 
 
 signal item_unlocked(item)
-export var MAX_HP = 0
-onready var current_hp = MAX_HP
+export var MAX_HP = 0 setget ,get_max_hp
+onready var current_hp = MAX_HP setget set_cur_hp
 
 
 
@@ -35,14 +35,22 @@ func has_item(item):
 	return bool(item_bitmask & item) and not bool(disabled_bitmask & item)
 
 
+func get_max_hp():
+	return MAX_HP + hp_stacks
+
+func set_cur_hp(nhp):
+	current_hp = min(nhp,get_max_hp())
+
+
 func unlocked_item(item):
 	if item == GlobalData.Items.HPUP:
-		MAX_HP += 1
-		current_hp = MAX_HP
+		current_hp = self.MAX_HP
 		hp_stacks += 1
 		
 	item_bitmask |= item
 	emit_signal("item_unlocked",item)
+
+
 
 func _on_NewPlayerDetector_target_detected(target):
 	self.target = target

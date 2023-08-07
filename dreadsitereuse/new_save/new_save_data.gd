@@ -4,7 +4,7 @@ class_name NewSaveData
 const DEFAUT_NAME = "name"
 const DEFAUT_ROOM = "res://new_rooms/caves/caves_room_0.tscn"
 
-enum Areas{CAVES, UNDERWATER_CAVES, DESERT, CITY, BROKENLAB,MALLPLAZA}
+enum Areas{ENTRANCE,DESERT, CISRIPOFF,FORBIDDEN,HIGHWAY,FORTRESS}
 
 
 # creation info
@@ -19,13 +19,14 @@ var room_data := {}
 var area_counts := {}
 
 # game data
-var area : int = Areas.CAVES
+var area : int = Areas.ENTRANCE
 var igt : int = 0
 
 
 # player data
 var current_powerups :int=0
 var disabled_shit :int = 0
+var hp_stacks = 0
 var last_position := Vector2(416,255)
 var waypoint_position := Vector2.INF
 
@@ -50,7 +51,8 @@ func to_dict():
 		loaded_room = loaded_room,
 		waypoint_position = waypoint_position,
 		disabled_shit=disabled_shit,
-		globals=global_data
+		globals=global_data,
+		hp_stacks = hp_stacks
 	}
 
 func as_buffer():
@@ -69,6 +71,7 @@ func from_dict(dict:Dictionary):
 	loaded_room = dict.get("loaded_room",loaded_room)
 	waypoint_position = dict.get("waypoint_position",Vector2.INF)
 	global_data = dict.get("globals",{})
+	hp_stacks = dict.get("hp_stacks",0)
 
 
 func room_save_modified(room_path,room_save_info:RoomSaveInfo):

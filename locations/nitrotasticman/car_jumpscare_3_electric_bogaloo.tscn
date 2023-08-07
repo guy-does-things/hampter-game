@@ -7,9 +7,7 @@
 [ext_resource path="res://locations/nitrotasticman/parallaxtest.gd" type="Script" id=5]
 [ext_resource path="res://scenes/breakable_block/break_block.tscn" type="PackedScene" id=6]
 [ext_resource path="res://locations/nitrotasticman/car_chase.gd" type="Script" id=7]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 464, 368 )
+[ext_resource path="res://scenes/nsav_thing/nsav_thing.tscn" type="PackedScene" id=8]
 
 [node name="A" instance=ExtResource( 1 )]
 script = ExtResource( 7 )
@@ -109,16 +107,5 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 992, 67 )
 
-[node name="Area2D" type="Area2D" parent="." index="7"]
-position = Vector2( 4096, 448 )
-collision_layer = 0
-collision_mask = 128
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -192, 0 )
-shape = SubResource( 1 )
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[node name="CAVES " parent="." index="7" instance=ExtResource( 8 )]
+position = Vector2( 4168, 776 )

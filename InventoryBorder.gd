@@ -9,14 +9,11 @@ var current_menu :Control
 func _physics_process(delta):
 	if Input.is_action_just_pressed("show_inv") and !animating:
 		if visible:
-			
-			Engine.time_scale = previous_ts
-			
 			yield(animate_cr(0,1),"completed")
 			hide()
 			yield(animate_cr(),"completed")
-			
 			get_tree().paused = false
+			Engine.time_scale = previous_ts
 			return
 		
 		previous_ts = Engine.time_scale

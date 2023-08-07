@@ -10,6 +10,16 @@ func _ready():
 	$Inventory/GridContainer.playerstatus = $KinematicBody2D/StatusThing
 	$Inventory/InventoryBorder.setup_player($KinematicBody2D,$KinematicBody2D.status)
 
+
+
+func setup_save_stuff():
+	$KinematicBody2D/StatusThing.unlocked_item(SavesManager.current_save.current_powerups)
+	$KinematicBody2D/StatusThing.disabled_bitmask = SavesManager.current_save.disabled_shit
+	$KinematicBody2D/StatusThing.hp_stacks = SavesManager.current_save.hp_stacks
+	$KinematicBody2D.global_position = SavesManager.current_save.last_position
+
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	for kid in $CanvasLayer/HBoxContainer.get_children():kid.queue_free()
@@ -22,11 +32,6 @@ func _physics_process(delta):
 	
 	
 	if Input.is_key_pressed(KEY_L):
-		print(
-						$BisexualGun.global_position.direction_to(get_global_mouse_position())
-
-		)
-
 		$BisexualGun.dir = $BisexualGun.global_position.direction_to(get_global_mouse_position())
 		
 		

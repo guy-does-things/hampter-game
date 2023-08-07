@@ -145,9 +145,14 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="Label" parent="Panel2" index="0"]
+text = "K"
+
 [node name="Cursorhand" type="Sprite" parent="."]
 unique_name_in_owner = true
 visible = false
 position = Vector2( 152, 144 )
 texture = ExtResource( 4 )
 script = ExtResource( 5 )
+
+[editable path="Panel2"]

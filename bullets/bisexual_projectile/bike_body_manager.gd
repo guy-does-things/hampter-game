@@ -66,7 +66,7 @@ func _on_Area2D_area_entered(area:Area2D):
 	
 	if area is HitBox and area.monitoring and area.is_enemy != bul.is_enemy:
 		bul.dir = global_position.direction_to(bul.muzzle.global_position)
-		speedmult += .05
+		speedmult += .1
 		bul.is_enemy = !bul.is_enemy
 		if bul.is_enemy:
 			bul.dir.x *= -1

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://newfonts/normal.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/keyprompt/keyprompt.gd" type="Script" id=2]
+
+[node name="TextureRect" type="TextureRect"]
+anchor_right = 0.0333333
+anchor_bottom = 0.0592593
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+act = "interact"
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.999999
+custom_fonts/font = ExtResource( 1 )
+text = "A"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}

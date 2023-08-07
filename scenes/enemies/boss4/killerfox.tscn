@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://scenes/enemies/boss4/killerfox.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
@@ -34,10 +34,12 @@
 [ext_resource path="res://scenes/enemies/boss4/TripleSlash.gd" type="Script" id=32]
 [ext_resource path="res://weapons/BisexualGun.tscn" type="PackedScene" id=33]
 [ext_resource path="res://scenes/enemies/boss4/backdash.gd" type="Script" id=34]
-[ext_resource path="res://raw_sprites/player/fox.png" type="Texture" id=35]
+[ext_resource path="res://raw_sprites/fox.png" type="Texture" id=35]
 [ext_resource path="res://scenes/enemies/boss4/Tired.gd" type="Script" id=36]
 [ext_resource path="res://scenes/enemies/boss4/foxscaler.gd" type="Script" id=37]
-[ext_resource path="res://scenes/enemies/boss4/State.gd" type="Script" id=38]
+[ext_resource path="res://scenes/enemies/boss4/pipebomb.gd" type="Script" id=38]
+[ext_resource path="res://bullets/pipebomb/pipebomb.tscn" type="PackedScene" id=39]
+[ext_resource path="res://bullets/pipebomb/pipebomb.png" type="Texture" id=40]
 
 [sub_resource type="Resource" id=30]
 script = ExtResource( 15 )
@@ -578,7 +580,7 @@ gun_fire_mode = 1
 fires_before_charging = false
 pellet_count = 1
 burst_count = 1
-cooldown = 1.0
+cooldown = 0.6
 max_charge = 0.0
 spread = 0.0
 recoil = 0.0
@@ -629,6 +631,29 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.364407, 1.96591 ), -1.9309
 interpolation_mode = 2
 offsets = PoolRealArray( 0.00938967, 0.652582, 0.849765, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Resource" id=85]
+script = ExtResource( 15 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 3
+burst_count = 1
+cooldown = 0.1
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 100
+bullet_lifetime = 5.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=86]
+script = ExtResource( 13 )
+data_res = SubResource( 85 )
+bullet = ExtResource( 39 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 22.5 )
@@ -736,6 +761,46 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=87]
+resource_name = "pickupbomb"
+length = 0.21
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Node2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flippables/PipeBomb:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flippables/PipeBomb:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 135.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=56]
@@ -938,6 +1003,7 @@ margin_bottom = 32.0
 unique_name_in_owner = true
 light_mask = 48
 position = Vector2( 7, 16 )
+rotation = 2.35619
 scale = Vector2( 1e-05, 1e-05 )
 script = ExtResource( 27 )
 _gun_data = SubResource( 31 )
@@ -1100,11 +1166,12 @@ tweenT = 0.3
 [node name="Sprite" type="Sprite" parent="Flippables/Node2D"]
 texture = ExtResource( 35 )
 hframes = 10
-frame = 2
+frame = 8
 
 [node name="Glock" parent="Flippables" instance=ExtResource( 11 )]
 unique_name_in_owner = true
 position = Vector2( 7, 16 )
+rotation = 2.35619
 scale = Vector2( 1e-05, 1e-05 )
 _gun_data = SubResource( 25 )
 is_enemy = true
@@ -1115,14 +1182,14 @@ texture = ExtResource( 12 )
 offset = Vector2( 2, -1 )
 
 [node name="Position2D" parent="Flippables/Glock" index="1"]
-position = Vector2( 8, -2 )
+position = Vector2( -2, -2 )
 
 [node name="Twinkl" type="CPUParticles2D" parent="Flippables/Glock"]
 unique_name_in_owner = true
 position = Vector2( 8, -2 )
 emitting = false
 amount = 1
-lifetime = 0.6
+lifetime = 0.3
 one_shot = true
 texture = ExtResource( 19 )
 gravity = Vector2( 0, 0 )
@@ -1152,6 +1219,32 @@ position = Vector2( 19, -2 )
 emitting = false
 amount = 1
 lifetime = 0.7
+one_shot = true
+texture = ExtResource( 19 )
+gravity = Vector2( 0, 0 )
+angular_velocity = 360.0
+scale_amount_curve = SubResource( 27 )
+color_ramp = SubResource( 28 )
+
+[node name="PipeBomb" parent="Flippables" instance=ExtResource( 33 )]
+unique_name_in_owner = true
+position = Vector2( 7, 16 )
+rotation = 2.35619
+scale = Vector2( 1e-05, 1e-05 )
+_gun_data = SubResource( 86 )
+
+[node name="SpriteSheet" parent="Flippables/PipeBomb" index="0"]
+material = SubResource( 29 )
+texture = ExtResource( 40 )
+
+[node name="Position2D" parent="Flippables/PipeBomb" index="1"]
+position = Vector2( 0, 0 )
+
+[node name="Twinkl3" type="CPUParticles2D" parent="Flippables/PipeBomb"]
+unique_name_in_owner = true
+emitting = false
+amount = 1
+lifetime = 0.3
 one_shot = true
 texture = ExtResource( 19 )
 gravity = Vector2( 0, 0 )
@@ -1224,11 +1317,14 @@ stamina_requirement = 20000
 speed = 25
 max_time = 1.0
 
-[node name="FoxActionState" type="Node" parent="StateMachine/StatePicker"]
+[node name="PipeBomb" type="Node" parent="StateMachine/StatePicker"]
 script = ExtResource( 38 )
+can_go_to_hurtstate = false
+stamina_requirement = 15
 
 [node name="Tired" type="Node" parent="StateMachine"]
 script = ExtResource( 36 )
+can_go_to_hurtstate = false
 
 [node name="NewPlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -1248,6 +1344,7 @@ anims/hurtair = SubResource( 53 )
 anims/hurtfloor = SubResource( 54 )
 anims/idle = SubResource( 51 )
 anims/jump = SubResource( 15 )
+anims/pickupbomb = SubResource( 87 )
 anims/pickupgun = SubResource( 56 )
 anims/pickuprifle = SubResource( 57 )
 anims/pickupswd = SubResource( 58 )
@@ -1301,6 +1398,7 @@ path_air_state = NodePath("../jump")
 is_fall_state = true
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_top = -64.0
 margin_right = 40.0
 margin_bottom = -50.0
@@ -1334,6 +1432,7 @@ margin_bottom = -50.0
 [connection signal="fired" from="Flippables/Glock" to="StateMachine/StatePicker/Gun" method="_on_Glock_fired"]
 [connection signal="postfired" from="Flippables/Glock" to="StateMachine/StatePicker/Gun" method="_on_Glock_postfired"]
 [connection signal="proj_created" from="Flippables/BisexualGun" to="StateMachine/StatePicker/BikePingPong" method="_on_BisexualGun_proj_created"]
+[connection signal="proj_created" from="Flippables/PipeBomb" to="StateMachine/StatePicker/PipeBomb" method="_on_PipeBomb_proj_created"]
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="entered" from="StateMachine/StatePicker/BackDash" to="AnimationPlayer" method="_on_BackDash_entered"]
@@ -1353,3 +1452,4 @@ margin_bottom = -50.0
 
 [editable path="Flippables/Glock"]
 [editable path="Flippables/BisexualGun"]
+[editable path="Flippables/PipeBomb"]

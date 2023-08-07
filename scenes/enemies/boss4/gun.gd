@@ -38,7 +38,7 @@ func fire():
 	if not can_fire:return
 	can_fire = false
 	$"%Twinkl".emitting = true
-	yield(get_tree().create_timer(.61,false),"timeout")
+	yield(get_tree().create_timer(.3,false),"timeout")
 	entity.o_color = 1
 	yield(get_tree().create_timer(.1,false),"timeout")
 	entity.o_color = 0
