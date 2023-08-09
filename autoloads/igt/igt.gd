@@ -3,10 +3,9 @@ extends CanvasLayer
 var gametime :int= 0;
 var started = true
 
-onready var cont = $Control
-
 func _physics_process(delta):
 	if !get_tree().paused and started:
+
 		gametime += delta * 1000
 	
 	

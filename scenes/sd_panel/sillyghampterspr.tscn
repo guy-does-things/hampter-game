@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://raw_sprites/player/hampterleg.png" type="Texture" id=3]
+[ext_resource path="res://raw_sprites/player/hampterbody.png" type="Texture" id=4]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 color_to_rep1 : hint_color;
+uniform vec4 color_to_rep2 : hint_color;
+uniform sampler2D gradient1;
+uniform sampler2D gradient2;
+
+
+
+bool colorMatch(vec3 c1, vec3 c2, float maxDiff) {
+    return (
+        abs(c1.r - c2.r) < maxDiff
+        && abs(c1.b - c2.b) < maxDiff
+        && abs(c1.b - c2.b) < maxDiff
+    );
+}
+
+
+vec3 replace_color(vec2 uv,sampler2D gradient)
+{
+	uv.x = abs(sin(TIME*2.5));
+	
+	
+	return texture(gradient,uv).rgb;
+}
+
+
+void fragment()
+{
+	
+	vec4 rgba = texture(TEXTURE,UV);
+
+
+	float MDIFF = .01;
+	
+	// replace color1
+	if (colorMatch(rgba.rgb,color_to_rep1.rgb,MDIFF))rgba.rgb = replace_color(UV,gradient1);
+	// replace color2
+	if (colorMatch(rgba.rgb,color_to_rep2.rgb,MDIFF))rgba.rgb = replace_color(UV,gradient2);
+
+
+	COLOR = rgba;
+}
+
+
+"
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0.979592 )
+colors = PoolColorArray( 0.427451, 0.113725, 0.317647, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 0.778809, 0.0760555, 0.724592, 1 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 7 )
+shader_param/color_to_rep1 = Color( 0.466667, 0.0941176, 0.0941176, 1 )
+shader_param/color_to_rep2 = Color( 0.854902, 0.505882, 0.0431373, 1 )
+shader_param/gradient1 = SubResource( 9 )
+shader_param/gradient2 = SubResource( 11 )
+
+[node name="Node2D2" type="Node2D"]
+position = Vector2( 0, 12 )
+rotation = 6.28319
+
+[node name="HampterSprite" type="Sprite" parent="."]
+material = SubResource( 12 )
+position = Vector2( 0, -12 )
+texture = ExtResource( 4 )
+hframes = 4
+
+[node name="Left" type="Sprite" parent="."]
+position = Vector2( -2, -11 )
+texture = ExtResource( 3 )
+
+[node name="Right" type="Sprite" parent="."]
+show_behind_parent = true
+position = Vector2( 9, -11 )
+texture = ExtResource( 3 )

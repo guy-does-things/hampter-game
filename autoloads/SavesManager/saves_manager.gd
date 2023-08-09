@@ -24,19 +24,15 @@ func _ready():
 	create_save_dir()
 	var f = File.new()
 	var st = Time.get_unix_time_from_system()
-	current_save.save_path = SAVE_DIR+"/"+"name.sex"
-	var tried_load_save = load_save(SAVE_DIR+"/"+"name.sex")
+	
+	current_save.save_path = SAVE_DIR+"/"+"0.sex"
+	
+	var tried_load_save = load_save(SAVE_DIR+"/"+"0.sex")
+	
 	if tried_load_save is NewSaveData:
 		current_save = tried_load_save
-		
-	
-	var lt = Time.get_unix_time_from_system() - st
-	st = Time.get_unix_time_from_system()
-	#save(current_save)
-	var sat = Time.get_unix_time_from_system() - st
-	
-	print_debug(str("load time:",lt, "  save time:", sat))
-	
+
+
 
 
 func create_save_dir():

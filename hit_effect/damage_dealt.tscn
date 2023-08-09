@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://hit_effect/damage_dealt.gd" type="Script" id=1]
+[ext_resource path="res://newfonts/normal.tres" type="DynamicFont" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hit"
@@ -33,6 +34,7 @@ tracks/1/keys = {
 [node name="Label" type="Label"]
 margin_right = 16.0
 margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
 text = "64"
 align = 1
 script = ExtResource( 1 )

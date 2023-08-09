@@ -575,12 +575,12 @@ visible = false
 position = Vector2( 0.0814302, 9.23205 )
 
 [node name="Left" type="Sprite" parent="Node2D2"]
-position = Vector2( 1, -17 )
+position = Vector2( -2, -11 )
 texture = ExtResource( 18 )
 
 [node name="Right" type="Sprite" parent="Node2D2"]
 show_behind_parent = true
-position = Vector2( 4, -11 )
+position = Vector2( 9, -11 )
 texture = ExtResource( 18 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D2"]
@@ -604,7 +604,7 @@ visible = false
 position = Vector2( 1, 8 )
 z_index = 1
 frames = SubResource( 19 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Area2D" parent="AnimatedSprite" instance=ExtResource( 22 )]
@@ -623,6 +623,7 @@ rotation = 1.5708
 scale = Vector2( 2, -2 )
 z_index = 1
 frames = SubResource( 19 )
+frame = 1
 playing = true
 
 [node name="Circlething" type="Sprite" parent="."]
@@ -697,8 +698,8 @@ initial_velocity_random = 1.0
 [connection signal="entered" from="StateMachine/stomp" to="." method="_on_Stomp_entered"]
 [connection signal="entered" from="StateMachine/stomp" to="StompBreaker" method="enable"]
 [connection signal="entered" from="StateMachine/stomp" to="AnimatedSprite" method="show"]
-[connection signal="exited" from="StateMachine/stomp" to="." method="_on_stomp_exited"]
 [connection signal="exited" from="StateMachine/stomp" to="." method="_on_Stomp_exited"]
+[connection signal="exited" from="StateMachine/stomp" to="." method="_on_stomp_exited"]
 [connection signal="exited" from="StateMachine/stomp" to="StompBreaker" method="disable"]
 [connection signal="exited" from="StateMachine/stomp" to="AnimatedSprite" method="hide"]
 [connection signal="entered" from="StateMachine/Hurt" to="." method="_on_Hurt_entered"]

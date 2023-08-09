@@ -2,7 +2,7 @@ extends Node2D
 
 
 onready var bike = $BiE
-onready var hbcheck = $Area2D
+onready var hbcheck = get_node_or_null("Area2D")
 var bul :GdtBullet
 var speedmult = 1
 var wall_hit  = false
@@ -13,7 +13,7 @@ signal wall_hit()
 
 func _on_GdtBullet_startup(bullet:GdtBullet):
 	bullet.customdata.bikehand = self
-	hbcheck.collision_mask = 1024
+	if hbcheck:hbcheck.collision_mask = 1024
 	bul = bullet
 	remove_child(bike)
 	bike.scale.x = bullet.dir.x
@@ -25,7 +25,7 @@ func _on_GdtBullet_startup(bullet:GdtBullet):
 
 func _on_GdtBullet_movement(bullet):
 	bullet.global_position = bike.global_position
-	hbcheck.global_position = bike.global_position
+	if hbcheck:hbcheck.global_position = bike.global_position
 	
 	
 	if bike.velocity == Vector2.ZERO:
@@ -34,9 +34,7 @@ func _on_GdtBullet_movement(bullet):
 	if not wall_hit:
 		bike.velocity.x = bul.get_velocity(speedmult).x
 		wall_hit = bike.is_on_wall()
-		
-	#	bike.rotation_degrees = 0
-		
+			
 		if wall_hit:
 			emit_signal("wall_hit")
 			bullet.customdata.on_wall = true

@@ -6,6 +6,8 @@ export(NodePath) onready var statr = get_node(statr)
 var can_exit = false
 var jumping = false
 
+
+
 func _state_logic(dt):
 	$"%Flippables".disabled = true
 	if entity.is_on_floor() and not jumping:
@@ -36,18 +38,16 @@ func jump_towards():
 	yield(get_tree().create_timer(.2,false),"timeout")
 	
 	
-	if abs(dist) > 180:
-		entity.velocity.x = dist
-		$"%Jumper".jump_force = -450
-		$"%Jumper".jump()
-		yield($"%idle","landed")
-		can_exit = true
-		jumping = false
-	
-		return
-	yield(get_tree(),"idle_frame")
+	entity.velocity.x = dist
+	$"%Jumper".jump_force = -600
+	$"%Jumper".jump()
+	yield($"%idle","landed")
+	can_exit = true
+
 	
 
 func _get_transition(dt):
 	if can_exit:
+		
+		jumping = false
 		return statr

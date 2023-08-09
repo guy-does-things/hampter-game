@@ -24,6 +24,8 @@ enum Items{
 
 export(Array,Resource) var item_data = null
 
+var is_endgame = true
+
 static func item_to_id(val:int)-> int:
 
 	return Items.values().find(val)

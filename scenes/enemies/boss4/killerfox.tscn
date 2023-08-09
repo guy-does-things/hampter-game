@@ -595,7 +595,7 @@ script = ExtResource( 13 )
 data_res = SubResource( 26 )
 bullet = ExtResource( 14 )
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=88]
 code = "shader_type canvas_item;
 
 uniform vec4 rep_col : hint_color;
@@ -620,7 +620,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=29]
 resource_local_to_scene = true
-shader = SubResource( 9 )
+shader = SubResource( 88 )
 shader_param/rep_col = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Curve" id=27]
@@ -632,7 +632,7 @@ interpolation_mode = 2
 offsets = PoolRealArray( 0.00938967, 0.652582, 0.849765, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="Resource" id=85]
+[sub_resource type="Resource" id=89]
 script = ExtResource( 15 )
 gun_name = ""
 gun_desc = ""
@@ -652,7 +652,7 @@ no_cooldown = false
 
 [sub_resource type="Resource" id=86]
 script = ExtResource( 13 )
-data_res = SubResource( 85 )
+data_res = SubResource( 89 )
 bullet = ExtResource( 39 )
 
 [sub_resource type="RectangleShape2D" id=1]

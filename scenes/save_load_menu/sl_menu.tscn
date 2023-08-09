@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://cursor_hand.gd" type="Script" id=1]
+[ext_resource path="res://scenes/sd_panel/save.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/inventory/theme.tres" type="Theme" id=3]
+[ext_resource path="res://raw_sprites/cursorhand.png" type="Texture" id=4]
+[ext_resource path="res://save_panel.gd" type="Script" id=6]
+
+[node name="GamePanel" type="Panel"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 448.0
+margin_bottom = 240.0
+theme = ExtResource( 3 )
+script = ExtResource( 6 )
+cursorpath = NodePath("Cursorhand")
+
+[node name="Panel" parent="." instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_right = 384.0
+focus_neighbour_top = NodePath(".")
+focus_neighbour_bottom = NodePath("../Panel2")
+
+[node name="Panel2" parent="." instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 64.0
+margin_right = 384.0
+margin_bottom = 112.0
+focus_neighbour_top = NodePath("../Panel")
+focus_neighbour_bottom = NodePath("../Panel3")
+
+[node name="Panel3" parent="." instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 129.0
+margin_right = 384.0
+margin_bottom = 177.0
+focus_neighbour_top = NodePath("../Panel2")
+focus_neighbour_bottom = NodePath("../Button")
+
+[node name="Button" type="Button" parent="."]
+margin_left = 48.0
+margin_top = 192.0
+margin_right = 101.0
+margin_bottom = 208.0
+focus_neighbour_top = NodePath("../Panel3")
+focus_neighbour_bottom = NodePath(".")
+text = "go back"
+
+[node name="Cursorhand" type="Sprite" parent="."]
+visible = false
+position = Vector2( 120, 112 )
+texture = ExtResource( 4 )
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

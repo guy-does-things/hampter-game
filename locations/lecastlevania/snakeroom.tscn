@@ -1,43 +1,133 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://realthing.tres" type="TileSet" id=2]
+[ext_resource path="res://locations/lecastlevania/Platforms.gd" type="Script" id=3]
+[ext_resource path="res://water_tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://water_tm.gd" type="Script" id=5]
+[ext_resource path="res://locations/lecastlevania/SnakeGrabber.gd" type="Script" id=6]
 [ext_resource path="res://locations/nitrotasticman/car_chase.gd" type="Script" id=7]
+[ext_resource path="res://bullets/battle_network_snake.tscn" type="PackedScene" id=8]
+[ext_resource path="res://wpnsys/hurt_stuff/Gun.gd" type="Script" id=9]
+[ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=10]
+[ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=11]
+[ext_resource path="res://raw_sprites/bisexualgun.png" type="Texture" id=12]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 160 )
+[sub_resource type="Resource" id=85]
+script = ExtResource( 11 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 1
+fires_before_charging = false
+pellet_count = 1
+burst_count = 1
+cooldown = 0.6
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 250
+bullet_lifetime = 5.0
+no_cooldown = true
+
+[sub_resource type="Resource" id=86]
+script = ExtResource( 10 )
+data_res = SubResource( 85 )
+bullet = ExtResource( 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 240, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 240, 8 )
 
 [node name="A" instance=ExtResource( 1 )]
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_vertical_guides_": [ -96.0 ]
+}
 
-[node name="Platforms" type="TileMap" parent="." index="0"]
+[node name="gun" type="Node2D" parent="." index="0"]
+unique_name_in_owner = true
+script = ExtResource( 9 )
+_gun_data = SubResource( 86 )
+is_enemy = true
+
+[node name="SpriteSheet" type="Sprite" parent="gun" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Position2D" type="Position2D" parent="gun" index="1"]
+position = Vector2( 0, 32 )
+
+[node name="Cooldown" type="Timer" parent="gun" index="2"]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="gun" index="3"]
+
+[node name="Node" type="Node" parent="gun" index="4"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gun" index="5"]
+
+[node name="Platforms" type="TileMap" parent="." index="1"]
+unique_name_in_owner = true
+position = Vector2( 0, 272 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
-collision_layer = 33
+collision_layer = 32
+collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 1114112, 14, 0, 1114113, 14, 0, 1114114, 14, 0, 1114115, 14, 0, 1114116, 14, 0, 1114117, 14, 0, 1114118, 14, 0, 1114119, 14, 0, 1114120, 14, 0, 1114121, 14, 0, 1114122, 14, 0, 1114123, 14, 0, 1114124, 14, 0, 1114125, 14, 0, 1114126, 14, 0, 1114127, 14, 0, 1114128, 14, 0, 1114129, 14, 0, 1114130, 14, 0, 1114131, 14, 0, 1114132, 14, 0, 1114133, 14, 0, 1114134, 14, 0, 1114135, 14, 0, 1114136, 14, 0, 1114137, 14, 0, 1114138, 14, 0, 1114139, 14, 0, 1114140, 14, 0, 1114141, 14, 0, 1114142, 14, 0, 1114143, 14, 0 )
+tile_data = PoolIntArray( -3342336, 14, 0, -3342335, 14, 65536, -3342334, 14, 65536, -3342333, 14, 65536, -3342332, 14, 65536, -3342331, 14, 0, -3342330, 14, 0, -3342329, 14, 0, -3342328, 14, 0, -3342327, 14, 0, -3342326, 14, 0, -3342325, 14, 0, -3342324, 14, 0, -3342323, 14, 0, -3342322, 14, 0, -3342321, 14, 0, -3342320, 14, 0, -3342319, 14, 0, -3342318, 14, 0, -3342317, 14, 0, -3342316, 14, 0, -3342315, 14, 0, -3342314, 14, 0, -3342313, 14, 0, -3342312, 14, 0, -3342311, 14, 65536, -3342310, 14, 65536, -3342309, 14, 65536, -3342308, 14, 65536, -3342307, 14, 0, -2228224, 14, 0, -2228223, 14, 0, -2228222, 14, 0, -2228221, 14, 0, -2228220, 14, 0, -2228219, 14, 0, -2228218, 14, 0, -2228217, 14, 0, -2228216, 14, 0, -2228215, 14, 65536, -2228214, 14, 65536, -2228213, 14, 65536, -2228212, 14, 65536, -2228211, 14, 0, -2228210, 14, 0, -2228209, 14, 0, -2228208, 14, 0, -2228207, 14, 65536, -2228206, 14, 65536, -2228205, 14, 65536, -2228204, 14, 65536, -2228203, 14, 0, -2228202, 14, 0, -2228201, 14, 0, -2228200, 14, 0, -2228199, 14, 0, -2228198, 14, 0, -2228197, 14, 0, -2228196, 14, 0, -2228195, 14, 0, -1114112, 14, 0, -1114111, 14, 65536, -1114110, 14, 65536, -1114109, 14, 65536, -1114108, 14, 65536, -1114107, 14, 0, -1114106, 14, 0, -1114105, 14, 0, -1114104, 14, 0, -1114103, 14, 65536, -1114102, 14, 65536, -1114101, 14, 65536, -1114100, 14, 65536, -1114099, 14, 0, -1114098, 14, 0, -1114097, 14, 0, -1114096, 14, 0, -1114095, 14, 65536, -1114094, 14, 65536, -1114093, 14, 65536, -1114092, 14, 65536, -1114091, 14, 0, -1114090, 14, 0, -1114089, 14, 0, -1114088, 14, 0, -1114087, 14, 65536, -1114086, 14, 65536, -1114085, 14, 65536, -1114084, 14, 65536, -1114083, 14, 0, 0, 14, 0, 1, 14, 0, 2, 14, 0, 3, 14, 0, 4, 14, 0, 5, 14, 0, 6, 14, 0, 7, 14, 0, 8, 14, 0, 9, 14, 0, 10, 14, 0, 11, 14, 0, 12, 14, 0, 13, 14, 0, 14, 14, 0, 15, 14, 0, 16, 14, 0, 17, 14, 0, 18, 14, 0, 19, 14, 0, 20, 14, 0, 21, 14, 0, 22, 14, 0, 23, 14, 0, 24, 14, 0, 25, 14, 0, 26, 14, 0, 27, 14, 0, 28, 14, 0, 29, 14, 0 )
+script = ExtResource( 3 )
 
-[node name="RoomRect" parent="." index="1"]
+[node name="RoomRect" parent="." index="2"]
 margin_bottom = 336.0
 
-[node name="TileMap" parent="." index="2"]
-tile_data = PoolIntArray( 0, 12, 65536, 1, 12, 65536, 2, 12, 65536, 3, 12, 65536, 4, 12, 65536, 5, 12, 65536, 6, 12, 65536, 7, 12, 65536, 8, 12, 65536, 9, 12, 65536, 10, 12, 65536, 11, 12, 65536, 12, 12, 65536, 13, 12, 65536, 14, 12, 65536, 15, 12, 65536, 16, 12, 65536, 17, 12, 65536, 18, 12, 65536, 19, 12, 65536, 20, 12, 65536, 21, 12, 65536, 22, 12, 65536, 23, 12, 65536, 24, 12, 65536, 25, 12, 65536, 26, 12, 65536, 27, 12, 65536, 28, 12, 65536, 29, 12, 65536, 30, 12, 65536, 31, 12, 65536, 65536, 6, 0, 65567, 6, 0, 131072, 6, 0, 131103, 6, 0, 196608, 6, 0, 196639, 6, 0, 262144, 6, 0, 262175, 6, 0, 327680, 6, 0, 327711, 6, 0, 393216, 6, 0, 393247, 6, 0, 458752, 6, 0, 458783, 6, 0, 524288, 6, 0, 524319, 6, 0, 589824, 6, 0, 589855, 6, 0, 655360, 6, 0, 655391, 6, 0, 720896, 6, 0, 720927, 6, 0, 786432, 6, 0, 786463, 6, 0, 851968, 6, 0, 851999, 6, 0, 917504, 6, 0, 917535, 6, 0, 983040, 6, 0, 983071, 6, 0, 1048576, 6, 0, 1048607, 6, 0 )
+[node name="TileMap" parent="." index="3"]
+tile_data = PoolIntArray( 0, 12, 65536, 29, 12, 65536, 65536, 12, 65536, 65565, 12, 65536, 131072, 12, 65536, 131101, 12, 65536, 196608, 12, 65536, 196637, 12, 65536, 262144, 12, 65536, 262173, 12, 65536, 327680, 12, 65536, 327709, 12, 65536, 393216, 12, 65536, 393245, 12, 65536, 458752, 12, 65536, 458781, 12, 65536, 524288, 12, 65536, 524317, 12, 65536, 589824, 12, 65536, 589853, 12, 65536, 655360, 12, 65536, 655389, 12, 65536, 720896, 12, 65536, 720925, 12, 65536, 786432, 12, 65536, 786461, 12, 65536, 851968, 12, 65536, 851997, 12, 65536, 917504, 12, 65536, 917533, 12, 65536, 983040, 12, 65536, 983069, 12, 65536, 1048576, 12, 65536, 1048605, 12, 65536, 1114125, 12, 65536, 1114126, 12, 65536, 1114127, 12, 65536, 1114128, 12, 65536 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="7"]
-position = Vector2( -8, 8 )
+[node name="WaterTileMap" type="TileMap" parent="." index="8"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 64
+collision_mask = 64
+format = 1
+tile_data = PoolIntArray( 1572864, 1, 0, 1572865, 1, 0, 1572866, 1, 0, 1572867, 1, 0, 1572868, 1, 0, 1572869, 1, 0, 1572870, 1, 0, 1572871, 1, 0, 1572872, 1, 0, 1572873, 1, 0, 1572874, 1, 0, 1572875, 1, 0, 1572876, 1, 0, 1572877, 1, 0, 1572878, 1, 0, 1572879, 1, 0, 1572880, 1, 0, 1572881, 1, 0, 1572882, 1, 0, 1572883, 1, 0, 1572884, 1, 0, 1572885, 1, 0, 1572886, 1, 0, 1572887, 1, 0, 1572888, 1, 0, 1572889, 1, 0, 1572890, 1, 0, 1572891, 1, 0, 1572892, 1, 0, 1572893, 1, 0, 1638400, 1, 0, 1638401, 1, 0, 1638402, 1, 0, 1638403, 1, 0, 1638404, 1, 0, 1638405, 1, 0, 1638406, 1, 0, 1638407, 1, 0, 1638408, 1, 0, 1638409, 1, 0, 1638410, 1, 0, 1638411, 1, 0, 1638412, 1, 0, 1638413, 1, 0, 1638414, 1, 0, 1638415, 1, 0, 1638416, 1, 0, 1638417, 1, 0, 1638418, 1, 0, 1638419, 1, 0, 1638420, 1, 0, 1638421, 1, 0, 1638422, 1, 0, 1638423, 1, 0, 1638424, 1, 0, 1638425, 1, 0, 1638426, 1, 0, 1638427, 1, 0, 1638428, 1, 0, 1638429, 1, 0, 1703936, 1, 0, 1703937, 1, 0, 1703938, 1, 0, 1703939, 1, 0, 1703940, 1, 0, 1703941, 1, 0, 1703942, 1, 0, 1703943, 1, 0, 1703944, 1, 0, 1703945, 1, 0, 1703946, 1, 0, 1703947, 1, 0, 1703948, 1, 0, 1703949, 1, 0, 1703950, 1, 0, 1703951, 1, 0, 1703952, 1, 0, 1703953, 1, 0, 1703954, 1, 0, 1703955, 1, 0, 1703956, 1, 0, 1703957, 1, 0, 1703958, 1, 0, 1703959, 1, 0, 1703960, 1, 0, 1703961, 1, 0, 1703962, 1, 0, 1703963, 1, 0, 1703964, 1, 0, 1703965, 1, 0 )
+script = ExtResource( 5 )
+position_to_eject_to = Vector2( 240, 252 )
+hurts_regardless = true
+
+[node name="SnakeGrabber" type="Area2D" parent="." index="9"]
+z_index = 2
+collision_layer = 4096
+collision_mask = 4096
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnakeGrabber" index="0"]
+position = Vector2( 240, -215 )
+shape = SubResource( 2 )
+
+[node name="SnakeTimer" type="Timer" parent="SnakeGrabber" index="1"]
+wait_time = 1.5
+one_shot = true
+
+[node name="ViewOnlyTm" type="TileMap" parent="." index="10"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
 collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 1, 12, 65536, 2, 12, 65536, 3, 12, 65536, 4, 12, 65536, 5, 12, 65536, 6, 12, 65536, 7, 12, 65536, 8, 12, 65536, 9, 12, 65536, 10, 12, 65536, 11, 12, 65536, 12, 12, 65536, 13, 12, 65536, 14, 12, 65536, 15, 12, 65536, 16, 12, 65536, 17, 12, 65536, 18, 12, 65536, 19, 12, 65536, 20, 12, 65536, 21, 12, 65536, 22, 12, 65536, 23, 12, 65536, 24, 12, 65536, 25, 12, 65536, 26, 12, 65536, 27, 12, 65536, 28, 12, 65536 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="11"]
+collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 16, 152 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 240, 8 )
+scale = Vector2( 1, -1 )
+shape = SubResource( 3 )
+one_way_collision = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" index="1"]
-position = Vector2( 560, 152 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+[connection signal="body_entered" from="SnakeGrabber" to="SnakeGrabber" method="_on_SnakeGrabber_body_entered"]
+[connection signal="timeout" from="SnakeGrabber/SnakeTimer" to="SnakeGrabber" method="_on_SnakeTimer_timeout"]

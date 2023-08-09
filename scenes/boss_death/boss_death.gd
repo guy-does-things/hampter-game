@@ -84,5 +84,6 @@ func _ready():
 	for poly in get_children():
 		poly.boss_died = true
 	
-	
-	boss.queue_free()
+	if is_instance_valid(boss):
+		boss.queue_free()
+	queue_free()

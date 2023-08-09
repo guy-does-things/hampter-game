@@ -84,7 +84,7 @@ func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int,is
 	entitystatus.current_hp = (entitystatus.current_hp - dam)
 	current_priority = hit_priority
 	total_combo_damage += dam
-	print(current_priority,"  ",hit_priority," ",total_combo_damage)
+	#print(current_priority,"  ",hit_priority," ",total_combo_damage)
 	
 	if current_tweenk:
 		current_tweenk.stop()
@@ -122,6 +122,7 @@ func no_iframes():
 	damagelabel.hit_position = global_position
 	damagelabel.text = str(total_combo_damage)
 	get_tree().current_scene.add_child(damagelabel)
+	
 	total_combo_damage = 0
 	flash(true)
 	iframe_flash_timer.stop()

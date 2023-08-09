@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=3]
+[ext_resource path="res://raw_sprites/bike.png" type="Texture" id=4]
+[ext_resource path="res://bullets/bisexual_projectile/bike_body_manager.gd" type="Script" id=5]
+[ext_resource path="res://scripts/entity.gd" type="Script" id=6]
+[ext_resource path="res://scripts/physicsthings.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 14.5, 10 )
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+deletes_on_wall = false
+deletes_on_enemy_hit = true
+deletes_on_ally_hit = false
+deletes_on_timeout = true
+ignores_anti_tunneling_measures = false
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 14, 9.5 )
+
+[node name="GdtBullet" type="Node2D"]
+script = ExtResource( 3 )
+speed = 2.0
+hitbox = SubResource( 8 )
+_bullet_props = SubResource( 3 )
+is_puppet = true
+
+[node name="RbManager" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="BiE" type="KinematicBody2D" parent="RbManager"]
+collision_layer = 0
+collision_mask = 40
+script = ExtResource( 6 )
+
+[node name="Bike" type="Sprite" parent="RbManager/BiE"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RbManager/BiE"]
+position = Vector2( 0, 3.988 )
+shape = SubResource( 9 )
+
+[node name="PhysicsStuff" type="Node" parent="RbManager/BiE"]
+script = ExtResource( 7 )
+friction_enabled = false
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[node name="Area2D" parent="." instance=ExtResource( 2 )]
+min_hit_priority = 512
+max_hit_priority = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource( 8 )
+
+[connection signal="movement" from="." to="RbManager" method="_on_GdtBullet_movement"]
+[connection signal="startup" from="." to="RbManager" method="_on_GdtBullet_startup"]
+[connection signal="wall_hit" from="RbManager" to="." method="queue_free"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]

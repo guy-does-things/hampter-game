@@ -5,6 +5,7 @@ extends TileMap
 
 export(Vector2) var position_to_eject_to
 export var change_clay = true
+export var hurts_regardless = false
 
 
 func _init():

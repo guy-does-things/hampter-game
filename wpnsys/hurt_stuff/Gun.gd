@@ -121,6 +121,7 @@ func fire():
 			emit_signal("fullypoweredup",self)
 		current_charge = min(_gun_data.data_res.max_charge, current_charge + (.016*Engine.time_scale) )
 		emit_signal("charging",self)
+		return
 		
 	actually_fire()
 
@@ -133,6 +134,7 @@ func actually_fire():
 		
 	if _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.SEMIAUTO:
 		semi_auto_not_released = true
+
 
 	current_state = GunStates.FIRING		
 	if customfire:

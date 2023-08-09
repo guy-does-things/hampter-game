@@ -1,5 +1,6 @@
 extends Entity
 
+export var unlock_ev = true
 onready var fc = $Node2D2
 onready var jumpcontroller = $Node2D
 var on_p = false
@@ -25,6 +26,7 @@ func _ready():
 #	status.unlocked_item(GlobalData.Items.PIPEBOMB)
 #	status.unlocked_item(GlobalData.Items.STOMP)
 #	status.unlocked_item(GlobalData.Items.BROKENASSSLASH)
+	if not unlock_ev:return
 	for i in GlobalData.Items.values():
 		status.unlocked_item(i)
 
@@ -330,10 +332,11 @@ func _on_Hurt_exited():
 
 
 func on_water(water):
-	if !status.has_item(Globals.Items.WATERBREATHING):
+	if !status.has_item(Globals.Items.WATERBREATHING) or water.hurts_regardless:
 		$HurtComponent.hurt(1,Vector2.ZERO,0,true,4000,true)
 		global_position = water.get_eject_pos()
 		return
+		
 	on_water = true
 	status.on_water = true
 	$Node2D.on_water = true

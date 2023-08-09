@@ -1,7 +1,7 @@
 extends Resource
 class_name NewSaveData
 
-const DEFAUT_NAME = "name"
+const DEFAUT_NAME = "0"
 const DEFAUT_ROOM = "res://new_rooms/caves/caves_room_0.tscn"
 
 enum Areas{ENTRANCE,DESERT, CISRIPOFF,FORBIDDEN,HIGHWAY,FORTRESS}
@@ -10,10 +10,10 @@ enum Areas{ENTRANCE,DESERT, CISRIPOFF,FORBIDDEN,HIGHWAY,FORTRESS}
 # creation info
 var initial_creation : int
 var version :String 
-var name :String = DEFAUT_ROOM
+var name :String = DEFAUT_NAME
 var loaded_room := DEFAUT_ROOM
 var save_path : String
-
+var beat = false
 # world data
 var room_data := {}
 var area_counts := {}
@@ -52,7 +52,8 @@ func to_dict():
 		waypoint_position = waypoint_position,
 		disabled_shit=disabled_shit,
 		globals=global_data,
-		hp_stacks = hp_stacks
+		hp_stacks = hp_stacks,
+		beat = beat
 	}
 
 func as_buffer():
@@ -63,7 +64,7 @@ func from_dict(dict:Dictionary):
 	name = dict.get("name","name")
 	area_counts = dict.get("area_counts",{})
 	room_data = dict.get("room_data",{})
-	area = dict.get("area",Areas.CAVES)
+	area = dict.get("area",Areas.ENTRANCE)
 	igt = dict.get("igt",0)
 	current_powerups = dict.get("current_powerups",0)
 	disabled_shit = dict.get("disabled_shit",0)
@@ -72,6 +73,7 @@ func from_dict(dict:Dictionary):
 	waypoint_position = dict.get("waypoint_position",Vector2.INF)
 	global_data = dict.get("globals",{})
 	hp_stacks = dict.get("hp_stacks",0)
+	beat = dict.get("beat",false)
 
 
 func room_save_modified(room_path,room_save_info:RoomSaveInfo):

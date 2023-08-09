@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://boss.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
@@ -11,10 +11,50 @@
 [ext_resource path="res://player/player_states/player_floor.gd" type="Script" id=9]
 [ext_resource path="res://scenes/enemies/boss5/JumpToFarthestBorderl.gd" type="Script" id=10]
 [ext_resource path="res://scenes/enemies/boss5/snekanims.gd" type="Script" id=11]
+[ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=12]
+[ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=13]
+[ext_resource path="res://weapons/BisexualGun.tscn" type="PackedScene" id=14]
+[ext_resource path="res://bullets/snakeman/snake.tscn" type="PackedScene" id=15]
 [ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=16]
+[ext_resource path="res://scenes/enemies/boss5/SnakeManSnakes.gd" type="Script" id=17]
 [ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=18]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=19]
+[ext_resource path="res://sillyboom/brightsmoke.png" type="Texture" id=20]
+[ext_resource path="res://scenes/enemies/boss5/Tornado.gd" type="Script" id=21]
+[ext_resource path="res://scenes/enemies/boss5/GoAway.gd" type="Script" id=22]
 [ext_resource path="res://scripts/physicsthings.gd" type="Script" id=23]
 [ext_resource path="res://state_machine/state_machine.gd" type="Script" id=24]
+[ext_resource path="res://scenes/enemies/boss5/Jump.gd" type="Script" id=25]
+
+[sub_resource type="Resource" id=89]
+script = ExtResource( 13 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 2
+fires_before_charging = false
+pellet_count = 1
+burst_count = 3
+cooldown = 0.15
+max_charge = 0.4
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 300
+bullet_lifetime = 4.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=88]
+script = ExtResource( 12 )
+data_res = SubResource( 89 )
+bullet = ExtResource( 15 )
+
+[sub_resource type="CircleShape2D" id=90]
+radius = 12.0
+
+[sub_resource type="CapsuleShape2D" id=96]
+radius = 35.0
+height = 32.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 22.5 )
@@ -140,6 +180,22 @@ tracks/0/keys = {
 "values": [ 8 ]
 }
 
+[sub_resource type="Animation" id=93]
+resource_name = "pickupfromback"
+length = 0.651
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 6, 7, 8, 7, 6, 0 ]
+}
+
 [sub_resource type="Animation" id=56]
 resource_name = "pickupgun"
 length = 0.6
@@ -205,6 +261,40 @@ tracks/0/keys = {
 "values": [ 1, 2 ]
 }
 
+[sub_resource type="Animation" id=94]
+resource_name = "snake_vase"
+length = 0.153
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 5, 4 ]
+}
+
+[sub_resource type="Animation" id=95]
+resource_name = "speeen"
+length = 0.378
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 16, 15, 17 ]
+}
+
 [sub_resource type="Animation" id=55]
 resource_name = "tired"
 length = 10.0
@@ -221,9 +311,17 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
+[sub_resource type="Curve" id=91]
+max_value = 5.0
+_data = [ Vector2( 0, 1.03977 ), 0.0, 0.0, 0, 0, Vector2( 0.510274, 4.17045 ), 4.55065, 4.55065, 0, 0, Vector2( 1, 5 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=92]
+offsets = PoolRealArray( 0.00371747, 0.0743494, 1 )
+colors = PoolColorArray( 0.101961, 0.101961, 0.101961, 0, 1, 1, 1, 1, 0.705882, 0.705882, 0.705882, 0.443137 )
+
 [node name="Entity" type="KinematicBody2D"]
-collision_layer = 0
-collision_mask = 40
+collision_layer = 4096
+collision_mask = 4136
 script = ExtResource( 1 )
 
 [node name="PhysicsStuff" type="Node" parent="."]
@@ -245,8 +343,46 @@ unique_name_in_owner = true
 position = Vector2( 0, 12 )
 texture = ExtResource( 3 )
 flip_h = true
-hframes = 15
-frame = 9
+hframes = 18
+frame = 10
+
+[node name="PipeBomb" parent="Flippables/Sprite" instance=ExtResource( 14 )]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 17, 1 )
+_gun_data = SubResource( 88 )
+
+[node name="Area2D" parent="Flippables/Sprite" instance=ExtResource( 19 )]
+visible = false
+position = Vector2( 0, -12 )
+monitoring = false
+damage = 1
+is_enemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/Sprite/Area2D"]
+shape = SubResource( 90 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Flippables/Sprite/Area2D"]
+position = Vector2( 5, 14 )
+shape = SubResource( 90 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Flippables/Sprite/Area2D"]
+position = Vector2( 20, 27 )
+shape = SubResource( 90 )
+
+[node name="ToR N A D O" parent="Flippables" instance=ExtResource( 19 )]
+unique_name_in_owner = true
+position = Vector2( 0, -12 )
+monitoring = false
+max_hit_priority = 1
+hit_iframes = 0.4
+damage = 1
+is_enemy = true
+can_hit_multiple_times = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/ToR N A D O"]
+position = Vector2( 0, 5 )
+shape = SubResource( 96 )
 
 [node name="HurtComponent" type="Area2D" parent="."]
 visible = false
@@ -265,7 +401,6 @@ MAX_HP = 150
 MAX_STAMINA = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 2.5, 16.5 )
 shape = SubResource( 2 )
 
@@ -273,9 +408,9 @@ shape = SubResource( 2 )
 unique_name_in_owner = true
 script = ExtResource( 24 )
 initial_state = NodePath("Intro")
-print_state = true
 
 [node name="Intro" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
 script = ExtResource( 4 )
 can_go_to_hurtstate = false
 idle_state_path = NodePath(".")
@@ -283,13 +418,37 @@ attack_state_path = NodePath("../JumpToFarthestBorderl")
 
 [node name="JumpToFarthestBorderl" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
+can_go_to_hurtstate = false
 statr = NodePath("../RandAttacks")
 
 [node name="RandAttacks" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
-attacks = [ NodePath("../JumpToFarthestBorderl") ]
+can_go_to_hurtstate = false
+attacks = [ NodePath("../SnakeManSnakes"), NodePath("../Tornado"), NodePath("../GoToCenter") ]
+
+[node name="SnakeManSnakes" type="Node" parent="StateMachine"]
+script = ExtResource( 17 )
+can_go_to_hurtstate = false
+gun = NodePath("../../Flippables/Sprite/PipeBomb")
+
+[node name="GoToCenter" type="Node" parent="StateMachine"]
+script = ExtResource( 22 )
+speed = 60
+
+[node name="Tornado" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 21 )
+can_go_to_hurtstate = false
+speed = 40
+max_t = 0.307
+max_state_t = 10.0
+
+[node name="Jump" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 25 )
 
 [node name="NewPlayerDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 6 )
@@ -308,10 +467,13 @@ anims/hurtfloor = SubResource( 54 )
 anims/idle = SubResource( 51 )
 anims/jump = SubResource( 15 )
 anims/pickupbomb = SubResource( 87 )
+anims/pickupfromback = SubResource( 93 )
 anims/pickupgun = SubResource( 56 )
 anims/pickuprifle = SubResource( 57 )
 anims/pickupswd = SubResource( 58 )
 anims/run = SubResource( 59 )
+anims/snake_vase = SubResource( 94 )
+anims/speeen = SubResource( 95 )
 anims/tired = SubResource( 55 )
 script = ExtResource( 11 )
 
@@ -354,8 +516,29 @@ path_walk_state = NodePath("../walk")
 path_air_state = NodePath("../jump")
 is_fall_state = true
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2( 0, 45 )
+emitting = false
+amount = 72
+speed_scale = 1.5
+texture = ExtResource( 20 )
+direction = Vector2( 0, -1 )
+spread = 30.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 98.0
+initial_velocity_random = 0.14
+angular_velocity = 720.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.04
+orbit_velocity_random = 1.0
+scale_amount = 0.45
+scale_amount_curve = SubResource( 91 )
+color_ramp = SubResource( 92 )
+
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
 [connection signal="entered" from="ActionStateMachine/idle" to="AnimationPlayer" method="_on_idle_entered"]
+[connection signal="landed" from="ActionStateMachine/idle" to="Jumper" method="reset_jumps"]
 [connection signal="entered" from="ActionStateMachine/jump" to="AnimationPlayer" method="_on_jump_entered"]

@@ -80,7 +80,7 @@ glow_hdr_threshold = 0.9
 script = ExtResource( 24 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 7285, -259 )
+position = Vector2( 7380, -261 )
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
 current = true
@@ -491,4 +491,5 @@ position = Vector2( 9312, -832 )
 position = Vector2( 7264, -496 )
 
 [node name="Entity2" parent="." instance=ExtResource( 60 )]
-position = Vector2( 7629, -335 )
+position = Vector2( 7678, -323 )
+collision_layer = 4097

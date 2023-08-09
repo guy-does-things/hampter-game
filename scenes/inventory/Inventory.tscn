@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://menu_cursor_handler.gd" type="Script" id=1]
 [ext_resource path="res://InventoryBorder.gd" type="Script" id=2]
 [ext_resource path="res://raw_sprites/cursorhand.png" type="Texture" id=3]
 [ext_resource path="res://raw_sprites/portraitofhampter.png" type="Texture" id=4]
-[ext_resource path="res://raw_sprites/hampterborder.png" type="Texture" id=5]
 [ext_resource path="res://cursor_hand.gd" type="Script" id=6]
 [ext_resource path="res://scenes/item_menu/ItemStuff.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/quit_menu/quit_menu.tscn" type="PackedScene" id=8]
@@ -12,44 +11,7 @@
 [ext_resource path="res://scenes/settingsmenu/Settings.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/mapscreen/mapscreen.tscn" type="PackedScene" id=11]
 [ext_resource path="res://newfonts/normal.tres" type="DynamicFont" id=12]
-
-[sub_resource type="StyleBoxEmpty" id=84]
-
-[sub_resource type="StyleBoxFlat" id=85]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.121569, 0.670588, 0.878431, 1 )
-
-[sub_resource type="StyleBoxFlat" id=86]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.133333, 0.443137, 0.74902, 1 )
-
-[sub_resource type="StyleBoxFlat" id=93]
-bg_color = Color( 1, 1, 1, 1 )
-
-[sub_resource type="Theme" id=92]
-default_font = ExtResource( 12 )
-Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-Button/styles/disabled = SubResource( 84 )
-Button/styles/focus = SubResource( 85 )
-Button/styles/hover = SubResource( 86 )
-Button/styles/normal = SubResource( 84 )
-Button/styles/pressed = SubResource( 93 )
-
-[sub_resource type="StyleBoxTexture" id=83]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 48, 48 )
-margin_left = 16.0
-margin_right = 16.0
-margin_top = 16.0
-margin_bottom = 16.0
+[ext_resource path="res://scenes/inventory/theme.tres" type="Theme" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=91]
 
@@ -59,8 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 1.0
 margin_bottom = 1.0
-theme = SubResource( 92 )
-custom_styles/panel = SubResource( 83 )
+theme = ExtResource( 13 )
 script = ExtResource( 2 )
 cr_path = NodePath("../ColorRect")
 
@@ -157,46 +118,42 @@ visible = false
 [node name="Settings" parent="MenuStuff" instance=ExtResource( 10 )]
 visible = false
 
-[node name="Main" parent="MenuStuff/Settings/TabContainer" index="0"]
-margin_top = 14.0
-
 [node name="settings" parent="MenuStuff/Settings/TabContainer/Main" index="0"]
 margin_right = 318.0
-margin_bottom = 174.0
+margin_bottom = 152.0
 
 [node name="Label" parent="MenuStuff/Settings/TabContainer/Main/settings" index="0"]
-margin_top = 35.0
+margin_top = 24.0
 margin_right = 318.0
-margin_bottom = 47.0
+margin_bottom = 36.0
 
 [node name="HSlider" parent="MenuStuff/Settings/TabContainer/Main/settings" index="1"]
-margin_top = 51.0
+margin_top = 40.0
 margin_right = 318.0
-margin_bottom = 67.0
+margin_bottom = 56.0
 
 [node name="Label2" parent="MenuStuff/Settings/TabContainer/Main/settings" index="2"]
-margin_top = 71.0
+margin_top = 60.0
 margin_right = 318.0
-margin_bottom = 83.0
+margin_bottom = 72.0
 
 [node name="HSlider2" parent="MenuStuff/Settings/TabContainer/Main/settings" index="3"]
-margin_top = 87.0
+margin_top = 76.0
 margin_right = 318.0
-margin_bottom = 103.0
+margin_bottom = 92.0
 
 [node name="Label3" parent="MenuStuff/Settings/TabContainer/Main/settings" index="4"]
-margin_top = 107.0
+margin_top = 96.0
 margin_right = 318.0
-margin_bottom = 119.0
+margin_bottom = 108.0
 
 [node name="HSlider3" parent="MenuStuff/Settings/TabContainer/Main/settings" index="5"]
-margin_top = 123.0
+margin_top = 112.0
 margin_right = 318.0
-margin_bottom = 139.0
+margin_bottom = 128.0
 
 [node name="Panel" parent="MenuStuff/Settings" index="1"]
 margin_right = 24.0
-margin_bottom = 22.0
 
 [node name="Panel2" parent="MenuStuff/Settings" index="2"]
 anchor_left = 0.925
@@ -217,6 +174,9 @@ script = ExtResource( 6 )
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_Button4_pressed"]
 [connection signal="pressed" from="MenuStuff/QuitMenu/Deny" to="." method="deselect"]
+[connection signal="deselected" from="MenuStuff/Settings" to="." method="deselect"]
+[connection signal="deselected" from="MenuStuff/Map" to="." method="deselect"]
 
 [editable path="MenuStuff/QuitMenu"]
 [editable path="MenuStuff/Settings"]
+[editable path="MenuStuff/Settings/Panel2"]
