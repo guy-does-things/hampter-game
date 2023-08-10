@@ -32,7 +32,8 @@ func _body_exited(body):
 		
 
 func _draw():
-	draw_rect(Rect2(keyprompt_offset-Vector2(4,4),Vector2(8,8)),Color("b00b69"))
+	if Engine.editor_hint:
+		draw_rect(Rect2(keyprompt_offset-Vector2(4,4),Vector2(8,8)),Color("b00b69"))
 
 
 func _physics_process(delta):

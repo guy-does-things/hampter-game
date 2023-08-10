@@ -74,7 +74,7 @@ func border_check(tpos:Vector2, rect:Rect2):
 func _physics_process(delta):
 	move_cam()
 	if is_instance_valid(pnis):
-		plrspr.global_position = (pnis.global_position / 8)
+		plrspr.global_position = (pnis.global_position / 16)
 	
 		
 
@@ -82,7 +82,7 @@ func _physics_process(delta):
 		
 
 func move_cam():
-	if is_instance_valid(pnis):cam.global_position = (pnis.global_position / 8)
+	if is_instance_valid(pnis):cam.global_position = (pnis.global_position / 16)
 	
 
 func _ready():
@@ -150,7 +150,7 @@ func room_discovered(room_path:String,visit_state:int):
 
 
 	var rtm :TileMap= tilemaps[rdata.area]
-	var room_tile_global_position = rdata.room_position/8
+	var room_tile_global_position = rdata.room_position/16
 
 	for c in tm.get_used_cells():
 		if visit_state == RoomSaveInfo.VisitStates.VISITED or border_check(c,rdata.room_rect):
@@ -173,7 +173,7 @@ func room_discovered(room_path:String,visit_state:int):
 				# adds a save point icon :3
 				var s = SaveSprite.new(save.position+rdata.room_position,false,room)
 				save_points.append(s)
-				s.global_position = room_tile_global_position + (save.position / 8)
+				s.global_position = room_tile_global_position + (save.position / 16)
 				add_child(s)
 
 

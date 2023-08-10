@@ -14,3 +14,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Stun_entered():
+	play_anim("laugh",4)
+
+
+func _on_Stun_exited():
+	stop()

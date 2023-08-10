@@ -13,8 +13,8 @@ func selected():
 
 func deselect():
 	hide()
-	emit_signal("deselected")
 	
 
 func _on_Button_pressed():
 	deselect()
+	emit_signal("deselected")

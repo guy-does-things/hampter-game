@@ -19,12 +19,13 @@ enum Items{
 	PIPEBOMB=256,
 	BREAST=512,
 	BLADEUP=1024
+	HPUPONE=2048,
 }
 
 
 export(Array,Resource) var item_data = null
-
 var is_endgame = true
+var can_open_menu = true
 
 static func item_to_id(val:int)-> int:
 

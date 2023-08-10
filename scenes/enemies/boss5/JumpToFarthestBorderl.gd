@@ -20,11 +20,11 @@ func _exit_state(old_state, new_state):
 
 
 func jump_towards():
-	jumping = true
-	$"%AnimationPlayer".stop()
-	$"%Sprite".frame = 9
-	$"%Flippables".disabled = true
 	
+	jumping = true
+	$"%Sprite".frame = 9
+	$"%AnimationPlayer".stop()
+	$"%Flippables".disabled = true
 	var d1  = (entity.global_position.x - MapManager.current_room_in.roomrect.get_global_rect().position.x)
 	var d2  = (entity.global_position.x - MapManager.current_room_in.roomrect.get_global_rect().end.x)
 
@@ -42,6 +42,7 @@ func jump_towards():
 	$"%Jumper".jump_force = -600
 	$"%Jumper".jump()
 	yield($"%idle","landed")
+	$"%JumpHB".monitoring = false
 	can_exit = true
 
 	

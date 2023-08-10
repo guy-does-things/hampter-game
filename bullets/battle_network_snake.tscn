@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
 [ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=3]
+[ext_resource path="res://bullets/SnakeHelper.gd" type="Script" id=4]
+[ext_resource path="res://raw_sprites/twinkle.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 8 )
@@ -14,6 +16,15 @@ deletes_on_enemy_hit = true
 deletes_on_ally_hit = false
 deletes_on_timeout = true
 ignores_anti_tunneling_measures = false
+
+[sub_resource type="Curve" id=3]
+max_value = 2.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.364407, 1.96591 ), -1.93091, -2.62222, 0, 0, Vector2( 1, 0 ), 0.526786, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.00938967, 0.652582, 0.849765, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="GdtBullet" type="Node2D"]
 script = ExtResource( 3 )
@@ -35,4 +46,20 @@ margin_bottom = 8.0
 unique_name_in_owner = true
 shape = SubResource( 2 )
 
+[node name="SnakeHelper" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Twinkl3" type="CPUParticles2D" parent="SnakeHelper"]
+unique_name_in_owner = true
+emitting = false
+amount = 1
+lifetime = 0.4
+one_shot = true
+texture = ExtResource( 5 )
+gravity = Vector2( 0, 0 )
+angular_velocity = 360.0
+scale_amount_curve = SubResource( 3 )
+color_ramp = SubResource( 4 )
+
+[connection signal="startup" from="." to="SnakeHelper" method="_on_GdtBullet_startup"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]

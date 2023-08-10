@@ -11,7 +11,7 @@ func set_playerstatus(ps:StatusThing):
 	
 	
 		
-func has_unlocked_hitbox(item):
+func has_unlocked_hitbox(item,loadedgame):
 	if item == Globals.Items.BLADEUP:unloked_halberd_upgrade()
 
 

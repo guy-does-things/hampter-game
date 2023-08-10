@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://realthing.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://raw_sprites/smolwater.png" type="Texture" id=16]
 [ext_resource path="res://Castlev.gd" type="Script" id=17]
 [ext_resource path="res://scenes/sd_panel/sillyghampterspr.tscn" type="PackedScene" id=18]
+[ext_resource path="res://raw_sprites/tree.png" type="Texture" id=19]
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
@@ -116,6 +117,52 @@ colors = PoolColorArray( 1, 0.962264, 0, 0, 0.984314, 0.94902, 0.211765, 1, 1, 0
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
 
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 16, 160 )
+
+[node name="Tree" type="Sprite" parent="Node2D"]
+texture = ExtResource( 19 )
+
+[node name="Tree2" type="Sprite" parent="Node2D"]
+position = Vector2( 32, 0 )
+texture = ExtResource( 19 )
+
+[node name="Tree3" type="Sprite" parent="Node2D"]
+position = Vector2( 64, 0 )
+texture = ExtResource( 19 )
+
+[node name="Tree4" type="Sprite" parent="Node2D"]
+position = Vector2( 96, 0 )
+texture = ExtResource( 19 )
+
+[node name="Tree5" type="Sprite" parent="Node2D"]
+position = Vector2( 112, -9 )
+texture = ExtResource( 19 )
+
+[node name="Tree6" type="Sprite" parent="Node2D"]
+position = Vector2( 112, -9 )
+texture = ExtResource( 19 )
+
+[node name="Tree7" type="Sprite" parent="Node2D"]
+position = Vector2( 144, -9 )
+texture = ExtResource( 19 )
+
+[node name="Tree11" type="Sprite" parent="Node2D"]
+position = Vector2( 161, 3 )
+texture = ExtResource( 19 )
+
+[node name="Tree8" type="Sprite" parent="Node2D"]
+position = Vector2( 80, 12 )
+texture = ExtResource( 19 )
+
+[node name="Tree9" type="Sprite" parent="Node2D"]
+position = Vector2( 48, 12 )
+texture = ExtResource( 19 )
+
+[node name="Tree10" type="Sprite" parent="Node2D"]
+position = Vector2( 16, 12 )
+texture = ExtResource( 19 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -128,11 +175,31 @@ color = Color( 0.188235, 0.717647, 0.752941, 1 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 589845, 8, 0, 589846, 8, 0, 589847, 8, 0, 589848, 8, 0, 589849, 8, 0, 589850, 8, 0, 589851, 8, 0, 589852, 8, 0, 589853, 8, 0, 655381, 8, 0, 655382, 8, 0, 655383, 8, 0, 655384, 8, 0, 655385, 8, 0, 655386, 8, 0, 655387, 8, 0, 655388, 8, 0, 655389, 8, 0, 720917, 8, 0, 720918, 8, 0, 720919, 8, 0, 720920, 8, 0, 720921, 8, 0, 720922, 8, 0, 720923, 8, 0, 720924, 8, 0, 720925, 8, 0, 786439, 3, 196608, 786440, 3, 1, 786441, 3, 1, 786442, 3, 1, 786443, 3, 2, 786453, 8, 0, 786454, 8, 0, 786455, 8, 0, 786456, 8, 0, 786457, 8, 0, 786458, 8, 0, 786459, 8, 0, 786460, 8, 0, 786461, 8, 0, 851968, 3, 1, 851969, 3, 1, 851970, 3, 1, 851971, 3, 1, 851972, 3, 1, 851973, 3, 1, 851974, 3, 1, 851975, 3, 65537, 851976, 3, 65537, 851977, 3, 65537, 851978, 3, 65537, 851979, 3, 65537, 851990, 8, 0, 851991, 8, 0, 851992, 8, 0, 851993, 8, 0, 851994, 8, 0, 851995, 8, 0, 851996, 8, 0, 851997, 8, 0, 917504, 3, 65537, 917505, 3, 65537, 917506, 3, 65537, 917507, 3, 65537, 917508, 3, 65537, 917509, 3, 65537, 917510, 3, 65537, 917511, 3, 65537, 917512, 3, 65537, 917513, 3, 65537, 917514, 3, 65537, 917515, 3, 65537, 917527, 8, 0, 917528, 8, 0, 917529, 8, 0, 917530, 8, 0, 917531, 8, 0, 917532, 8, 0, 917533, 8, 0, 983040, 3, 65537, 983041, 3, 65537, 983042, 3, 65537, 983043, 3, 65537, 983044, 3, 65537, 983045, 3, 65537, 983046, 3, 65537, 983047, 3, 65537, 983048, 8, 0, 983049, 8, 0, 983050, 8, 0, 983051, 8, 0, 983063, 8, 0, 983064, 8, 0, 983065, 8, 0, 983066, 8, 0, 983067, 8, 0, 983068, 8, 0, 983069, 8, 0, 1048576, 8, 0, 1048577, 8, 0, 1048578, 8, 0, 1048579, 8, 0, 1048580, 8, 0, 1048581, 8, 0, 1048582, 8, 0, 1048583, 8, 0, 1048584, 8, 0, 1048585, 8, 0, 1048586, 8, 0, 1048587, 8, 0, 1048599, 8, 0, 1048600, 8, 0, 1048601, 8, 0, 1048602, 8, 0, 1048603, 8, 0, 1048604, 8, 0, 1048605, 8, 0 )
+tile_data = PoolIntArray( 589845, 8, 65536, 589846, 8, 65536, 589847, 8, 65536, 589848, 8, 65536, 589849, 8, 65536, 589850, 8, 65536, 589851, 8, 65536, 589852, 8, 65536, 589853, 8, 65536, 655381, 8, 65536, 655382, 8, 65536, 655383, 8, 65536, 655384, 8, 65536, 655385, 8, 65536, 655386, 8, 65536, 655387, 8, 65536, 655388, 8, 65536, 655389, 8, 65536, 720917, 8, 65536, 720918, 8, 65536, 720919, 8, 65536, 720920, 8, 65536, 720921, 8, 65536, 720922, 8, 65536, 720923, 8, 65536, 720924, 8, 65536, 720925, 8, 65536, 786439, 3, 196608, 786440, 3, 1, 786441, 3, 1, 786442, 3, 1, 786443, 3, 2, 786453, 8, 65536, 786454, 8, 65536, 786455, 8, 65536, 786456, 8, 65536, 786457, 8, 65536, 786458, 8, 65536, 786459, 8, 65536, 786460, 8, 65536, 786461, 8, 65536, 851968, 3, 1, 851969, 3, 1, 851970, 3, 1, 851971, 3, 1, 851972, 3, 1, 851973, 3, 1, 851974, 3, 1, 851975, 3, 131073, 851976, 3, 65537, 851977, 3, 65537, 851978, 3, 65537, 851979, 3, 65537, 851990, 8, 65536, 851991, 8, 65536, 851992, 8, 65536, 851993, 8, 65536, 851994, 8, 65536, 851995, 8, 65536, 851996, 8, 65536, 851997, 8, 65536, 917504, 3, 65537, 917505, 3, 65537, 917506, 3, 65537, 917507, 3, 65537, 917508, 3, 65537, 917509, 3, 65537, 917510, 3, 65537, 917511, 3, 65537, 917512, 3, 65537, 917513, 3, 65537, 917514, 3, 65537, 917515, 3, 65537, 917527, 8, 65536, 917528, 8, 65536, 917529, 8, 65536, 917530, 8, 65536, 917531, 8, 65536, 917532, 8, 65536, 917533, 8, 65536, 983040, 3, 65537, 983041, 3, 65537, 983042, 3, 65537, 983043, 3, 65537, 983044, 3, 65537, 983045, 3, 65537, 983046, 3, 65537, 983047, 3, 65537, 983048, 8, 65536, 983049, 8, 65536, 983050, 8, 65536, 983051, 8, 65536, 983063, 8, 65536, 983064, 8, 65536, 983065, 8, 65536, 983066, 8, 65536, 983067, 8, 65536, 983068, 8, 65536, 983069, 8, 65536, 1048576, 8, 65536, 1048577, 8, 65536, 1048578, 8, 65536, 1048579, 8, 65536, 1048580, 8, 65536, 1048581, 8, 65536, 1048582, 8, 65536, 1048583, 8, 65536, 1048584, 8, 65536, 1048585, 8, 65536, 1048586, 8, 65536, 1048587, 8, 65536, 1048599, 8, 65536, 1048600, 8, 65536, 1048601, 8, 65536, 1048602, 8, 65536, 1048603, 8, 65536, 1048604, 8, 65536, 1048605, 8, 65536 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 145, 173 )
 unlock_ev = false
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2( 16, 160 )
+z_index = 1
+
+[node name="Tree2" type="Sprite" parent="Node2D3"]
+position = Vector2( 157, -16 )
+texture = ExtResource( 19 )
+
+[node name="Tree3" type="Sprite" parent="Node2D3"]
+position = Vector2( 77, 0 )
+texture = ExtResource( 19 )
+
+[node name="Tree4" type="Sprite" parent="Node2D3"]
+position = Vector2( 45, 0 )
+texture = ExtResource( 19 )
+
+[node name="Tree5" type="Sprite" parent="Node2D3"]
+position = Vector2( -3, 0 )
+texture = ExtResource( 19 )
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 script = ExtResource( 9 )

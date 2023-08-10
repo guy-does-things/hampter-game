@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var gametime :int= 0;
-var started = true
+var started = false
 
 func _physics_process(delta):
 	if !get_tree().paused and started:

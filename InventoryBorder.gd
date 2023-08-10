@@ -7,13 +7,14 @@ export(NodePath) var cr_path;onready var cr :ColorRect= get_node(cr_path)
 var current_menu :Control
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("show_inv") and !animating:
+	if Input.is_action_just_pressed("show_inv") and !animating and Globals.can_open_menu:
 		if visible:
 			yield(animate_cr(0,1),"completed")
 			hide()
 			yield(animate_cr(),"completed")
 			get_tree().paused = false
 			Engine.time_scale = previous_ts
+			deselect()
 			return
 		
 		previous_ts = Engine.time_scale
@@ -26,9 +27,9 @@ func _physics_process(delta):
 		$VBoxContainer/Button.grab_focus()
 
 	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") or !Globals.can_open_menu:
 		deselect()
-
+		
 
 func animate_cr(start_val=1,end_val=0,extra_yield_time=0,initial_yield=.5):
 	animating = true
@@ -59,7 +60,9 @@ func animate_cr(start_val=1,end_val=0,extra_yield_time=0,initial_yield=.5):
 
 
 func deselect(is_rs=false):
-	if is_instance_valid(current_menu):current_menu.deselect()
+	if is_instance_valid(current_menu):
+		current_menu.deselect()
+		current_menu.hide()
 	$VBoxContainer/Button.grab_focus()
 	$VBoxContainer2.visible = !is_rs
 

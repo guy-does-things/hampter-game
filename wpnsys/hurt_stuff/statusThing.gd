@@ -42,13 +42,16 @@ func set_cur_hp(nhp):
 	current_hp = min(nhp,get_max_hp())
 
 
-func unlocked_item(item):
+func unlocked_item(item,loadedgame=false):
 	if item == GlobalData.Items.HPUP:
+		hp_stacks += 2
 		current_hp = self.MAX_HP
+	if item == GlobalData.Items.HPUPONE:
 		hp_stacks += 1
+		current_hp = self.MAX_HP
 		
 	item_bitmask |= item
-	emit_signal("item_unlocked",item)
+	emit_signal("item_unlocked",item,loadedgame)
 
 
 

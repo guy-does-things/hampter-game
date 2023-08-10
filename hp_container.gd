@@ -21,4 +21,4 @@ func _physics_process(delta):
 	
 	for kid in get_child_count():
 		get_children()[kid].visible = kid < playerstatus.current_hp
-		if kid < playerstatus.current_hp-1:get_children()[kid].texture.region.position.x = 0
+		get_children()[kid].texture.region.position.x = 0

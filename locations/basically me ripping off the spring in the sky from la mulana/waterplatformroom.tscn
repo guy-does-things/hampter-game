@@ -18,7 +18,7 @@ tile_data = PoolIntArray( -786432, 0, 1, -786431, 0, 1, -786430, 0, 1, -786429, 
 
 [node name="Area2D" parent="RoomObjectManager" index="0" instance=ExtResource( 4 )]
 position = Vector2( 1408, 320 )
-item_to_give = 1
+item_to_give = 2048
 
 [node name="WaterTileMap" type="TileMap" parent="." index="6"]
 tile_set = ExtResource( 3 )

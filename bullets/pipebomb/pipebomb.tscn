@@ -31,7 +31,7 @@ texture = ExtResource( 5 )
 script = ExtResource( 2 )
 
 [node name="Area2D" parent="." instance=ExtResource( 1 )]
-monitorable = true
+collision_mask = 524344
 min_hit_priority = 35
 max_hit_priority = 35
 

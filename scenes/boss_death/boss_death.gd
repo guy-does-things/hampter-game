@@ -60,6 +60,7 @@ class DeathPoly extends Polygon2D:
 	
 
 func _ready():
+	Signals.emit_signal("boss_death_anim_state",true)
 	for i in 4:
 		add_child(DeathPoly.new())
 	
@@ -86,4 +87,5 @@ func _ready():
 	
 	if is_instance_valid(boss):
 		boss.queue_free()
+	Signals.emit_signal("boss_death_anim_state",false)
 	queue_free()

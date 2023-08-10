@@ -18,8 +18,7 @@ func _ready():
 	setup_area()
 	setup_shape()
 	Signals.connect("player_entered_room",self,"_on_player_entered_room")
-	#a.hide()
-
+	
 
 func _on_player_entered_room(player, room):
 	var index = NewRoomAutoload.room_stack.find(get_parent())

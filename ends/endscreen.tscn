@@ -1,11 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://cursor_hand.gd" type="Script" id=3]
 [ext_resource path="res://Ghostmeat.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Ghostmeat Back.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://menu_cursor_handler.gd" type="Script" id=6]
 [ext_resource path="res://scenes/inventory/theme.tres" type="Theme" id=7]
-[ext_resource path="res://raw_sprites/cursorhand.png" type="Texture" id=8]
 [ext_resource path="res://ends/endscreen.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
@@ -61,19 +58,11 @@ margin_top = 160.0
 margin_right = 304.0
 margin_bottom = 193.0
 theme = ExtResource( 7 )
-script = ExtResource( 6 )
-cursorpath = NodePath("Cursorhand")
 
 [node name="Button" type="Button" parent="CanvasLayer2/VBoxContainer"]
 margin_right = 144.0
 margin_bottom = 33.0
 size_flags_vertical = 3
 text = "main menu"
-
-[node name="Cursorhand" type="Sprite" parent="CanvasLayer2/VBoxContainer"]
-visible = false
-position = Vector2( 152, 144 )
-texture = ExtResource( 8 )
-script = ExtResource( 3 )
 
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button" to="." method="_on_Button_pressed"]

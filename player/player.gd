@@ -14,7 +14,7 @@ var no_movement =  false
 var on_water = false
 var ctiltmult = 1
 var previous_stone_frame = 0
-
+var aip = false
 onready var status = $StatusThing
 onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
 
@@ -27,9 +27,14 @@ func _ready():
 #	status.unlocked_item(GlobalData.Items.STOMP)
 #	status.unlocked_item(GlobalData.Items.BROKENASSSLASH)
 	if not unlock_ev:return
+	Signals.connect("boss_death_anim_state",self,"boss_died")
 	for i in GlobalData.Items.values():
-		status.unlocked_item(i)
+		status.unlocked_item(i,true)
 
+
+func boss_died(started):
+	aip = started
+	$HurtComponent.damage_override = 1 if not started else 0
 
 func compare(eventa:InputEvent,eventb):
 	if eventa is InputEventKey and eventb is InputEventKey:
@@ -100,6 +105,8 @@ func get_speed_mult(lowoverride=.5): return (lowoverride if on_water else 1.0)
 
 
 func _physics_process(delta):
+	if aip:return
+	
 	if $StateMachine.state == $StateMachine/Hurt:return
 	if is_riding():return
 	
@@ -332,6 +339,10 @@ func _on_Hurt_exited():
 
 
 func on_water(water):
+	print(
+		status.disabled_bitmask & Globals.Items.WATERBREATHING
+		)
+	
 	if !status.has_item(Globals.Items.WATERBREATHING) or water.hurts_regardless:
 		$HurtComponent.hurt(1,Vector2.ZERO,0,true,4000,true)
 		global_position = water.get_eject_pos()

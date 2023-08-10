@@ -70,6 +70,8 @@ func flash(STOP=false):
 func hurt(dam:int, dir:Vector2, kbstr:int, hit_is_enemy:bool,hit_priority:int,is_water=false):
 	
 	if is_fucking_dead:return
+	if damage_override == 0:return
+	
 	if dam == 0:return
 	if damage_override != -1:dam =damage_override
 	

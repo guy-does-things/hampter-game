@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/inventory/theme.tres" type="Theme" id=1]
+[ext_resource path="res://newfonts/beeg.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/itempopup/ipopup.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=86]
+bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.737255, 0.345098, 0.0627451, 1 )
+
+[node name="Control" type="Control"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.521569 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer2"]
+margin_top = 91.0
+margin_right = 480.0
+margin_bottom = 179.0
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 86 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 479.0
+margin_bottom = 87.0
+
+[node name="Label" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
+margin_right = 478.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 2 )
+text = "--ITEM_NAME--"
+align = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 478.0
+margin_bottom = 50.0
+size_flags_vertical = 3
+text = "itemdeschere : 3"
+align = 1
+autowrap = true
+
+[node name="Control" type="Control" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 478.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
+margin_top = 74.0
+margin_right = 478.0
+margin_bottom = 86.0
+size_flags_vertical = 6
+text = "press space to exit"
+align = 1

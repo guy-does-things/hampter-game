@@ -2,6 +2,8 @@ extends VBoxContainer
 
 
 var status :StatusThing setget set_status;
+var button_grid := {}
+
 
 func set_status(sthing):
 	status = sthing
@@ -15,7 +17,7 @@ class ItemToggle extends CheckBox:
 	var status : StatusThing
 	
 	func _physics_process(delta):
-		
+
 		
 		if !status:
 			hide()
@@ -23,13 +25,12 @@ class ItemToggle extends CheckBox:
 		
 		item_obtained = status.raw_hasitem(item_data.item_id)
 		
-		if !item_obtained:
-			hide()
-			return
+		visible = item_obtained
 		
 		
 		disabled = (
 			item_data.item_id == Globals.Items.WATERBREATHING and status.on_water or
+			item_data.item_id == Globals.Items.HPUPONE or
 			item_data.item_id == Globals.Items.HPUP or
 			item_data.item_id == Globals.Items.BLADEUP
 		)
@@ -68,7 +69,7 @@ func _ready():
 		"sort_item_toggles"
 	)
 
-	var button_grid := {}
+	
 	var current_button_pos_thing : Vector2
 
 
@@ -82,19 +83,33 @@ func _ready():
 		
 		current_button_pos_thing.x += 1
 	
-	
-	for i in button_grid.keys():
-		var pos :Vector2 = i
-		var toggle : ItemToggle = button_grid[i][0]
-		toggle.focus_neighbour_top = get_neighbor_in_dir(button_grid,Vector2.UP,pos,toggle)
-		toggle.focus_neighbour_bottom = get_neighbor_in_dir(button_grid,Vector2.DOWN,pos,toggle)	
-		
-		toggle.focus_neighbour_left = get_neighbor_in_dir(button_grid,Vector2.LEFT,pos,toggle)
-		toggle.focus_neighbour_right = get_neighbor_in_dir(button_grid,Vector2.RIGHT,pos,toggle)
 
 
 
 	$"%GridContainer".connect_focus_signals()
+
+
+
+func update_focus():
+	for i in button_grid.keys():
+		var pos :Vector2 = i
+		var toggle : ItemToggle = button_grid[i][0]
+#		toggle.focus_neighbour_top = get_neighbor_in_dir(button_grid,Vector2.UP,pos,toggle)
+#		toggle.focus_neighbour_bottom = get_neighbor_in_dir(button_grid,Vector2.DOWN,pos,toggle)	
+		var l = button_grid.get(pos+Vector2.LEFT)
+		var b = button_grid.get(pos+Vector2.DOWN)
+		
+		
+		if not l or not l[0].visible:
+			toggle.focus_neighbour_left = toggle.get_path()
+
+
+					
+			
+#		toggle.focus_neighbour_left = get_neighbor_in_dir(button_grid,Vector2.LEFT,pos,toggle)
+#		toggle.focus_neighbour_right = get_neighbor_in_dir(button_grid,Vector2.RIGHT,pos,toggle)
+#
+
 
 
 func get_neighbor_in_dir(
@@ -114,9 +129,9 @@ func toggle_hovered(toggle:ItemToggle):
 
 func selected():
 	show()
+	update_focus()
 	for i in $"%GridContainer".get_children():
 		if i.visible:
-			
 			i.grab_focus()
 			break
 

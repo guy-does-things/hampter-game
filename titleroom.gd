@@ -11,6 +11,8 @@ func _ready():
 	$KinematicBody2D.local_freeze(true,true)
 	
 	if Globals.is_endgame:
+		SavesManager.current_save.igt = Igt.gametime
+		
 		SavesManager.current_save.beat = true
 		SavesManager.save(SavesManager.current_save)
 		$CanvasLayer2.hide()
@@ -35,9 +37,7 @@ func _ready():
 		get_tree().change_scene_to(
 			preload("res://ends/endscreen.tscn")
 		)
-				
-
-
+	
 
 func _on_Button3_pressed():
 	get_tree().quit()
