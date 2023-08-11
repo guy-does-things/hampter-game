@@ -80,7 +80,7 @@ glow_hdr_threshold = 0.95
 script = ExtResource( 24 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 1496, 636 )
+position = Vector2( 2377, 3316 )
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
 pause_mode = 2

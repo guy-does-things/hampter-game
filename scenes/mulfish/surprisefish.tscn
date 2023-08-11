@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=2]
@@ -9,16 +9,22 @@
 [ext_resource path="res://mulanafish_swim_swim.gd" type="Script" id=7]
 [ext_resource path="res://dash.png" type="Texture" id=8]
 [ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=9]
+[ext_resource path="res://n_plr_detector.gd" type="Script" id=10]
 
 [sub_resource type="CircleShape2D" id=89]
 
+[sub_resource type="CircleShape2D" id=90]
+radius = 240.533
+
 [node name="MulanaFish" type="KinematicBody2D"]
 position = Vector2( 255, -28 )
+scale = Vector2( 2, 2 )
 collision_layer = 0
-collision_mask = 4
+collision_mask = 36
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
+unique_name_in_owner = true
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -56,13 +62,24 @@ path_entitystatus = NodePath("../StatusThing")
 shape = SubResource( 89 )
 
 [node name="StatusThing" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource( 9 )
 MAX_HP = 1
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 rect = Rect2( -20, -20, 40, 40 )
 
+[node name="NewPlayerDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlayerDetector"]
+shape = SubResource( 90 )
+
 [connection signal="entered" from="StateMachine/LAUNCHEDAAAAAAA" to="CollisionShape2D" method="set_disabled" binds= [ true ]]
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="StateMachine/LAUNCHEDAAAAAAA" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
