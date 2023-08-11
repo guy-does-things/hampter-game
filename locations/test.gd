@@ -12,8 +12,7 @@ func _ready():
 	if Engine.editor_hint:
 		store_positions()
 		return
-	store_positions()
-	player_tests()
+	player_setup()
 	
 func store_positions():
 	var datadict = preload("res://room_dict_data.tres")
@@ -27,13 +26,14 @@ func store_positions():
 		
 	
 	
-func player_tests():
+func player_setup():
 	$Inventory/GridContainer.playerstatus = $KinematicBody2D/StatusThing
 	$Inventory/InventoryBorder.setup_player($KinematicBody2D,$KinematicBody2D/StatusThing)
-	$KinematicBody2D/StatusThing.connect("item_unlocked",
-		$Inventory/ItemPopup,"item_unlocked"
-	)
-
+	$KinematicBody2D/StatusThing.connect("item_unlocked",$Inventory/ItemPopup,"item_unlocked")
+	$KinematicBody2D.global_position = SavesManager.current_save.last_position
+	$KinematicBody2D/StatusThing.unlocked_item(SavesManager.current_save.current_powerups,true)
+	
+	$KinematicBody2D/StatusThing.disabled_bitmask = SavesManager.current_save.disabled_shit
 
 
 func save_map_to_ss():

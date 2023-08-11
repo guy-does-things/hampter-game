@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
+[ext_resource path="res://locations/nitrotasticman/CanvasLayer.gd" type="Script" id=2]
+[ext_resource path="res://locations/nitrotasticman/parallaxtest.gd" type="Script" id=3]
+[ext_resource path="res://raw_sprites/bgs/city/farbg.png" type="Texture" id=4]
+[ext_resource path="res://raw_sprites/bgs/city/city.png" type="Texture" id=5]
 
 [node name="A" instance=ExtResource( 1 )]
 
@@ -15,3 +19,78 @@ tile_data = PoolIntArray( 655362, 5, 0, 655363, 5, 1, 655364, 5, 1, 655365, 5, 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
 polygon = PoolVector2Array( 0, 272, 0, 0, 480, 0, 480, -16, -8, -16, -8, 272 )
+
+[node name="BGS" type="Node" parent="." index="7"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="BGS" index="0"]
+layer = -8
+visible = false
+script = ExtResource( 2 )
+
+[node name="Farbg" type="Sprite" parent="BGS/CanvasLayer" index="0"]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+centered = false
+region_rect = Rect2( 0, 0, 992, 0 )
+
+[node name="CityFar2" type="CanvasLayer" parent="BGS" index="1"]
+layer = -8
+follow_viewport_enable = true
+follow_viewport_scale = 0.25
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="BGS/CityFar2" index="0"]
+modulate = Color( 0.501961, 0.501961, 0.501961, 1 )
+script = ExtResource( 3 )
+speed = 0
+
+[node name="Farbg" type="Sprite" parent="BGS/CityFar2/Node2D" index="0"]
+position = Vector2( -544, -80 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 992, 67 )
+
+[node name="ColorRect" type="ColorRect" parent="BGS/CityFar2/Node2D" index="1"]
+margin_left = -528.0
+margin_top = 188.0
+margin_right = 4080.0
+margin_bottom = 460.0
+
+[node name="CityFar" type="CanvasLayer" parent="BGS" index="2"]
+layer = -7
+follow_viewport_enable = true
+follow_viewport_scale = 0.5
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="BGS/CityFar" index="0"]
+modulate = Color( 0.501961, 0.501961, 0.501961, 1 )
+script = ExtResource( 3 )
+speed = 0
+
+[node name="Farbg" type="Sprite" parent="BGS/CityFar/Node2D" index="0"]
+position = Vector2( -544, 144 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 992, 67 )
+
+[node name="CityClose" type="CanvasLayer" parent="BGS" index="3"]
+layer = -6
+follow_viewport_enable = true
+follow_viewport_scale = 0.8
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="BGS/CityClose" index="0"]
+script = ExtResource( 3 )
+speed = 0
+
+[node name="Farbg" type="Sprite" parent="BGS/CityClose/Node2D" index="0"]
+position = Vector2( -96, 401 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 992, 67 )

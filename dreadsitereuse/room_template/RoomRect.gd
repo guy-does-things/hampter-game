@@ -15,6 +15,8 @@ signal princessevent(victim)
 func _init():pause_mode = PAUSE_MODE_PROCESS
 
 func _ready():
+	show()
+	
 	setup_area()
 	setup_shape()
 	Signals.connect("player_entered_room",self,"_on_player_entered_room")

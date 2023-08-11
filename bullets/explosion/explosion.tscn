@@ -83,7 +83,6 @@ wait_time = 0.55
 one_shot = true
 
 [node name="Area2D" parent="." instance=ExtResource( 3 )]
-monitorable = true
 min_hit_priority = 64
 max_hit_priority = 64
 
@@ -125,6 +124,7 @@ color_ramp = SubResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Explosiontex"]
 stream = ExtResource( 8 )
+bus = "SFX"
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]
 [connection signal="actually_hit" from="Area2D" to="." method="_on_Area2D_actually_hit"]

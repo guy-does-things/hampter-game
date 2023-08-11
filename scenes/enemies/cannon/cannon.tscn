@@ -71,6 +71,9 @@ attack_state_path = NodePath("../State")
 [node name="State" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
+[node name="Timer" type="Timer" parent="StateMachine/State"]
+wait_time = 4.0
+
 [node name="NewPlayerDetector" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
@@ -91,5 +94,6 @@ texture = ExtResource( 11 )
 
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="timeout" from="StateMachine/State/Timer" to="StateMachine/State" method="_on_Timer_timeout"]
 [connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
 [connection signal="target_invisible" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_invisible"]

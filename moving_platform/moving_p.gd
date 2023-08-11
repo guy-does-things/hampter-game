@@ -7,12 +7,16 @@ export(MoveStates) var current_move_state = MoveStates.END
 export var start_position = Vector2.ZERO
 export var end_position = Vector2.ZERO
 var is_moving = false
+var current_tween = null
+
+
 
 
 
 
 func _physics_process(delta):
 	movement_thing()
+	
 
 
 func movement_thing():
@@ -23,12 +27,14 @@ func movement_thing():
 
 	
 	yield(get_tree().create_timer(1.5,false),"timeout")
-	yield(create_tween().tween_property(
+	current_tween = create_tween().tween_property(
 		self,
 		"position",
 		pos,
 		pos.distance_to(position)/200.0
-	),"finished")
+	)
+	
+	yield(current_tween,"finished")
 	
 	is_moving = false
 	

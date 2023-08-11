@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://locations/gate of cage/combotestroom.tscn" type="PackedScene" id=38]
 [ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/sealroom.tscn" type="PackedScene" id=39]
 [ext_resource path="res://locations/gate of cage/highwayjump.tscn" type="PackedScene" id=40]
+[ext_resource path="res://locations/lecastlevania/yokuroom3.tscn" type="PackedScene" id=41]
 [ext_resource path="res://locations/roomtranspipe.gd" type="Script" id=42]
 [ext_resource path="res://locations/nitrotasticman/highway_entrance.tscn" type="PackedScene" id=43]
 [ext_resource path="res://locations/nitrotasticman/car_jumpscare.tscn" type="PackedScene" id=44]
@@ -57,6 +58,8 @@
 [ext_resource path="res://locations/lecastlevania/castle_entrance.tscn" type="PackedScene" id=56]
 [ext_resource path="res://locations/lecastlevania/castle_inside.tscn" type="PackedScene" id=57]
 [ext_resource path="res://locations/lecastlevania/yokuroom2.tscn" type="PackedScene" id=58]
+[ext_resource path="res://locations/lecastlevania/snakeroom.tscn" type="PackedScene" id=59]
+[ext_resource path="res://scenes/nsav_thing/nsav_thing.tscn" type="PackedScene" id=60]
 [ext_resource path="res://scenes/itempopup/ipopup.tscn" type="PackedScene" id=61]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -69,20 +72,29 @@ region = Rect2( 26, 0, 13, 13 )
 
 [sub_resource type="Environment" id=3]
 background_mode = 4
-glow_intensity = 1.5
+glow_enabled = true
 glow_strength = 1.3
-glow_blend_mode = 0
-glow_hdr_threshold = 0.9
+glow_hdr_threshold = 0.95
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 24 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 29, 124 )
+position = Vector2( 1496, 636 )
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
+pause_mode = 2
 current = true
 script = ExtResource( 23 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="KinematicBody2D/RoomBasedCamera"]
+layer = 5
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="KinematicBody2D/RoomBasedCamera/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="A17" parent="." instance=ExtResource( 16 )]
 position = Vector2( 6288, 2224 )
@@ -318,6 +330,7 @@ position = Vector2( -3232, 2064 )
 position = Vector2( 2224, 1888 )
 
 [node name="Pipe" type="Line2D" parent="."]
+pause_mode = 2
 position = Vector2( -13, 8 )
 z_index = 2
 points = PoolVector2Array( 125, 2024, 509, 2024 )
@@ -330,6 +343,7 @@ end_cap_mode = 1
 script = ExtResource( 42 )
 
 [node name="Pipe2" type="Line2D" parent="."]
+pause_mode = 2
 position = Vector2( -13, 8 )
 z_index = 2
 points = PoolVector2Array( 509, 1864, 429, 1864, 429, 1960, 429, 2728, 237, 2728, 237, 3384, 413, 3384 )
@@ -345,6 +359,7 @@ room_a = NodePath("../layeredcages")
 room_b = NodePath("../A6")
 
 [node name="Pipe3" type="Line2D" parent="."]
+pause_mode = 2
 position = Vector2( -13, 8 )
 z_index = 2
 points = PoolVector2Array( -1603, 2280, -1987, 2280 )
@@ -359,6 +374,7 @@ room_a = NodePath("../waterway")
 room_b = NodePath("../training")
 
 [node name="Pipe4" type="Line2D" parent="."]
+pause_mode = 2
 position = Vector2( -13, 8 )
 z_index = 2
 points = PoolVector2Array( -1603, 2184, -1699, 2184, -1699, 1624, -1827, 1624, -1827, 1528, -1747, 1528, -1491, 1528, -1491, 1688, -1907, 1688, -1907, 1352, -1699, 1352, -1699, 648, -1443, 648, -1443, 424, -1283, 424, -1283, 712, -835, 712, -835, 632, -899, 632, -899, 792, -499, 792, 189, 792, 189, 520, 77, 520, 77, 296, 253, 296, 253, -8, 253, -104, 285, -104 )
@@ -374,6 +390,7 @@ room_a = NodePath("../waterway")
 room_b = NodePath("../A")
 
 [node name="Pipe9" type="Line2D" parent="."]
+pause_mode = 2
 z_index = 2
 points = PoolVector2Array( -1152, 576, -1280, 576, -1280, -448, 112, -448 )
 width = 32.0
@@ -388,6 +405,7 @@ room_a = NodePath("../A35")
 room_b = NodePath("../A29")
 
 [node name="Pipe6" type="Line2D" parent="."]
+pause_mode = 2
 position = Vector2( -13, 8 )
 z_index = 2
 points = PoolVector2Array( 941, -776, 1037, -776, 1037, -1096, 973, -1096, 973, -1736, 1053, -1736 )
@@ -403,6 +421,7 @@ room_a = NodePath("../waterway")
 room_b = NodePath("../A")
 
 [node name="Pipe5" type="Line2D" parent="."]
+pause_mode = 2
 position = Vector2( -13, 8 )
 z_index = 2
 points = PoolVector2Array( 109, 3512, 157, 3512, 157, 3640, -131, 3640, -131, 3704, -131, 3928, 13, 3928, 13, 3768, 685, 3768, 685, 4056, 765, 4056, 765, 3944, 493, 3944, 493, 3640, 1309, 3640, 1309, 3912, 1197, 3912, 1197, 3800, 1853, 3800, 1853, 3912, 2317, 3912 )
@@ -418,6 +437,7 @@ room_a = NodePath("../waterway")
 room_b = NodePath("../cisexit")
 
 [node name="Pipe7" type="Line2D" parent="."]
+pause_mode = 2
 position = Vector2( -13, 8 )
 z_index = 2
 points = PoolVector2Array( 4717, -1480, 5309, -1480, 5309, -920, 5373, -920, 5373, -808, 5325, -808 )
@@ -433,6 +453,7 @@ room_a = NodePath("../A32")
 room_b = NodePath("../A28")
 
 [node name="Pipe8" type="Line2D" parent="."]
+pause_mode = 2
 position = Vector2( -13, 8 )
 z_index = 2
 points = PoolVector2Array( 3917, -1768, 4045, -1768, 4045, -1480, 4269, -1480 )
@@ -494,3 +515,27 @@ environment = SubResource( 3 )
 
 [node name="A43" parent="." instance=ExtResource( 58 )]
 position = Vector2( 9312, -848 )
+
+[node name="Pipe10" type="Line2D" parent="."]
+pause_mode = 2
+position = Vector2( -13, 8 )
+z_index = 2
+points = PoolVector2Array( 11773, -312, 11965, -312, 11965, 168, 1789, 88, 1789, -872, 925, -872 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 46 )
+texture_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+script = ExtResource( 42 )
+room_a = NodePath("../A42")
+room_b = NodePath("../A4")
+
+[node name="A45" parent="." instance=ExtResource( 59 )]
+position = Vector2( 6960, -1328 )
+
+[node name="A30" parent="." instance=ExtResource( 41 )]
+position = Vector2( 8544, -1024 )
+
+[node name="CAVES " parent="." instance=ExtResource( 60 )]
+position = Vector2( 216, 248 )

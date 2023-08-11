@@ -4,15 +4,19 @@ extends "res://scenes/nsav_thing/ninteractibble.gd"
 
 
 func interact(cinteractionstatus,is_loading_game:=false)-> void:
-	plr.velocity = Vector2.ZERO
 	var es:StatusThing=plr.get_node("StatusThing")
 	es.current_hp = es.MAX_HP
 	
 	
 	SavesManager.current_save.hp_stacks = es.hp_stacks
 	SavesManager.current_save.last_position = plr.global_position
+	SavesManager.current_save.current_powerups = es.item_bitmask
+	SavesManager.current_save.disabled_shit = es.disabled_bitmask
+	SavesManager.current_save.hp_stacks = es.hp_stacks
 	#SavesManager.current_save.loaded_room = NewRoomAutoload.get_current_room().filename
 	SavesManager.current_save.area = aria_of_interactible
 	SavesManager.current_save.igt = Igt.gametime
-	Signals.emit_signal("trying_to_save",false)
+	SavesManager.current_save.played = true
+	#Signals.emit_signal("trying_to_save",false)
+	print(SavesManager.save(SavesManager.current_save))
 	.interact(cinteractionstatus,is_loading_game)

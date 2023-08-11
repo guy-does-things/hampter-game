@@ -36,8 +36,7 @@ func start_timer():
 	
 
 	
-func _get_transition(dt):
-	
+func _get_transition(dt):	
 	if t.is_stopped() and t_started:
 		
 		if not return_override.is_empty():return get_node(return_override)

@@ -447,7 +447,7 @@ tracks/1/keys = {
 }
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=["player"]]
-collision_layer = 129
+collision_layer = 32897
 collision_mask = 524320
 script = ExtResource( 1 )
 
@@ -604,7 +604,6 @@ visible = false
 position = Vector2( 1, 8 )
 z_index = 1
 frames = SubResource( 19 )
-frame = 2
 playing = true
 
 [node name="Area2D" parent="AnimatedSprite" instance=ExtResource( 22 )]
@@ -623,7 +622,7 @@ rotation = 1.5708
 scale = Vector2( 2, -2 )
 z_index = 1
 frames = SubResource( 19 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Circlething" type="Sprite" parent="."]

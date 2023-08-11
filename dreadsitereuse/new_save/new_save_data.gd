@@ -21,13 +21,14 @@ var area_counts := {}
 # game data
 var area : int = Areas.ENTRANCE
 var igt : int = 0
+var played = false
 
 
 # player data
 var current_powerups :int=0
 var disabled_shit :int = 0
 var hp_stacks = 0
-var last_position := Vector2(416,255)
+var last_position := Vector2(-60,253)
 var waypoint_position := Vector2.INF
 
 var map_rooms := {}
@@ -41,6 +42,7 @@ func _init():
 
 func to_dict():
 	return {
+		played = played,
 		name = name,
 		area_counts = area_counts,
 		room_data = room_data,
@@ -61,6 +63,7 @@ func as_buffer():
 
 func from_dict(dict:Dictionary):
 	initial_creation = dict.get("initial_creation",0)
+	played = dict.get("played",false)
 	name = dict.get("name","name")
 	area_counts = dict.get("area_counts",{})
 	room_data = dict.get("room_data",{})

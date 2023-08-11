@@ -109,3 +109,6 @@ region_rect = Rect2( 0, 0, 992, 67 )
 
 [node name="CAVES " parent="." index="7" instance=ExtResource( 8 )]
 position = Vector2( 4168, 776 )
+
+[node name="Psp" type="Position2D" parent="." index="8"]
+position = Vector2( 64, 768 )

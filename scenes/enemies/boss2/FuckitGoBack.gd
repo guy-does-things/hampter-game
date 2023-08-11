@@ -28,5 +28,3 @@ func _get_transition(delta):
 	
 	
 	entity.velocity = dir * speed
-	
-	pass

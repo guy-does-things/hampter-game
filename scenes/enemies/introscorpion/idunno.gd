@@ -13,7 +13,6 @@ var target : HurtComponent
 func _get_transition(delta):
 	if !can_transition:return
 	
-	
 	if !is_instance_valid($"%StatusThing".target):
 		return idle_state
 	return attack_state

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://scenes/enemies/boss2/evilfemboyfishingbelike.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
@@ -20,13 +20,16 @@
 [ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=18]
 [ext_resource path="res://raw_sprites/nukingisnowlegal.png" type="Texture" id=19]
 [ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=20]
-[ext_resource path="res://bullets/stinger_bullet.tscn" type="PackedScene" id=21]
+[ext_resource path="res://weapons/BisexualGun.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/enemies/boss2/FireBallz.gd" type="Script" id=22]
 [ext_resource path="res://scenes/enemies/boss2/warning.gd" type="Script" id=23]
 [ext_resource path="res://state_machine/state_machine.gd" type="Script" id=24]
 [ext_resource path="res://scenes/enemies/boss2/getsnipedidet.gd" type="Script" id=25]
-[ext_resource path="res://scenes/enemies/boss2/speeeen.gd" type="Script" id=26]
+[ext_resource path="res://raw_sprites/rofle.png" type="Texture" id=26]
 [ext_resource path="res://raw_sprites/circletex.png" type="Texture" id=27]
+[ext_resource path="res://scenes/enemies/boss2/Fuckitburstg.gd" type="Script" id=28]
+[ext_resource path="res://bullets/hidden_bullet/fishb.tscn" type="PackedScene" id=29]
+[ext_resource path="res://raw_sprites/twinkle.png" type="Texture" id=30]
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 15 )
@@ -51,29 +54,6 @@ script = ExtResource( 14 )
 data_res = SubResource( 14 )
 bullet = ExtResource( 17 )
 
-[sub_resource type="Resource" id=17]
-script = ExtResource( 15 )
-gun_name = ""
-gun_desc = ""
-gun_fire_mode = 1
-fires_before_charging = false
-pellet_count = 1
-burst_count = 1
-cooldown = 0.05
-max_charge = 0.0
-spread = 0.0
-recoil = 0.0
-rotation_recoil = 0.0
-damage = 1
-speed = 200
-bullet_lifetime = 2.0
-no_cooldown = false
-
-[sub_resource type="Resource" id=18]
-script = ExtResource( 14 )
-data_res = SubResource( 17 )
-bullet = ExtResource( 21 )
-
 [sub_resource type="CanvasItemMaterial" id=21]
 
 [sub_resource type="Curve" id=22]
@@ -82,6 +62,38 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.01015, 0.0, 0, 0 
 [sub_resource type="Gradient" id=23]
 offsets = PoolRealArray( 0.0295567, 0.182266, 0.597734, 0.852691, 0.988669 )
 colors = PoolColorArray( 1, 0.962264, 0, 0, 0.984314, 0.94902, 0.211765, 1, 1, 0, 0, 1, 0, 0, 0, 0.501961, 0, 0, 0, 0 )
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 15 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 0
+fires_before_charging = false
+pellet_count = 1
+burst_count = 6
+cooldown = 0.1
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 600
+bullet_lifetime = 5.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 14 )
+data_res = SubResource( 24 )
+bullet = ExtResource( 29 )
+
+[sub_resource type="Curve" id=27]
+max_value = 2.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.364407, 1.96591 ), -1.93091, -2.62222, 0, 0, Vector2( 1, 0 ), 0.526786, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=28]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.00938967, 0.652582, 0.849765, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
@@ -156,6 +168,34 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
+[sub_resource type="Animation" id=26]
+resource_name = "pgunout"
+length = 0.237
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/BisexualGun:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.192981 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flippables/BisexualGun:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.222204 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 59.9999, 0.0 ]
+}
+
 [sub_resource type="Animation" id=5]
 resource_name = "swim"
 length = 0.2
@@ -190,26 +230,6 @@ unique_name_in_owner = true
 _gun_data = SubResource( 15 )
 is_enemy = true
 
-[node name="Speengun" parent="." instance=ExtResource( 12 )]
-unique_name_in_owner = true
-_gun_data = SubResource( 18 )
-is_enemy = true
-
-[node name="SpeengunL" parent="." instance=ExtResource( 12 )]
-unique_name_in_owner = true
-_gun_data = SubResource( 18 )
-is_enemy = true
-
-[node name="SpeengunB" parent="." instance=ExtResource( 12 )]
-unique_name_in_owner = true
-_gun_data = SubResource( 18 )
-is_enemy = true
-
-[node name="SpeengunT" parent="." instance=ExtResource( 12 )]
-unique_name_in_owner = true
-_gun_data = SubResource( 18 )
-is_enemy = true
-
 [node name="EXparts" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
 material = SubResource( 21 )
@@ -236,6 +256,32 @@ hue_variation = 0.3
 [node name="Flippables" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 2 )
+
+[node name="BisexualGun" parent="Flippables" instance=ExtResource( 21 )]
+unique_name_in_owner = true
+position = Vector2( 15, -1 )
+rotation = 1.0472
+scale = Vector2( 1e-05, 1e-05 )
+_gun_data = SubResource( 25 )
+
+[node name="SpriteSheet" parent="Flippables/BisexualGun" index="0"]
+texture = ExtResource( 26 )
+
+[node name="Position2D" parent="Flippables/BisexualGun" index="1"]
+position = Vector2( -9, -1 )
+
+[node name="Twinkl3" type="CPUParticles2D" parent="Flippables/BisexualGun"]
+unique_name_in_owner = true
+position = Vector2( 23, -1 )
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+texture = ExtResource( 30 )
+gravity = Vector2( 0, 0 )
+angular_velocity = 360.0
+scale_amount_curve = SubResource( 27 )
+color_ramp = SubResource( 28 )
 
 [node name="Bootlegeo" type="Sprite" parent="Flippables"]
 material = SubResource( 16 )
@@ -342,15 +388,11 @@ unique_name_in_owner = true
 script = ExtResource( 4 )
 can_go_to_hurtstate = false
 speed = 100
-tate_to_return = NodePath("../RandomAttacks")
+tate_to_return = NodePath("../Fuckitburstg")
 
-[node name="Speeeen" type="Node" parent="StateMachine"]
-script = ExtResource( 26 )
+[node name="Fuckitburstg" type="Node" parent="StateMachine"]
+script = ExtResource( 28 )
 can_go_to_hurtstate = false
-
-[node name="FIreDelay" type="Timer" parent="StateMachine/Speeeen"]
-wait_time = 2.0
-one_shot = true
 
 [node name="NewPlayerDetector" type="Area2D" parent="."]
 visible = false
@@ -362,9 +404,11 @@ script = ExtResource( 6 )
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 autoplay = "swim"
 anims/attackswim = SubResource( 13 )
 anims/hurt = SubResource( 11 )
+anims/pgunout = SubResource( 26 )
 anims/swim = SubResource( 5 )
 script = ExtResource( 10 )
 
@@ -421,14 +465,16 @@ shape = SubResource( 19 )
 [connection signal="funnyrecoil" from="SpitGun" to="." method="_on_SpitGun_funnyrecoil"]
 [connection signal="postfired" from="SpitGun" to="StateMachine/FireBallz" method="_on_SpitGun_postfired"]
 [connection signal="proj_created" from="SpitGun" to="." method="_on_SpitGun_proj_created"]
+[connection signal="postfired" from="Flippables/BisexualGun" to="StateMachine/Fuckitburstg" method="_on_BisexualGun_postfired"]
 [connection signal="died" from="Flippables/HurtComponent" to="." method="_on_HurtComponent_died"]
-[connection signal="hurted" from="Flippables/HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="hurted" from="Flippables/HurtComponent" to="." method="hp_check"]
+[connection signal="hurted" from="Flippables/HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="entered" from="StateMachine/DownDash" to="AnimationPlayer" method="_on_DownDash_entered"]
 [connection signal="exited" from="StateMachine/DownDash" to="AnimationPlayer" method="_on_DownDash_exited"]
 [connection signal="timeout" from="StateMachine/DownDash/Timer" to="StateMachine/DownDash" method="_on_Timer_timeout"]
 [connection signal="timeout" from="StateMachine/DownDash/DashResetDelay" to="StateMachine/DownDash" method="_on_DashResetDelay_timeout"]
 [connection signal="entered" from="StateMachine/FireBallz" to="AnimationPlayer" method="_on_FireBallz_entered"]
 [connection signal="timeout" from="StateMachine/getsnipedidet/SnipeTime" to="StateMachine/getsnipedidet" method="_on_SnipeTime_timeout"]
-[connection signal="timeout" from="StateMachine/Speeeen/FIreDelay" to="StateMachine/Speeeen" method="_on_FIreDelay_timeout"]
 [connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
+
+[editable path="Flippables/BisexualGun"]

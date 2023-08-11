@@ -61,15 +61,15 @@ script = ExtResource( 3 )
 cursorpath = NodePath("../../../Cursorhand")
 
 [node name="Label" type="Label" parent="TabContainer/Main/settings"]
-margin_top = 61.0
+margin_top = 79.0
 margin_right = 478.0
-margin_bottom = 73.0
+margin_bottom = 91.0
 text = "MASTER"
 
 [node name="HSlider" type="HSlider" parent="TabContainer/Main/settings"]
-margin_top = 77.0
+margin_top = 95.0
 margin_right = 478.0
-margin_bottom = 93.0
+margin_bottom = 111.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath(".")
 focus_neighbour_right = NodePath(".")
@@ -79,30 +79,32 @@ max_value = 1.0
 step = 0.01
 
 [node name="Label2" type="Label" parent="TabContainer/Main/settings"]
-margin_top = 97.0
+margin_top = 115.0
 margin_right = 478.0
-margin_bottom = 109.0
+margin_bottom = 127.0
 text = "SFX"
 
 [node name="HSlider2" type="HSlider" parent="TabContainer/Main/settings"]
-margin_top = 113.0
+margin_top = 131.0
 margin_right = 478.0
-margin_bottom = 129.0
+margin_bottom = 147.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../HSlider")
 focus_neighbour_right = NodePath(".")
-focus_neighbour_bottom = NodePath("../HSlider3")
+focus_neighbour_bottom = NodePath("../../../../Button")
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 
 [node name="Label3" type="Label" parent="TabContainer/Main/settings"]
-margin_top = 133.0
+visible = false
+margin_top = 143.0
 margin_right = 478.0
-margin_bottom = 145.0
+margin_bottom = 155.0
 text = "MUSIC"
 
 [node name="HSlider3" type="HSlider" parent="TabContainer/Main/settings"]
+visible = false
 margin_top = 149.0
 margin_right = 478.0
 margin_bottom = 165.0

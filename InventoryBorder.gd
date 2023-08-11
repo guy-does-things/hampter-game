@@ -6,6 +6,10 @@ export(NodePath) var cr_path;onready var cr :ColorRect= get_node(cr_path)
 
 var current_menu :Control
 
+
+func _ready():
+	$VBoxContainer2/Label.text = SavesManager.current_save.name
+
 func _physics_process(delta):
 	if Input.is_action_just_pressed("show_inv") and !animating and Globals.can_open_menu:
 		if visible:
@@ -29,6 +33,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("ui_cancel") or !Globals.can_open_menu:
 		deselect()
+		
 		
 
 func animate_cr(start_val=1,end_val=0,extra_yield_time=0,initial_yield=.5):

@@ -46,10 +46,117 @@ focus_neighbour_top = NodePath("../Panel3")
 focus_neighbour_bottom = NodePath(".")
 text = "go back"
 
+[node name="Button3" type="Button" parent="."]
+margin_left = 187.0
+margin_top = 192.0
+margin_right = 240.0
+margin_bottom = 208.0
+focus_neighbour_top = NodePath("../Panel3")
+focus_neighbour_bottom = NodePath(".")
+disabled = true
+text = "start"
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 316.0
+margin_top = 192.0
+margin_right = 369.0
+margin_bottom = 208.0
+focus_neighbour_top = NodePath("../Panel3")
+focus_neighbour_bottom = NodePath(".")
+disabled = true
+text = "delete"
+
 [node name="Cursorhand" type="Sprite" parent="."]
 visible = false
 position = Vector2( 120, 112 )
 texture = ExtResource( 4 )
 script = ExtResource( 1 )
 
+[node name="Panel4" type="Panel" parent="."]
+visible = false
+margin_left = 32.0
+margin_right = 384.0
+margin_bottom = 208.0
+
+[node name="Label" type="Label" parent="Panel4"]
+anchor_right = 1.0
+margin_bottom = 12.0
+text = "you know this will delete 
+the save irreversably?
+are you sure?"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel4"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel4/HBoxContainer"]
+margin_right = 132.0
+margin_bottom = 12.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../Button2")
+focus_neighbour_bottom = NodePath(".")
+size_flags_horizontal = 3
+text = "yes"
+
+[node name="Control" type="Control" parent="Panel4/HBoxContainer"]
+margin_left = 136.0
+margin_right = 215.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.59
+
+[node name="Button2" type="Button" parent="Panel4/HBoxContainer"]
+margin_left = 219.0
+margin_right = 352.0
+margin_bottom = 12.0
+focus_neighbour_left = NodePath("../Button")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+size_flags_horizontal = 3
+text = "no"
+
+[node name="Panel5" type="Panel" parent="."]
+visible = false
+margin_left = 32.0
+margin_right = 384.0
+margin_bottom = 208.0
+
+[node name="Label" type="Label" parent="Panel5"]
+anchor_right = 1.0
+margin_bottom = 12.0
+text = "input name"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel5"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel5/HBoxContainer"]
+margin_left = 160.0
+margin_right = 192.0
+margin_bottom = 12.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+text = "done"
+
+[node name="LineEdit" type="LineEdit" parent="Panel5"]
+margin_top = 32.0
+margin_right = 352.0
+margin_bottom = 54.0
+max_length = 23
+placeholder_text = "hampter"
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Panel4/HBoxContainer/Button" to="." method="delete_save"]
+[connection signal="pressed" from="Panel4/HBoxContainer/Button2" to="." method="cancel"]
+[connection signal="pressed" from="Panel5/HBoxContainer/Button" to="." method="save_done"]

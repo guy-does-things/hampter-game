@@ -80,14 +80,14 @@ margin_bottom = 80.0
 
 [node name="Label" type="Label" parent="VBoxContainer2"]
 margin_top = 6.0
-margin_right = 238.0
+margin_right = 199.0
 margin_bottom = 18.0
 size_flags_vertical = 6
-text = "insert name of save file here :3"
+text = "hamptersavenamegoeshere"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
 margin_top = 28.0
-margin_right = 238.0
+margin_right = 199.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
@@ -97,7 +97,7 @@ text = "HP:"
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer2/HBoxContainer"]
 margin_left = 28.0
-margin_right = 238.0
+margin_right = 199.0
 margin_bottom = 12.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

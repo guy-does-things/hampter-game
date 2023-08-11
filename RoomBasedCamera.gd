@@ -43,6 +43,18 @@ func transition(map_limits : Rect2):
 		set_limits(map_limits)
 	else:
 		remove_limits()
+	
+	if not __not_entered_anything:
+		get_tree().paused = true
+		$CanvasLayer.show()
+		Globals.can_open_menu = false
+		yield(get_tree().create_timer(.3),"timeout")
+		Globals.can_open_menu = true
+		$CanvasLayer.hide()
+		get_tree().paused = false
+#
+		
+		
 	__not_entered_anything = false
 
 

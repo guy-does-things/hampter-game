@@ -71,8 +71,10 @@ anims/breastjiggleY = SubResource( 7 )
 
 [node name="Area2D" parent="." instance=ExtResource( 3 )]
 collision_mask = 524344
-min_hit_priority = 20
-max_hit_priority = 64
+min_hit_priority = 25
+max_hit_priority = 31
+hit_iframes = 0.5
+can_hit_multiple_times = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 unique_name_in_owner = true

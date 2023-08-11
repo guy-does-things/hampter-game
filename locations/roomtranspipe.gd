@@ -31,7 +31,6 @@ func _ready():
 #
 func on_riding(plr,index,movedir):
 	
-	
 	var finalpointindex = points.size()-1
 	var indexincrease = -1
 	
@@ -50,7 +49,7 @@ func on_riding(plr,index,movedir):
 	plr.global_position = finalpoint +(tubedir* 32)
 	moveindex = INF
 	
-	yield(get_tree(),"idle_frame")
+	#yield(get_tree(),"idle_frame")
 	(plr.get_node("DirComp") as DirComp).current_dir = Vector2.ZERO
 	(plr.get_node("DirComp") as DirComp).dir_wait(.15)
 	

@@ -24,7 +24,7 @@ enum Items{
 
 
 export(Array,Resource) var item_data = null
-var is_endgame = true
+var is_endgame = false
 var can_open_menu = true
 
 static func item_to_id(val:int)-> int:

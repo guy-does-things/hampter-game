@@ -1,6 +1,8 @@
 extends "res://menu_cursor_handler.gd"
 
 signal menu_exited()
+var current_save_btn :SaveBtn= null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,14 +11,25 @@ func _ready():
 		
 		var result = SavesManager.load_save(save_fn)
 		
-		if result is Array:result = null
+		if result is Array:
+			result = NewSaveData.new()
+			result.save_path = save_fn
+		
 		
 		get_child(i).focus_neighbour_left = get_child(i).get_path()
 		get_child(i).focus_neighbour_right = get_child(i).get_path()
 		
-		get_child(i).initialize(result)
+		get_child(i).initialize(result,save_fn)
+		get_child(i).connect("save_sel",self,"save_sel")
 		
 	._ready()
+	
+func save_sel(saveb):
+	current_save_btn = saveb
+	if saveb.save and saveb.save.played:$Button2.disabled= false
+	$Button3.disabled= false
+	
+		
 	
 func menu_shown():
 	if is_instance_valid(last_thing_grabbed):
@@ -28,3 +41,47 @@ func menu_shown():
 func _on_Button_pressed():
 	emit_signal("menu_exited")
 	hide()
+
+
+func _on_Button2_pressed():
+	$Panel4.show()
+	$Panel4/HBoxContainer/Button2.grab_focus()
+
+func cancel():
+	$Panel4.hide()
+
+func delete_save():
+	$Panel4.hide()
+	current_save_btn.save = NewSaveData.new()
+	current_save_btn.save.save_path = current_save_btn.save_path
+	SavesManager.save(current_save_btn.save)
+	current_save_btn = null
+	$Button2.disabled = true
+	$Button3.disabled = true
+	$Button.grab_focus()
+	
+
+func _on_Button3_pressed():
+	if not current_save_btn.save.played:
+		$Panel5.show()
+	else:
+		SavesManager.current_save = current_save_btn.save
+		get_tree().change_scene("res://locations/roompositions.tscn")
+		
+
+
+
+
+func save_done():
+	
+	
+	
+	SavesManager.current_save = current_save_btn.save
+	SavesManager.current_save.name = $Panel5/LineEdit.text
+	SavesManager.current_save.played = true
+	SavesManager.save(SavesManager.current_save)
+	get_tree().change_scene("res://locations/roompositions.tscn")
+	
+	
+	
+	

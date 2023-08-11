@@ -20,7 +20,8 @@ func _state_logic(dt):
 	if (
 		entity.global_position.distance_to(initial_position) > dist_to_flip and 
 		sign(initial_position.direction_to(entity.global_position).x) == dirx or
-		$"%RayCast2D".get_collider() == null
+		$"%RayCast2D".get_collider() == null or 
+		entity.is_on_wall()
 	):
 		dirx *= -1
 		$"%RayCast2D".cast_to.x = dirx *50

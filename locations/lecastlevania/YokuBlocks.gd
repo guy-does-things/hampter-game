@@ -26,14 +26,20 @@ func yoku_animated_clear():
 func yoku_block_timeout():
 	if yoku_things.size() == 0:return
 	yield(yoku_animated_clear(),"completed")
+	yoku_timer.wait_time = 1
 	
 	
 	for block in yoku_things[yoku_step]:
-		set_cellv(block,13)
+		if block.x != INF:
+			set_cellv(block,13)
+		else:
+			yoku_timer.wait_time = block.y
 	
 	yoku_step += 1
 	
 	if yoku_step > yoku_things.size() - 1:
 		yoku_step = 0
+	
+	
 		
 	yoku_timer.start()

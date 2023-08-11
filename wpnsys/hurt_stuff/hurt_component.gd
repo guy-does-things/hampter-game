@@ -10,6 +10,7 @@ export var is_enemy := false
 
 export var damage_override = -1
 
+signal no_iframes()
 signal hurted(dam,is_water)
 signal died(dam)
 onready var entitystatus :StatusThing= get_node(path_entitystatus)
