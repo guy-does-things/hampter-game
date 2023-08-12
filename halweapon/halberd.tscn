@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://wpnsys/hurt_stuff/nbasegun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://halweapon/realhalberd.gd" type="Script" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://halweapon/AttackStateMachine.gd" type="Script" id=7]
 [ext_resource path="res://state_machine/state.gd" type="Script" id=8]
 [ext_resource path="res://halweapon/weapon_anims.gd" type="Script" id=9]
-[ext_resource path="res://hitHurt(1).wav" type="AudioStream" id=10]
+[ext_resource path="res://slasher.wav" type="AudioStream" id=10]
+[ext_resource path="res://sslasher.wav" type="AudioStream" id=11]
 
 [sub_resource type="Shader" id=42]
 code = "shader_type canvas_item;
@@ -523,6 +524,7 @@ radius = 34.9182
 [node name="Node2D" instance=ExtResource( 1 )]
 light_mask = 48
 script = ExtResource( 2 )
+is_g = false
 
 [node name="SpriteSheet" parent="." index="0"]
 material = SubResource( 43 )
@@ -535,6 +537,7 @@ position = Vector2( 0, -8 )
 
 [node name="AudioStreamPlayer" parent="." index="3"]
 stream = ExtResource( 10 )
+bus = "SFX"
 
 [node name="AnimationPlayer" parent="." index="5"]
 playback_speed = 0.7
@@ -661,10 +664,17 @@ can_hit_multiple_times = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxes/SpinSlash" index="1"]
 shape = SubResource( 49 )
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." index="9"]
+stream = ExtResource( 11 )
+volume_db = -5.0
+bus = "SFX"
+
 [connection signal="fired" from="." to="." method="_on_Node2D_fired"]
 [connection signal="postfired" from="." to="." method="_on_Node2D_postfired"]
 [connection signal="entered" from="AttackStateMachine/None" to="AnimationPlayer" method="_on_None_entered"]
+[connection signal="entered" from="AttackStateMachine/SpinSlash" to="." method="_on_SpinSlash_entered"]
 [connection signal="entered" from="AttackStateMachine/SpinSlash" to="AnimationPlayer" method="_on_SpinSlash_entered"]
+[connection signal="exited" from="AttackStateMachine/SpinSlash" to="." method="_on_SpinSlash_exited"]
 [connection signal="entered" from="AttackStateMachine/Attack1" to="AnimationPlayer" method="_on_Attack1_entered"]
 [connection signal="entered" from="AttackStateMachine/Attack2" to="AnimationPlayer" method="_on_Attack2_entered"]
 [connection signal="entered" from="AttackStateMachine/Attack2" to="AttackStateMachine" method="stop_movement"]

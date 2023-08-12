@@ -80,7 +80,7 @@ glow_hdr_threshold = 0.95
 script = ExtResource( 24 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 2377, 3316 )
+position = Vector2( 1936, -1825 )
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
 pause_mode = 2
@@ -109,7 +109,7 @@ position = Vector2( 576, -336 )
 position = Vector2( 1616, 512 )
 
 [node name="layeredcages" parent="." instance=ExtResource( 5 )]
-position = Vector2( 480, 304 )
+position = Vector2( 482, 304 )
 
 [node name="waterway" parent="." instance=ExtResource( 6 )]
 position = Vector2( -528, 1824 )
@@ -139,7 +139,7 @@ position = Vector2( 3936, 3104 )
 position = Vector2( 2784, 3616 )
 
 [node name="cisexit" parent="." instance=ExtResource( 15 )]
-position = Vector2( 2288, 3680 )
+position = Vector2( 2290, 3680 )
 
 [node name="A13" parent="." instance=ExtResource( 13 )]
 position = Vector2( 3216, 2304 )

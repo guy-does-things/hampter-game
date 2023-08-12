@@ -20,6 +20,7 @@ onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
 
 
 func _ready():
+	#weapon = $"Node2D2/HampterSprite/Gun"
 	weapon.playerstatus = status
 #	status.unlocked_item(GlobalData.Items.RISINGSLASH)
 #	status.unlocked_item(GlobalData.Items.WATERBREATHING)
@@ -163,9 +164,12 @@ func _physics_process(delta):
 
 
 	if Input.is_action_just_pressed("jump") and !attacking:
-		jumpcontroller.jump(get_speed_mult(.8))
+		var slam =(Input.is_action_pressed("down") and !is_on_floor() and !no_slam)
 		
-		if (Input.is_action_pressed("down") and !is_on_floor() and !no_slam) and status.has_item(Globals.Items.STOMP):
+		if jumpcontroller.jump(get_speed_mult(.8)) and not slam:
+			$AudioStreamPlayer.play()
+		
+		if  slam and status.has_item(Globals.Items.STOMP):
 			$StateMachine.set_state($StateMachine/stomp)
 		
 		
@@ -191,12 +195,14 @@ func weapon_handling():
 
 	weapon.dir.x = fc.scale.x
 	
-	weapon.stop_pogoin()
+	#weapon.stop_pogoin()
 	if Input.is_action_pressed("attack"):
 		weapon.try_shooting()
 	else:
 		weapon.stop_firing()
-	weapon.start_pogo()
+		
+		
+	#weapon.start_pogo()
 
 
 
@@ -271,6 +277,7 @@ func _on_stomp_exited():
 	$PhysicsStuff.gravity_enabled = true
 	$AnimatedSprite/Area2D.monitoring = false
 	if !is_on_floor():return
+	$AudioStreamPlayer2.play()
 	Signals.emit_signal("screenshake",Vector2.DOWN,32)
 	for i in [-1,1,0]:
 		var stone = preload("res://bullets/rockandstone.tscn").instance()
@@ -339,7 +346,7 @@ func _on_Hurt_exited():
 
 
 func on_water(water):
-	print(
+	print_debug(
 		status.disabled_bitmask & Globals.Items.WATERBREATHING
 		)
 	
@@ -364,3 +371,6 @@ func out_of_water():
 	on_water = false
 	$PhysicsStuff.gravmult = 1
 	$PhysicsStuff.term_vel = PhysicsStuff.MAX_TERM_VEL
+
+func _on_idle_landed():
+	$"%AudioStreamPlayer3".play()

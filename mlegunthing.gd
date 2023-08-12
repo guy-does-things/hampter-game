@@ -24,7 +24,7 @@ enum FloorRequirementModes{
 onready var attack_machine :StateMachine= $AttackStateMachine
 var playerstatus : StatusThing setget set_playerstatus;func set_playerstatus(ps):playerstatus = ps
 	
-	
+export var is_g = false
 var input_buffer := []
 var attack_list : Array
 var time_since_pressed := 0.0
@@ -129,6 +129,8 @@ func on_fired(gun):
 	if attack != null:
 		input_buffer = []
 		attack_machine.set_state(attack)
+	
+	return attack
 		
 	
 	
@@ -166,10 +168,14 @@ func _physics_process(delta):
 	
 	
 func fire_condition():
+	
 	return !$AnimationPlayer.is_playing() and .fire_condition()
 
+
 func cooldown()->GDScriptFunctionState:
-	
+	if is_g:
+		yield(.cooldown(),"completed")
+		return null
 
 	if !$AnimationPlayer.is_playing():
 		yield(get_tree(),"idle_frame")

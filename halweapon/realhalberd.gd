@@ -76,8 +76,6 @@ func start_pogo():
 
 
 
-	
-
 		
 func _on_Node2D_postfired(gun):
 	$DelayTimer.start()
@@ -134,3 +132,20 @@ func pipebombattack():
 	get_tree().current_scene.add_child(sattack)
 	
 
+
+func on_fired(gun):
+	var attack = .on_fired(gun)
+	if not attack in [
+		$AttackStateMachine/BTrhow, $AttackStateMachine/PipeBomb		
+	]:
+		$AudioStreamPlayer.play()
+	
+	return attack
+
+
+func _on_SpinSlash_entered():
+	$AudioStreamPlayer2.play()
+
+
+func _on_SpinSlash_exited():
+	$AudioStreamPlayer2.stop()

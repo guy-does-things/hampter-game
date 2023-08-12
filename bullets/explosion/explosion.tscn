@@ -124,6 +124,7 @@ color_ramp = SubResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Explosiontex"]
 stream = ExtResource( 8 )
+volume_db = -6.0
 bus = "SFX"
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]

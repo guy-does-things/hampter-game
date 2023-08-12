@@ -14,6 +14,8 @@ func _ready():
 		return
 	player_setup()
 	
+	
+	
 func store_positions():
 	var datadict = preload("res://room_dict_data.tres")
 	for i in get_children():
@@ -27,6 +29,22 @@ func store_positions():
 	
 	
 func player_setup():
+	var f = File.new()
+#
+	if not f.file_exists("user://seed"):
+		randomize()
+	else:
+		f.open("user://seed",File.READ)
+		var fline = f.get_line()
+		var used_seed = hash(fline)
+		seed(used_seed)
+		
+		
+		
+	
+	
+	
+	
 	$Inventory/GridContainer.playerstatus = $KinematicBody2D/StatusThing
 	$Inventory/InventoryBorder.setup_player($KinematicBody2D,$KinematicBody2D/StatusThing)
 	$KinematicBody2D/StatusThing.connect("item_unlocked",$Inventory/ItemPopup,"item_unlocked")

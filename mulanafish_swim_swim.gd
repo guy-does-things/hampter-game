@@ -37,5 +37,5 @@ func _get_transition(delta):
 	
 	if (y_dist > 16):return
 	
-	print(y_dist)
+	print_debug(y_dist)
 	return $"../LAUNCHEDAAAAAAA"

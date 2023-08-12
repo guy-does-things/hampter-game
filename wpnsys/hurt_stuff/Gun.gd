@@ -189,15 +189,16 @@ func fire_specific_charge_shot():
 func stop_firing():
 	semi_auto_not_released = false
 	
-	if _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.CHARGE:
-		if projectile_charge_info.size() > 0 and !current_charge >= _gun_data.data_res.max_charge:
-			fire_specific_charge_shot()
-			#current_charge = 0
-			#return
-	
-	
-	if current_charge >= _gun_data.data_res.max_charge and _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.CHARGE:
-		actually_fire()
+	if current_charge > 0:
+		if _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.CHARGE:
+			if projectile_charge_info.size() > 0 and !current_charge >= _gun_data.data_res.max_charge:
+				fire_specific_charge_shot()
+				current_charge = 0
+				return
+		
+		
+		if current_charge >= _gun_data.data_res.max_charge and _gun_data.data_res.gun_fire_mode == CommonGunData.FiringModes.CHARGE:
+			actually_fire()
 
 	current_charge = 0
 	emit_signal("stopped_firing",self)

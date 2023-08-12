@@ -5,8 +5,9 @@ var rmult = 1
 func _on_GdtBullet_collided(type, bul:GdtBullet, collider):
 	if type != GdtBullet.Colliders.BODY:return
 	if $AnimationPlayer.is_playing():return
-
-	
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D.attenuation = 1.0
+	$AudioStreamPlayer2D.volume_db = 2
 	var ynorm = 1 
 	
 

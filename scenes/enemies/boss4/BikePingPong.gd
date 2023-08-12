@@ -35,7 +35,7 @@ func jump_towards():
 		entity.velocity.x = dist
 		$"%Jumper".jump_force = -300
 		$"%Jumper".jump()
-		print("??")
+		print_debug("??")
 		yield($"%idle","landed")
 		return
 	yield(get_tree(),"idle_frame")

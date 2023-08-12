@@ -47,7 +47,7 @@ func _enter_state(new_state, old_state):
 
 
 func _get_transition(dt):
-	print(bursts,max_bursts)
+	print_debug(bursts,max_bursts)
 	
 	if bursts >= max_bursts:
 		stop_anim()

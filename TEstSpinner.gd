@@ -2,9 +2,12 @@ extends KinematicBody2D
 
 var rotating: int
 var move : Vector2
+var has_been_seen = false
 
 func _physics_process(delta):
-	$Wheelattack.rotation_degrees += 20
+	if not has_been_seen:return
+	
+	$"%Wheelattack".rotation_degrees += 20
 	
 	if rotating:
 		rotation = lerp_angle(rotation, move.angle(), 0.1)
@@ -43,3 +46,7 @@ func DIE(dam):
 	expl.damage = 0
 	get_tree().current_scene.add_child(expl)
 	queue_free()
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	has_been_seen = true

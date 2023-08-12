@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://halweapon/halberd.tscn" type="PackedScene" id=2]
@@ -26,6 +26,14 @@
 [ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=24]
 [ext_resource path="res://player/Hurt.gd" type="Script" id=25]
 [ext_resource path="res://player/watercheck.gd" type="Script" id=26]
+[ext_resource path="res://jump.wav" type="AudioStream" id=27]
+[ext_resource path="res://stomprocks.wav" type="AudioStream" id=28]
+[ext_resource path="res://mlegunthing.gd" type="Script" id=29]
+[ext_resource path="res://bullets/hidden_bullet/fishb.tscn" type="PackedScene" id=30]
+[ext_resource path="res://raw_sprites/glock.png" type="Texture" id=31]
+[ext_resource path="res://player/gunp.gd" type="Script" id=32]
+[ext_resource path="res://gunshot.wav" type="AudioStream" id=33]
+[ext_resource path="res://land.wav" type="AudioStream" id=34]
 
 [sub_resource type="Resource" id=27]
 script = ExtResource( 19 )
@@ -48,6 +56,429 @@ no_cooldown = false
 [sub_resource type="Resource" id=21]
 script = ExtResource( 20 )
 data_res = SubResource( 27 )
+
+[sub_resource type="Resource" id=38]
+script = ExtResource( 19 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 0
+fires_before_charging = true
+pellet_count = 1
+burst_count = 1
+cooldown = 0.3
+max_charge = 0.0
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 5
+speed = 400
+bullet_lifetime = 2.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=39]
+script = ExtResource( 20 )
+data_res = SubResource( 38 )
+bullet = ExtResource( 30 )
+
+[sub_resource type="Animation" id=28]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBoxes/Attack1:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBoxes/Attack2:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBoxes/Attack3:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HitBoxes/uppercut:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HitBoxes/SoulThrowBoxes:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("HitBoxes/SpinSlash:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "attack1"
+length = 0.187
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.07, 0.17 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04, 0.14 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBoxes/Attack1:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "attack2"
+length = 0.087
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.07 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBoxes/Attack2:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.07 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "attack3"
+length = 0.155
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.09, 0.11, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 6, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.06 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBoxes/Attack3:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.06, 0.14 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "boobthrow"
+length = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "battack"
+} ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "pipebomb so cool"
+length = 0.15
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "pipebombattack"
+} ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "pogo"
+length = 0.019
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.07 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "soulthrow"
+length = 0.291
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.16, 0.28 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17, 15, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:show_behind_parent")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.28 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.12 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "soul_attack"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBoxes/SoulThrowBoxes:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.11 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "spinslash"
+length = 0.468
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.44 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:a_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.41 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 360.0, 720.0, 1080.0, 1440.0, 1800.0, 2160.0, 2520.0, 2880.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.42 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBoxes/SpinSlash:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.41 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "uppercut"
+length = 0.32
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.07 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitBoxes/uppercut:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.03, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "DASHDASH"
@@ -574,6 +1005,69 @@ position = Vector2( 7.5, 9 )
 visible = false
 position = Vector2( 0.0814302, 9.23205 )
 
+[node name="Gun" parent="Node2D2/HampterSprite" instance=ExtResource( 2 )]
+visible = false
+show_behind_parent = true
+position = Vector2( 13, -2.27299e-06 )
+script = ExtResource( 29 )
+_gun_data = SubResource( 39 )
+is_g = true
+
+[node name="SpriteSheet" parent="Node2D2/HampterSprite/Gun" index="0"]
+texture = ExtResource( 31 )
+hframes = 1
+
+[node name="Position2D" parent="Node2D2/HampterSprite/Gun" index="1"]
+position = Vector2( 17, 0 )
+
+[node name="AudioStreamPlayer" parent="Node2D2/HampterSprite/Gun" index="3"]
+stream = ExtResource( 33 )
+script = ExtResource( 32 )
+
+[node name="AnimationPlayer" parent="Node2D2/HampterSprite/Gun" index="5"]
+autoplay = "RESET"
+anims/RESET = SubResource( 28 )
+anims/attack1 = SubResource( 29 )
+anims/attack2 = SubResource( 30 )
+anims/attack3 = SubResource( 31 )
+anims/boobthrow = SubResource( 32 )
+"anims/pipebomb so cool" = SubResource( 33 )
+anims/pogo = SubResource( 34 )
+anims/soulthrow = SubResource( 35 )
+anims/spinslash = SubResource( 36 )
+anims/uppercut = SubResource( 37 )
+
+[node name="HitBoxes" parent="Node2D2/HampterSprite/Gun" index="8"]
+visible = true
+
+[node name="CollisionShape2D" parent="Node2D2/HampterSprite/Gun/HitBoxes/Attack1" index="1"]
+position = Vector2( -2, 1.5 )
+
+[node name="Attack2" parent="Node2D2/HampterSprite/Gun/HitBoxes" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="Node2D2/HampterSprite/Gun/HitBoxes/Attack2" index="1"]
+position = Vector2( 15, 8 )
+
+[node name="CollisionShape2D" parent="Node2D2/HampterSprite/Gun/HitBoxes/Attack3" index="1"]
+position = Vector2( 23, -0.500004 )
+
+[node name="uppercut" parent="Node2D2/HampterSprite/Gun/HitBoxes" index="3"]
+visible = false
+
+[node name="CollisionShape2D" parent="Node2D2/HampterSprite/Gun/HitBoxes/uppercut" index="1"]
+position = Vector2( 20, 9 )
+
+[node name="SoulThrowBoxes" parent="Node2D2/HampterSprite/Gun/HitBoxes" index="4"]
+visible = false
+
+[node name="CollisionShape2D" parent="Node2D2/HampterSprite/Gun/HitBoxes/SoulThrowBoxes" index="1"]
+position = Vector2( 7.5, 9 )
+
+[node name="SpinSlash" parent="Node2D2/HampterSprite/Gun/HitBoxes" index="5"]
+visible = false
+position = Vector2( 0.0814302, 9.23205 )
+
 [node name="Left" type="Sprite" parent="Node2D2"]
 position = Vector2( -2, -11 )
 texture = ExtResource( 18 )
@@ -604,6 +1098,7 @@ visible = false
 position = Vector2( 1, 8 )
 z_index = 1
 frames = SubResource( 19 )
+frame = 2
 playing = true
 
 [node name="Area2D" parent="AnimatedSprite" instance=ExtResource( 22 )]
@@ -622,7 +1117,7 @@ rotation = 1.5708
 scale = Vector2( 2, -2 )
 z_index = 1
 frames = SubResource( 19 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Circlething" type="Sprite" parent="."]
@@ -684,7 +1179,22 @@ spread = 90.0
 initial_velocity = 150.0
 initial_velocity_random = 1.0
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 27 )
+volume_db = -2.0
+bus = "SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource( 34 )
+bus = "SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 28 )
+bus = "SFX"
+
 [connection signal="entered" from="StateMachine/idle" to="Node2D2/AnimationPlayer" method="_on_idle_entered"]
+[connection signal="landed" from="StateMachine/idle" to="." method="_on_idle_landed"]
 [connection signal="landed" from="StateMachine/idle" to="Node2D" method="reset_jumps"]
 [connection signal="landed" from="StateMachine/idle" to="Node2D2/HampterSprite/Node2D/AttackStateMachine" method="_on_idle_landed"]
 [connection signal="entered" from="StateMachine/walk" to="." method="_on_walk_entered"]
@@ -693,8 +1203,8 @@ initial_velocity_random = 1.0
 [connection signal="entered" from="StateMachine/jump" to="Node2D2/AnimationPlayer" method="_on_jump_entered"]
 [connection signal="entered" from="StateMachine/fall" to="Node2D2/AnimationPlayer" method="_on_fall_entered"]
 [connection signal="start_coyote_time" from="StateMachine/fall" to="Node2D" method="start_coyote_time"]
-[connection signal="entered" from="StateMachine/stomp" to="." method="_on_Stomp_entered"]
 [connection signal="entered" from="StateMachine/stomp" to="." method="_on_stomp_entered"]
+[connection signal="entered" from="StateMachine/stomp" to="." method="_on_Stomp_entered"]
 [connection signal="entered" from="StateMachine/stomp" to="StompBreaker" method="enable"]
 [connection signal="entered" from="StateMachine/stomp" to="AnimatedSprite" method="show"]
 [connection signal="exited" from="StateMachine/stomp" to="." method="_on_Stomp_exited"]
@@ -712,8 +1222,19 @@ initial_velocity_random = 1.0
 [connection signal="exited" from="Node2D2/HampterSprite/Node2D/AttackStateMachine/SpinSlash" to="Node2D2" method="_on_SpinSlash_exited"]
 [connection signal="jump" from="Node2D2/HampterSprite/Node2D/AttackStateMachine/SpinSlash" to="." method="_on_SpinSlash_jump"]
 [connection signal="entered" from="Node2D2/HampterSprite/Node2D/AttackStateMachine/Uppercut" to="." method="_on_Uppercut_entered"]
+[connection signal="fired" from="Node2D2/HampterSprite/Gun" to="." method="_on_Node2D_fired"]
+[connection signal="fired" from="Node2D2/HampterSprite/Gun" to="Node2D2/HampterSprite/Gun/AudioStreamPlayer" method="_on_Gun_fired"]
+[connection signal="postfired" from="Node2D2/HampterSprite/Gun" to="." method="_on_Gun_postfired"]
+[connection signal="restrict_movement" from="Node2D2/HampterSprite/Gun/AttackStateMachine" to="." method="_on_AttackStateMachine_restrict_movement"]
+[connection signal="resume_movement" from="Node2D2/HampterSprite/Gun/AttackStateMachine" to="." method="_on_AttackStateMachine_resume_movement"]
+[connection signal="stop_ALL_movement" from="Node2D2/HampterSprite/Gun/AttackStateMachine" to="." method="_on_AttackStateMachine_stop_ALL_movement"]
+[connection signal="entered" from="Node2D2/HampterSprite/Gun/AttackStateMachine/SpinSlash" to="." method="_on_SpinSlash_entered"]
+[connection signal="exited" from="Node2D2/HampterSprite/Gun/AttackStateMachine/SpinSlash" to="Node2D2" method="_on_SpinSlash_exited"]
+[connection signal="jump" from="Node2D2/HampterSprite/Gun/AttackStateMachine/SpinSlash" to="." method="_on_SpinSlash_jump"]
+[connection signal="entered" from="Node2D2/HampterSprite/Gun/AttackStateMachine/Uppercut" to="." method="_on_Uppercut_entered"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="on_water" from="Area2D" to="." method="on_water"]
 [connection signal="out_of_water" from="Area2D" to="." method="out_of_water"]
 
 [editable path="Node2D2/HampterSprite/Node2D"]
+[editable path="Node2D2/HampterSprite/Gun"]

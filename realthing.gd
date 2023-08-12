@@ -37,7 +37,7 @@ func _physics_process(delta):
 		
 		$BisexualGun.try_shooting()
 		#Globals.hit_fuckery(get_global_mouse_position())
-		#print(get_tree().get_nodes_in_group("plrproj"))
+		#print_debug(get_tree().get_nodes_in_group("plrproj"))
 		#Globals.died(get_global_mouse_position())
 	
 	

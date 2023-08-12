@@ -5,9 +5,9 @@
 [ext_resource path="res://Line2D4.gd" type="Script" id=3]
 [ext_resource path="res://locations/nitrotasticman/CanvasLayer.gd" type="Script" id=4]
 [ext_resource path="res://raw_sprites/bgs/sand/sand.png" type="Texture" id=5]
-[ext_resource path="res://scenes/enemies/cannon/cannon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/introscorpion/introscorpion.tscn" type="PackedScene" id=7]
 [ext_resource path="res://dreadsitereuse/enemy_spawner.gd" type="Script" id=8]
+[ext_resource path="res://scenes/enemies/enemyspinner/TEstSpinner.tscn" type="PackedScene" id=9]
 
 [node name="A" instance=ExtResource( 1 )]
 
@@ -104,26 +104,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.121569, 0.670588, 0.878431, 1 )
 
-[node name="EnemySpawner" type="Position2D" parent="." index="8"]
-position = Vector2( 128, 1564 )
-script = ExtResource( 8 )
-enemy = ExtResource( 6 )
-
-[node name="EnemySpawner2" type="Position2D" parent="." index="9"]
+[node name="EnemySpawner2" type="Position2D" parent="." index="8"]
 position = Vector2( 784, 320 )
 script = ExtResource( 8 )
 enemy = ExtResource( 7 )
 
-[node name="EnemySpawner3" type="Position2D" parent="." index="10"]
+[node name="EnemySpawner5" type="Position2D" parent="." index="9"]
+position = Vector2( 928, 984 )
+script = ExtResource( 8 )
+enemy = ExtResource( 7 )
+
+[node name="EnemySpawner6" type="Position2D" parent="." index="10"]
+position = Vector2( 520, 936 )
+script = ExtResource( 8 )
+enemy = ExtResource( 9 )
+
+[node name="EnemySpawner3" type="Position2D" parent="." index="11"]
 position = Vector2( 1048, 240 )
 script = ExtResource( 8 )
 enemy = ExtResource( 7 )
 
-[node name="EnemySpawner4" type="Position2D" parent="." index="11"]
+[node name="EnemySpawner4" type="Position2D" parent="." index="12"]
 position = Vector2( 800, 152 )
 script = ExtResource( 8 )
 enemy = ExtResource( 7 )
 
 [connection signal="entered_hitstun" from="EnemySpawner2/TestScorpionE" to="EnemySpawner2/TestScorpionE/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
-[connection signal="entered_hitstun" from="EnemySpawner3/TestScorpionE2" to="EnemySpawner3/TestScorpionE2/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
-[connection signal="entered_hitstun" from="EnemySpawner4/TestScorpionE3" to="EnemySpawner4/TestScorpionE3/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
+[connection signal="entered_hitstun" from="EnemySpawner5/TestScorpionE" to="EnemySpawner5/TestScorpionE/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
+[connection signal="entered_hitstun" from="EnemySpawner3/TestScorpionE" to="EnemySpawner3/TestScorpionE/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
+[connection signal="entered_hitstun" from="EnemySpawner4/TestScorpionE" to="EnemySpawner4/TestScorpionE/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]

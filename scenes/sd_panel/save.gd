@@ -18,11 +18,11 @@ func initialize(save:NewSaveData,path:String):
 		$TextureRect.visible = save.beat
 		$Control/Stats/HP.text = str(6+save.hp_stacks,"HP")
 		$Label.hide()
-		print("why")
+		print_debug("why")
 	else:
 		$Label.show()
 	
-	print($Label.visible,save.played)
+	print_debug($Label.visible,save.played)
 
 
 func _on_Button_pressed():

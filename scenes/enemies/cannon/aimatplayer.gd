@@ -6,7 +6,6 @@ extends State
 func _enter_state(new_state, old_state):
 	._enter_state(new_state, old_state)
 	yield(get_tree().create_timer(.1,false),"timeout")
-	_on_Timer_timeout()
 	$Timer.start()
 	
 func _exit_state(old_state, new_state):
@@ -58,7 +57,9 @@ func pipebombattack(vel,dir=Vector2.RIGHT,speed=200):
 
 func _on_Timer_timeout():
 
-	var tp :Vector2= $"%StatusThing".target.global_position
+	var tp = $"%StatusThing".target
+	if not is_instance_valid(tp):return
+	tp = tp.global_position
 	pipebombattack(
 		Vector2(0,-200),
 		Vector2.RIGHT.rotated($"%Wheelattack".rotation) * $"%Wheelattack".get_parent().scale,

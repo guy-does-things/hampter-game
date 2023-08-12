@@ -72,7 +72,7 @@ attack_state_path = NodePath("../State")
 script = ExtResource( 9 )
 
 [node name="Timer" type="Timer" parent="StateMachine/State"]
-wait_time = 4.0
+wait_time = 1.5
 
 [node name="NewPlayerDetector" type="Area2D" parent="."]
 visible = false

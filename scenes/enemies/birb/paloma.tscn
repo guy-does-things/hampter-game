@@ -1,0 +1,121 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=2]
+[ext_resource path="res://state_machine/state_machine.gd" type="Script" id=3]
+[ext_resource path="res://scripts/physicsthings.gd" type="Script" id=4]
+[ext_resource path="res://testtile.png" type="Texture" id=5]
+[ext_resource path="res://scenes/enemies/introscorpion/enemy.gd" type="Script" id=6]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/birb/paloma.gd" type="Script" id=8]
+[ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=12]
+
+[sub_resource type="CircleShape2D" id=12]
+
+[sub_resource type="Animation" id=10]
+resource_name = "attack"
+length = 0.283
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "idle"
+length = 0.003
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk"
+length = 0.221
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[node name="EnemRoot" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="TestScorpionE" type="KinematicBody2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 40
+script = ExtResource( 6 )
+
+[node name="Flippables" type="Node2D" parent="TestScorpionE"]
+unique_name_in_owner = true
+script = ExtResource( 12 )
+
+[node name="Icon" type="Sprite" parent="TestScorpionE/Flippables"]
+unique_name_in_owner = true
+texture = ExtResource( 5 )
+
+[node name="Area2D" parent="TestScorpionE/Flippables" instance=ExtResource( 7 )]
+damage = 1
+is_enemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestScorpionE/Flippables/Area2D"]
+shape = SubResource( 12 )
+
+[node name="HurtComponent" type="Area2D" parent="TestScorpionE"]
+script = ExtResource( 2 )
+is_enemy = true
+path_entitystatus = NodePath("../StatusThing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestScorpionE/HurtComponent"]
+shape = SubResource( 12 )
+
+[node name="StatusThing" type="Node" parent="TestScorpionE"]
+unique_name_in_owner = true
+script = ExtResource( 1 )
+MAX_HP = 1
+
+[node name="PhysicsStuff" type="Node" parent="TestScorpionE"]
+script = ExtResource( 4 )
+gravity_enabled = false
+friction_enabled = false
+gravity_only_when_not_on_floor = false
+
+[node name="StateMachine" type="Node" parent="TestScorpionE"]
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TestScorpionE"]
+anims/attack = SubResource( 10 )
+anims/idle = SubResource( 11 )
+anims/walk = SubResource( 9 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="TestScorpionE"]
+
+[connection signal="entered_hitstun" from="TestScorpionE" to="TestScorpionE/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
+[connection signal="tree_exited" from="TestScorpionE" to="." method="_on_TestScorpionE_tree_exited"]
+[connection signal="died" from="TestScorpionE/HurtComponent" to="TestScorpionE" method="_on_HurtComponent_died"]
+[connection signal="hurted" from="TestScorpionE/HurtComponent" to="TestScorpionE" method="_on_HurtComponent_hurted"]
+[connection signal="screen_exited" from="TestScorpionE/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

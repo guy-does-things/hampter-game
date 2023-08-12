@@ -23,6 +23,7 @@ can_hit_multiple_times = true
 shape = SubResource( 83 )
 
 [node name="Wheelattack" type="Sprite" parent="."]
+unique_name_in_owner = true
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -39,4 +40,7 @@ shape = SubResource( 83 )
 [node name="StatusThing" type="Node" parent="."]
 script = ExtResource( 4 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
 [connection signal="died" from="HurtComponent" to="." method="DIE"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
