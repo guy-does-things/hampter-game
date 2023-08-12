@@ -8,8 +8,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	_on_Interactible_interacted(SavesManager.current_save.global_data.get("holyshitfnaf",false))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

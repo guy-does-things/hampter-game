@@ -193,7 +193,7 @@ ExtResource( 11 ): {
 "elevators": [  ],
 "item_count": 0,
 "room_name": "exitroom",
-"room_position": Vector2( 2370, 3680 ),
+"room_position": Vector2( 2290, 3680 ),
 "room_rect": Rect2( 0, 0, 496, 288 ),
 "room_scene": ExtResource( 11 ),
 "transition_rooms": [  ]

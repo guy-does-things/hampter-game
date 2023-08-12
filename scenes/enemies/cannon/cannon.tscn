@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/physicsthings.gd" type="Script" id=1]
 [ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=10]
 [ext_resource path="res://raw_sprites/cannonbase.png" type="Texture" id=11]
 [ext_resource path="res://raw_sprites/cannonsupport_texture.png" type="Texture" id=12]
+[ext_resource path="res://hgunshot.wav" type="AudioStream" id=13]
 
 [sub_resource type="RectangleShape2D" id=84]
 extents = Vector2( 9, 4 )
@@ -91,6 +92,13 @@ offset = Vector2( 0, -12 )
 [node name="Cannonbase" type="Sprite" parent="."]
 position = Vector2( 0, 5 )
 texture = ExtResource( 11 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource( 13 )
+volume_db = 10.0
+attenuation = 0.1
+bus = "SFX"
 
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]

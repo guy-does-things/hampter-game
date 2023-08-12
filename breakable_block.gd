@@ -11,9 +11,8 @@ var index :=0
 var room_data :RoomSaveInfo
 
 func setup_interaction_status(index,is_enabled,is_save):
-	if is_enabled:destroy()
-
-
+	if is_enabled:
+		destroy()
 
 func _ready():
 	$Dash.frame = break_type
@@ -25,11 +24,12 @@ func _process(_d):
 	
 
 func blockbreak(type:int):
-	if type == break_type:
+	if type == break_type and $Dash.visible:
 		destroy()
-	
+		$AudioStreamPlayer.play()
+		$CPUParticles2D.emitting = true
 	
 func destroy():
 	#todo add game feel
-	hide()
+	$Dash.hide()
 	$CollisionShape2D.disabled = true

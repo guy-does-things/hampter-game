@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=2]
@@ -59,7 +59,6 @@
 [ext_resource path="res://locations/lecastlevania/castle_inside.tscn" type="PackedScene" id=57]
 [ext_resource path="res://locations/lecastlevania/yokuroom2.tscn" type="PackedScene" id=58]
 [ext_resource path="res://locations/lecastlevania/snakeroom.tscn" type="PackedScene" id=59]
-[ext_resource path="res://scenes/nsav_thing/nsav_thing.tscn" type="PackedScene" id=60]
 [ext_resource path="res://scenes/itempopup/ipopup.tscn" type="PackedScene" id=61]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -80,7 +79,7 @@ glow_hdr_threshold = 0.95
 script = ExtResource( 24 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 1936, -1825 )
+position = Vector2( 2538, 272 )
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
 pause_mode = 2
@@ -536,6 +535,3 @@ position = Vector2( 6960, -1328 )
 
 [node name="A30" parent="." instance=ExtResource( 41 )]
 position = Vector2( 8544, -1024 )
-
-[node name="CAVES " parent="." instance=ExtResource( 60 )]
-position = Vector2( 216, 248 )

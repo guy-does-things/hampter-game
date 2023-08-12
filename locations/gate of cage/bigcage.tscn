@@ -85,12 +85,16 @@ position = Vector2( 592, -184 )
 script = ExtResource( 8 )
 enemy = ExtResource( 10 )
 
-[node name="EnemySpawner3" type="Position2D" parent="." index="10"]
+[node name="EnemySpawner4" type="Position2D" parent="." index="10"]
+position = Vector2( 640, 232 )
+script = ExtResource( 8 )
+enemy = ExtResource( 10 )
+
+[node name="EnemySpawner3" type="Position2D" parent="." index="11"]
 position = Vector2( 336, 184 )
 script = ExtResource( 8 )
 enemy = ExtResource( 9 )
 
 [connection signal="entered_hitstun" from="EnemySpawner/TestScorpionE" to="EnemySpawner/TestScorpionE/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
-[connection signal="entered_hitstun" from="EnemySpawner/TestScorpionE2" to="EnemySpawner/TestScorpionE2/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
-[connection signal="entered_hitstun" from="EnemySpawner2/TestScorpionE2" to="EnemySpawner2/TestScorpionE2/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
-[connection signal="entered_hitstun" from="EnemySpawner2/TestScorpionE3" to="EnemySpawner2/TestScorpionE3/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
+[connection signal="entered_hitstun" from="EnemySpawner2/TestScorpionE" to="EnemySpawner2/TestScorpionE/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]
+[connection signal="entered_hitstun" from="EnemySpawner4/TestScorpionE2" to="EnemySpawner4/TestScorpionE2/AnimationPlayer" method="_on_TestScorpionE_entered_hitstun"]

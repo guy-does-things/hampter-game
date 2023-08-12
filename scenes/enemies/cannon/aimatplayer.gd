@@ -56,9 +56,9 @@ func pipebombattack(vel,dir=Vector2.RIGHT,speed=200):
 
 
 func _on_Timer_timeout():
-
 	var tp = $"%StatusThing".target
 	if not is_instance_valid(tp):return
+	$"%AudioStreamPlayer2D".play()
 	tp = tp.global_position
 	pipebombattack(
 		Vector2(0,-200),

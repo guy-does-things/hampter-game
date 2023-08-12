@@ -119,12 +119,27 @@ position = Vector2( 520, 936 )
 script = ExtResource( 8 )
 enemy = ExtResource( 9 )
 
-[node name="EnemySpawner3" type="Position2D" parent="." index="11"]
+[node name="EnemySpawner7" type="Position2D" parent="." index="11"]
+position = Vector2( 432, 1640 )
+script = ExtResource( 8 )
+enemy = ExtResource( 9 )
+
+[node name="EnemySpawner8" type="Position2D" parent="." index="12"]
+position = Vector2( 456, 1376 )
+script = ExtResource( 8 )
+enemy = ExtResource( 9 )
+
+[node name="EnemySpawner9" type="Position2D" parent="." index="13"]
+position = Vector2( 656, 1504 )
+script = ExtResource( 8 )
+enemy = ExtResource( 9 )
+
+[node name="EnemySpawner3" type="Position2D" parent="." index="14"]
 position = Vector2( 1048, 240 )
 script = ExtResource( 8 )
 enemy = ExtResource( 7 )
 
-[node name="EnemySpawner4" type="Position2D" parent="." index="12"]
+[node name="EnemySpawner4" type="Position2D" parent="." index="15"]
 position = Vector2( 800, 152 )
 script = ExtResource( 8 )
 enemy = ExtResource( 7 )
