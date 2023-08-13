@@ -1,0 +1,129 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://raw_sprites/spikyfish.png" type="Texture" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/boss2/bossairfric.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/sfish1/sfish1.gd" type="Script" id=4]
+[ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=5]
+[ext_resource path="res://n_plr_detector.gd" type="Script" id=6]
+[ext_resource path="res://state_machine/state_machine.gd" type="Script" id=7]
+[ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=8]
+[ext_resource path="res://scenes/enemies/introscorpion/idunno.gd" type="Script" id=9]
+[ext_resource path="res://scenes/enemies/sfish2/gotowoardsp.gd" type="Script" id=10]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://state_machine/state.gd" type="Script" id=13]
+[ext_resource path="res://player/watercheck.gd" type="Script" id=14]
+
+[sub_resource type="AtlasTexture" id=91]
+atlas = ExtResource( 1 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=92]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=88]
+animations = [ {
+"frames": [ SubResource( 91 ), SubResource( 92 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=84]
+extents = Vector2( 9, 4 )
+
+[sub_resource type="CircleShape2D" id=93]
+radius = 350.0
+
+[sub_resource type="CircleShape2D" id=89]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id=90]
+extents = Vector2( 10, 4.25 )
+
+[node name="TEstSpinner2" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 40
+script = ExtResource( 4 )
+
+[node name="Flippable" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Flippable"]
+frames = SubResource( 88 )
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 84 )
+
+[node name="HurtComponent" type="Area2D" parent="."]
+script = ExtResource( 5 )
+is_enemy = true
+path_entitystatus = NodePath("../StatusThing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+shape = SubResource( 84 )
+
+[node name="StatusThing" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 2 )
+MAX_HP = 16
+
+[node name="PhysicsStuff" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 3 )
+gravity_enabled = false
+gravity_only_when_not_on_floor = false
+
+[node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 7 )
+initial_state = NodePath("idunno")
+
+[node name="idunno" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+can_go_to_hurtstate = false
+attack_state_path = NodePath("../DashDelay")
+
+[node name="DashDelay" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+can_go_to_hurtstate = false
+
+[node name="OuTOFWATER" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 13 )
+
+[node name="NewPlayerDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 56
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlayerDetector"]
+shape = SubResource( 93 )
+
+[node name="Area2D" parent="." instance=ExtResource( 11 )]
+damage = 1
+is_enemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 89 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource( 14 )
+was_on_water = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource( 90 )
+
+[connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
+[connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="hurted" from="HurtComponent" to="StateMachine/DashDelay" method="_on_HurtComponent_hurted"]
+[connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
+[connection signal="on_water" from="Area2D2" to="." method="_on_Area2D2_on_water"]
+[connection signal="out_of_water" from="Area2D2" to="." method="_on_Area2D2_out_of_water"]

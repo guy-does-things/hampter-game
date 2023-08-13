@@ -5,12 +5,16 @@ var target : Entity
 
 
 func _ready():
-	target = $"../../Entity"
+	Signals.connect("boss_spawned",self,"boss_spawned")
 
+func boss_spawned(boss,_n):
+	target = boss
+	$Label.text = _n
+	show()
 
 func _process(delta):
 	if not is_instance_valid(target):
-		$ProgressBar.value = 0
+		hide()
 		return
 	
 	$ProgressBar.value = target.get_node("StatusThing").current_hp

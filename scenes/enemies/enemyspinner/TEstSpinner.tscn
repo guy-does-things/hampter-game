@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://scenes/enemies/enemyspinner/Wheelattack.gd" type="Script" id=1]
 [ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=2]
 [ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=4]
@@ -25,6 +26,7 @@ shape = SubResource( 83 )
 [node name="Wheelattack" type="Sprite" parent="."]
 unique_name_in_owner = true
 texture = ExtResource( 5 )
+script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 83 )

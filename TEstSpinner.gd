@@ -7,8 +7,6 @@ var has_been_seen = false
 func _physics_process(delta):
 	if not has_been_seen:return
 	
-	$"%Wheelattack".rotation_degrees += 20
-	
 	if rotating:
 		rotation = lerp_angle(rotation, move.angle(), 0.1)
 		rotating -= 1

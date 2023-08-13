@@ -18,7 +18,6 @@ func interact(cinteractionstatus:bool,is_loading_game:=false)-> void:
 		emit_signal("interacted",interacted)
 	else:
 		interacted = cinteractionstatus
-		# basically the same, execpt that only triggers if loading a save 
 		emit_signal("game_load_interact",interacted)
 
 	

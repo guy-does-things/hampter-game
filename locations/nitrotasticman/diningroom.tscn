@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/chest/chest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/cannon/cannon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://dreadsitereuse/enemy_spawner.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/sfish2/drone.tscn" type="PackedScene" id=6]
 
 [node name="A" instance=ExtResource( 1 )]
 
@@ -16,3 +19,28 @@ tile_data = PoolIntArray( -720930, 9, 65536, -720929, 536870921, 0, -720928, 536
 position = Vector2( -491, -112 )
 scale = Vector2( -1, 1 )
 item_to_give = 1
+
+[node name="EnemySpawner" type="Position2D" parent="." index="6"]
+position = Vector2( 16, 48 )
+script = ExtResource( 5 )
+enemy = ExtResource( 6 )
+
+[node name="EnemySpawner2" type="Position2D" parent="." index="7"]
+position = Vector2( -464, 16 )
+script = ExtResource( 5 )
+enemy = ExtResource( 6 )
+
+[node name="EnemySpawner3" type="Position2D" parent="." index="8"]
+position = Vector2( -224, 112 )
+script = ExtResource( 5 )
+enemy = ExtResource( 4 )
+
+[node name="EnemySpawner5" type="Position2D" parent="." index="9"]
+position = Vector2( -224, -16 )
+script = ExtResource( 5 )
+enemy = ExtResource( 4 )
+
+[node name="EnemySpawner4" type="Position2D" parent="." index="10"]
+position = Vector2( 16, -70 )
+script = ExtResource( 5 )
+enemy = ExtResource( 4 )

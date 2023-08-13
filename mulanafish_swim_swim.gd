@@ -22,7 +22,6 @@ func _state_logic(delta):
 	
 	t+= delta
 	
-	entity.scale = Vector2.ONE * 1.5
 	if is_instance_valid(targ):
 		initial_p.y = lerp(initial_p.y,targ.global_position.y,delta)
 	

@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://bullets/stinger_bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://raw_sprites/smallfish.png" type="Texture" id=2]
+[ext_resource path="res://raw_sprites/arrowdude.png" type="Texture" id=3]
+[ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=4]
+[ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=5]
+[ext_resource path="res://wpnsys/hurt_stuff/Gun.gd" type="Script" id=6]
+[ext_resource path="res://arrowshooter/ashooter.gd" type="Script" id=7]
+[ext_resource path="res://gunshot.wav" type="AudioStream" id=8]
+
+[sub_resource type="Resource" id=1]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+gun_name = ""
+gun_desc = ""
+gun_fire_mode = 2
+fires_before_charging = false
+pellet_count = 1
+burst_count = 1
+cooldown = 1.0
+max_charge = 0.4
+spread = 0.0
+recoil = 0.0
+rotation_recoil = 0.0
+damage = 1
+speed = 200
+bullet_lifetime = 5.0
+no_cooldown = false
+
+[sub_resource type="Resource" id=2]
+resource_local_to_scene = true
+script = ExtResource( 5 )
+data_res = SubResource( 1 )
+bullet = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "spitit"
+length = 0.233
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.136834 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7, 16 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Arrowdude" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Gun" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 6 )
+_gun_data = SubResource( 2 )
+is_enemy = true
+
+[node name="SpriteSheet" type="Sprite" parent="Gun"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource( 2 )
+hframes = 3
+frame = 2
+
+[node name="Position2D" type="Position2D" parent="Gun"]
+position = Vector2( -6, 1 )
+
+[node name="Cooldown" type="Timer" parent="Gun"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Gun"]
+stream = ExtResource( 8 )
+volume_db = -5.0
+bus = "SFX"
+
+[node name="Node" type="Node" parent="Gun"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gun"]
+unique_name_in_owner = true
+anims/spitit = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="Gun"]
+wait_time = 4.5
+one_shot = true
+autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1, 0 )
+shape = SubResource( 4 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0, 2.38419e-07 )
+scale = Vector2( 1, 1.6 )
+physics_process_parent = true
+
+[connection signal="fired" from="Gun" to="." method="_on_Gun_fired"]
+[connection signal="fullypoweredup" from="Gun" to="." method="_on_Gun_fullypoweredup"]
+[connection signal="proj_created" from="Gun" to="." method="_on_Node2D_proj_created"]

@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/enemies/introscorpion/enemy.gd" type="Script" id=5]
 [ext_resource path="res://fishlaunch.gd" type="Script" id=6]
 [ext_resource path="res://mulanafish_swim_swim.gd" type="Script" id=7]
-[ext_resource path="res://dash.png" type="Texture" id=8]
+[ext_resource path="res://raw_sprites/smolfish.png" type="Texture" id=8]
 [ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=9]
 [ext_resource path="res://n_plr_detector.gd" type="Script" id=10]
 
@@ -18,7 +18,6 @@ radius = 240.533
 
 [node name="MulanaFish" type="KinematicBody2D"]
 position = Vector2( 255, -28 )
-scale = Vector2( 2, 2 )
 collision_layer = 0
 collision_mask = 36
 script = ExtResource( 5 )
@@ -26,6 +25,7 @@ script = ExtResource( 5 )
 [node name="Sprite" type="Sprite" parent="."]
 unique_name_in_owner = true
 texture = ExtResource( 8 )
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 89 )

@@ -11,6 +11,9 @@ var index :=0
 var room_data :RoomSaveInfo
 
 func setup_interaction_status(index,is_enabled,is_save):
+	print(is_enabled)
+	
+	room_data.pickups[index] = is_enabled
 	if is_enabled:
 		destroy()
 

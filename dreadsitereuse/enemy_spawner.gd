@@ -27,7 +27,9 @@ func set_enemy(new_enemy):
 		
 		
 		
-func spawn_enemy(_player, room):	
+		
+func spawn_enemy(_player, room):
+		
 	if not SavesManager.current_save.global_data.get("holyshitfnaf"):return false
 	
 	if !is_instance_valid(enem) and room == get_parent():

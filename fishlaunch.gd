@@ -7,6 +7,8 @@ func _enter_state(new_state, old_state):
 	entity.velocity.y = -40
 #
 func _state_logic(delta):
+	$"%Sprite".scale.y = sign(entity.velocity.x)
+	$"%Sprite".frame = 1
 	$"%Sprite".look_at(entity.global_position+entity.velocity)
 
 

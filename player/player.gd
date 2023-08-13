@@ -15,8 +15,11 @@ var on_water = false
 var ctiltmult = 1
 var previous_stone_frame = 0
 var aip = false
+var on_wning = false
 onready var status = $StatusThing
 onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
+
+
 
 
 func _ready():
@@ -106,7 +109,7 @@ func get_speed_mult(lowoverride=.5): return (lowoverride if on_water else 1.0)
 
 
 func _physics_process(delta):
-	if aip:return
+	if aip or on_wning:return
 	
 	if $StateMachine.state == $StateMachine/Hurt:return
 	if is_riding():return
@@ -346,9 +349,7 @@ func _on_Hurt_exited():
 
 
 func on_water(water):
-	print_debug(
-		status.disabled_bitmask & Globals.Items.WATERBREATHING
-		)
+
 	
 	if !status.has_item(Globals.Items.WATERBREATHING) or water.hurts_regardless:
 		$HurtComponent.hurt(1,Vector2.ZERO,0,true,4000,true)

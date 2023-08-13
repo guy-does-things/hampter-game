@@ -55,37 +55,37 @@
 [resource]
 script = ExtResource( 1 )
 room_data_dict = {
-ExtResource( 2 ): {
+ExtResource( 7 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "waterway",
-"room_position": Vector2( -528, 1824 ),
-"room_rect": Rect2( -1104, -160, 1760, 1896 ),
-"room_scene": ExtResource( 2 ),
+"room_name": "movingproom",
+"room_position": Vector2( 3216, 1392 ),
+"room_rect": Rect2( 0, -192, 2288, 592 ),
+"room_scene": ExtResource( 7 ),
 "transition_rooms": [  ]
 },
-ExtResource( 3 ): {
+ExtResource( 6 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "comicalamountofwater",
-"room_position": Vector2( 3936, 3104 ),
-"room_rect": Rect2( 0, -256, 1568, 1120 ),
-"room_scene": ExtResource( 3 ),
+"room_name": "beforeboss1",
+"room_position": Vector2( 384, 3184 ),
+"room_rect": Rect2( 0, -160, 1216, 430 ),
+"room_scene": ExtResource( 6 ),
 "transition_rooms": [  ]
 },
-ExtResource( 5 ): {
+ExtResource( 10 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "dayofsexthefall",
-"room_position": Vector2( 5504, 1184 ),
-"room_rect": Rect2( 0, 0, 960, 736 ),
-"room_scene": ExtResource( 5 ),
+"room_name": "guardianroom",
+"room_position": Vector2( 1600, 3312 ),
+"room_rect": Rect2( 0, -160, 624, 304 ),
+"room_scene": ExtResource( 10 ),
 "transition_rooms": [  ]
 },
 ExtResource( 4 ): {
@@ -99,15 +99,15 @@ ExtResource( 4 ): {
 "room_scene": ExtResource( 4 ),
 "transition_rooms": [  ]
 },
-ExtResource( 16 ): {
+ExtResource( 11 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "waterplatformroom",
-"room_position": Vector2( 4048, 2352 ),
-"room_rect": Rect2( 0, -192, 2240, 608 ),
-"room_scene": ExtResource( 16 ),
+"room_name": "exitroom",
+"room_position": Vector2( 2290, 3680 ),
+"room_rect": Rect2( 0, 0, 496, 288 ),
+"room_scene": ExtResource( 11 ),
 "transition_rooms": [  ]
 },
 ExtResource( 12 ): {
@@ -121,15 +121,15 @@ ExtResource( 12 ): {
 "room_scene": ExtResource( 12 ),
 "transition_rooms": [  ]
 },
-ExtResource( 9 ): {
+ExtResource( 13 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "swimitemroom",
-"room_position": Vector2( 6288, 2224 ),
-"room_rect": Rect2( 0, -48, 496, 336 ),
-"room_scene": ExtResource( 9 ),
+"room_name": "swimsecretroom",
+"room_position": Vector2( 2240, 2672 ),
+"room_rect": Rect2( -624, -128, 1120, 480 ),
+"room_scene": ExtResource( 13 ),
 "transition_rooms": [  ]
 },
 ExtResource( 14 ): {
@@ -154,235 +154,59 @@ ExtResource( 8 ): {
 "room_scene": ExtResource( 8 ),
 "transition_rooms": [  ]
 },
-ExtResource( 15 ): {
+ExtResource( 3 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "bossreward",
-"room_position": Vector2( 2224, 3312 ),
-"room_rect": Rect2( 0, -160, 512, 270 ),
-"room_scene": ExtResource( 15 ),
+"room_name": "comicalamountofwater",
+"room_position": Vector2( 3936, 3104 ),
+"room_rect": Rect2( 0, -256, 1568, 1120 ),
+"room_scene": ExtResource( 3 ),
 "transition_rooms": [  ]
 },
-ExtResource( 6 ): {
+ExtResource( 5 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "beforeboss1",
-"room_position": Vector2( 384, 3184 ),
-"room_rect": Rect2( 0, -160, 1216, 430 ),
-"room_scene": ExtResource( 6 ),
+"room_name": "dayofsexthefall",
+"room_position": Vector2( 5504, 1184 ),
+"room_rect": Rect2( 0, 0, 960, 736 ),
+"room_scene": ExtResource( 5 ),
 "transition_rooms": [  ]
 },
-ExtResource( 7 ): {
+ExtResource( 9 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "movingproom",
-"room_position": Vector2( 3216, 1392 ),
-"room_rect": Rect2( 0, -192, 2288, 592 ),
-"room_scene": ExtResource( 7 ),
+"room_name": "swimitemroom",
+"room_position": Vector2( 6288, 2224 ),
+"room_rect": Rect2( 0, -48, 496, 336 ),
+"room_scene": ExtResource( 9 ),
 "transition_rooms": [  ]
 },
-ExtResource( 11 ): {
+ExtResource( 2 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "exitroom",
-"room_position": Vector2( 2290, 3680 ),
-"room_rect": Rect2( 0, 0, 496, 288 ),
-"room_scene": ExtResource( 11 ),
+"room_name": "waterway",
+"room_position": Vector2( -528, 1824 ),
+"room_rect": Rect2( -1104, -160, 1760, 1896 ),
+"room_scene": ExtResource( 2 ),
 "transition_rooms": [  ]
 },
-ExtResource( 10 ): {
+ExtResource( 19 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "guardianroom",
-"room_position": Vector2( 1600, 3312 ),
-"room_rect": Rect2( 0, -160, 624, 304 ),
-"room_scene": ExtResource( 10 ),
-"transition_rooms": [  ]
-},
-ExtResource( 13 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "swimsecretroom",
-"room_position": Vector2( 2240, 2672 ),
-"room_rect": Rect2( -624, -128, 1120, 480 ),
-"room_scene": ExtResource( 13 ),
-"transition_rooms": [  ]
-},
-ExtResource( 37 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "mallsave",
-"room_position": Vector2( 4720, -2256 ),
-"room_rect": Rect2( 0, -192, 480, 462 ),
-"room_scene": ExtResource( 37 ),
-"transition_rooms": [  ]
-},
-ExtResource( 42 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "combotutorialroom",
-"room_position": Vector2( -3232, 2064 ),
-"room_rect": Rect2( 0, 0, 1264, 272 ),
-"room_scene": ExtResource( 42 ),
-"transition_rooms": [  ]
-},
-ExtResource( 28 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "castle_entrance",
-"room_position": Vector2( 11296, -528 ),
-"room_rect": Rect2( 0, 0, 480, 270 ),
-"room_scene": ExtResource( 28 ),
-"transition_rooms": [  ]
-},
-ExtResource( 31 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "highway_entrance",
-"room_position": Vector2( 880, -1936 ),
-"room_rect": Rect2( 0, 0, 928, 272 ),
-"room_scene": ExtResource( 31 ),
-"transition_rooms": [  ]
-},
-ExtResource( 29 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "cavebossroom",
-"room_position": Vector2( 4096, -336 ),
-"room_rect": Rect2( 0, -144, 750, 414 ),
-"room_scene": ExtResource( 29 ),
-"transition_rooms": [  ]
-},
-ExtResource( 34 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "highwaygating",
-"room_position": Vector2( 96, -416 ),
-"room_rect": Rect2( 0, -480, 480, 750 ),
-"room_scene": ExtResource( 34 ),
-"transition_rooms": [  ]
-},
-ExtResource( 32 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "hiddenroom2",
-"room_position": Vector2( -1168, 208 ),
-"room_rect": Rect2( 0, 0, 480, 416 ),
-"room_scene": ExtResource( 32 ),
-"transition_rooms": [  ]
-},
-ExtResource( 35 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "car_jumpscare",
-"room_position": Vector2( 1808, -1936 ),
-"room_rect": Rect2( 0, 0, 2129, 512 ),
-"room_scene": ExtResource( 35 ),
-"transition_rooms": [  ]
-},
-ExtResource( 36 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "highwayjump",
-"room_position": Vector2( 576, -992 ),
-"room_rect": Rect2( 0, -480, 480, 750 ),
-"room_scene": ExtResource( 36 ),
-"transition_rooms": [  ]
-},
-ExtResource( 38 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "hiddenroom3",
-"room_position": Vector2( -688, 208 ),
-"room_rect": Rect2( 0, 0, 480, 270 ),
-"room_scene": ExtResource( 38 ),
-"transition_rooms": [  ]
-},
-ExtResource( 30 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "zipline_room",
-"room_position": Vector2( 4848, -336 ),
-"room_rect": Rect2( 0, -544, 1040, 814 ),
-"room_scene": ExtResource( 30 ),
-"transition_rooms": [  ]
-},
-ExtResource( 39 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "castle_inside",
-"room_position": Vector2( 10816, -528 ),
-"room_rect": Rect2( -1024, -256, 1504, 526 ),
-"room_scene": ExtResource( 39 ),
-"transition_rooms": [  ]
-},
-ExtResource( 40 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "diningroom",
-"room_position": Vector2( 3760, -2256 ),
-"room_rect": Rect2( -544, -189, 1024, 459 ),
-"room_scene": ExtResource( 40 ),
-"transition_rooms": [  ]
-},
-ExtResource( 41 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "entrancegating",
-"room_position": Vector2( 1616, -336 ),
-"room_rect": Rect2( 0, 0, 480, 270 ),
-"room_scene": ExtResource( 41 ),
-"transition_rooms": [  ]
-},
-ExtResource( 33 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "destroyedfor",
-"room_position": Vector2( 2096, -336 ),
-"room_rect": Rect2( 0, -270, 960, 540 ),
-"room_scene": ExtResource( 33 ),
+"room_name": "bigcage",
+"room_position": Vector2( 1616, 512 ),
+"room_rect": Rect2( 0, -352, 1040, 704 ),
+"room_scene": ExtResource( 19 ),
 "transition_rooms": [  ]
 },
 ExtResource( 20 ): {
@@ -407,17 +231,6 @@ ExtResource( 22 ): {
 "room_scene": ExtResource( 22 ),
 "transition_rooms": [  ]
 },
-ExtResource( 23 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "beforefishsave",
-"room_position": Vector2( 3440, 3680 ),
-"room_rect": Rect2( 0, 0, 496, 288 ),
-"room_scene": ExtResource( 23 ),
-"transition_rooms": [  ]
-},
 ExtResource( 21 ): {
 "area": 0,
 "connection_node_position": null,
@@ -429,59 +242,15 @@ ExtResource( 21 ): {
 "room_scene": ExtResource( 21 ),
 "transition_rooms": [  ]
 },
-ExtResource( 24 ): {
+ExtResource( 16 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "mallsection",
-"room_position": Vector2( 4240, -1936 ),
-"room_rect": Rect2( 0, -512, 480, 1024 ),
-"room_scene": ExtResource( 24 ),
-"transition_rooms": [  ]
-},
-ExtResource( 19 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "bigcage",
-"room_position": Vector2( 1616, 512 ),
-"room_rect": Rect2( 0, -352, 1040, 704 ),
-"room_scene": ExtResource( 19 ),
-"transition_rooms": [  ]
-},
-ExtResource( 26 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "cavent",
-"room_position": Vector2( 3056, -336 ),
-"room_rect": Rect2( 0, -448, 1040, 718 ),
-"room_scene": ExtResource( 26 ),
-"transition_rooms": [  ]
-},
-ExtResource( 25 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "snakeroom",
-"room_position": Vector2( 6960, -1328 ),
-"room_rect": Rect2( 0, 0, 480, 336 ),
-"room_scene": ExtResource( 25 ),
-"transition_rooms": [  ]
-},
-ExtResource( 27 ): {
-"area": 0,
-"connection_node_position": null,
-"elevators": [  ],
-"item_count": 0,
-"room_name": "cave_gating_exit_room",
-"room_position": Vector2( 4096, -752 ),
-"room_rect": Rect2( 0, -32, 752, 302 ),
-"room_scene": ExtResource( 27 ),
+"room_name": "waterplatformroom",
+"room_position": Vector2( 4048, 2352 ),
+"room_rect": Rect2( 0, -192, 2240, 608 ),
+"room_scene": ExtResource( 16 ),
 "transition_rooms": [  ]
 },
 ExtResource( 17 ): {
@@ -495,6 +264,17 @@ ExtResource( 17 ): {
 "room_scene": ExtResource( 17 ),
 "transition_rooms": [  ]
 },
+ExtResource( 15 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "bossreward",
+"room_position": Vector2( 2224, 3312 ),
+"room_rect": Rect2( 0, -160, 512, 270 ),
+"room_scene": ExtResource( 15 ),
+"transition_rooms": [  ]
+},
 ExtResource( 18 ): {
 "area": 0,
 "connection_node_position": null,
@@ -506,70 +286,180 @@ ExtResource( 18 ): {
 "room_scene": ExtResource( 18 ),
 "transition_rooms": [  ]
 },
-ExtResource( 49 ): {
+ExtResource( 35 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "boss4",
-"room_position": Vector2( 11915, -2748 ),
-"room_rect": Rect2( 0, 0, 480, 976 ),
-"room_scene": ExtResource( 49 ),
+"room_name": "car_jumpscare",
+"room_position": Vector2( 1808, -1936 ),
+"room_rect": Rect2( 0, 0, 2129, 512 ),
+"room_scene": ExtResource( 35 ),
 "transition_rooms": [  ]
 },
-ExtResource( 45 ): {
+ExtResource( 27 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "yokuroom2",
-"room_position": Vector2( 9312, -848 ),
-"room_rect": Rect2( -288, -224, 768, 624 ),
-"room_scene": ExtResource( 45 ),
+"room_name": "cave_gating_exit_room",
+"room_position": Vector2( 4096, -752 ),
+"room_rect": Rect2( 0, -32, 752, 302 ),
+"room_scene": ExtResource( 27 ),
 "transition_rooms": [  ]
 },
-ExtResource( 51 ): {
+ExtResource( 34 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "yokuroom3",
-"room_position": Vector2( 8544, -1024 ),
-"room_rect": Rect2( -288, -224, 768, 624 ),
-"room_scene": ExtResource( 51 ),
+"room_name": "highwaygating",
+"room_position": Vector2( 96, -416 ),
+"room_rect": Rect2( 0, -480, 480, 750 ),
+"room_scene": ExtResource( 34 ),
 "transition_rooms": [  ]
 },
-ExtResource( 48 ): {
+ExtResource( 24 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "combotestroom",
-"room_position": Vector2( 2224, 1888 ),
-"room_rect": Rect2( 0, 0, 512, 272 ),
-"room_scene": ExtResource( 48 ),
+"room_name": "mallsection",
+"room_position": Vector2( 4240, -1936 ),
+"room_rect": Rect2( 0, -512, 480, 1024 ),
+"room_scene": ExtResource( 24 ),
 "transition_rooms": [  ]
 },
-ExtResource( 43 ): {
+ExtResource( 36 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "sealroom",
-"room_position": Vector2( 2256, 1328 ),
+"room_name": "highwayjump",
+"room_position": Vector2( 576, -992 ),
+"room_rect": Rect2( 0, -480, 480, 750 ),
+"room_scene": ExtResource( 36 ),
+"transition_rooms": [  ]
+},
+ExtResource( 23 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "beforefishsave",
+"room_position": Vector2( 3440, 3680 ),
+"room_rect": Rect2( 0, 0, 496, 288 ),
+"room_scene": ExtResource( 23 ),
+"transition_rooms": [  ]
+},
+ExtResource( 29 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "cavebossroom",
+"room_position": Vector2( 4096, -336 ),
+"room_rect": Rect2( 0, -144, 750, 414 ),
+"room_scene": ExtResource( 29 ),
+"transition_rooms": [  ]
+},
+ExtResource( 28 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "castle_entrance",
+"room_position": Vector2( 11296, -528 ),
 "room_rect": Rect2( 0, 0, 480, 270 ),
-"room_scene": ExtResource( 43 ),
+"room_scene": ExtResource( 28 ),
 "transition_rooms": [  ]
 },
-ExtResource( 44 ): {
+ExtResource( 31 ): {
 "area": 0,
 "connection_node_position": null,
 "elevators": [  ],
 "item_count": 0,
-"room_name": "waterliftroom",
-"room_position": Vector2( 3216, 3280 ),
-"room_rect": Rect2( 0, -256, 720, 526 ),
-"room_scene": ExtResource( 44 ),
+"room_name": "highway_entrance",
+"room_position": Vector2( 880, -1936 ),
+"room_rect": Rect2( 0, 0, 928, 272 ),
+"room_scene": ExtResource( 31 ),
+"transition_rooms": [  ]
+},
+ExtResource( 32 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "hiddenroom2",
+"room_position": Vector2( -1168, 208 ),
+"room_rect": Rect2( 0, 0, 480, 416 ),
+"room_scene": ExtResource( 32 ),
+"transition_rooms": [  ]
+},
+ExtResource( 38 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "hiddenroom3",
+"room_position": Vector2( -688, 208 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 38 ),
+"transition_rooms": [  ]
+},
+ExtResource( 25 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "snakeroom",
+"room_position": Vector2( 6960, -1328 ),
+"room_rect": Rect2( 0, 0, 480, 336 ),
+"room_scene": ExtResource( 25 ),
+"transition_rooms": [  ]
+},
+ExtResource( 33 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "destroyedfor",
+"room_position": Vector2( 2096, -336 ),
+"room_rect": Rect2( 0, -270, 960, 540 ),
+"room_scene": ExtResource( 33 ),
+"transition_rooms": [  ]
+},
+ExtResource( 37 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "mallsave",
+"room_position": Vector2( 4720, -2256 ),
+"room_rect": Rect2( 0, -192, 480, 462 ),
+"room_scene": ExtResource( 37 ),
+"transition_rooms": [  ]
+},
+ExtResource( 30 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "zipline_room",
+"room_position": Vector2( 4848, -336 ),
+"room_rect": Rect2( 0, -544, 1040, 814 ),
+"room_scene": ExtResource( 30 ),
+"transition_rooms": [  ]
+},
+ExtResource( 26 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "cavent",
+"room_position": Vector2( 3056, -336 ),
+"room_rect": Rect2( 0, -448, 1040, 718 ),
+"room_scene": ExtResource( 26 ),
 "transition_rooms": [  ]
 },
 ExtResource( 46 ): {
@@ -583,6 +473,39 @@ ExtResource( 46 ): {
 "room_scene": ExtResource( 46 ),
 "transition_rooms": [  ]
 },
+ExtResource( 44 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "waterliftroom",
+"room_position": Vector2( 3216, 3280 ),
+"room_rect": Rect2( 0, -256, 720, 526 ),
+"room_scene": ExtResource( 44 ),
+"transition_rooms": [  ]
+},
+ExtResource( 41 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "entrancegating",
+"room_position": Vector2( 1616, -336 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 41 ),
+"transition_rooms": [  ]
+},
+ExtResource( 42 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "combotutorialroom",
+"room_position": Vector2( -3232, 2064 ),
+"room_rect": Rect2( 0, 0, 1264, 272 ),
+"room_scene": ExtResource( 42 ),
+"transition_rooms": [  ]
+},
 ExtResource( 47 ): {
 "area": 0,
 "connection_node_position": null,
@@ -594,6 +517,17 @@ ExtResource( 47 ): {
 "room_scene": ExtResource( 47 ),
 "transition_rooms": [  ]
 },
+ExtResource( 48 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "combotestroom",
+"room_position": Vector2( 2224, 1888 ),
+"room_rect": Rect2( 0, 0, 512, 272 ),
+"room_scene": ExtResource( 48 ),
+"transition_rooms": [  ]
+},
 ExtResource( 50 ): {
 "area": 0,
 "connection_node_position": null,
@@ -603,6 +537,72 @@ ExtResource( 50 ): {
 "room_position": Vector2( 5200, -2544 ),
 "room_rect": Rect2( 0, 0, 2208, 976 ),
 "room_scene": ExtResource( 50 ),
+"transition_rooms": [  ]
+},
+ExtResource( 45 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "yokuroom2",
+"room_position": Vector2( 9312, -848 ),
+"room_rect": Rect2( -288, -224, 768, 624 ),
+"room_scene": ExtResource( 45 ),
+"transition_rooms": [  ]
+},
+ExtResource( 40 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "diningroom",
+"room_position": Vector2( 3760, -2256 ),
+"room_rect": Rect2( -544, -189, 1024, 459 ),
+"room_scene": ExtResource( 40 ),
+"transition_rooms": [  ]
+},
+ExtResource( 43 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "sealroom",
+"room_position": Vector2( 2256, 1328 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 43 ),
+"transition_rooms": [  ]
+},
+ExtResource( 49 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "boss4",
+"room_position": Vector2( 11904, -2544 ),
+"room_rect": Rect2( 0, 0, 480, 976 ),
+"room_scene": ExtResource( 49 ),
+"transition_rooms": [  ]
+},
+ExtResource( 51 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "yokuroom3",
+"room_position": Vector2( 8544, -1024 ),
+"room_rect": Rect2( -288, -224, 768, 624 ),
+"room_scene": ExtResource( 51 ),
+"transition_rooms": [  ]
+},
+ExtResource( 39 ): {
+"area": 0,
+"connection_node_position": null,
+"elevators": [  ],
+"item_count": 0,
+"room_name": "castle_inside",
+"room_position": Vector2( 10816, -528 ),
+"room_rect": Rect2( -1024, -256, 1504, 526 ),
+"room_scene": ExtResource( 39 ),
 "transition_rooms": [  ]
 }
 }

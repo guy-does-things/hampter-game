@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://raw_sprites/seal.png" type="Texture" id=1]
 [ext_resource path="res://halweapon/oggrad.tres" type="Texture" id=2]
 [ext_resource path="res://scenes/seal/seal.gd" type="Script" id=3]
+[ext_resource path="res://brkseal.wav" type="AudioStream" id=4]
+[ext_resource path="res://raw_sprites/circletex.png" type="Texture" id=5]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -97,6 +99,14 @@ shader_param/colorr = ExtResource( 2 )
 
 [sub_resource type="CircleShape2D" id=5]
 
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.01015, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=7]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.0246305, 0.133005, 0.285714, 1 )
+colors = PoolColorArray( 0.913725, 0.380392, 0.843137, 0, 0.913725, 0.380392, 0.843137, 1, 0.329244, 0.223267, 0.96875, 1, 0.0482788, 0.550303, 0.882813, 1 )
+
 [node name="Seal" type="Sprite"]
 material = SubResource( 4 )
 texture = ExtResource( 1 )
@@ -108,5 +118,31 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 2.0
+bus = "SFX"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -2 )
+emitting = false
+amount = 33
+lifetime = 1.4
+one_shot = true
+explosiveness = 0.8
+randomness = 1.0
+texture = ExtResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 1.94
+direction = Vector2( 0, -1 )
+spread = 180.0
+gravity = Vector2( 0, -98 )
+initial_velocity = 70.0
+damping = 75.0
+scale_amount = 1.2
+scale_amount_random = 0.44
+scale_amount_curve = SubResource( 6 )
+color_ramp = SubResource( 7 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

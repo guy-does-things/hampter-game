@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/nitrotasticman/CanvasLayer.gd" type="Script" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://scenes/chest/chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/waterfall/waterfall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://realthing.tres" type="TileSet" id=7]
+[ext_resource path="res://arrowshooter/ashooter.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/sfish1/sfish1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://dreadsitereuse/enemy_spawner.gd" type="Script" id=10]
+[ext_resource path="res://scenes/enemies/sfish2/sfish2.tscn" type="PackedScene" id=11]
 
 [node name="A" instance=ExtResource( 1 )]
 
@@ -78,5 +82,33 @@ visible = false
 position = Vector2( 136, 1136 )
 amount = 1
 emission_rect_extents = Vector2( 136, 2 )
+
+[node name="Node2D3" parent="." index="13" instance=ExtResource( 8 )]
+position = Vector2( 1046, 32 )
+scale = Vector2( -1, 1 )
+
+[node name="EnemySpawner" type="Position2D" parent="." index="14"]
+show_behind_parent = true
+position = Vector2( 448, 232 )
+script = ExtResource( 10 )
+enemy = ExtResource( 11 )
+
+[node name="EnemySpawner3" type="Position2D" parent="." index="15"]
+show_behind_parent = true
+position = Vector2( 272, 688 )
+script = ExtResource( 10 )
+enemy = ExtResource( 11 )
+
+[node name="EnemySpawner2" type="Position2D" parent="." index="16"]
+show_behind_parent = true
+position = Vector2( 480, 656 )
+script = ExtResource( 10 )
+enemy = ExtResource( 9 )
+
+[node name="EnemySpawner4" type="Position2D" parent="." index="17"]
+show_behind_parent = true
+position = Vector2( 1248, 240 )
+script = ExtResource( 10 )
+enemy = ExtResource( 9 )
 
 [editable path="ColorRect2"]

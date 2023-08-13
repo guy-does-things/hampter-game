@@ -23,8 +23,10 @@ func enabled(loadingame):
 	if $Area2D:
 		$Area2D.queue_free()
 		material = null
-		if not loadingame:SavesManager.current_save.global_data.seals = SavesManager.current_save.global_data.get("seals",0) +1
-		
+		if not loadingame:
+			SavesManager.current_save.global_data.seals = SavesManager.current_save.global_data.get("seals",0) +1
+			$AudioStreamPlayer.play()
+			$CPUParticles2D.emitting = true
 
 		
 

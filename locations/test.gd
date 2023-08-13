@@ -12,7 +12,7 @@ func _ready():
 	if Engine.editor_hint:
 		store_positions()
 		return
-	#player_setup()
+	player_setup()
 	
 	
 	
@@ -52,6 +52,11 @@ func player_setup():
 	$KinematicBody2D/StatusThing.unlocked_item(SavesManager.current_save.current_powerups,true)
 	
 	$KinematicBody2D/StatusThing.disabled_bitmask = SavesManager.current_save.disabled_shit
+
+
+func _process(delta):
+	if Input.is_key_pressed(KEY_L):
+		$Inventory2/BossWarning.warning_popup()
 
 
 func save_map_to_ss():

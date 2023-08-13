@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://moving_platform/moving_p.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://scenes/waterfall/waterfall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://oos_respwawner/out_of_screen_spawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/mulfish/surprisefish.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/sfish2/sfish2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://dreadsitereuse/enemy_spawner.gd" type="Script" id=12]
 
 [node name="A" instance=ExtResource( 1 )]
 
@@ -82,3 +84,9 @@ margin_bottom = 224.0
 [node name="EnemySpawner2" parent="." index="12" instance=ExtResource( 9 )]
 position = Vector2( 493, -193 )
 enemy = ExtResource( 10 )
+
+[node name="EnemySpawner" type="Position2D" parent="." index="13"]
+show_behind_parent = true
+position = Vector2( 464, 160 )
+script = ExtResource( 12 )
+enemy = ExtResource( 11 )

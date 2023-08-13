@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://realthing.tres" type="TileSet" id=2]
@@ -12,6 +12,11 @@
 [ext_resource path="res://wpnsys/hurt_stuff/darkpistolresourcepacker.gd" type="Script" id=10]
 [ext_resource path="res://wpnsys/hurt_stuff/commongundata.gd" type="Script" id=11]
 [ext_resource path="res://raw_sprites/bisexualgun.png" type="Texture" id=12]
+[ext_resource path="res://scenes/enemies/boss5/snake.tscn" type="PackedScene" id=13]
+[ext_resource path="res://locations/gate of cage/boss_spawner.gd" type="Script" id=14]
+[ext_resource path="res://scenes/sd_panel/sillyghampterspr.tscn" type="PackedScene" id=15]
+[ext_resource path="res://rope.png" type="Texture" id=16]
+[ext_resource path="res://scenes/sd_panel/sillyghampterspr.gd" type="Script" id=17]
 
 [sub_resource type="Resource" id=85]
 script = ExtResource( 11 )
@@ -87,6 +92,12 @@ margin_bottom = 336.0
 [node name="TileMap" parent="." index="3"]
 tile_data = PoolIntArray( 0, 12, 65536, 29, 12, 65536, 65536, 12, 65536, 65565, 12, 65536, 131072, 12, 65536, 131101, 12, 65536, 196608, 12, 65536, 196637, 12, 65536, 262144, 12, 65536, 262173, 12, 65536, 327680, 12, 65536, 327709, 12, 65536, 393216, 12, 65536, 393245, 12, 65536, 458752, 12, 65536, 458781, 12, 65536, 524288, 12, 65536, 524317, 12, 65536, 589824, 12, 65536, 655360, 12, 65536, 720896, 12, 65536, 786432, 12, 65536, 851968, 12, 65536, 917504, 12, 65536, 983040, 12, 65536, 1048576, 12, 65536, 1114125, 12, 65536, 1114126, 12, 65536, 1114127, 12, 65536, 1114128, 12, 65536 )
 
+[node name="EnemySpawner" type="Position2D" parent="RoomObjectManager" index="0"]
+position = Vector2( 240, 234 )
+script = ExtResource( 14 )
+enemy = ExtResource( 13 )
+bossn = "the snake"
+
 [node name="WaterTileMap" type="TileMap" parent="." index="8"]
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
@@ -130,6 +141,34 @@ rotation = 3.14159
 shape = SubResource( 3 )
 one_way_collision = true
 
+[node name="Line2D" type="Line2D" parent="." index="12"]
+position = Vector2( 240, 80 )
+points = PoolVector2Array( 0, -64, 0, 38 )
+width = 8.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 16 )
+texture_mode = 1
+
+[node name="Node2D2" parent="." index="13" instance=ExtResource( 15 )]
+position = Vector2( 240, 128 )
+rotation = 0.0
+script = ExtResource( 17 )
+
+[node name="Left" parent="Node2D2" index="1"]
+position = Vector2( -2, -12 )
+
+[node name="Right" parent="Node2D2" index="2"]
+position = Vector2( 9, -16 )
+
+[node name="Rope" type="Sprite" parent="Node2D2" index="3"]
+position = Vector2( -1, -10 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10, 4 )
+
 [connection signal="proj_created" from="gun" to="SnakeGrabber" method="_on_gun_proj_created"]
 [connection signal="body_entered" from="SnakeGrabber" to="SnakeGrabber" method="_on_SnakeGrabber_body_entered"]
 [connection signal="timeout" from="SnakeGrabber/SnakeTimer" to="SnakeGrabber" method="_on_SnakeTimer_timeout"]
+
+[editable path="Node2D2"]

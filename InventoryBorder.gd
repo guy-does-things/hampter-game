@@ -11,7 +11,7 @@ func _ready():
 	$VBoxContainer2/Label.text = SavesManager.current_save.name
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("show_inv") and !animating and Globals.can_open_menu:
+	if (Input.is_action_just_pressed("show_inv") and !animating) and Globals.can_open_menu:
 		if visible:
 			yield(animate_cr(0,1),"completed")
 			hide()
@@ -31,8 +31,17 @@ func _physics_process(delta):
 		$VBoxContainer/Button.grab_focus()
 
 	
-	if Input.is_action_just_pressed("ui_cancel") or !Globals.can_open_menu:
+	if Input.is_action_just_pressed("ui_cancel"):
 		deselect()
+		
+		
+	if not Globals.can_open_menu and visible:
+		print("???")
+		Engine.time_scale = 1
+		deselect()
+		hide()
+		get_tree().paused = false
+		
 		
 		
 

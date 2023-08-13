@@ -1,0 +1,158 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://raw_sprites/smolfish.png" type="Texture" id=1]
+[ext_resource path="res://wpnsys/hurt_stuff/statusThing.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/boss2/bossairfric.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/sfish1/sfish1.gd" type="Script" id=4]
+[ext_resource path="res://wpnsys/hurt_stuff/hurt_component.gd" type="Script" id=5]
+[ext_resource path="res://n_plr_detector.gd" type="Script" id=6]
+[ext_resource path="res://state_machine/state_machine.gd" type="Script" id=7]
+[ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=8]
+[ext_resource path="res://scenes/enemies/introscorpion/idunno.gd" type="Script" id=9]
+[ext_resource path="res://scenes/enemies/sfish1/DashDelay.gd" type="Script" id=10]
+[ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://stun.gd" type="Script" id=12]
+[ext_resource path="res://state_machine/state.gd" type="Script" id=13]
+[ext_resource path="res://player/watercheck.gd" type="Script" id=14]
+[ext_resource path="res://raw_sprites/twinkle.png" type="Texture" id=15]
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 1 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=88]
+animations = [ {
+"frames": [ SubResource( 86 ), SubResource( 87 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=84]
+extents = Vector2( 9, 4 )
+
+[sub_resource type="CircleShape2D" id=93]
+radius = 350.0
+
+[sub_resource type="CircleShape2D" id=89]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id=90]
+extents = Vector2( 10, 4.25 )
+
+[sub_resource type="Curve" id=94]
+max_value = 2.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.364407, 1.96591 ), -1.93091, -2.62222, 0, 0, Vector2( 1, 0 ), 0.526786, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=95]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.00938967, 0.652582, 0.849765, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="TEstSpinner2" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 40
+script = ExtResource( 4 )
+
+[node name="Flippable" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 8 )
+is_moving_y = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Flippable"]
+frames = SubResource( 88 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 84 )
+
+[node name="HurtComponent" type="Area2D" parent="."]
+script = ExtResource( 5 )
+is_enemy = true
+path_entitystatus = NodePath("../StatusThing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+shape = SubResource( 84 )
+
+[node name="StatusThing" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 2 )
+MAX_HP = 6
+
+[node name="PhysicsStuff" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 3 )
+gravity_enabled = false
+gravity_only_when_not_on_floor = false
+
+[node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 7 )
+initial_state = NodePath("idunno")
+
+[node name="idunno" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+can_go_to_hurtstate = false
+attack_state_path = NodePath("../DashDelay")
+
+[node name="DashDelay" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+can_go_to_hurtstate = false
+
+[node name="Delay" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 12 )
+can_go_to_hurtstate = false
+wait_time = 2.0
+return_override = NodePath("../DashDelay")
+
+[node name="OuTOFWATER" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource( 13 )
+
+[node name="NewPlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 56
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlayerDetector"]
+shape = SubResource( 93 )
+
+[node name="Area2D" parent="." instance=ExtResource( 11 )]
+damage = 1
+is_enemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 89 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource( 14 )
+was_on_water = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource( 90 )
+
+[node name="Twinkl3" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 1
+lifetime = 0.4
+one_shot = true
+texture = ExtResource( 15 )
+gravity = Vector2( 0, 0 )
+angular_velocity = 360.0
+scale_amount_curve = SubResource( 94 )
+color_ramp = SubResource( 95 )
+
+[connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
+[connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]
+[connection signal="target_invisible" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_invisible"]
+[connection signal="on_water" from="Area2D2" to="." method="_on_Area2D2_on_water"]
+[connection signal="out_of_water" from="Area2D2" to="." method="_on_Area2D2_out_of_water"]

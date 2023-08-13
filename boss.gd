@@ -1,11 +1,13 @@
 extends "res://scenes/enemies/introscorpion/enemy.gd"
 
-func on_spawned():
+func _ready():
+	$StateMachine/Intro.can_transition = false
+	
+	
+
+
+func can_trans():
 	$StateMachine/Intro.can_transition = true
-	
-	
-
-
 
 
 
