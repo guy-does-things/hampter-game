@@ -76,7 +76,7 @@ func _ready():
 
 
 	yield(get_tree().create_timer(.1,false),"timeout")
-	Globals.hit_fuckery(global_position).volume_db = 4
+	Globals.hit_fuckery(global_position).volume_db = 1.5
 	var finaldeathparts :Node2D = Globals.died(global_position  )
 	finaldeathparts.scale *= 3
 	

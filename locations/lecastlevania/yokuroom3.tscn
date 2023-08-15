@@ -90,6 +90,13 @@ shape = SubResource( 7 )
 script = ExtResource( 18 )
 normal_to_ignore = Vector2( 1, 0 )
 
+[node name="left2" type="CollisionShape2D" parent="Transitions" index="2"]
+modulate = Color( 1, 0.466667, 0.658824, 1 )
+position = Vector2( -1096, 400 )
+shape = SubResource( 7 )
+script = ExtResource( 18 )
+normal_to_ignore = Vector2( 1, 0 )
+
 [node name="Node2D" type="Node2D" parent="." index="7"]
 position = Vector2( -189.5, 189 )
 scale = Vector2( 4.475, 4 )
