@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://rope.png" type="Texture" id=1]
+[ext_resource path="res://zipline.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ZipLine" type="Line2D" parent="."]
+points = PoolVector2Array( 480, 0, 0, 0 )
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 1 )
+texture_mode = 1
+script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 248, 16 )
+current = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( 480, 5, 480, -5, 0, -5, 0, 5 )

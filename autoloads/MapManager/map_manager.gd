@@ -65,6 +65,9 @@ static func get_area_color(location:int):
 #			return Color("99e550")
 #		SaveData.Areas.MALLPLAZA:
 #			return Color("9badb7")
+	if location == NewSaveData.Areas.NORENDER:
+		return Color(0,0,0,0)
+
 		
 	return Color("639bff") 
 

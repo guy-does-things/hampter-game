@@ -14,7 +14,7 @@ func setup_interaction_status(index,status:bool,is_load_game:bool):
 func interact(cinteractionstatus:bool,is_loading_game:=false)-> void:
 	if !is_loading_game:
 		interacted = set_interaction_status(cinteractionstatus)
-		room_data.pickups[index] = interacted
+		room_data.modify_pickup_flag(index, cinteractionstatus)
 		emit_signal("interacted",interacted)
 	else:
 		interacted = cinteractionstatus

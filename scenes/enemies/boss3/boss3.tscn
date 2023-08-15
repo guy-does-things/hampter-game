@@ -254,7 +254,6 @@ unique_name_in_owner = true
 texture = ExtResource( 25 )
 offset = Vector2( -3, 0 )
 hframes = 9
-frame = 4
 
 [node name="HurtComponent" type="Area2D" parent="."]
 visible = false

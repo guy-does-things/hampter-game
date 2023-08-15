@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://scenes/enemies/boss4/killerfox.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
@@ -30,7 +30,7 @@
 [ext_resource path="res://raw_sprites/halberd.png" type="Texture" id=28]
 [ext_resource path="res://halweapon/weapon_anims.gd" type="Script" id=29]
 [ext_resource path="res://halweapon/weapon_state.gd" type="Script" id=30]
-[ext_resource path="res://hitHurt(1).wav" type="AudioStream" id=31]
+[ext_resource path="res://slasher.wav" type="AudioStream" id=31]
 [ext_resource path="res://scenes/enemies/boss4/TripleSlash.gd" type="Script" id=32]
 [ext_resource path="res://weapons/BisexualGun.tscn" type="PackedScene" id=33]
 [ext_resource path="res://scenes/enemies/boss4/backdash.gd" type="Script" id=34]
@@ -40,6 +40,8 @@
 [ext_resource path="res://scenes/enemies/boss4/pipebomb.gd" type="Script" id=38]
 [ext_resource path="res://bullets/pipebomb/pipebomb.tscn" type="PackedScene" id=39]
 [ext_resource path="res://bullets/pipebomb/pipebomb.png" type="Texture" id=40]
+[ext_resource path="res://gunshot.wav" type="AudioStream" id=41]
+[ext_resource path="res://player/gunp.gd" type="Script" id=42]
 
 [sub_resource type="Resource" id=30]
 script = ExtResource( 15 )
@@ -1023,6 +1025,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Flippables/Halb"]
 stream = ExtResource( 31 )
+bus = "SFX"
 
 [node name="Node" type="Node" parent="Flippables/Halb"]
 
@@ -1184,6 +1187,11 @@ offset = Vector2( 2, -1 )
 [node name="Position2D" parent="Flippables/Glock" index="1"]
 position = Vector2( -2, -2 )
 
+[node name="AudioStreamPlayer" parent="Flippables/Glock" index="3"]
+stream = ExtResource( 41 )
+bus = "SFX"
+script = ExtResource( 42 )
+
 [node name="Twinkl" type="CPUParticles2D" parent="Flippables/Glock"]
 unique_name_in_owner = true
 position = Vector2( 8, -2 )
@@ -1239,6 +1247,9 @@ texture = ExtResource( 40 )
 
 [node name="Position2D" parent="Flippables/PipeBomb" index="1"]
 position = Vector2( 0, 0 )
+
+[node name="AudioStreamPlayer" parent="Flippables/PipeBomb" index="3"]
+stream = null
 
 [node name="Twinkl3" type="CPUParticles2D" parent="Flippables/PipeBomb"]
 unique_name_in_owner = true
@@ -1429,6 +1440,7 @@ margin_bottom = -50.0
 [connection signal="actually_hit" from="Flippables/Halb/HitBoxes/SpinSlash" to="Flippables/Halb/AttackStateMachine/SpinSlash" method="_on_SpinSlash_actually_hit"]
 [connection signal="disabled" from="Flippables/Halb/HitBoxes/SpinSlash" to="Flippables/Halb/AttackStateMachine/SpinSlash" method="_on_SpinSlash_disabled"]
 [connection signal="timer_finished" from="Flippables/Halb/HitBoxes/SpinSlash" to="Flippables/Halb/AttackStateMachine/SpinSlash" method="_on_SpinSlash_timer_finished"]
+[connection signal="fired" from="Flippables/Glock" to="Flippables/Glock/AudioStreamPlayer" method="_on_Gun_fired"]
 [connection signal="fired" from="Flippables/Glock" to="StateMachine/StatePicker/Gun" method="_on_Glock_fired"]
 [connection signal="postfired" from="Flippables/Glock" to="StateMachine/StatePicker/Gun" method="_on_Glock_postfired"]
 [connection signal="proj_created" from="Flippables/BisexualGun" to="StateMachine/StatePicker/BikePingPong" method="_on_BisexualGun_proj_created"]

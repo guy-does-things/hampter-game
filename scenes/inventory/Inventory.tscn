@@ -119,29 +119,32 @@ visible = false
 [node name="Settings" parent="MenuStuff" instance=ExtResource( 10 )]
 visible = false
 
+[node name="Main" parent="MenuStuff/Settings/TabContainer" index="0"]
+visible = true
+
 [node name="settings" parent="MenuStuff/Settings/TabContainer/Main" index="0"]
 margin_right = 318.0
 margin_bottom = 152.0
 
 [node name="Label" parent="MenuStuff/Settings/TabContainer/Main/settings" index="0"]
-margin_top = 24.0
+margin_top = 42.0
 margin_right = 318.0
-margin_bottom = 36.0
+margin_bottom = 54.0
 
 [node name="HSlider" parent="MenuStuff/Settings/TabContainer/Main/settings" index="1"]
-margin_top = 40.0
+margin_top = 58.0
 margin_right = 318.0
-margin_bottom = 56.0
+margin_bottom = 74.0
 
 [node name="Label2" parent="MenuStuff/Settings/TabContainer/Main/settings" index="2"]
-margin_top = 60.0
+margin_top = 78.0
 margin_right = 318.0
-margin_bottom = 72.0
+margin_bottom = 90.0
 
 [node name="HSlider2" parent="MenuStuff/Settings/TabContainer/Main/settings" index="3"]
-margin_top = 76.0
+margin_top = 94.0
 margin_right = 318.0
-margin_bottom = 92.0
+margin_bottom = 110.0
 
 [node name="Label3" parent="MenuStuff/Settings/TabContainer/Main/settings" index="4"]
 margin_top = 96.0
@@ -152,6 +155,17 @@ margin_bottom = 108.0
 margin_top = 112.0
 margin_right = 318.0
 margin_bottom = 128.0
+
+[node name="Keyboard" parent="MenuStuff/Settings/TabContainer" index="1"]
+visible = false
+
+[node name="settings" parent="MenuStuff/Settings/TabContainer/Keyboard" index="0"]
+margin_right = 318.0
+margin_bottom = 152.0
+
+[node name="settings" parent="MenuStuff/Settings/TabContainer/Controller" index="0"]
+margin_right = 318.0
+margin_bottom = 152.0
 
 [node name="Panel" parent="MenuStuff/Settings" index="1"]
 margin_right = 24.0

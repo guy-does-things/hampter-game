@@ -1,12 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/torch/Torch.tscn" type="PackedScene" id=2]
 [ext_resource path="res://realthing.tres" type="TileSet" id=3]
 [ext_resource path="res://locations/gate of cage/boss_spawner.gd" type="Script" id=4]
 [ext_resource path="res://scenes/enemies/boss1/bootlegeo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/boss_door/BossDoor2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://locations/gate of cage/bossroom.gd" type="Script" id=7]
+[ext_resource path="res://dreadsitereuse/room_transition_trigger.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 264, 112 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7, 138 )
 
 [node name="A" instance=ExtResource( 1 )]
+script = ExtResource( 7 )
 
 [node name="RoomRect" parent="." index="0"]
 margin_top = -160.0
@@ -21,6 +31,29 @@ position = Vector2( 320, 64 )
 script = ExtResource( 4 )
 enemy = ExtResource( 5 )
 bossn = "the gate guardian"
+instaspawn = true
+
+[node name="Area2D" type="Area2D" parent="RoomObjectManager/EnemySpawner" index="0"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomObjectManager/EnemySpawner/Area2D" index="0"]
+position = Vector2( -8, -80 )
+shape = SubResource( 1 )
+
+[node name="right" type="CollisionShape2D" parent="Transitions" index="0"]
+modulate = Color( 1, 0.466667, 0.658824, 1 )
+position = Vector2( 616, 7 )
+shape = SubResource( 2 )
+script = ExtResource( 8 )
+normal_to_ignore = Vector2( -1, 0 )
+
+[node name="left" type="CollisionShape2D" parent="Transitions" index="1"]
+modulate = Color( 1, 0.466667, 0.658824, 1 )
+position = Vector2( 8, 0 )
+shape = SubResource( 2 )
+script = ExtResource( 8 )
+normal_to_ignore = Vector2( -1, 0 )
 
 [node name="TileMap2" type="TileMap" parent="." index="6"]
 modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
@@ -40,3 +73,21 @@ position = Vector2( 576, 32 )
 
 [node name="Torch3" parent="." index="9" instance=ExtResource( 2 )]
 position = Vector2( 304, 32 )
+
+[node name="BossDoor2" parent="." index="10" instance=ExtResource( 6 )]
+position = Vector2( 24, 32 )
+can_move = false
+initial_door_size_y = 64
+closed = false
+
+[node name="BossDoor3" parent="." index="11" instance=ExtResource( 6 )]
+position = Vector2( 600, 32 )
+can_move = false
+initial_door_size_y = 64
+closed = false
+
+[connection signal="body_entered" from="RoomObjectManager/EnemySpawner/Area2D" to="RoomObjectManager/EnemySpawner" method="_on_Area2D_body_entered"]
+[connection signal="lowhp" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/RunTowardsPlayer" method="_on_Entity_lowhp"]
+[connection signal="lowhp" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/UpperCutCharge" method="_on_Entity_lowhp"]
+[connection signal="lowhp" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/Shoot" method="_on_Entity_lowhp"]
+[connection signal="lowhp" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/JumpTowardsPlayer" method="_on_Entity_lowhp"]

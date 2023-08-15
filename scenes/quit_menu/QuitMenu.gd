@@ -1,6 +1,9 @@
 extends "res://menu_cursor_handler.gd"
 
 
+
+func should_deselect():return true
+
 func selected():
 	show()
 	$Deny.grab_focus()

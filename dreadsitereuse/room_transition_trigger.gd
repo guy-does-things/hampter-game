@@ -52,8 +52,8 @@ func _physics_process(delta):
 	triggered = true
 #	print_debug(result.normal, normal_to_ignore, room_to_load)
 
-	if result.normal == normal_to_ignore:
-		return
+	#if result.normal == normal_to_ignore:
+	#	return
 
 	if room_to_load == null:return
 	

@@ -15,7 +15,7 @@ signal start_room_view(room_node)
 
 # adds every node, also makes the screen freely scalable
 func _ready():
-	Globals.IS_EDITOR = true
+#	Globals.IS_EDITOR = true
 	view_button.text = "VIEW ROOM"
 	arealabel.text = "ROOM NOT SELECTED"
 	view_button.connect("pressed",self,"view_room")

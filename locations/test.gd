@@ -18,13 +18,26 @@ func _ready():
 	
 func store_positions():
 	var datadict = preload("res://room_dict_data.tres")
+	var transpipes := []
+	
 	for i in get_children():
 		var room :NewestRoom = i as NewestRoom
+		if i is RoomTransPipe:transpipes.append(i)
 		if not room:continue
 		var room_scene = load(room.filename)
 		datadict.room_data_dict[room_scene].room_position = room.global_position
-		#datadict.room_data_dict[room_scene].room_rect = room.get_node("RoomRect").get_global_rect()
 		
+	datadict.pipe_data = []
+	
+	for pipe in transpipes:
+		var ra :NewestRoom = pipe.get_node(pipe.room_a)
+		var rb :NewestRoom = pipe.get_node(pipe.room_b)
+		print(ra,rb)
+		datadict.pipe_data.append({a=ra.filename,b=rb.filename,pipepos=pipe.global_position,points=pipe.points})
+	
+		
+	
+	ResourceSaver.save("res://room_dict_data.tres",datadict)
 		
 	
 	
@@ -48,7 +61,7 @@ func player_setup():
 	$Inventory/GridContainer.playerstatus = $KinematicBody2D/StatusThing
 	$Inventory/InventoryBorder.setup_player($KinematicBody2D,$KinematicBody2D/StatusThing)
 	$KinematicBody2D/StatusThing.connect("item_unlocked",$Inventory/ItemPopup,"item_unlocked")
-	$KinematicBody2D.global_position = SavesManager.current_save.last_position
+	#$KinematicBody2D.global_position = SavesManager.current_save.last_position
 	$KinematicBody2D/StatusThing.unlocked_item(SavesManager.current_save.current_powerups,true)
 	
 	$KinematicBody2D/StatusThing.disabled_bitmask = SavesManager.current_save.disabled_shit

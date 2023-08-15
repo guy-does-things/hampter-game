@@ -65,6 +65,7 @@ is_moving_y = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Flippable"]
 frames = SubResource( 88 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

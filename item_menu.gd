@@ -10,6 +10,8 @@ func set_status(sthing):
 	for child in $ItemButtonContainer/GridContainer.get_children():
 		child.status = status
 
+func should_deselect():return true
+
 class ItemToggle extends CheckBox:
 	var item_data : ItemData
 	var item_obtained = false

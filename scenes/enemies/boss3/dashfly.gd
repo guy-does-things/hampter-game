@@ -25,7 +25,7 @@ func _state_logic(delta):
 func _get_transition(dt):
 	if tp_state==2:
 		entity.velocity = Vector2.ZERO
-		return $"%Intro"
+		return $"%Rattacks"
 	
 	if entity.is_on_ceiling() and tp_state == 0:
 		tp()

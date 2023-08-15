@@ -1,15 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
 [ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=3]
-[ext_resource path="res://raw_sprites/bike.png" type="Texture" id=4]
+[ext_resource path="res://raw_sprites/attacksnake.png" type="Texture" id=4]
 [ext_resource path="res://bullets/bisexual_projectile/bike_body_manager.gd" type="Script" id=5]
 [ext_resource path="res://scripts/entity.gd" type="Script" id=6]
 [ext_resource path="res://scripts/physicsthings.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 14.5, 10 )
+[sub_resource type="CircleShape2D" id=10]
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 1 )
@@ -20,12 +19,29 @@ deletes_on_timeout = true
 ignores_anti_tunneling_measures = false
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 14, 9.5 )
+extents = Vector2( 4, 6.5 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "walk"
+length = 0.259
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bike:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
 
 [node name="GdtBullet" type="Node2D"]
 script = ExtResource( 3 )
 speed = 2.0
-hitbox = SubResource( 8 )
+hitbox = SubResource( 10 )
 _bullet_props = SubResource( 3 )
 is_puppet = true
 
@@ -39,14 +55,19 @@ script = ExtResource( 6 )
 
 [node name="Bike" type="Sprite" parent="RbManager/BiE"]
 texture = ExtResource( 4 )
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RbManager/BiE"]
-position = Vector2( 0, 3.988 )
+position = Vector2( 0, 1.5 )
 shape = SubResource( 9 )
 
 [node name="PhysicsStuff" type="Node" parent="RbManager/BiE"]
 script = ExtResource( 7 )
 friction_enabled = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RbManager/BiE"]
+autoplay = "walk"
+anims/walk = SubResource( 11 )
 
 [node name="LifeTimer" type="Timer" parent="."]
 
@@ -56,7 +77,7 @@ max_hit_priority = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 unique_name_in_owner = true
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [connection signal="movement" from="." to="RbManager" method="_on_GdtBullet_movement"]
 [connection signal="startup" from="." to="RbManager" method="_on_GdtBullet_startup"]

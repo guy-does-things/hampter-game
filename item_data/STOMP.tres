@@ -6,5 +6,5 @@
 script = ExtResource( 1 )
 item_id = 2
 item_name = "stomp"
-item_desc = "press DOWN + JUMP to stomp into the ground, after landing it can can break special bricks and throw stones on the air!, 
+item_desc = "press ↓  + JUMP to stomp into the ground, after landing it can can break special bricks and throw stones on the air!, 
 it's also a 32-34 priority attack"

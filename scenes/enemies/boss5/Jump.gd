@@ -23,9 +23,11 @@ func _get_transition(dt):
 		$"%AnimationPlayer".stop()
 	
 	if entity.is_on_floor():
+		(entity as KinematicBody2D).set_collision_mask_bit(19,true)
 		return $"%Intro"
 
 
 func _on_idle_landed():
-	(entity as KinematicBody2D).set_collision_mask_bit(19,true)
+	pass
+	#$(entity as KinematicBody2D).set_collision_mask_bit(19,true)
 	

@@ -2,9 +2,9 @@ extends Resource
 class_name NewSaveData
 
 const DEFAUT_NAME = "0"
-const DEFAUT_ROOM = "res://new_rooms/caves/caves_room_0.tscn"
+const DEFAUT_ROOM = "res://locations/gate of cage/entrance.tscn"
 
-enum Areas{ENTRANCE,DESERT, CISRIPOFF,FORBIDDEN,HIGHWAY,FORTRESS}
+enum Areas{ENTRANCE,DESERT, CISRIPOFF,FORBIDDEN,HIGHWAY,FORTRESS,NORENDER}
 
 
 # creation info
@@ -14,6 +14,7 @@ var name :String = DEFAUT_NAME
 var loaded_room := DEFAUT_ROOM
 var save_path : String
 var beat = false
+var bossrush = false
 # world data
 var room_data := {}
 var area_counts := {}
@@ -55,7 +56,8 @@ func to_dict():
 		disabled_shit=disabled_shit,
 		globals=global_data,
 		hp_stacks = hp_stacks,
-		beat = beat
+		beat = beat,
+		bossrush=bossrush
 	}
 
 func as_buffer():
@@ -77,6 +79,7 @@ func from_dict(dict:Dictionary):
 	global_data = dict.get("globals",{})
 	hp_stacks = dict.get("hp_stacks",0)
 	beat = dict.get("beat",false)
+	bossrush = dict.get("bossrush",false)
 
 
 func room_save_modified(room_path,room_save_info:RoomSaveInfo):

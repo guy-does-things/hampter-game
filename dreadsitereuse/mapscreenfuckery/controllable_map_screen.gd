@@ -5,17 +5,25 @@ export var speed = 32.0
 var invisible = true
 var can_fast_travel := false
 var can_do_tp_input = false
+var can_move_cursor = false
+var zoom = 1 setget set_zoom
 
 signal fast_travel(save_point)
 
+func set_zoom(nz):
+	zoom = nz
+	$Camera2D.zoom = Vector2.ONE * 1.0/zoom
 
 func move_cam():
-	#print_debug(invisible)
+	
+	
 	if invisible:
 		.move_cam()
 		return
+	
+	if not can_move_cursor:return
 
-	cam.position += $"%Dcomp".current_dir*speed	
+	cam.position += $"%Dcomp".current_dir*(speed/zoom)
 
 
 func set_inv(inv):
@@ -62,3 +70,8 @@ func _physics_process(delta):
 			Signals.emit_signal("waypoint_moved")			
 			return
 
+
+
+func update_wp():
+	SavesManager.current_save.waypoint_position = $Camera2D/Yoyoprojtest.global_position
+	waypoint_info_changed()

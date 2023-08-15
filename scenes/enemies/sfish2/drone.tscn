@@ -112,6 +112,7 @@ is_enemy = true
 shape = SubResource( 89 )
 
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
+[connection signal="died" from="HurtComponent" to="." method="boom"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="hurted" from="HurtComponent" to="StateMachine/DashDelay" method="_on_HurtComponent_hurted"]
 [connection signal="target_detected" from="NewPlayerDetector" to="StatusThing" method="_on_NewPlayerDetector_target_detected"]

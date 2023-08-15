@@ -11,9 +11,7 @@ var index :=0
 var room_data :RoomSaveInfo
 
 func setup_interaction_status(index,is_enabled,is_save):
-	print(is_enabled)
-	
-	room_data.pickups[index] = is_enabled
+	room_data.modify_pickup_flag(index, is_enabled)
 	if is_enabled:
 		destroy()
 
@@ -33,6 +31,7 @@ func blockbreak(type:int):
 		$CPUParticles2D.emitting = true
 	
 func destroy():
+	room_data.modify_pickup_flag(index, true)
 	#todo add game feel
 	$Dash.hide()
 	$CollisionShape2D.disabled = true

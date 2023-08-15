@@ -34,14 +34,10 @@ class SaveSprite extends Sprite:
 		self.room = room
 		self.is_waypoint = waypoint
 
-		#texture = preload("res://map_saveicons.png")
+		texture = preload("res://raw_sprites/map_saveicons.png")
 		hframes = 3
 		
-		frame = 1
-		
-		if fts:
-			frame = 0
-		
+		frame = 0
 		if waypoint:
 			frame = 2
 		
@@ -140,7 +136,7 @@ func room_discovered(room_path:String,visit_state:int):
 		return
 	
 	var room = load(room_path)
-	var rdata = preload("res://room_dict_data.tres").room_data_dict[room]
+	var rdata = load("res://room_dict_data.tres").room_data_dict[room]
 	var ro :NewestRoom= room.instance()
 	# nvm i have to add it to the tree to avoid a memory leak
 	add_child(ro)
@@ -187,7 +183,6 @@ func room_discovered(room_path:String,visit_state:int):
 
 
 func waypoint_info_changed():
-	pass
 	waypoint.global_position = SavesManager.current_save.waypoint_position
 	waypoint.visible = SavesManager.current_save.waypoint_position != Vector2.INF
 

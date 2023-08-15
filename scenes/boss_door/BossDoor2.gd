@@ -1,4 +1,5 @@
 tool
+class_name Door
 extends StaticBody2D
 
 enum AnimModes{
@@ -17,9 +18,22 @@ export var can_move = true
 
 export(int) var initial_door_size_y =96
 export(int) var door_sizex =16
+export(bool) var closed = true
+export(bool) var br_no_open = false
+
+
+onready var ds = $DoorSprite
+
+
 
 func _ready():
-	$DoorSprite.region_size_y = initial_door_size_y
+	if closed:
+		ds.region_size_y = initial_door_size_y
+		return
+	
+	ds.region_size_y = 0
+	
+	
 	#$DoorSprite.region_rect.size.x = door_sizex
 	
 	
@@ -35,11 +49,6 @@ func _process(delta):
 		_ready()
 		return
 	
-#	if Input.is_action_just_pressed("platform"):
-#		force_close()
-#	if Input.is_action_just_pressed("ui_down"):
-#		force_open()
-
 
 func _on_Trigger_body_entered(body):
 	if !can_move:return
@@ -61,16 +70,20 @@ func tween_door(mode,end_value,time=1.4):
 		
 	amode = mode
 	current_tweenk = create_tween()
-	yield(current_tweenk.tween_property($DoorSprite,"region_size_y",end_value,time),"finished")
+
+	yield(current_tweenk.tween_property(ds,"region_size_y",end_value,time),"finished")
 	current_tweenk = null
 	amode = AnimModes.NONE
 
 
 func force_close():
+	print("WhY DON?T WDSAHDSA CLOE ")
 	can_move = false
 	tween_door(AnimModes.LOWERING,initial_door_size_y,.1)
 
 func force_open():
+	if br_no_open:return
+	
 	can_move = false
 	tween_door(AnimModes.GOINGUP,0,.5)
 

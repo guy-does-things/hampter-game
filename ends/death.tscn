@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Ghostmeat.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://Ghostmeat Back.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/inventory/theme.tres" type="Theme" id=7]
+[ext_resource path="res://ends/endscreen.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 1
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 4 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer2"]
+anchor_right = 1.0
+margin_bottom = 55.0
+theme = ExtResource( 7 )
+
+[node name="Label2" type="Label" parent="CanvasLayer2/VBoxContainer2"]
+margin_right = 480.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 1 )
+text = "you died"
+align = 1
+
+[node name="Label" type="Label" parent="CanvasLayer2/VBoxContainer2/Label2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -231.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "you died"
+align = 1
+
+[node name="Label" type="Label" parent="CanvasLayer2/VBoxContainer2"]
+visible = false
+margin_top = 43.0
+margin_right = 480.0
+margin_bottom = 55.0
+text = "playtime: "
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -87.5
+margin_top = -16.5
+margin_right = 87.5
+margin_bottom = 16.5
+theme = ExtResource( 7 )
+
+[node name="Button" type="Button" parent="CanvasLayer2/VBoxContainer"]
+margin_right = 175.0
+margin_bottom = 14.0
+size_flags_vertical = 3
+text = "main menu"
+
+[node name="Button2" type="Button" parent="CanvasLayer2/VBoxContainer"]
+margin_top = 18.0
+margin_right = 175.0
+margin_bottom = 33.0
+size_flags_vertical = 3
+text = "continue from last save"
+
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button2" to="." method="_on_Button2_pressed"]

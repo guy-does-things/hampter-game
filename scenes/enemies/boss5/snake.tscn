@@ -34,8 +34,8 @@ gun_desc = ""
 gun_fire_mode = 2
 fires_before_charging = false
 pellet_count = 1
-burst_count = 3
-cooldown = 0.15
+burst_count = 10
+cooldown = 0.1
 max_charge = 0.4
 spread = 0.0
 recoil = 0.0
@@ -292,7 +292,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 1, 2 ]
+"values": [ 1, 9 ]
 }
 
 [sub_resource type="Animation" id=94]
@@ -355,7 +355,7 @@ colors = PoolColorArray( 0.101961, 0.101961, 0.101961, 0, 1, 1, 1, 1, 0.705882, 
 
 [node name="Entity" type="KinematicBody2D"]
 collision_layer = 4096
-collision_mask = 4136
+collision_mask = 528424
 script = ExtResource( 1 )
 
 [node name="PhysicsStuff" type="Node" parent="."]
@@ -378,13 +378,16 @@ position = Vector2( 0, 12 )
 texture = ExtResource( 3 )
 flip_h = true
 hframes = 18
-frame = 13
+frame = 1
 
 [node name="PipeBomb" parent="Flippables/Sprite" instance=ExtResource( 14 )]
 unique_name_in_owner = true
 visible = false
 position = Vector2( 17, 1 )
 _gun_data = SubResource( 88 )
+
+[node name="AudioStreamPlayer" parent="Flippables/Sprite/PipeBomb" index="3"]
+stream = null
 
 [node name="JumpHB" parent="Flippables/Sprite" instance=ExtResource( 19 )]
 unique_name_in_owner = true
@@ -432,7 +435,7 @@ shape = SubResource( 1 )
 [node name="StatusThing" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 16 )
-MAX_HP = 150
+MAX_HP = 300
 MAX_STAMINA = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -458,10 +461,11 @@ statr = NodePath("../RandAttacks")
 
 [node name="RandAttacks" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
-attacks = [ NodePath("../SnakeManSnakes"), NodePath("../Tornado") ]
+attacks = [ NodePath("../SnakeManSnakes"), NodePath("../Tornado"), NodePath("../GoToCenter") ]
 
 [node name="SnakeManSnakes" type="Node" parent="StateMachine"]
 script = ExtResource( 17 )
+can_go_to_hurtstate = false
 gun = NodePath("../../Flippables/Sprite/PipeBomb")
 
 [node name="GoToCenter" type="Node" parent="StateMachine"]
@@ -479,6 +483,7 @@ max_state_t = 10.0
 [node name="Jump" type="Node" parent="StateMachine"]
 unique_name_in_owner = true
 script = ExtResource( 25 )
+can_go_to_hurtstate = false
 
 [node name="Stun" type="Node" parent="StateMachine"]
 unique_name_in_owner = true
@@ -588,3 +593,5 @@ color_ramp = SubResource( 92 )
 [connection signal="landed" from="ActionStateMachine/idle" to="StateMachine/Jump" method="_on_idle_landed"]
 [connection signal="landed" from="ActionStateMachine/idle" to="Jumper" method="reset_jumps"]
 [connection signal="entered" from="ActionStateMachine/jump" to="AnimationPlayer" method="_on_jump_entered"]
+
+[editable path="Flippables/Sprite/PipeBomb"]

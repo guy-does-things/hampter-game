@@ -16,6 +16,7 @@ var ctiltmult = 1
 var previous_stone_frame = 0
 var aip = false
 var on_wning = false
+var died = false
 onready var status = $StatusThing
 onready var weapon :MeleeWeapon= $Node2D2/HampterSprite/Node2D
 
@@ -43,9 +44,13 @@ func boss_died(started):
 func compare(eventa:InputEvent,eventb):
 	if eventa is InputEventKey and eventb is InputEventKey:
 		return eventa.scancode == eventb.scancode
-	if eventa is InputEventJoypadButton and eventb is InputEventJoypadButton:
-		
+	if eventa is InputEventJoypadButton and eventb is InputEventJoypadButton:		
 		return (eventa as InputEventJoypadButton).button_index == eventb.button_index
+	
+	if eventa is InputEventJoypadMotion and eventb is InputEventJoypadMotion:
+		return (eventa as InputEventJoypadMotion).axis == eventb.axis and sign(eventa.axis_value) == sign(eventb.axis_value) 
+			
+
 
 func _input(event:InputEvent):
 	var relevant_actions := [
@@ -55,8 +60,7 @@ func _input(event:InputEvent):
 	if (event is InputEventKey):
 		if event.echo:return
 	
-	if (event is InputEventJoypadButton):
-		pass
+
 
 
 	for i in range(relevant_actions.size()):
@@ -69,7 +73,6 @@ func _input(event:InputEvent):
 				if inputmask != 0:
 					weapon.deal_with_input(inputmask)
 
-				return
 				
 				
 				
@@ -109,7 +112,7 @@ func get_speed_mult(lowoverride=.5): return (lowoverride if on_water else 1.0)
 
 
 func _physics_process(delta):
-	if aip or on_wning:return
+	if aip or on_wning or died:return
 	
 	if $StateMachine.state == $StateMachine/Hurt:return
 	if is_riding():return
@@ -343,9 +346,15 @@ func _on_Hurt_entered():
 	$DashBreaker.disable()
 
 
-func _on_Hurt_exited():
-	
+func _on_Hurt_exited():	
 	$PhysicsStuff.friction_enabled = true
+	
+	if $StatusThing.current_hp <= 0:
+		died = true
+		$Node2D2.hide()
+		$CPUParticles2D.emitting = true
+		yield(get_tree().create_timer(2.0,false),"timeout")
+		get_tree().change_scene("res://ends/death.tscn")
 
 
 func on_water(water):
@@ -374,4 +383,6 @@ func out_of_water():
 	$PhysicsStuff.term_vel = PhysicsStuff.MAX_TERM_VEL
 
 func _on_idle_landed():
+	
+	
 	$"%AudioStreamPlayer3".play()

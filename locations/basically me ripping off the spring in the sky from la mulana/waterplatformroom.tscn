@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://water_tm.gd" type="Script" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://arrowshooter/ashooter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/sfish2/sfish2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/sfish1/sfish1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://dreadsitereuse/room_transition_trigger.gd" type="Script" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.5, 114 )
 
 [node name="A" instance=ExtResource( 1 )]
 
@@ -25,6 +29,20 @@ tile_data = PoolIntArray( -786432, 0, 1, -786431, 0, 1, -786430, 0, 1, -786429, 
 [node name="Area2D" parent="RoomObjectManager" index="0" instance=ExtResource( 4 )]
 position = Vector2( 1408, 320 )
 item_to_give = 2048
+
+[node name="left" type="CollisionShape2D" parent="Transitions" index="0"]
+modulate = Color( 1, 0.466667, 0.658824, 1 )
+position = Vector2( 8, 160 )
+shape = SubResource( 1 )
+script = ExtResource( 12 )
+normal_to_ignore = Vector2( 1, 0 )
+
+[node name="right" type="CollisionShape2D" parent="Transitions" index="1"]
+modulate = Color( 1, 0.466667, 0.658824, 1 )
+position = Vector2( 2232, 128 )
+shape = SubResource( 1 )
+script = ExtResource( 12 )
+normal_to_ignore = Vector2( -1, 0 )
 
 [node name="WaterTileMap" type="TileMap" parent="." index="6"]
 tile_set = ExtResource( 3 )

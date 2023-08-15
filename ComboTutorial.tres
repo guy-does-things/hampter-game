@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://scripts/dialog_seq.gd" type="Script" id=1]
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+buttons = 1
+button_yes_text = "end"
+button_no_text = "no"
+text = "there's also a chest that contains an attack with a higher priority than your slashes in this very room!"
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+buttons = 1
+yes_continuation = SubResource( 3 )
+button_yes_text = "continue"
+button_no_text = "no"
+text = "by hitting it with an attack that has a higher priority than your previous one, that's why triple slashes work!, you should try it with this dummy!"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+buttons = 1
+yes_continuation = SubResource( 1 )
+button_yes_text = "continue"
+button_no_text = "no"
+text = "every single attack has a hit priority
+for example your halberd strikes have 0-2 priority
+if you hit an enemy with an attack you can break  it's defense"
+
+[resource]
+script = ExtResource( 1 )
+buttons = 3
+yes_continuation = SubResource( 2 )
+button_yes_text = "yes"
+button_no_text = "no"
+text = "there's a sign on how to combo 
+your enemies, do you want to read it?"

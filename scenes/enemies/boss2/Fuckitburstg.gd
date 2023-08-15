@@ -50,6 +50,10 @@ func _on_BisexualGun_postfired(gun):
 	firing = false
 	$"%BisexualGun".stop_firing()
 	if bursts >= max_bursts:
+		entity.rotation = 0
+		$"%Flippables".is_moving_y = false
+
+		
 		$"../../AnimationPlayer".play_backwards("pgunout")
 		yield($"../../AnimationPlayer","animation_finished")
 		can_e = true

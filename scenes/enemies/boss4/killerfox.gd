@@ -19,6 +19,16 @@ export var o_color = 0.0 setget set_ocolor; func set_ocolor(val):
 func _ready():
 	$"%Halb".playerstatus = $StatusThing
 
+func disallow_behavior():
+	$"%StateMachine".enabled = false
+	$HurtComponent.damage_override = 0
+	
+
+func can_trans():
+	$StateMachine.enabled = true
+	$HurtComponent.damage_override = -1
+
+
 func _process(delta):
 	$Label.rect_position.x = $Label.rect_size.x / -2
 	$Label.text = str("stamina",$StatusThing.stamina,"\n", "State:",$StateMachine.state)

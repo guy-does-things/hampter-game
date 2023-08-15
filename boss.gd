@@ -1,13 +1,18 @@
 extends "res://scenes/enemies/introscorpion/enemy.gd"
 
 func _ready():
+	disallow_behavior()
+
+func disallow_behavior():
+	$HurtComponent.damage_override = 0
 	$StateMachine/Intro.can_transition = false
 	
-	
+
 
 
 func can_trans():
 	$StateMachine/Intro.can_transition = true
+	$HurtComponent.damage_override = -1
 
 
 

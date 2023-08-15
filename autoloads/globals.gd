@@ -2,6 +2,51 @@
 class_name GlobalData
 extends Node
 
+const BUTTON_LOOKUP={
+	COMMON={
+		JOY_L:"L",
+		JOY_R:"R",
+		JOY_L2:"L2",
+		JOY_R2:"R2",
+		JOY_L3:"L3",
+		JOY_R3:"R3",
+		JOY_DPAD_LEFT:"dpad left",
+		JOY_DPAD_RIGHT:"dpad right",
+		JOY_DPAD_UP:"dpad up",
+		JOY_DPAD_DOWN:"dpad down",
+		
+		JOY_START:"start",
+		JOY_SELECT:"select"
+		
+	},
+	XBOX={
+		JOY_XBOX_A:"A",
+		JOY_XBOX_B:"B",
+		JOY_XBOX_X:"X",
+		JOY_XBOX_Y:"Y"
+	},
+
+	NINTENDO={
+		JOY_DS_A:"A",
+		JOY_DS_B:"B",
+		JOY_DS_X:"X",
+		JOY_DS_Y:"Y"
+	},
+
+	SONY={
+		JOY_SONY_SQUARE:"[]",
+		JOY_SONY_CIRCLE:"O",
+		JOY_SONY_TRIANGLE:"△",
+		JOY_SONY_X:"X"
+	}
+	
+	
+	
+	
+	
+	
+	
+}
 
 enum Items{
 	# misc
@@ -26,6 +71,8 @@ enum Items{
 export(Array,Resource) var item_data = null
 var is_endgame = false
 var can_open_menu = true
+var remapping = false
+
 
 static func item_to_id(val:int)-> int:
 

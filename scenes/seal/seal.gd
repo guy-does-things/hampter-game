@@ -15,7 +15,7 @@ func interact(cinteractionstatus:bool,is_loading_game:=false)-> void:
 	if cinteractionstatus:enabled(is_loading_game)
 	
 	if !is_loading_game:
-		room_data.pickups[index] = cinteractionstatus
+		room_data.modify_pickup_flag(index, cinteractionstatus)
 		
 
 
@@ -32,3 +32,4 @@ func enabled(loadingame):
 
 func _on_Area2D_body_entered(body):
 	enabled(false)
+	interact(true,false)

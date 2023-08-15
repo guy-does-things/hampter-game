@@ -11,9 +11,11 @@ func _ready():
 	$KinematicBody2D.local_freeze(true,true)
 	
 	if Globals.is_endgame:
+		SavesManager.current_save = SavesManager.load_save(SavesManager.current_save.save_path)
+
 		SavesManager.current_save.igt = Igt.gametime
-		
 		SavesManager.current_save.beat = true
+
 		SavesManager.save(SavesManager.current_save)
 		$CanvasLayer2.hide()
 		$Castlev/CPUParticles2D.emitting = true

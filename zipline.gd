@@ -3,37 +3,33 @@ class_name ZipLine
 extends Line2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	var point_offset = Vector2(0,width/2)
 	default_color = Color.white
 	texture = preload("res://rope.png")
 	texture_mode =Line2D.LINE_TEXTURE_TILE
 	if Engine.editor_hint:return
-	
+	z_index= -1
 	var a = Area2D.new()
+	a.collision_layer = 65536
 	a.add_to_group("zipline")
 	
 	
 	add_child(a)
-	if points.size() < 2:queue_free()
+
+	var poly = CollisionPolygon2D.new()
+	var polyg :PoolVector2Array
 	
 	
 	for i in range(points.size()):
-		if i +1 > points.size() - 1:return
-		
-		
-		var cshape = CollisionShape2D.new()
-		var line = RayShape2D.new()
-		cshape.shape = line
-		line.length = points[i].distance_to(points[i+1])
-		cshape.position = points[i]#.distance_to(points[i+1])
-		cshape.look_at(cshape.position)
-		cshape.rotation_degrees -= 90
-		
-		a.add_child(cshape)
-		
+		var point = points[i]
+		polyg.append(point+point_offset)
+		polyg.append(point-point_offset)
+		point_offset *= -1
+	
+	print(polyg)
+	
+	poly.polygon = polyg
+	a.add_child(poly)
+

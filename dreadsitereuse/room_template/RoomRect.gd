@@ -74,6 +74,7 @@ func _physics_process(delta):
 	get_parent().visible = MapManager.current_room_in == get_parent()	
 	
 	if r:
+		
 		NewRoomAutoload.entered_room(get_parent(), get_parent().assigned_room_data)		
 		
 		if MapManager.current_room_in != get_parent():

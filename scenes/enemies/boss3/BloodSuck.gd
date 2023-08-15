@@ -37,7 +37,7 @@ func _state_logic(delta):
 
 func _get_transition(delta):
 	match exit_mode:
-		1:return $"%Intro"
+		1:return $"%Rattacks"
 		2:return $"%DashFly"
 		
 

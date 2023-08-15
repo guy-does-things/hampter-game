@@ -6,7 +6,7 @@ signal setup(data)
 onready var roomrect = $RoomRect
 
 #SaveData.Areas
-export(int) var room_area 
+export(NewSaveData.Areas) var room_area 
 var assigned_room_data 
 var save_data := RoomSaveInfo.new()
 
@@ -54,3 +54,18 @@ func get_rect():
 
 func _on_Area2D_interacted(istatus):
 	$Light2D.visible = istatus
+
+
+
+
+func boom():
+	var expl = preload("res://bullets/explosion/explosion.tscn").instance()
+	expl.global_position = $Shittycar.global_position
+	expl.lifetime = .55
+	expl.damage = 0
+	expl.scale *= 4
+	get_tree().current_scene.add_child(expl)
+	
+
+
+

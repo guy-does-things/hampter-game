@@ -75,6 +75,7 @@ func animate_cr(start_val=1,end_val=0,extra_yield_time=0,initial_yield=.5):
 
 func deselect(is_rs=false):
 	if is_instance_valid(current_menu):
+		if not current_menu.should_deselect():return
 		current_menu.deselect()
 		current_menu.hide()
 	$VBoxContainer/Button.grab_focus()

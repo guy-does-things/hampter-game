@@ -16,10 +16,12 @@ func initialize(save:NewSaveData,path:String):
 		$Control/HampterName.text = save.name
 		$Control/Time.text = Igt.FormatTime(save.igt)
 		$TextureRect.visible = save.beat
+		$TextureRect2.visible = save.bossrush
 		$Control/Stats/HP.text = str(6+save.hp_stacks,"HP")
 		$Label.hide()
 		print_debug("why")
 	else:
+		$Control.hide()
 		$Label.show()
 	
 	print_debug($Label.visible,save.played)

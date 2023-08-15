@@ -21,6 +21,7 @@ enum LoadErrors{
 
 # testing saving
 func _ready():
+	load_settings()
 	create_save_dir()
 	var f = File.new()
 	var st = Time.get_unix_time_from_system()
@@ -31,8 +32,35 @@ func _ready():
 	
 	if tried_load_save is NewSaveData:
 		current_save = tried_load_save
-
-
+	
+	save_settings()
+	settings.load_input()
+	
+func load_settings():
+	var f = File.new()
+	if not f.file_exists(SETTINGS_PATH):
+		settings.dict2data({})
+		return
+	
+	f.open(SETTINGS_PATH,f.READ)
+	var data = JSON.parse(f.get_as_text())
+	var result = data.result
+	
+	if result == null:
+		result = {}
+	
+	
+	#settings.dict2data(result)
+	f.close()
+	
+	
+	
+func save_settings():
+	var f = File.new()
+	f.open(SETTINGS_PATH,f.WRITE)
+	
+	f.store_line(JSON.print(settings.data2dict(),"\t "))
+	f.close()
 
 
 func create_save_dir():
@@ -122,9 +150,9 @@ func load_save(path:String):
 		var prev_error = r
 		errors.append(prev_error)
 		f.close()
-		r = f.open(path.replace(".sex",".bak"),File.READ)
-		
+		r = f.open(path.replace(".sex",".bak"),File.READ)		
 		if r != OK:
+			f.close()
 			errors.append(r)
 			return errors
 		

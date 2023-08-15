@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://scenes/enemies/boss2/evilfemboyfishingbelike.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/introscorpion/Flippables.gd" type="Script" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://scenes/enemies/boss2/Fuckitburstg.gd" type="Script" id=28]
 [ext_resource path="res://bullets/hidden_bullet/fishb.tscn" type="PackedScene" id=29]
 [ext_resource path="res://raw_sprites/twinkle.png" type="Texture" id=30]
+[ext_resource path="res://hgunshot.wav" type="AudioStream" id=31]
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 15 )
@@ -62,6 +63,9 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.01015, 0.0, 0, 0 
 [sub_resource type="Gradient" id=23]
 offsets = PoolRealArray( 0.0295567, 0.182266, 0.597734, 0.852691, 0.988669 )
 colors = PoolColorArray( 1, 0.962264, 0, 0, 0.984314, 0.94902, 0.211765, 1, 1, 0, 0, 1, 0, 0, 0, 0.501961, 0, 0, 0, 0 )
+
+[sub_resource type="CircleShape2D" id=29]
+radius = 24.0
 
 [sub_resource type="Resource" id=24]
 script = ExtResource( 15 )
@@ -125,10 +129,6 @@ shader_param/rep_col = Color( 0, 0, 0, 1 )
 
 [sub_resource type="CapsuleShape2D" id=20]
 radius = 11.51
-
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 16.0
-height = 32.0
 
 [sub_resource type="CircleShape2D" id=12]
 
@@ -253,6 +253,15 @@ scale_amount_curve = SubResource( 22 )
 color_ramp = SubResource( 23 )
 hue_variation = 0.3
 
+[node name="HurtComponent" type="Area2D" parent="."]
+script = ExtResource( 18 )
+is_enemy = true
+path_entitystatus = NodePath("../StatusThing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+rotation = 1.5708
+shape = SubResource( 29 )
+
 [node name="Flippables" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 2 )
@@ -298,15 +307,6 @@ is_enemy = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/SwimBox"]
 shape = SubResource( 20 )
-
-[node name="HurtComponent" type="Area2D" parent="Flippables"]
-script = ExtResource( 18 )
-is_enemy = true
-path_entitystatus = NodePath("../../StatusThing")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/HurtComponent"]
-rotation = 1.5708
-shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -375,6 +375,11 @@ can_go_to_hurtstate = false
 
 [node name="SnipeTime" type="Timer" parent="StateMachine/getsnipedidet"]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/getsnipedidet"]
+stream = ExtResource( 31 )
+volume_db = 10.0
+bus = "SFX"
 
 [node name="FuckitGoBack" type="Node" parent="StateMachine"]
 unique_name_in_owner = true
@@ -465,10 +470,10 @@ shape = SubResource( 19 )
 [connection signal="funnyrecoil" from="SpitGun" to="." method="_on_SpitGun_funnyrecoil"]
 [connection signal="postfired" from="SpitGun" to="StateMachine/FireBallz" method="_on_SpitGun_postfired"]
 [connection signal="proj_created" from="SpitGun" to="." method="_on_SpitGun_proj_created"]
+[connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
+[connection signal="hurted" from="HurtComponent" to="." method="hp_check"]
+[connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="postfired" from="Flippables/BisexualGun" to="StateMachine/Fuckitburstg" method="_on_BisexualGun_postfired"]
-[connection signal="died" from="Flippables/HurtComponent" to="." method="_on_HurtComponent_died"]
-[connection signal="hurted" from="Flippables/HurtComponent" to="." method="hp_check"]
-[connection signal="hurted" from="Flippables/HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="entered" from="StateMachine/DownDash" to="AnimationPlayer" method="_on_DownDash_entered"]
 [connection signal="exited" from="StateMachine/DownDash" to="AnimationPlayer" method="_on_DownDash_exited"]
 [connection signal="timeout" from="StateMachine/DownDash/Timer" to="StateMachine/DownDash" method="_on_Timer_timeout"]

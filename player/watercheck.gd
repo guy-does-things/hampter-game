@@ -4,6 +4,7 @@ signal on_water(water)
 signal out_of_water(s)
 
 export var was_on_water = false
+export var makes_sound = false
 
 func sound():
 	var asp2d = AudioStreamPlayer2D.new()
@@ -20,13 +21,13 @@ func sound():
 
 func _physics_process(delta):
 	if get_overlapping_bodies().size() > 0:
-		if not was_on_water and not get_overlapping_bodies()[-1].hurts_regardless:
+		if not was_on_water and not get_overlapping_bodies()[-1].hurts_regardless and makes_sound:
 			sound()
 		
 		emit_signal("on_water",get_overlapping_bodies()[-1])
 		was_on_water = true
-		return
-		
-	if was_on_water:
+
+
+	elif was_on_water:
 		was_on_water = false
 		emit_signal("out_of_water")

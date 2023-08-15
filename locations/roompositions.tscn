@@ -87,7 +87,7 @@ glow_hdr_threshold = 0.95
 script = ExtResource( 24 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 22 )]
-position = Vector2( 7168, -1202 )
+position = Vector2( 2552, -364 )
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
 pause_mode = 2
@@ -382,6 +382,8 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
+room_a = NodePath("../waterway")
+room_b = NodePath("../layeredcages")
 
 [node name="Pipe2" type="Line2D" parent="."]
 pause_mode = 2
@@ -459,7 +461,7 @@ end_cap_mode = 1
 script = ExtResource( 42 )
 extra_speed = 5
 room_a = NodePath("../waterway")
-room_b = NodePath("../A")
+room_b = NodePath("../A5")
 
 [node name="Pipe5" type="Line2D" parent="."]
 pause_mode = 2

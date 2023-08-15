@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 item_id = 8
 item_name = "cable car"
-item_desc = "can use space to create a platform on any zipline!"
+item_desc = "press the platform button to create a platform on any zipline!"

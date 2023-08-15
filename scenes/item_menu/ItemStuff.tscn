@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menu_cursor_handler.gd" type="Script" id=1]
 [ext_resource path="res://cursor_hand.gd" type="Script" id=2]
 [ext_resource path="res://item_menu.gd" type="Script" id=3]
 [ext_resource path="res://raw_sprites/cursorhand.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=86]
+bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.737255, 0.345098, 0.0627451, 1 )
 
 [node name="ItemStuff" type="VBoxContainer"]
 unique_name_in_owner = true
@@ -40,18 +48,19 @@ margin_right = 480.0
 margin_bottom = 270.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.83
+custom_styles/panel = SubResource( 86 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 473.0
-margin_bottom = 153.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 479.0
+margin_bottom = 159.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="desc" type="Label" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_right = 466.0
+margin_right = 478.0
 margin_bottom = 65.0
 size_flags_vertical = 1
 text = "dsadaolkdsajldaldflkdasjdas

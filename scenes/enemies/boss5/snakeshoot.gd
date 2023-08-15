@@ -12,7 +12,10 @@ func _ready():
 
 
 func _state_logic(dt):
-	if is_active:gun.try_shooting()
+	#print((gun as GdtGun).current_charge)
+	
+	if is_active:
+		gun.try_shooting()
 
 func animate():
 	yield($"%AnimationPlayer".play_anim("pickupthing",1),"completed")

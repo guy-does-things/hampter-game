@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://raw_sprites/sign.png" type="Texture" id=1]
+[ext_resource path="res://locations/gate of cage/Sign.gd" type="Script" id=2]
+[ext_resource path="res://scenes/nsav_thing/ninteractibble.gd" type="Script" id=3]
+[ext_resource path="res://ComboTutorial.tres" type="Resource" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Interactible" type="Area2D"]
+position = Vector2( 848, 224 )
+collision_layer = 0
+collision_mask = 128
+script = ExtResource( 3 )
+keyprompt_offset = Vector2( 0, -32 )
+
+[node name="Sign" type="Sprite" parent="."]
+position = Vector2( 0, -3 )
+z_index = -1
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+sgn_dialog = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+
+[connection signal="interacted" from="." to="Sign" method="_on_Interactible_interacted"]

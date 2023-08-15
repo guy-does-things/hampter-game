@@ -22,7 +22,6 @@ export var o_color = 0.0 setget set_ocolor; func set_ocolor(val):
 
 
 
-
 func hp_check(dam, is_water):
 	if is_second_phase:return
 	

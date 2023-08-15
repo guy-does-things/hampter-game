@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 item_id = 32
 item_name = "soul blast"
-item_desc = "hold down then attack to do a slash with 4 hit priority then throw a slightly ascending projectile with 5 hit priority"
+item_desc = "hold ↓  then attack to do a slash with 4 hit priority then throw a slightly ascending projectile with 5 hit priority"

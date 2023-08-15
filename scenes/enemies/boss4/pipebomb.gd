@@ -32,7 +32,7 @@ func jump():
 	if abs(d2) > abs(d1):
 		used_pos = MapManager.current_room_in.roomrect.get_global_rect().end.x
 
-	var dist = (used_pos-entity.position.x)*3
+	var dist = (used_pos-entity.global_position.x)*3
 			
 	if abs(dist) > 180:
 		entity.velocity.x = dist

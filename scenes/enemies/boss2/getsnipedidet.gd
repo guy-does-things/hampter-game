@@ -30,6 +30,7 @@ func _get_transition(dt):
 func _on_SnipeTime_timeout():
 	$"%SnipeBox".global_position = $"%getsnipedidiet".global_position
 	$"%SnipeBox".monitoring = true
+	$AudioStreamPlayer.play()
 	yield(get_tree().create_timer(.05,false),"timeout")
 	$"%SnipeBox".monitoring = false
 	

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://raw_sprites/hamptertube.png" type="Texture" id=2]
 [ext_resource path="res://realthing.tres" type="TileSet" id=3]
 [ext_resource path="res://scenes/breakable_block/break_block.tscn" type="PackedScene" id=4]
+[ext_resource path="res://dreadsitereuse/room_transition_trigger.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 138 )
 
 [node name="A" instance=ExtResource( 1 )]
 
@@ -16,6 +20,13 @@ tile_data = PoolIntArray( -2752512, 6, 0, -2752511, 6, 0, -2752510, 6, 0, -27525
 [node name="StaticBody2D" parent="RoomObjectManager" index="0" instance=ExtResource( 4 )]
 position = Vector2( 272, 160 )
 break_type = 0
+
+[node name="left" type="CollisionShape2D" parent="Transitions" index="0"]
+modulate = Color( 1, 0.466667, 0.658824, 1 )
+position = Vector2( 8, 134 )
+shape = SubResource( 1 )
+script = ExtResource( 5 )
+normal_to_ignore = Vector2( -1, 0 )
 
 [node name="Line2D" type="Line2D" parent="Pipes" index="0"]
 points = PoolVector2Array( 0, -80, 544, -80 )

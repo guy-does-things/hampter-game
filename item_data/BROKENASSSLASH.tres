@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 item_id = 128
 item_name = "spin slash"
-item_desc = "hold up then attack while in the air for a 6-10 priority attack"
+item_desc = "hold ↑ then attack while in the air for a 6-10 priority attack"

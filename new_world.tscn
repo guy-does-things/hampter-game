@@ -1,0 +1,220 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://hp_container.gd" type="Script" id=1]
+[ext_resource path="res://locations/BossWarning.gd" type="Script" id=2]
+[ext_resource path="res://PICO-8.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/inventory/Inventory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/itempopup/ipopup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://RoomBasedCamera.gd" type="Script" id=7]
+[ext_resource path="res://locations/VBoxContainer.gd" type="Script" id=8]
+[ext_resource path="res://raw_sprites/heart.png" type="Texture" id=9]
+[ext_resource path="res://new_world.gd" type="Script" id=10]
+[ext_resource path="res://sam.wav" type="AudioStream" id=11]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 13, 13 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 9 )
+region = Rect2( 26, 0, 13, 13 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2568, 3852 )
+
+[node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
+pause_mode = 2
+current = true
+script = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="KinematicBody2D/RoomBasedCamera"]
+layer = 5
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="KinematicBody2D/RoomBasedCamera/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Inventory" type="CanvasLayer" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="Inventory"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 89.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+custom_constants/vseparation = 0
+custom_constants/hseparation = -2
+columns = 6
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Inventory/GridContainer"]
+margin_right = 13.0
+margin_bottom = 13.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 11.0
+margin_right = 24.0
+margin_bottom = 13.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 22.0
+margin_right = 35.0
+margin_bottom = 13.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect4" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 33.0
+margin_right = 46.0
+margin_bottom = 13.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect5" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 44.0
+margin_right = 57.0
+margin_bottom = 13.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect6" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 55.0
+margin_right = 68.0
+margin_bottom = 13.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect7" type="TextureRect" parent="Inventory/GridContainer"]
+margin_top = 13.0
+margin_right = 13.0
+margin_bottom = 26.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect8" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 11.0
+margin_top = 13.0
+margin_right = 24.0
+margin_bottom = 26.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect9" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 22.0
+margin_top = 13.0
+margin_right = 35.0
+margin_bottom = 26.0
+texture = SubResource( 1 )
+stretch_mode = 6
+
+[node name="TextureRect10" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 33.0
+margin_top = 13.0
+margin_right = 46.0
+margin_bottom = 26.0
+texture = SubResource( 2 )
+stretch_mode = 6
+
+[node name="TextureRect11" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 44.0
+margin_top = 13.0
+margin_right = 57.0
+margin_bottom = 26.0
+texture = SubResource( 2 )
+stretch_mode = 6
+
+[node name="TextureRect12" type="TextureRect" parent="Inventory/GridContainer"]
+margin_left = 55.0
+margin_top = 13.0
+margin_right = 68.0
+margin_bottom = 26.0
+texture = SubResource( 2 )
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -46.0
+margin_bottom = 2.0
+script = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="Inventory/VBoxContainer"]
+margin_right = 480.0
+margin_bottom = 14.0
+text = "toxic-m fish"
+
+[node name="ProgressBar" type="ProgressBar" parent="Inventory/VBoxContainer"]
+margin_top = 18.0
+margin_right = 480.0
+margin_bottom = 48.0
+size_flags_vertical = 3
+
+[node name="InventoryBorder" parent="Inventory" instance=ExtResource( 4 )]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Inventory"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="ItemPopup" parent="Inventory" instance=ExtResource( 5 )]
+
+[node name="Inventory2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="BossWarning" type="Control" parent="Inventory2"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+invl = NodePath("../../Inventory")
+plr = NodePath("../../KinematicBody2D")
+
+[node name="Label" type="Label" parent="Inventory2/BossWarning"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_bottom = 7.0
+custom_colors/font_color = Color( 1, 0.376471, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "warning"
+align = 1
+percent_visible = 0.0
+
+[node name="Label2" type="Label" parent="Inventory2/BossWarning"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_bottom = 7.0
+custom_colors/font_color = Color( 1, 0.376471, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "[       ]"
+align = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Inventory2/BossWarning"]
+stream = ExtResource( 11 )
+volume_db = -16.0
+bus = "SFX"

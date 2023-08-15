@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 item_id = 64
 item_name = "rising slash"
-item_desc = "hold up when on the ground an attack to jump and do an attack with 6 priority!"
+item_desc = "hold ↑ when on the ground an attack to jump and do an attack with 6 priority!"

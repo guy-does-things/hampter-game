@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://wpnsys/hurt_stuff/bullet/bullet_propeties.gd" type="Script" id=1]
 [ext_resource path="res://wpnsys/hurt_stuff/hurthitboxes/hitbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://wpnsys/hurt_stuff/bullet/new_bullet.gd" type="Script" id=3]
 [ext_resource path="res://bullets/SnakeHelper.gd" type="Script" id=4]
 [ext_resource path="res://raw_sprites/twinkle.png" type="Texture" id=5]
+[ext_resource path="res://raw_sprites/attacksnake.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 8 )
@@ -34,12 +35,6 @@ _bullet_props = SubResource( 1 )
 
 [node name="LifeTimer" type="Timer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -8.0
-margin_top = -8.0
-margin_right = 8.0
-margin_bottom = 8.0
-
 [node name="Area2D" parent="." instance=ExtResource( 2 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -60,6 +55,10 @@ gravity = Vector2( 0, 0 )
 angular_velocity = 360.0
 scale_amount_curve = SubResource( 3 )
 color_ramp = SubResource( 4 )
+
+[node name="Attacksnake" type="Sprite" parent="SnakeHelper"]
+texture = ExtResource( 6 )
+hframes = 3
 
 [connection signal="startup" from="." to="SnakeHelper" method="_on_GdtBullet_startup"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]

@@ -1,0 +1,980 @@
+[gd_resource type="Resource" load_steps=52 format=2]
+
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/exitroom.tscn" type="PackedScene" id=1]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/swimitemroom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/swimsecretroom.tscn" type="PackedScene" id=3]
+[ext_resource path="res://locations/gate of cage/guardianroom.tscn" type="PackedScene" id=4]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/movingproom.tscn" type="PackedScene" id=5]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/dayofsexthefall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/dashroom.tscn" type="PackedScene" id=7]
+[ext_resource path="res://locations/gate of cage/stompitem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://locations/gate of cage/bossreward.tscn" type="PackedScene" id=9]
+[ext_resource path="res://locations/gate of cage/beforeboss1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=11]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/waterplatformroom.tscn" type="PackedScene" id=12]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/cisintroripoff.tscn" type="PackedScene" id=13]
+[ext_resource path="res://locations/gate of cage/tunneldescent.tscn" type="PackedScene" id=14]
+[ext_resource path="res://locations/gate of cage/bigcage.tscn" type="PackedScene" id=15]
+[ext_resource path="res://dreadsitereuse/room_resources/room_dict_container.gd" type="Script" id=16]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/comicalamountofwater.tscn" type="PackedScene" id=17]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/arenaroom.tscn" type="PackedScene" id=18]
+[ext_resource path="res://locations/gate of cage/waterway.tscn" type="PackedScene" id=19]
+[ext_resource path="res://locations/nitrotasticman/diningroom.tscn" type="PackedScene" id=20]
+[ext_resource path="res://locations/fuckedupplace/zipline_room.tscn" type="PackedScene" id=21]
+[ext_resource path="res://locations/gate of cage/combotutorialroom.tscn" type="PackedScene" id=22]
+[ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=23]
+[ext_resource path="res://locations/fuckedupplace/cave_gating_exit_room.tscn" type="PackedScene" id=24]
+[ext_resource path="res://locations/fuckedupplace/cavebossroom.tscn" type="PackedScene" id=25]
+[ext_resource path="res://locations/lecastlevania/castle_entrance.tscn" type="PackedScene" id=26]
+[ext_resource path="res://locations/lecastlevania/castle_inside.tscn" type="PackedScene" id=27]
+[ext_resource path="res://locations/gate of cage/entrancegating.tscn" type="PackedScene" id=28]
+[ext_resource path="res://locations/nitrotasticman/mallsave.tscn" type="PackedScene" id=29]
+[ext_resource path="res://locations/gate of cage/highwayjump.tscn" type="PackedScene" id=30]
+[ext_resource path="res://locations/gate of cage/hiddenroom3.tscn" type="PackedScene" id=31]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/boss2room.tscn" type="PackedScene" id=32]
+[ext_resource path="res://locations/nitrotasticman/highway_entrance.tscn" type="PackedScene" id=33]
+[ext_resource path="res://locations/gate of cage/highwaygating.tscn" type="PackedScene" id=34]
+[ext_resource path="res://locations/nitrotasticman/mallsection.tscn" type="PackedScene" id=35]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/beforefishsave.tscn" type="PackedScene" id=36]
+[ext_resource path="res://locations/lecastlevania/snakeroom.tscn" type="PackedScene" id=37]
+[ext_resource path="res://locations/fuckedupplace/cavent.tscn" type="PackedScene" id=38]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/secretcomputeroom.tscn" type="PackedScene" id=39]
+[ext_resource path="res://locations/gate of cage/hiddenroom2.tscn" type="PackedScene" id=40]
+[ext_resource path="res://locations/fuckedupplace/destroyedfor.tscn" type="PackedScene" id=41]
+[ext_resource path="res://locations/nitrotasticman/car_jumpscare.tscn" type="PackedScene" id=42]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/sealroom.tscn" type="PackedScene" id=43]
+[ext_resource path="res://locations/nitrotasticman/car_jumpscare_3_electric_bogaloo.tscn" type="PackedScene" id=44]
+[ext_resource path="res://locations/nitrotasticman/car_jumpscare_2_electric_bogaloo.tscn" type="PackedScene" id=45]
+[ext_resource path="res://locations/lecastlevania/yokuroom2.tscn" type="PackedScene" id=46]
+[ext_resource path="res://locations/lecastlevania/yokuroom3.tscn" type="PackedScene" id=47]
+[ext_resource path="res://locations/nitrotasticman/boss4.tscn" type="PackedScene" id=48]
+[ext_resource path="res://locations/gate of cage/combotestroom.tscn" type="PackedScene" id=49]
+[ext_resource path="res://locations/basically me ripping off the spring in the sky from la mulana/waterliftroom.tscn" type="PackedScene" id=50]
+[ext_resource path="res://locations/gate of cage/hiddenroom.tscn" type="PackedScene" id=51]
+
+[resource]
+script = ExtResource( 16 )
+room_data_dict = {
+ExtResource( 1 ): {
+"area": 0,
+"connection_node_position": Vector2( -2416, 1696 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "exitroom",
+"room_position": Vector2( 2290, 3680 ),
+"room_rect": Rect2( 0, 0, 496, 288 ),
+"room_scene": ExtResource( 1 ),
+"transition_rooms": [ ExtResource( 32 ) ]
+},
+ExtResource( 2 ): {
+"area": 0,
+"connection_node_position": Vector2( -1296, 1488 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "swimitemroom",
+"room_position": Vector2( 6288, 2224 ),
+"room_rect": Rect2( 0, -48, 496, 336 ),
+"room_scene": ExtResource( 2 ),
+"transition_rooms": [ ExtResource( 12 ), ExtResource( 7 ) ]
+},
+ExtResource( 3 ): {
+"area": 0,
+"connection_node_position": Vector2( -2096, 1456 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "swimsecretroom",
+"room_position": Vector2( 2240, 2672 ),
+"room_rect": Rect2( -624, -128, 1120, 480 ),
+"room_scene": ExtResource( 3 ),
+"transition_rooms": [ ExtResource( 13 ), ExtResource( 39 ) ]
+},
+ExtResource( 4 ): {
+"area": 0,
+"connection_node_position": Vector2( -1440, 1280 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "guardianroom",
+"room_position": Vector2( 1600, 3312 ),
+"room_rect": Rect2( 0, -160, 624, 304 ),
+"room_scene": ExtResource( 4 ),
+"transition_rooms": [ ExtResource( 9 ), ExtResource( 10 ) ]
+},
+ExtResource( 5 ): {
+"area": 0,
+"connection_node_position": Vector2( -1648, 1424 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "movingproom",
+"room_position": Vector2( 3216, 1392 ),
+"room_rect": Rect2( 0, -192, 2288, 592 ),
+"room_scene": ExtResource( 5 ),
+"transition_rooms": [ ExtResource( 13 ), ExtResource( 6 ) ]
+},
+ExtResource( 6 ): {
+"area": 0,
+"connection_node_position": Vector2( -1424, 1424 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "dayofsexthefall",
+"room_position": Vector2( 5504, 1184 ),
+"room_rect": Rect2( 0, 0, 960, 736 ),
+"room_scene": ExtResource( 6 ),
+"transition_rooms": [ ExtResource( 5 ), ExtResource( 7 ) ]
+},
+ExtResource( 7 ): {
+"area": 0,
+"connection_node_position": Vector2( -1264, 1424 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "dashroom",
+"room_position": Vector2( 6464, 1632 ),
+"room_rect": Rect2( 0, 0, 496, 544 ),
+"room_scene": ExtResource( 7 ),
+"transition_rooms": [ ExtResource( 2 ), ExtResource( 6 ) ]
+},
+ExtResource( 8 ): {
+"area": 0,
+"connection_node_position": Vector2( -1200, 1072 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "stompitem",
+"room_position": Vector2( 2656, 128 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 8 ),
+"transition_rooms": [ ExtResource( 15 ) ]
+},
+ExtResource( 9 ): {
+"area": 0,
+"connection_node_position": Vector2( -1296, 1280 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "bossreward",
+"room_position": Vector2( 2224, 3312 ),
+"room_rect": Rect2( 0, -160, 512, 270 ),
+"room_scene": ExtResource( 9 ),
+"transition_rooms": [ ExtResource( 13 ), ExtResource( 4 ) ]
+},
+ExtResource( 10 ): {
+"area": 0,
+"connection_node_position": Vector2( -1584, 1280 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "beforeboss1",
+"room_position": Vector2( 384, 3184 ),
+"room_rect": Rect2( 0, -160, 1216, 430 ),
+"room_scene": ExtResource( 10 ),
+"transition_rooms": [ ExtResource( 4 ) ]
+},
+ExtResource( 11 ): {
+"area": 0,
+"connection_node_position": Vector2( -1792, 1072 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "entrance",
+"room_position": Vector2( -112, -144 ),
+"room_rect": Rect2( 32, 0, 656, 456 ),
+"room_scene": ExtResource( 11 ),
+"transition_rooms": [ ExtResource( 51 ), ExtResource( 23 ) ]
+},
+ExtResource( 12 ): {
+"area": 0,
+"connection_node_position": Vector2( -1504, 1488 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "waterplatformroom",
+"room_position": Vector2( 4048, 2352 ),
+"room_rect": Rect2( 0, -192, 2240, 608 ),
+"room_scene": ExtResource( 12 ),
+"transition_rooms": [ ExtResource( 18 ), ExtResource( 2 ) ]
+},
+ExtResource( 13 ): {
+"area": 0,
+"connection_node_position": Vector2( -1872, 1440 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "cisintroripoff",
+"room_position": Vector2( 2736, 3200 ),
+"room_rect": Rect2( 0, -1864, 480, 2134 ),
+"room_scene": ExtResource( 13 ),
+"transition_rooms": [ ExtResource( 50 ), ExtResource( 18 ), ExtResource( 5 ), ExtResource( 49 ), ExtResource( 43 ), ExtResource( 3 ), ExtResource( 9 ) ]
+},
+ExtResource( 14 ): {
+"area": 0,
+"connection_node_position": Vector2( -1728, 1200 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "tunneldescent",
+"room_position": Vector2( 482, 304 ),
+"room_rect": Rect2( 0, 0, 1136, 2048 ),
+"room_scene": ExtResource( 14 ),
+"transition_rooms": [ ExtResource( 15 ) ]
+},
+ExtResource( 15 ): {
+"area": 0,
+"connection_node_position": Vector2( -1408, 1088 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "bigcage",
+"room_position": Vector2( 1616, 512 ),
+"room_rect": Rect2( 0, -352, 1040, 704 ),
+"room_scene": ExtResource( 15 ),
+"transition_rooms": [ ExtResource( 23 ), ExtResource( 14 ), ExtResource( 8 ) ]
+},
+ExtResource( 17 ): {
+"area": 0,
+"connection_node_position": Vector2( -1696, 1680 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "comicalamountofwater",
+"room_position": Vector2( 3936, 3104 ),
+"room_rect": Rect2( 0, -256, 1568, 1120 ),
+"room_scene": ExtResource( 17 ),
+"transition_rooms": [ ExtResource( 50 ), ExtResource( 36 ) ]
+},
+ExtResource( 18 ): {
+"area": 0,
+"connection_node_position": Vector2( -1648, 1488 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "arenaroom",
+"room_position": Vector2( 3216, 2304 ),
+"room_rect": Rect2( 0, -128, 832, 464 ),
+"room_scene": ExtResource( 18 ),
+"transition_rooms": [ ExtResource( 13 ), ExtResource( 12 ) ]
+},
+ExtResource( 19 ): {
+"area": 0,
+"connection_node_position": Vector2( 336, 1392 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "waterway",
+"room_position": Vector2( -528, 1824 ),
+"room_rect": Rect2( -1104, -160, 1760, 1896 ),
+"room_scene": ExtResource( 19 ),
+"transition_rooms": [  ]
+},
+ExtResource( 20 ): {
+"area": 0,
+"connection_node_position": Vector2( -1728, 624 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "diningroom",
+"room_position": Vector2( 3760, -2256 ),
+"room_rect": Rect2( -544, -189, 1024, 459 ),
+"room_scene": ExtResource( 20 ),
+"transition_rooms": [ ExtResource( 35 ) ]
+},
+ExtResource( 21 ): {
+"area": 0,
+"connection_node_position": Vector2( -544, 864 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "zipline_room",
+"room_position": Vector2( 4848, -336 ),
+"room_rect": Rect2( 0, -544, 1040, 814 ),
+"room_scene": ExtResource( 21 ),
+"transition_rooms": [ ExtResource( 25 ), ExtResource( 24 ) ]
+},
+ExtResource( 22 ): {
+"area": 0,
+"connection_node_position": Vector2( 480, 1520 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "combotutorialroom",
+"room_position": Vector2( -3232, 2064 ),
+"room_rect": Rect2( 0, 0, 1264, 272 ),
+"room_scene": ExtResource( 22 ),
+"transition_rooms": [  ]
+},
+ExtResource( 23 ): {
+"area": 0,
+"connection_node_position": Vector2( -1584, 1072 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "inside",
+"room_position": Vector2( 576, -336 ),
+"room_rect": Rect2( 0, 0, 1040, 640 ),
+"room_scene": ExtResource( 23 ),
+"transition_rooms": [ ExtResource( 11 ), ExtResource( 34 ), ExtResource( 28 ), ExtResource( 15 ) ]
+},
+ExtResource( 24 ): {
+"area": 0,
+"connection_node_position": Vector2( -768, 768 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "cave_gating_exit_room",
+"room_position": Vector2( 4096, -752 ),
+"room_rect": Rect2( 0, -32, 752, 302 ),
+"room_scene": ExtResource( 24 ),
+"transition_rooms": [ ExtResource( 21 ), ExtResource( 38 ) ]
+},
+ExtResource( 25 ): {
+"area": 0,
+"connection_node_position": Vector2( -768, 880 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "cavebossroom",
+"room_position": Vector2( 4096, -336 ),
+"room_rect": Rect2( 0, -144, 750, 414 ),
+"room_scene": ExtResource( 25 ),
+"transition_rooms": [ ExtResource( 21 ), ExtResource( 38 ) ]
+},
+ExtResource( 26 ): {
+"area": 0,
+"connection_node_position": Vector2( -1200, 2240 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "castle_entrance",
+"room_position": Vector2( 11296, -528 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 26 ),
+"transition_rooms": [ ExtResource( 27 ) ]
+},
+ExtResource( 27 ): {
+"area": 0,
+"connection_node_position": Vector2( -1344, 2240 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "castle_inside",
+"room_position": Vector2( 10816, -528 ),
+"room_rect": Rect2( -1024, -256, 1504, 526 ),
+"room_scene": ExtResource( 27 ),
+"transition_rooms": [ ExtResource( 26 ), ExtResource( 46 ) ]
+},
+ExtResource( 28 ): {
+"area": 0,
+"connection_node_position": Vector2( -1216, 880 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "entrancegating",
+"room_position": Vector2( 1616, -336 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 28 ),
+"transition_rooms": [ ExtResource( 23 ), ExtResource( 41 ) ]
+},
+ExtResource( 29 ): {
+"area": 0,
+"connection_node_position": Vector2( -1440, 624 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "mallsave",
+"room_position": Vector2( 4720, -2256 ),
+"room_rect": Rect2( 0, -192, 480, 462 ),
+"room_scene": ExtResource( 29 ),
+"transition_rooms": [ ExtResource( 45 ), ExtResource( 35 ) ]
+},
+ExtResource( 30 ): {
+"area": 0,
+"connection_node_position": Vector2( -1600, 976 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "highwayjump",
+"room_position": Vector2( 576, -992 ),
+"room_rect": Rect2( 0, -480, 480, 750 ),
+"room_scene": ExtResource( 30 ),
+"transition_rooms": [ ExtResource( 34 ) ]
+},
+ExtResource( 31 ): {
+"area": 0,
+"connection_node_position": Vector2( -1808, 1136 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "hiddenroom3",
+"room_position": Vector2( -688, 208 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 31 ),
+"transition_rooms": [ ExtResource( 40 ) ]
+},
+ExtResource( 32 ): {
+"area": 0,
+"connection_node_position": Vector2( -2224, 1696 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "boss2room",
+"room_position": Vector2( 2784, 3616 ),
+"room_rect": Rect2( 0, 0, 656, 352 ),
+"room_scene": ExtResource( 32 ),
+"transition_rooms": [ ExtResource( 1 ), ExtResource( 36 ) ]
+},
+ExtResource( 33 ): {
+"area": 0,
+"connection_node_position": Vector2( -1728, 752 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "highway_entrance",
+"room_position": Vector2( 880, -1936 ),
+"room_rect": Rect2( 0, 0, 928, 272 ),
+"room_scene": ExtResource( 33 ),
+"transition_rooms": [ ExtResource( 42 ) ]
+},
+ExtResource( 34 ): {
+"area": 0,
+"connection_node_position": Vector2( -1760, 976 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "highwaygating",
+"room_position": Vector2( 96, -416 ),
+"room_rect": Rect2( 0, -480, 480, 750 ),
+"room_scene": ExtResource( 34 ),
+"transition_rooms": [ ExtResource( 23 ), ExtResource( 30 ) ]
+},
+ExtResource( 35 ): {
+"area": 0,
+"connection_node_position": Vector2( -1600, 624 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "mallsection",
+"room_position": Vector2( 4240, -1936 ),
+"room_rect": Rect2( -1, -512, 480, 986 ),
+"room_scene": ExtResource( 35 ),
+"transition_rooms": [ ExtResource( 20 ), ExtResource( 29 ) ]
+},
+ExtResource( 36 ): {
+"area": 0,
+"connection_node_position": Vector2( -2048, 1696 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "beforefishsave",
+"room_position": Vector2( 3440, 3680 ),
+"room_rect": Rect2( 0, 0, 496, 288 ),
+"room_scene": ExtResource( 36 ),
+"transition_rooms": [ ExtResource( 17 ), ExtResource( 32 ) ]
+},
+ExtResource( 37 ): {
+"area": 0,
+"connection_node_position": Vector2( -1792, 2240 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "snakeroom",
+"room_position": Vector2( 6960, -1328 ),
+"room_rect": Rect2( 0, 0, 480, 336 ),
+"room_scene": ExtResource( 37 ),
+"transition_rooms": [ ExtResource( 47 ) ]
+},
+ExtResource( 38 ): {
+"area": 0,
+"connection_node_position": Vector2( -896, 864 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "cavent",
+"room_position": Vector2( 3056, -336 ),
+"room_rect": Rect2( 0, -448, 1040, 718 ),
+"room_scene": ExtResource( 38 ),
+"transition_rooms": [ ExtResource( 41 ), ExtResource( 24 ), ExtResource( 25 ) ]
+},
+ExtResource( 39 ): {
+"area": 0,
+"connection_node_position": Vector2( -2272, 1456 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "secretcomputeroom",
+"room_position": Vector2( 1120, 2736 ),
+"room_rect": Rect2( 0, 0, 496, 288 ),
+"room_scene": ExtResource( 39 ),
+"transition_rooms": [ ExtResource( 3 ) ]
+},
+ExtResource( 40 ): {
+"area": 0,
+"connection_node_position": Vector2( -1968, 1136 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "hiddenroom2",
+"room_position": Vector2( -1168, 208 ),
+"room_rect": Rect2( 0, 0, 480, 416 ),
+"room_scene": ExtResource( 40 ),
+"transition_rooms": [ ExtResource( 51 ), ExtResource( 31 ) ]
+},
+ExtResource( 41 ): {
+"area": 0,
+"connection_node_position": Vector2( -1040, 880 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "destroyedfor",
+"room_position": Vector2( 2096, -336 ),
+"room_rect": Rect2( 0, -270, 960, 540 ),
+"room_scene": ExtResource( 41 ),
+"transition_rooms": [ ExtResource( 28 ), ExtResource( 38 ) ]
+},
+ExtResource( 42 ): {
+"area": 0,
+"connection_node_position": Vector2( -1552, 752 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "car_jumpscare",
+"room_position": Vector2( 1808, -1936 ),
+"room_rect": Rect2( 0, 0, 2129, 512 ),
+"room_scene": ExtResource( 42 ),
+"transition_rooms": [ ExtResource( 33 ) ]
+},
+ExtResource( 43 ): {
+"area": 0,
+"connection_node_position": Vector2( -2048, 1520 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "sealroom",
+"room_position": Vector2( 2256, 1328 ),
+"room_rect": Rect2( 0, 0, 480, 270 ),
+"room_scene": ExtResource( 43 ),
+"transition_rooms": [ ExtResource( 13 ) ]
+},
+ExtResource( 44 ): {
+"area": 0,
+"connection_node_position": Vector2( -2512, 800 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "car_jumpscare_3_electric_bogaloo",
+"room_position": Vector2( 7408, -2544 ),
+"room_rect": Rect2( 0, 0, 4496, 976 ),
+"room_scene": ExtResource( 44 ),
+"transition_rooms": [ ExtResource( 48 ) ]
+},
+ExtResource( 45 ): {
+"area": 0,
+"connection_node_position": Vector2( -1184, 608 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "car_jumpscare_2_electric_bogaloo",
+"room_position": Vector2( 5200, -2544 ),
+"room_rect": Rect2( 0, 0, 2176, 976 ),
+"room_scene": ExtResource( 45 ),
+"transition_rooms": [ ExtResource( 29 ) ]
+},
+ExtResource( 46 ): {
+"area": 0,
+"connection_node_position": Vector2( -1488, 2240 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "yokuroom2",
+"room_position": Vector2( 9312, -848 ),
+"room_rect": Rect2( -288, -224, 768, 624 ),
+"room_scene": ExtResource( 46 ),
+"transition_rooms": [ ExtResource( 27 ), ExtResource( 47 ) ]
+},
+ExtResource( 47 ): {
+"area": 0,
+"connection_node_position": Vector2( -1648, 2240 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "yokuroom3",
+"room_position": Vector2( 8544, -1024 ),
+"room_rect": Rect2( -1088, -224, 1568, 960 ),
+"room_scene": ExtResource( 47 ),
+"transition_rooms": [ ExtResource( 46 ), ExtResource( 37 ) ]
+},
+ExtResource( 48 ): {
+"area": 0,
+"connection_node_position": Vector2( -2176, 800 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "boss4",
+"room_position": Vector2( 11904, -2544 ),
+"room_rect": Rect2( 0, 0, 480, 976 ),
+"room_scene": ExtResource( 48 ),
+"transition_rooms": [ ExtResource( 44 ) ]
+},
+ExtResource( 49 ): {
+"area": 0,
+"connection_node_position": Vector2( -2096, 1392 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "combotestroom",
+"room_position": Vector2( 2224, 1888 ),
+"room_rect": Rect2( 0, 0, 512, 272 ),
+"room_scene": ExtResource( 49 ),
+"transition_rooms": [ ExtResource( 13 ) ]
+},
+ExtResource( 50 ): {
+"area": 0,
+"connection_node_position": Vector2( -1664, 1552 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "waterliftroom",
+"room_position": Vector2( 3216, 3280 ),
+"room_rect": Rect2( 0, -256, 720, 526 ),
+"room_scene": ExtResource( 50 ),
+"transition_rooms": [ ExtResource( 17 ), ExtResource( 13 ) ]
+},
+ExtResource( 51 ): {
+"area": 0,
+"connection_node_position": Vector2( -1952, 1072 ),
+"customdata": {
+},
+"elevators": [  ],
+"item_count": 0,
+"room_name": "hiddenroom",
+"room_position": Vector2( -592, -64 ),
+"room_rect": Rect2( -576, 0, 1056, 270 ),
+"room_scene": ExtResource( 51 ),
+"transition_rooms": [ ExtResource( 11 ), ExtResource( 40 ) ]
+}
+}
+connection_editor_connections = [ {
+"from": "entrance",
+"from_port": 1,
+"to": "inside",
+"to_port": 0
+}, {
+"from": "inside",
+"from_port": 3,
+"to": "bigcage",
+"to_port": 0
+}, {
+"from": "bigcage",
+"from_port": 2,
+"to": "stompitem",
+"to_port": 0
+}, {
+"from": "highwaygating",
+"from_port": 0,
+"to": "inside",
+"to_port": 1
+}, {
+"from": "highwaygating",
+"from_port": 1,
+"to": "highwayjump",
+"to_port": 0
+}, {
+"from": "tunneldescent",
+"from_port": 0,
+"to": "bigcage",
+"to_port": 1
+}, {
+"from": "beforeboss1",
+"from_port": 0,
+"to": "guardianroom",
+"to_port": 1
+}, {
+"from": "guardianroom",
+"from_port": 0,
+"to": "bossreward",
+"to_port": 1
+}, {
+"from": "waterliftroom",
+"from_port": 0,
+"to": "comicalamountofwater",
+"to_port": 0
+}, {
+"from": "exitroom",
+"from_port": 0,
+"to": "boss2room",
+"to_port": 0
+}, {
+"from": "boss2room",
+"from_port": 1,
+"to": "beforefishsave",
+"to_port": 1
+}, {
+"from": "beforefishsave",
+"from_port": 0,
+"to": "comicalamountofwater",
+"to_port": 1
+}, {
+"from": "entrancegating",
+"from_port": 1,
+"to": "destroyedfor",
+"to_port": 0
+}, {
+"from": "destroyedfor",
+"from_port": 1,
+"to": "cavent",
+"to_port": 0
+}, {
+"from": "cavent",
+"from_port": 2,
+"to": "cavebossroom",
+"to_port": 1
+}, {
+"from": "cavebossroom",
+"from_port": 0,
+"to": "zipline_room",
+"to_port": 0
+}, {
+"from": "cavent",
+"from_port": 1,
+"to": "cave_gating_exit_room",
+"to_port": 1
+}, {
+"from": "cave_gating_exit_room",
+"from_port": 0,
+"to": "zipline_room",
+"to_port": 1
+}, {
+"from": "yokuroom3",
+"from_port": 0,
+"to": "yokuroom2",
+"to_port": 1
+}, {
+"from": "castle_inside",
+"from_port": 0,
+"to": "castle_entrance",
+"to_port": 0
+}, {
+"from": "yokuroom2",
+"from_port": 0,
+"to": "castle_inside",
+"to_port": 1
+}, {
+"from": "snakeroom",
+"from_port": 0,
+"to": "yokuroom3",
+"to_port": 1
+}, {
+"from": "highway_entrance",
+"from_port": 0,
+"to": "car_jumpscare",
+"to_port": 0
+}, {
+"from": "mallsection",
+"from_port": 1,
+"to": "mallsave",
+"to_port": 1
+}, {
+"from": "diningroom",
+"from_port": 0,
+"to": "mallsection",
+"to_port": 0
+}, {
+"from": "mallsave",
+"from_port": 0,
+"to": "car_jumpscare_2_electric_bogaloo",
+"to_port": 0
+}, {
+"from": "car_jumpscare_3_electric_bogaloo",
+"from_port": 0,
+"to": "boss4",
+"to_port": 0
+}, {
+"from": "hiddenroom",
+"from_port": 0,
+"to": "entrance",
+"to_port": 0
+}, {
+"from": "hiddenroom2",
+"from_port": 1,
+"to": "hiddenroom3",
+"to_port": 0
+}, {
+"from": "hiddenroom2",
+"from_port": 0,
+"to": "hiddenroom",
+"to_port": 1
+}, {
+"from": "dayofsexthefall",
+"from_port": 1,
+"to": "dashroom",
+"to_port": 1
+}, {
+"from": "secretcomputeroom",
+"from_port": 0,
+"to": "swimsecretroom",
+"to_port": 1
+}, {
+"from": "sealroom",
+"from_port": 0,
+"to": "cisintroripoff",
+"to_port": 4
+}, {
+"from": "combotestroom",
+"from_port": 0,
+"to": "cisintroripoff",
+"to_port": 3
+}, {
+"from": "bossreward",
+"from_port": 0,
+"to": "cisintroripoff",
+"to_port": 6
+}, {
+"from": "swimsecretroom",
+"from_port": 0,
+"to": "cisintroripoff",
+"to_port": 5
+}, {
+"from": "cisintroripoff",
+"from_port": 2,
+"to": "movingproom",
+"to_port": 0
+}, {
+"from": "movingproom",
+"from_port": 1,
+"to": "dayofsexthefall",
+"to_port": 0
+}, {
+"from": "cisintroripoff",
+"from_port": 1,
+"to": "arenaroom",
+"to_port": 0
+}, {
+"from": "cisintroripoff",
+"from_port": 0,
+"to": "waterliftroom",
+"to_port": 1
+}, {
+"from": "arenaroom",
+"from_port": 1,
+"to": "waterplatformroom",
+"to_port": 0
+}, {
+"from": "waterplatformroom",
+"from_port": 1,
+"to": "swimitemroom",
+"to_port": 0
+}, {
+"from": "dashroom",
+"from_port": 0,
+"to": "swimitemroom",
+"to_port": 1
+}, {
+"from": "inside",
+"from_port": 2,
+"to": "entrancegating",
+"to_port": 0
+} ]
+pipe_data = [ {
+"a": "res://locations/gate of cage/waterway.tscn",
+"b": "res://locations/gate of cage/tunneldescent.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( 125, 2024, 509, 2024 )
+}, {
+"a": "res://locations/gate of cage/tunneldescent.tscn",
+"b": "res://locations/gate of cage/beforeboss1.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( 509, 1864, 429, 1864, 429, 1960, 429, 2728, 237, 2728, 237, 3384, 413, 3384 )
+}, {
+"a": "res://locations/gate of cage/waterway.tscn",
+"b": "res://locations/gate of cage/combotutorialroom.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( -1603, 2280, -1987, 2280 )
+}, {
+"a": "res://locations/gate of cage/waterway.tscn",
+"b": "res://locations/gate of cage/entrance.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( -1603, 2184, -1699, 2184, -1699, 1624, -1827, 1624, -1827, 1528, -1747, 1528, -1491, 1528, -1491, 1688, -1907, 1688, -1907, 1352, -1699, 1352, -1699, 648, -1443, 648, -1443, 424, -1283, 424, -1283, 712, -835, 712, -835, 632, -899, 632, -899, 792, -499, 792, 189, 792, 189, 520, 77, 520, 77, 296, 253, 296, 253, -8, 253, -104, 285, -104 )
+}, {
+"a": "res://locations/gate of cage/hiddenroom2.tscn",
+"b": "res://locations/gate of cage/highwaygating.tscn",
+"pipepos": Vector2( 0, 0 ),
+"points": PoolVector2Array( -1152, 576, -1280, 576, -1280, -448, 112, -448 )
+}, {
+"a": "res://locations/gate of cage/waterway.tscn",
+"b": "res://locations/gate of cage/entrance.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( 941, -776, 1037, -776, 1037, -1096, 973, -1096, 973, -1736, 1053, -1736 )
+}, {
+"a": "res://locations/gate of cage/waterway.tscn",
+"b": "res://locations/basically me ripping off the spring in the sky from la mulana/exitroom.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( 109, 3512, 157, 3512, 157, 3640, -131, 3640, -131, 3704, -131, 3928, 13, 3928, 13, 3768, 685, 3768, 685, 4056, 765, 4056, 765, 3944, 493, 3944, 493, 3640, 1309, 3640, 1309, 3912, 1197, 3912, 1197, 3800, 1853, 3800, 1853, 3912, 2317, 3912 )
+}, {
+"a": "res://locations/nitrotasticman/mallsection.tscn",
+"b": "res://locations/fuckedupplace/zipline_room.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( 4717, -1480, 5309, -1480, 5309, -920, 5373, -920, 5373, -808, 5325, -808 )
+}, {
+"a": "res://locations/nitrotasticman/car_jumpscare.tscn",
+"b": "res://locations/nitrotasticman/mallsection.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( 3917, -1768, 4045, -1768, 4045, -1480, 4269, -1480 )
+}, {
+"a": "res://locations/lecastlevania/castle_entrance.tscn",
+"b": "res://locations/gate of cage/highwayjump.tscn",
+"pipepos": Vector2( -13, 8 ),
+"points": PoolVector2Array( 11773, -312, 11965, -312, 11965, 168, 1789, 88, 1789, -872, 925, -872 )
+} ]

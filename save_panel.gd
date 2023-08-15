@@ -49,38 +49,41 @@ func _on_Button2_pressed():
 
 func cancel():
 	$Panel4.hide()
+	$Button.grab_focus()
 
 func delete_save():
 	$Panel4.hide()
-	current_save_btn.save = NewSaveData.new()
-	current_save_btn.save.save_path = current_save_btn.save_path
+	var ns = NewSaveData.new()
+	ns.save_path = current_save_btn.save_path
+	current_save_btn.initialize(ns,ns.save_path)
 	SavesManager.save(current_save_btn.save)
 	current_save_btn = null
 	$Button2.disabled = true
 	$Button3.disabled = true
 	$Button.grab_focus()
 	
+	
 
 func _on_Button3_pressed():
 	if not current_save_btn.save.played:
 		$Panel5.show()
+		$Panel5/LineEdit.grab_focus()
 	else:
 		SavesManager.current_save = current_save_btn.save
-		get_tree().change_scene("res://locations/roompositions.tscn")
+		NewRoomAutoload.regenerate_room_save_data()
+		get_tree().change_scene("res://new_world.tscn")
 		
 
 
 
 
 func save_done():
-	
-	
-	
 	SavesManager.current_save = current_save_btn.save
 	SavesManager.current_save.name = $Panel5/LineEdit.text
 	SavesManager.current_save.played = true
 	SavesManager.save(SavesManager.current_save)
-	get_tree().change_scene("res://locations/roompositions.tscn")
+	NewRoomAutoload.regenerate_room_save_data()
+	get_tree().change_scene("res://new_world.tscn")
 	
 	
 	

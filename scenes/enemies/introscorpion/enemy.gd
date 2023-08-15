@@ -19,7 +19,7 @@ func _ready():
 	hitstun.connect("entered",self,"emit_signal",["entered_hitstun"])
 	hitstun.connect("exited",self,"emit_signal",["exited_hitstun"])
 	$HurtComponent.connect("no_iframes",self,"hs_ended")
-	hitstun.can_go_to_hurtstate = true
+	hitstun.can_go_to_hurtstate = false
 	
 	
 func hs_ended():

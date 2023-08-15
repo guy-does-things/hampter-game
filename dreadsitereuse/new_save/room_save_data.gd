@@ -16,6 +16,11 @@ signal value_changed()
 func item_picked_up(id,defval=false):
 	return pickups.get(id,defval)
 
+
+func modify_pickup_flag(id,val):
+	pickups[id] = val
+	emit_signal("value_changed")
+
 func to_dict()-> Dictionary:
 	var dict = {
 		visited=visit_state,

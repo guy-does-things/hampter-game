@@ -7,6 +7,7 @@ var index :=0
 var room_data :RoomSaveInfo
 
 func setup_interaction_status(index,is_enabled,is_save):
+	
 	room_data.pickups[index] = is_enabled
 	if is_enabled:
 		opened()
@@ -25,5 +26,7 @@ func _on_Area2D_body_entered(body):
 		var sc :StatusThing= body.get_node_or_null("StatusThing")
 		
 		if not sc:return
+		room_data.modify_pickup_flag(index, true) 
 		opened()
+		
 		sc.unlocked_item(item_to_give)
