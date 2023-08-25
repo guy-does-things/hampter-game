@@ -157,7 +157,7 @@ focus_neighbour_top = NodePath(".")
 focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../HBoxContainer/Button")
 max_length = 23
-placeholder_text = "hampter"
+placeholder_text = "write your name"
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]

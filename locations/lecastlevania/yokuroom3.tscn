@@ -37,10 +37,10 @@ height = 70
 fill_from = Vector2( 0, 1 )
 fill_to = Vector2( 0, 0.2 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 8, 64 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 8, 104 )
 
 [sub_resource type="Resource" id=10]
@@ -218,7 +218,7 @@ region_rect = Rect2( 0, 0, 16, 128 )
 
 [node name="CollisionShape2D" parent="BossDoor3" index="2"]
 position = Vector2( 0, 64 )
-shape = SubResource( 8 )
+shape = SubResource( 11 )
 
 [node name="Pipe2" type="Line2D" parent="." index="19"]
 z_index = 2
@@ -230,6 +230,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 6 )
+extra_speed = 10
 
 [node name="BossDoor2" parent="." index="20" instance=ExtResource( 17 )]
 position = Vector2( -1080, 288 )
@@ -245,7 +246,7 @@ region_rect = Rect2( 0, 0, 16, 208 )
 
 [node name="CollisionShape2D" parent="BossDoor2" index="2"]
 position = Vector2( 0, 104 )
-shape = SubResource( 9 )
+shape = SubResource( 12 )
 
 [node name="Interactible" parent="." index="21" instance=ExtResource( 19 )]
 position = Vector2( -992, 480 )

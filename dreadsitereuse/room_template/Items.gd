@@ -4,7 +4,7 @@ tool
 class_name RoomObjectManager
 extends Node2D
 
-var assigned_room_data : RoomSaveInfo
+var assigned_room_data 
 
 
 
@@ -16,7 +16,7 @@ func has_var(o:Object,n:String):
 	return n in o
 
 
-func setup(data:RoomSaveInfo):
+func setup(data):
 	assigned_room_data = data
 	
 	for i in range(get_children().size()):

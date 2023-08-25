@@ -67,6 +67,7 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="TextureRect" type="TextureRect" parent="Area2D2" index="0"]
+margin_left = 208.0
 margin_right = 256.0
 margin_bottom = 112.0
 texture = ExtResource( 2 )
@@ -74,6 +75,7 @@ stretch_mode = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" index="1"]
+visible = false
 position = Vector2( 128, 56 )
 shape = SubResource( 1 )
 

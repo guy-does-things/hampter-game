@@ -32,7 +32,7 @@ var was_monitoring_last_frame= false
 func _init():add_to_group("hitbox")
 
 func _ready():
-	monitorable = true
+	set_deferred("monitorable", true)
 	collision_layer = 1024
 	current_priority = min_hit_priority
 	add_to_group("hitbox")

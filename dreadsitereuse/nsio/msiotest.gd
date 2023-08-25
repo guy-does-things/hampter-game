@@ -56,7 +56,8 @@ class SaveSprite extends Sprite:
 	
 	
 	
-
+func entered_room(plr,_room):
+	if is_instance_valid(plr):pnis = plr
 	
 func border_check(tpos:Vector2, rect:Rect2):
 	return (
@@ -71,15 +72,17 @@ func _physics_process(delta):
 	move_cam()
 	if is_instance_valid(pnis):
 		plrspr.global_position = (pnis.global_position / 16)
-	
-		
+
 
 	
 		
 
 func move_cam():
-	if is_instance_valid(pnis):cam.global_position = (pnis.global_position / 16)
+	if is_instance_valid(pnis):
+		cam.global_position = (pnis.global_position / 16)
 	
+func _init():
+	Signals.connect("player_entered_room",self,"entered_room")
 
 func _ready():
 	waypoint.z_index = 1
@@ -100,12 +103,12 @@ func _ready():
 	add_tilemap("WATER").modulate = water_color
 	
 	for i in NewRoomAutoload.room_save_data.values():
-		room_discovered(i.room.resource_path,i.visit_state)
+		room_discovered(i.room,i.visit_state)
 	
 	
 
 	MapManager.connect("added_room",self,"room_discovered")
-	Signals.connect("princess_replacement",self,"princess_replacement")
+	#Signals.connect("princess_replacement",self,"princess_replacement")
 
 func princess_replacement(tier,texture):
 	if tier < 1:return

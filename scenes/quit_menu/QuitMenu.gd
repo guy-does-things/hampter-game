@@ -16,4 +16,8 @@ func deselect():
 
 
 func _on_Quit_pressed():
-	get_tree().quit()
+	get_tree().paused = false
+	Globals.can_open_menu =true
+	get_tree().change_scene(
+		"res://titleroom.tscn"
+	)

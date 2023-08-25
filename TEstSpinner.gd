@@ -42,7 +42,7 @@ func DIE(dam):
 	expl.global_position = global_position
 	expl.lifetime = .55
 	expl.damage = 0
-	get_tree().current_scene.add_child(expl)
+	get_tree().current_scene.call_deferred("add_child",expl)
 	queue_free()
 
 

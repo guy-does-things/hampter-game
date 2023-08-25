@@ -322,6 +322,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button" to="CanvasLayer2" method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button2" to="CanvasLayer2" method="_on_Button2_pressed"]
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button3" to="." method="_on_Button3_pressed"]

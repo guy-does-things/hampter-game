@@ -146,8 +146,8 @@ tile_data = PoolIntArray( 0, 12, 65536, 29, 12, 65536, 65536, 12, 65536, 65565, 
 [node name="EnemySpawner" type="Position2D" parent="RoomObjectManager" index="0"]
 position = Vector2( 240, 234 )
 script = ExtResource( 14 )
-enemy = ExtResource( 13 )
 bossn = "bio-snake"
+enemy = ExtResource( 13 )
 
 [node name="Area2D" type="Area2D" parent="RoomObjectManager/EnemySpawner" index="0"]
 collision_layer = 0
@@ -238,6 +238,7 @@ position = Vector2( 472, 144 )
 can_move = false
 initial_door_size_y = 128
 closed = false
+br_no_open = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="15"]
 playback_speed = 0.5

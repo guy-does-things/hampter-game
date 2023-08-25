@@ -1,6 +1,6 @@
 extends NewestRoom
 
-var bs :BossSpawner = null
+var bs = null
 
 
 
@@ -20,9 +20,11 @@ func _on_EnemySpawner_start_enc():
 			i.force_close()
 
 
+
 func _on_EnemySpawner_boss_ded(start):
+
 	if start:return
-	bs.setup_interaction_status(-1,true,false)
+	bs.setup_interaction_status(bs.index,true,false)
 	
 	for i in get_children():
 		if i is Door:

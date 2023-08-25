@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://hp_container.gd" type="Script" id=1]
 [ext_resource path="res://locations/BossWarning.gd" type="Script" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://raw_sprites/heart.png" type="Texture" id=9]
 [ext_resource path="res://new_world.gd" type="Script" id=10]
 [ext_resource path="res://sam.wav" type="AudioStream" id=11]
+[ext_resource path="res://scenes/inventory/theme.tres" type="Theme" id=12]
+[ext_resource path="res://scp/SourceCodePro-Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Panel.gd" type="Script" id=14]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 9 )
@@ -19,6 +22,22 @@ region = Rect2( 0, 0, 13, 13 )
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 9 )
 region = Rect2( 26, 0, 13, 13 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -3
+extra_spacing_space = -3
+font_data = ExtResource( 13 )
+
+[sub_resource type="StyleBoxFlat" id=86]
+bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.737255, 0.345098, 0.0627451, 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
@@ -31,6 +50,7 @@ script = ExtResource( 10 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2568, 3852 )
+unlock_ev = false
 
 [node name="RoomBasedCamera" type="Camera2D" parent="KinematicBody2D"]
 pause_mode = 2
@@ -149,24 +169,26 @@ texture = SubResource( 2 )
 stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Inventory"]
-visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -46.0
 margin_bottom = 2.0
+theme = ExtResource( 12 )
 script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="Inventory/VBoxContainer"]
 margin_right = 480.0
-margin_bottom = 14.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 4 )
 text = "toxic-m fish"
 
 [node name="ProgressBar" type="ProgressBar" parent="Inventory/VBoxContainer"]
-margin_top = 18.0
+margin_top = 19.0
 margin_right = 480.0
 margin_bottom = 48.0
 size_flags_vertical = 3
+value = 32.0
 
 [node name="InventoryBorder" parent="Inventory" instance=ExtResource( 4 )]
 visible = false
@@ -179,6 +201,23 @@ mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="ItemPopup" parent="Inventory" instance=ExtResource( 5 )]
+visible = false
+
+[node name="Panel" type="Panel" parent="Inventory"]
+margin_left = 14.0
+margin_top = 59.0
+margin_right = 144.0
+margin_bottom = 72.0
+theme = ExtResource( 12 )
+custom_styles/panel = SubResource( 86 )
+script = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="Inventory/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "99999:999:9999"
+align = 1
+autowrap = true
 
 [node name="Inventory2" type="CanvasLayer" parent="."]
 layer = 2

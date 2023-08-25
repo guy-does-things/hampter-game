@@ -8,11 +8,11 @@ onready var roomrect = $RoomRect
 #SaveData.Areas
 export(NewSaveData.Areas) var room_area 
 var assigned_room_data 
-var save_data := RoomSaveInfo.new()
+var save_data : RoomSaveInfo
 
 func _ready():
 	if Engine.editor_hint:return
-	save_data = NewRoomAutoload.room_save_data.get(load(filename))
+	#save_data = NewRoomAutoload.room_save_data.get(load(filename))
 
 
 
@@ -22,7 +22,6 @@ func setup(data):
 	
 	
 	for i in data.transition_rooms.size():
-		
 		var next_room = data.transition_rooms[i]
 		var trans_trigger :nTransitionTrigger= $Transitions.get_child(i)
 		trans_trigger.set_room_to_load(next_room)
@@ -40,9 +39,10 @@ func setup(data):
 	
 	$RoomRect.rect_size = data.room_rect.size
 	$RoomRect.rect_position = data.room_rect.position
-	$RoomObjectManager.setup(save_data)
-	
+
+	$RoomObjectManager.setup(NewRoomAutoload.room_save_data[data.room_scene])
 		
+	
 	
 
 func get_rect():

@@ -12,6 +12,7 @@ export var extra_speed := 0
 
 
 func _ready():
+	extra_speed = 4
 	
 	z_index = 2
 	width = 32

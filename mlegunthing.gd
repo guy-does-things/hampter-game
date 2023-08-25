@@ -34,8 +34,8 @@ var is_idle = false
 # used for IAUP and IADOWN
 var currently_pressed_status = 0
 
-func _init():
-	connect("fired",self,"on_fired")
+func _ready():
+	if not is_connected("fired",self,"on_fired"):connect("fired",self,"on_fired")
 
 class MotionInputFuckery:
 	var requires_idle :int

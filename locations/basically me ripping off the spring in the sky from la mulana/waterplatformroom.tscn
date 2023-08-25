@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://water_tm.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/enemies/sfish2/sfish2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/sfish1/sfish1.tscn" type="PackedScene" id=11]
 [ext_resource path="res://dreadsitereuse/room_transition_trigger.gd" type="Script" id=12]
+[ext_resource path="res://moving_platform/moving_p.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 114 )
@@ -101,19 +102,21 @@ tile_data = PoolIntArray( 524288, 0, 1, 524289, 0, 1, 524290, 0, 1, 524291, 0, 1
 [node name="EnemySpawner" type="Position2D" parent="." index="12"]
 script = ExtResource( 8 )
 
-[node name="Node2D" parent="." index="13" instance=ExtResource( 9 )]
-position = Vector2( 1112, 168 )
-
-[node name="Node2D2" parent="." index="14" instance=ExtResource( 9 )]
+[node name="Node2D2" parent="." index="13" instance=ExtResource( 9 )]
 position = Vector2( 1208, 168 )
 scale = Vector2( -1, 1 )
 
-[node name="EnemySpawner2" type="Position2D" parent="." index="15"]
+[node name="EnemySpawner2" type="Position2D" parent="." index="14"]
 position = Vector2( 1416, 320 )
 script = ExtResource( 8 )
 enemy = ExtResource( 10 )
 
-[node name="EnemySpawner3" type="Position2D" parent="." index="16"]
+[node name="EnemySpawner3" type="Position2D" parent="." index="15"]
 position = Vector2( 144, 264 )
 script = ExtResource( 8 )
 enemy = ExtResource( 11 )
+
+[node name="KinematicBody2D" parent="." index="16" instance=ExtResource( 13 )]
+position = Vector2( 272, 200 )
+start_position = Vector2( 272, 200 )
+end_position = Vector2( 2032, 200 )

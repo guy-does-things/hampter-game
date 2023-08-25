@@ -24,6 +24,7 @@ func _on_Button2_pressed():
 	var ig = Igt.gametime
 	SavesManager.current_save = SavesManager.load_save(SavesManager.current_save.save_path)
 	SavesManager.current_save.igt = ig
+	NewRoomAutoload.regenerate_room_save_data()
 	get_tree().change_scene_to(load("res://new_world.tscn"))
 	
 	

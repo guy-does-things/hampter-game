@@ -155,6 +155,8 @@ script = ExtResource( 12 )
 [node name="Area2D" parent="RoomObjectManager" index="0" instance=ExtResource( 5 )]
 unique_name_in_owner = true
 position = Vector2( 248, -1792 )
+collision_layer = 129
+collision_mask = 129
 item_to_give = 1024
 
 [node name="Chest" parent="RoomObjectManager/Area2D" index="0"]

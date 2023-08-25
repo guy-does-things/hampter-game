@@ -101,3 +101,7 @@ func _on_Trigger_body_exited(body):
 
 	
 	tween_door(AnimModes.GOINGUP,initial_door_size_y)
+
+
+func _on_close_trigger_body_entered(body):
+	force_close()

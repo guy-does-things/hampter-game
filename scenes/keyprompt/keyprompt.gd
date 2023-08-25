@@ -11,8 +11,10 @@ func _ready():
 
 
 func setup(action : String):
+	if not Globals:return
 	var actions := InputMap.get_action_list(action)
+	print_debug("WHAT")
 	#print_debug()
-	if actions.size() > 0:
-		$Label.text = Globals.event_to_text((actions[0] as InputEvent))
+	#if actions.size() > 0:
+	#	$Label.text = Globals.event_to_text((actions[0] as InputEvent))
 		

@@ -65,6 +65,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 3 )
+extra_speed = 4
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="." index="6"]
 layer = -6

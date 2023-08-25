@@ -34,7 +34,10 @@ static func input_data_to_str(data:Array):
 	
 		if data[1] in Globals.BUTTON_LOOKUP.COMMON.keys():
 			return Globals.BUTTON_LOOKUP.COMMON[data[1]]
-		return Globals.BUTTON_LOOKUP.XBOX[data[1]]
+		
+		return Globals.BUTTON_LOOKUP[
+			Globals.BUTTON_LOOKUP.keys()[SavesManager.settings.controller_type]
+		][data[1]]
 	
 	if data[0] == Settings.InputSaveModes.AXIS:
 		var joy = "left joy" if data[1] == 0 or data[1] == 1 else "right joy"
@@ -58,6 +61,7 @@ func setup(act_name:String,is_kb=false):
 	SavesManager.settings.connect("changed_setting",self,"settings_changed")
 	$Label.text = act_name
 	is_k = is_kb
+	
 	if is_kb:
 		$Button.text = input_data_to_str(SavesManager.settings.current_keys[act_name])
 	else:

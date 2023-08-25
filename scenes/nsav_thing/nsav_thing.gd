@@ -12,12 +12,13 @@ func interact(cinteractionstatus,is_loading_game:=false)-> void:
 	SavesManager.current_save.last_position = plr.global_position
 	SavesManager.current_save.current_powerups = es.item_bitmask
 	SavesManager.current_save.disabled_shit = es.disabled_bitmask
-	SavesManager.current_save.hp_stacks = es.hp_stacks
 	SavesManager.current_save.loaded_room = NewRoomAutoload.get_current_room().filename
 	SavesManager.current_save.area = aria_of_interactible
 	SavesManager.current_save.igt = Igt.gametime
 	SavesManager.current_save.played = true
-	#Signals.emit_signal("trying_to_save",false)
+	for data in NewRoomAutoload.room_save_data.keys():
+		SavesManager.current_save.room_data[data.resource_path] = NewRoomAutoload.room_save_data[data].to_dict()
+
 	print_debug(SavesManager.save(SavesManager.current_save))
 	.interact(cinteractionstatus,is_loading_game)
 	saved()

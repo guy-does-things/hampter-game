@@ -1,10 +1,26 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+
+var is_ctr = false
+
+func _input(event):
+	if (event is InputEventJoypadButton or event is InputEventJoypadMotion) and not is_ctr:
+		$"%ExitL".text = "press " + RemapContainer.input_data_to_str(SavesManager.settings.current_controller_mappings["ui_accept"]) + " to exit"
+		is_ctr= true
+		
+	if (event is InputEventKey) and is_ctr:
+		$"%ExitL".text = "press " + RemapContainer.input_data_to_str(SavesManager.settings.current_keys["ui_accept"]) + " to exit"
+		is_ctr = false
+		
+
+
+func _ready():
+	$"%ExitL".text = "press " + RemapContainer.input_data_to_str(SavesManager.settings.current_keys["ui_accept"]) + " to exit"
+	
 func item_unlocked(item,loaded):
+	#return
 	if loaded:return
 	
 	

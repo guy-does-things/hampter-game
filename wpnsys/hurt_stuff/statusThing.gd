@@ -2,7 +2,7 @@ class_name StatusThing
 extends Node
 
 
-signal item_unlocked(item)
+signal item_unlocked(item,lg)
 export var MAX_HP = 0 setget ,get_max_hp
 onready var current_hp = MAX_HP setget set_cur_hp
 

@@ -29,9 +29,8 @@ tile_data = PoolIntArray( -655360, 6, 0, -655359, 6, 0, -655358, 6, 0, -655357, 
 [node name="EnemySpawner" type="Position2D" parent="RoomObjectManager" index="0"]
 position = Vector2( 320, 64 )
 script = ExtResource( 4 )
-enemy = ExtResource( 5 )
 bossn = "the gate guardian"
-instaspawn = true
+enemy = ExtResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="RoomObjectManager/EnemySpawner" index="0"]
 collision_layer = 0
@@ -53,7 +52,7 @@ modulate = Color( 1, 0.466667, 0.658824, 1 )
 position = Vector2( 8, 0 )
 shape = SubResource( 2 )
 script = ExtResource( 8 )
-normal_to_ignore = Vector2( -1, 0 )
+normal_to_ignore = Vector2( 1, 0 )
 
 [node name="TileMap2" type="TileMap" parent="." index="6"]
 modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
@@ -87,7 +86,3 @@ initial_door_size_y = 64
 closed = false
 
 [connection signal="body_entered" from="RoomObjectManager/EnemySpawner/Area2D" to="RoomObjectManager/EnemySpawner" method="_on_Area2D_body_entered"]
-[connection signal="lowhp" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/RunTowardsPlayer" method="_on_Entity_lowhp"]
-[connection signal="lowhp" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/UpperCutCharge" method="_on_Entity_lowhp"]
-[connection signal="lowhp" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/Shoot" method="_on_Entity_lowhp"]
-[connection signal="lowhp" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/JumpTowardsPlayer" method="_on_Entity_lowhp"]

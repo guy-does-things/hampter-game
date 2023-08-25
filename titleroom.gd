@@ -8,6 +8,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	NewRoomAutoload.data_stack = []
+	NewRoomAutoload.room_stack = []
 	$KinematicBody2D.local_freeze(true,true)
 	
 	if Globals.is_endgame:

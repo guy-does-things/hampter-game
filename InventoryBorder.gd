@@ -5,12 +5,18 @@ var animating = false
 export(NodePath) var cr_path;onready var cr :ColorRect= get_node(cr_path)
 
 var current_menu :Control
-
+var pstatus : StatusThing
 
 func _ready():
 	$VBoxContainer2/Label.text = SavesManager.current_save.name
 
 func _physics_process(delta):
+	if visible:
+		$"%Label".text = str(pstatus.current_hp,"/",pstatus.get_max_hp())
+		$"%HpBar".value = pstatus.current_hp
+		$"%HpBar".max_value = pstatus.get_max_hp()
+
+
 	if (Input.is_action_just_pressed("show_inv") and !animating) and Globals.can_open_menu:
 		if visible:
 			yield(animate_cr(0,1),"completed")
@@ -84,7 +90,9 @@ func deselect(is_rs=false):
 
 func setup_player(plr,plrstatus):
 	$"%ItemStuff".status = plrstatus
-
+	pstatus = plrstatus
+	
+	
 func select_menu(menu):
 	deselect(true)
 	menu.selected()

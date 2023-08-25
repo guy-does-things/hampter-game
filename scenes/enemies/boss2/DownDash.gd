@@ -36,7 +36,7 @@ func spawn_efish():
 	
 func _get_transition(dt):
 	
-	if dashes > MAX_DASHES:
+	if dashes > MAX_DASHES and $ExitDelay.is_stopped():
 		return $"%Delay"
 		
 
@@ -59,8 +59,6 @@ func _state_logic(delta):
 	$"%Flippables".flip(-diry)
 	
 	if dashes > MAX_DASHES:
-		set_ypos(rrect)
-		entity.velocity.y = diry * 400
 		return
 	
 	
@@ -116,3 +114,7 @@ func _on_Timer_timeout():
 func _on_DashResetDelay_timeout():
 	dashes += 1
 	start_timer()
+	if dashes >= MAX_DASHES:
+		set_ypos(MapManager.current_room_in.roomrect.get_global_rect())
+		entity.velocity.y = diry * 400
+		$ExitDelay.start()

@@ -11,7 +11,7 @@ export(NewSaveData.Areas) var aria_of_interactible
 export var is_toggle : bool
 var plr : Entity
 var interacted : bool 
-
+var kprompt = preload("res://keypromp/kprompt.tscn").instance()
 
 
 func _init():
@@ -20,15 +20,20 @@ func _init():
 	connect("body_entered",self,"_body_entered")
 	connect("body_exited",self,"_body_exited")
 
+func _ready():
+	kprompt.hide()
+	add_child(kprompt)
 
 func _body_entered(body):
 	emit_signal("can_interact")
 	plr = body
-
+	kprompt.rect_position = keyprompt_offset - (kprompt.rect_size / 2)
+	kprompt.show()
 
 func _body_exited(body):
 	emit_signal("exited")
 	plr = null
+	kprompt.hide()
 		
 
 func _draw():

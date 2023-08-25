@@ -71,6 +71,7 @@ func _on_Button3_pressed():
 	else:
 		SavesManager.current_save = current_save_btn.save
 		NewRoomAutoload.regenerate_room_save_data()
+		yield(get_tree(),"idle_frame")
 		get_tree().change_scene("res://new_world.tscn")
 		
 
@@ -83,6 +84,7 @@ func save_done():
 	SavesManager.current_save.played = true
 	SavesManager.save(SavesManager.current_save)
 	NewRoomAutoload.regenerate_room_save_data()
+	yield(get_tree(),"idle_frame")
 	get_tree().change_scene("res://new_world.tscn")
 	
 	

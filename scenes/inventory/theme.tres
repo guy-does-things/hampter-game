@@ -1,6 +1,9 @@
-[gd_resource type="Theme" load_steps=7 format=2]
+[gd_resource type="Theme" load_steps=20 format=2]
 
 [ext_resource path="res://newfonts/normal.tres" type="DynamicFont" id=1]
+[ext_resource path="res://raw_sprites/grabber/new_grabber.png" type="Texture" id=2]
+[ext_resource path="res://raw_sprites/grabber/grabber_grabbed.png" type="Texture" id=3]
+[ext_resource path="res://raw_sprites/grabber/disabled.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=84]
 
@@ -26,6 +29,104 @@ bg_color = Color( 0.192157, 0.192157, 0.196078, 1 )
 [sub_resource type="StyleBoxFlat" id=93]
 bg_color = Color( 0.105882, 0.105882, 0.129412, 1 )
 
+[sub_resource type="StyleBoxFlat" id=97]
+bg_color = Color( 0.737255, 0.345098, 0.0627451, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+expand_margin_right = 3.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id=98]
+bg_color = Color( 0.976471, 0.666667, 0.121569, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+expand_margin_right = 3.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id=96]
+bg_color = Color( 0.219608, 0.211765, 0.227451, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.313726, 0.313726, 0.313726, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=103]
+bg_color = Color( 0.192157, 0.192157, 0.196078, 1 )
+
+[sub_resource type="StyleBoxFlat" id=92]
+bg_color = Color( 0.219608, 0.211765, 0.227451, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.313726, 0.313726, 0.313726, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_size = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=95]
+bg_color = Color( 0.67451, 0.0862745, 0.176471, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="StyleBoxTexture" id=100]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 8, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 1.0
+margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id=101]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 8, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 1.0
+margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id=102]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 8, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 1.0
+margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id=99]
+content_margin_left = 8.0
+bg_color = Color( 0.105882, 0.105882, 0.129412, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.105882, 0.105882, 0.129412, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
 [resource]
 default_font = ExtResource( 1 )
 Button/styles/disabled = SubResource( 84 )
@@ -33,3 +134,17 @@ Button/styles/focus = SubResource( 85 )
 Button/styles/hover = SubResource( 86 )
 Button/styles/normal = SubResource( 94 )
 Button/styles/pressed = SubResource( 93 )
+HSlider/icons/grabber = ExtResource( 2 )
+HSlider/icons/grabber_disabled = ExtResource( 4 )
+HSlider/icons/grabber_highlight = ExtResource( 3 )
+HSlider/styles/grabber_area = SubResource( 97 )
+HSlider/styles/grabber_area_highlight = SubResource( 98 )
+HSlider/styles/slider = SubResource( 96 )
+PopupMenu/styles/hover = SubResource( 86 )
+PopupMenu/styles/panel = SubResource( 103 )
+ProgressBar/styles/bg = SubResource( 92 )
+ProgressBar/styles/fg = SubResource( 95 )
+VScrollBar/styles/grabber = SubResource( 100 )
+VScrollBar/styles/grabber_highlight = SubResource( 101 )
+VScrollBar/styles/grabber_pressed = SubResource( 102 )
+VScrollBar/styles/scroll = SubResource( 99 )

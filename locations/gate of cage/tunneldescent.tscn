@@ -39,6 +39,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 3 )
+extra_speed = 4
 
 [node name="Pipe2" type="Line2D" parent="Pipes" index="1"]
 z_index = 2
@@ -50,6 +51,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 3 )
+extra_speed = 4
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="." index="6"]
 layer = -6
@@ -126,7 +128,7 @@ script = ExtResource( 8 )
 enemy = ExtResource( 7 )
 
 [node name="EnemySpawner6" type="Position2D" parent="." index="10"]
-position = Vector2( 520, 936 )
+position = Vector2( 520, 832 )
 script = ExtResource( 8 )
 enemy = ExtResource( 9 )
 

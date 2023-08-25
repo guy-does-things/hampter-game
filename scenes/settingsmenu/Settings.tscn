@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/inventory/settingsmenu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/inventory/swap_label.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://cursor_hand.gd" type="Script" id=5]
 [ext_resource path="res://scenes/inventory/theme.tres" type="Theme" id=6]
 [ext_resource path="res://scenes/settingsmenu/remap_populator.gd" type="Script" id=7]
+[ext_resource path="res://slider/slider.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxFlat" id=87]
 bg_color = Color( 0.192157, 0.192157, 0.211765, 1 )
@@ -47,75 +48,69 @@ custom_styles/panel = SubResource( 90 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
-margin_top = 14.0
+margin_top = 17.0
 margin_right = -1.0
 follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="settings" type="VBoxContainer" parent="TabContainer/Main"]
 margin_right = 478.0
-margin_bottom = 226.0
+margin_bottom = 223.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 script = ExtResource( 3 )
 cursorpath = NodePath("../../../Cursorhand")
 
-[node name="Label" type="Label" parent="TabContainer/Main/settings"]
-margin_top = 79.0
-margin_right = 478.0
-margin_bottom = 91.0
-text = "MASTER"
+[node name="HBoxContainer" parent="TabContainer/Main/settings" instance=ExtResource( 8 )]
+margin_top = 74.0
+margin_bottom = 90.0
+bus = "Master"
 
-[node name="HSlider" type="HSlider" parent="TabContainer/Main/settings"]
-margin_top = 95.0
-margin_right = 478.0
-margin_bottom = 111.0
-focus_neighbour_left = NodePath(".")
+[node name="Label3" parent="TabContainer/Main/settings/HBoxContainer" index="0"]
+margin_top = 0.0
+margin_right = 80.0
+
+[node name="HSlider3" parent="TabContainer/Main/settings/HBoxContainer" index="1"]
+margin_left = 84.0
 focus_neighbour_top = NodePath(".")
-focus_neighbour_right = NodePath(".")
-focus_neighbour_bottom = NodePath("../HSlider2")
-size_flags_horizontal = 3
-max_value = 1.0
-step = 0.01
+focus_neighbour_bottom = NodePath("../../HBoxContainer2/HSlider3")
 
-[node name="Label2" type="Label" parent="TabContainer/Main/settings"]
-margin_top = 115.0
-margin_right = 478.0
-margin_bottom = 127.0
-text = "SFX"
+[node name="HBoxContainer2" parent="TabContainer/Main/settings" instance=ExtResource( 8 )]
+margin_top = 94.0
+margin_bottom = 110.0
+bus = "SFX"
 
-[node name="HSlider2" type="HSlider" parent="TabContainer/Main/settings"]
-margin_top = 131.0
+[node name="Label3" parent="TabContainer/Main/settings/HBoxContainer2" index="0"]
+margin_top = 0.0
+margin_right = 80.0
+
+[node name="HSlider3" parent="TabContainer/Main/settings/HBoxContainer2" index="1"]
+margin_left = 84.0
+focus_neighbour_top = NodePath("../../HBoxContainer/HSlider3")
+focus_neighbour_bottom = NodePath("../../CheckBox")
+
+[node name="CheckBox" type="CheckBox" parent="TabContainer/Main/settings"]
+margin_top = 114.0
 margin_right = 478.0
-margin_bottom = 147.0
+margin_bottom = 130.0
 focus_neighbour_left = NodePath(".")
-focus_neighbour_top = NodePath("../HSlider")
+focus_neighbour_top = NodePath("../HBoxContainer2/HSlider3")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../OptionButton")
+text = "show ingame time at all times"
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Main/settings"]
+margin_top = 134.0
+margin_right = 478.0
+margin_bottom = 149.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../CheckBox")
 focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../../../Button")
-size_flags_horizontal = 3
-max_value = 1.0
-step = 0.01
-
-[node name="Label3" type="Label" parent="TabContainer/Main/settings"]
-visible = false
-margin_top = 143.0
-margin_right = 478.0
-margin_bottom = 155.0
-text = "MUSIC"
-
-[node name="HSlider3" type="HSlider" parent="TabContainer/Main/settings"]
-visible = false
-margin_top = 149.0
-margin_right = 478.0
-margin_bottom = 165.0
-focus_neighbour_left = NodePath(".")
-focus_neighbour_top = NodePath("../HSlider2")
-focus_neighbour_right = NodePath(".")
-focus_neighbour_bottom = NodePath("../../../../Button")
-size_flags_horizontal = 3
-max_value = 1.0
-step = 0.01
+text = "XB"
+items = [ "XB", null, false, 1, null, "nint", null, false, 2, null, "PS", null, false, 3, null ]
+selected = 0
 
 [node name="Keyboard" type="ScrollContainer" parent="TabContainer"]
 visible = false
@@ -155,17 +150,17 @@ alignment = 1
 script = ExtResource( 7 )
 
 [node name="Panel" parent="." instance=ExtResource( 2 )]
-margin_top = 7.0
-margin_bottom = 22.0
+margin_top = 9.0
+margin_bottom = 24.0
 is_l = true
 
 [node name="Panel2" parent="." instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -32.0002
-margin_top = 7.0
+margin_top = 9.0
 margin_right = 0.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 
 [node name="Label" parent="Panel2" index="0"]
 anchor_right = 1.0
@@ -192,6 +187,10 @@ focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath(".")
 text = "EXIT"
 
+[connection signal="toggled" from="TabContainer/Main/settings/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="item_selected" from="TabContainer/Main/settings/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
+[editable path="TabContainer/Main/settings/HBoxContainer"]
+[editable path="TabContainer/Main/settings/HBoxContainer2"]
 [editable path="Panel2"]

@@ -12,7 +12,8 @@ func set_playerstatus(ps:StatusThing):
 	
 		
 func has_unlocked_hitbox(item,loadedgame):
-	if item == Globals.Items.BLADEUP:unloked_halberd_upgrade()
+	
+	if item & Globals.Items.BLADEUP != 0:unloked_halberd_upgrade()
 
 
 # mispelled, don care
@@ -136,7 +137,7 @@ func pipebombattack():
 func on_fired(gun):
 	var attack = .on_fired(gun)
 	if not attack in [
-		$AttackStateMachine/BTrhow, $AttackStateMachine/PipeBomb		
+		$AttackStateMachine/BTrhow, $AttackStateMachine/PipeBomb,null
 	]:
 		$AudioStreamPlayer.play()
 	
@@ -149,3 +150,6 @@ func _on_SpinSlash_entered():
 
 func _on_SpinSlash_exited():
 	$AudioStreamPlayer2.stop()
+
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://dreadsitereuse/room_template/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/nsav_thing/nsav_thing.tscn" type="PackedScene" id=2]
@@ -6,9 +6,19 @@
 [ext_resource path="res://scenes/boss_door/BossDoor2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://dreadsitereuse/room_transition_trigger.gd" type="Script" id=5]
 [ext_resource path="res://locations/gate of cage/beforeboss1.gd" type="Script" id=6]
+[ext_resource path="res://sign/sign.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/dialog_seq.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 138 )
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 8 )
+buttons = 1
+button_yes_text = "yes"
+button_no_text = "no"
+text = "there's a note saying
+\"TODO: open the security lock today\""
 
 [node name="A" instance=ExtResource( 1 )]
 script = ExtResource( 6 )
@@ -47,3 +57,11 @@ initial_door_size_y = 64
 [node name="BossDoor4" parent="." index="9" instance=ExtResource( 4 )]
 position = Vector2( 776, -128 )
 can_move = false
+
+[node name="Interactible" parent="." index="10" instance=ExtResource( 7 )]
+position = Vector2( 728, -48 )
+
+[node name="Sign" parent="Interactible" index="0"]
+sgn_dialog = SubResource( 2 )
+
+[editable path="Interactible"]

@@ -61,6 +61,7 @@ margin_bottom = 14.0
 text = "12HP"
 
 [node name="Map" type="Label" parent="Control/Stats"]
+visible = false
 margin_left = 36.0
 margin_top = 2.0
 margin_right = 97.0
@@ -68,6 +69,7 @@ margin_bottom = 14.0
 text = "100% map"
 
 [node name="Items" type="Label" parent="Control/Stats"]
+visible = false
 margin_left = 101.0
 margin_top = 2.0
 margin_right = 178.0

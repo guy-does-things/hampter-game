@@ -19,7 +19,6 @@ func initialize(save:NewSaveData,path:String):
 		$TextureRect2.visible = save.bossrush
 		$Control/Stats/HP.text = str(6+save.hp_stacks,"HP")
 		$Label.hide()
-		print_debug("why")
 	else:
 		$Control.hide()
 		$Label.show()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://locations/gate of cage/entrance.tscn" type="PackedScene" id=1]
 [ext_resource path="res://locations/gate of cage/inside.tscn" type="PackedScene" id=2]
@@ -62,6 +62,14 @@
 [ext_resource path="res://PICO-8.ttf" type="DynamicFontData" id=60]
 [ext_resource path="res://scenes/itempopup/ipopup.tscn" type="PackedScene" id=61]
 [ext_resource path="res://locations/BossWarning.gd" type="Script" id=62]
+[ext_resource path="res://locations/br/foxsrevenge.tscn" type="PackedScene" id=63]
+[ext_resource path="res://locations/br/transitional_into_water.tscn" type="PackedScene" id=64]
+[ext_resource path="res://locations/br/bootlegeov2room.tscn" type="PackedScene" id=65]
+[ext_resource path="res://locations/br/transitional_out_of_water.tscn" type="PackedScene" id=66]
+[ext_resource path="res://locations/br/boss2roomv2.tscn" type="PackedScene" id=67]
+[ext_resource path="res://locations/br/emilysroom.tscn" type="PackedScene" id=68]
+[ext_resource path="res://locations/br/br_snake.tscn" type="PackedScene" id=69]
+[ext_resource path="res://locations/br/endroom.tscn" type="PackedScene" id=70]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 26 )
@@ -350,15 +358,19 @@ position = Vector2( 1616, -336 )
 position = Vector2( 2096, -336 )
 
 [node name="A25" parent="." instance=ExtResource( 31 )]
+visible = false
 position = Vector2( 3056, -336 )
 
 [node name="A26" parent="." instance=ExtResource( 32 )]
+visible = false
 position = Vector2( 4096, -336 )
 
 [node name="A27" parent="." instance=ExtResource( 33 )]
+visible = false
 position = Vector2( 4096, -752 )
 
 [node name="A28" parent="." instance=ExtResource( 34 )]
+visible = false
 position = Vector2( 4848, -336 )
 
 [node name="A29" parent="." instance=ExtResource( 35 )]
@@ -382,6 +394,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
+extra_speed = 4
 room_a = NodePath("../waterway")
 room_b = NodePath("../layeredcages")
 
@@ -397,7 +410,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
-extra_speed = 3
+extra_speed = 4
 room_a = NodePath("../layeredcages")
 room_b = NodePath("../A6")
 
@@ -413,6 +426,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
+extra_speed = 4
 room_a = NodePath("../waterway")
 room_b = NodePath("../training")
 
@@ -428,12 +442,13 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
-extra_speed = 5
+extra_speed = 4
 room_a = NodePath("../waterway")
 room_b = NodePath("../A")
 
 [node name="Pipe9" type="Line2D" parent="."]
 pause_mode = 2
+visible = false
 z_index = 2
 points = PoolVector2Array( -1152, 576, -1280, 576, -1280, -448, 112, -448 )
 width = 32.0
@@ -443,7 +458,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
-extra_speed = 5
+extra_speed = 4
 room_a = NodePath("../A35")
 room_b = NodePath("../A29")
 
@@ -459,7 +474,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
-extra_speed = 5
+extra_speed = 4
 room_a = NodePath("../waterway")
 room_b = NodePath("../A5")
 
@@ -475,7 +490,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
-extra_speed = 3
+extra_speed = 4
 room_a = NodePath("../waterway")
 room_b = NodePath("../cisexit")
 
@@ -491,7 +506,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
-extra_speed = 3
+extra_speed = 4
 room_a = NodePath("../A32")
 room_b = NodePath("../A28")
 
@@ -507,7 +522,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
-extra_speed = 3
+extra_speed = 4
 room_a = NodePath("../teslabridge")
 room_b = NodePath("../A32")
 
@@ -524,12 +539,15 @@ position = Vector2( 1808, -1936 )
 position = Vector2( 4240, -1936 )
 
 [node name="A15" parent="." instance=ExtResource( 47 )]
+visible = false
 position = Vector2( -592, -64 )
 
 [node name="A35" parent="." instance=ExtResource( 48 )]
+visible = false
 position = Vector2( -1168, 208 )
 
 [node name="A36" parent="." instance=ExtResource( 50 )]
+visible = false
 position = Vector2( -688, 208 )
 
 [node name="A37" parent="." instance=ExtResource( 51 )]
@@ -571,6 +589,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 42 )
+extra_speed = 4
 room_a = NodePath("../A42")
 room_b = NodePath("../A4")
 
@@ -579,3 +598,27 @@ position = Vector2( 6960, -1328 )
 
 [node name="A30" parent="." instance=ExtResource( 41 )]
 position = Vector2( 8544, -1024 )
+
+[node name="A46" parent="." instance=ExtResource( 65 )]
+position = Vector2( 6816, -624 )
+
+[node name="A47" parent="." instance=ExtResource( 67 )]
+position = Vector2( 5680, -608 )
+
+[node name="A48" parent="." instance=ExtResource( 64 )]
+position = Vector2( 6336, -624 )
+
+[node name="A49" parent="." instance=ExtResource( 66 )]
+position = Vector2( 5200, -624 )
+
+[node name="A50" parent="." instance=ExtResource( 68 )]
+position = Vector2( 4448, -800 )
+
+[node name="A51" parent="." instance=ExtResource( 63 )]
+position = Vector2( 3936, -1392 )
+
+[node name="A52" parent="." instance=ExtResource( 69 )]
+position = Vector2( 3456, -848 )
+
+[node name="A53" parent="." instance=ExtResource( 70 )]
+position = Vector2( 2975, -848 )

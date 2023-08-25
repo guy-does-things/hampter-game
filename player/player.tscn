@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://halweapon/halberd.tscn" type="PackedScene" id=2]
@@ -818,6 +818,9 @@ tracks/4/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="CircleShape2D" id=40]
+radius = 37.0135
+
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 10, 12 )
 
@@ -1086,6 +1089,17 @@ anims/thejump = SubResource( 12 )
 anims/walk = SubResource( 6 )
 script = ExtResource( 9 )
 
+[node name="Area2D2" parent="Node2D2" instance=ExtResource( 22 )]
+position = Vector2( -2.09815e-06, -12 )
+damage = 15
+knockback = 40
+
+[node name="HampterBOX" type="CollisionShape2D" parent="Node2D2/Area2D2"]
+unique_name_in_owner = true
+position = Vector2( 3.41061e-12, 0 )
+shape = SubResource( 40 )
+disabled = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 6.9 )
 shape = SubResource( 13 )
@@ -1095,17 +1109,17 @@ visible = false
 position = Vector2( 1, 8 )
 z_index = 1
 frames = SubResource( 19 )
-frame = 2
 playing = true
 
 [node name="Area2D" parent="AnimatedSprite" instance=ExtResource( 22 )]
-monitoring = false
 min_hit_priority = 32
 max_hit_priority = 32
+knockback = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite/Area2D"]
 position = Vector2( -1, 13 )
 shape = SubResource( 23 )
+disabled = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
 visible = false
@@ -1114,7 +1128,7 @@ rotation = 1.5708
 scale = Vector2( 2, -2 )
 z_index = 1
 frames = SubResource( 19 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Circlething" type="Sprite" parent="."]
@@ -1234,6 +1248,7 @@ collide_with_bodies = false
 [connection signal="exited" from="Node2D2/HampterSprite/Gun/AttackStateMachine/SpinSlash" to="Node2D2" method="_on_SpinSlash_exited"]
 [connection signal="jump" from="Node2D2/HampterSprite/Gun/AttackStateMachine/SpinSlash" to="." method="_on_SpinSlash_jump"]
 [connection signal="entered" from="Node2D2/HampterSprite/Gun/AttackStateMachine/Uppercut" to="." method="_on_Uppercut_entered"]
+[connection signal="item_unlocked" from="StatusThing" to="Node2D2/HampterSprite/Node2D" method="has_unlocked_hitbox"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
 [connection signal="on_water" from="Area2D" to="." method="on_water"]
 [connection signal="out_of_water" from="Area2D" to="." method="out_of_water"]

@@ -62,6 +62,7 @@ var current_keys = DEFAUT_KEYS.duplicate()
 var fullscreen = false
 var igt = false
 var bloom = false
+var controller_type = 1
 var weaponswap_sound = true
 signal changed_setting()
 
@@ -83,6 +84,7 @@ func data2dict()-> Dictionary:
 		"igt":igt,
 		"bloom":bloom,
 		"weaponswap_sound":weaponswap_sound,
+		"controller_type":controller_type
 		
 
 	}
@@ -104,7 +106,7 @@ func dict2data(data:Dictionary):
 	igt = data.get("igt", false)
 	bloom = data.get("bloom", true)
 	weaponswap_sound = data.get("weaponswap_sound", true)
-	
+	controller_type = data.get("controller_type", 1)
 	
 
 
@@ -164,7 +166,6 @@ func update_action(action_n):
 	var ctr_a_data = current_controller_mappings[action_n]
 	var kbinput = create_event_from_json(InputSaveModes.KEYBOARD,current_keys[action_n][1])
 	var ctrinput = create_event_from_json(ctr_a_data[0],ctr_a_data[1],get_arr_element(ctr_a_data,2,0))
-	print(ctr_a_data[1])
 	
 	InputMap.action_add_event(action_n,kbinput)
 	InputMap.action_add_event(action_n,ctrinput)

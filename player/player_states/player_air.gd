@@ -10,7 +10,6 @@ export var path_wslide : NodePath
 onready var idlestate : State = get_node(path_idlestate)
 onready var walk_state : State = get_node(path_walk_state)
 onready var air_state : State = get_node(path_air_state)
-onready var wall_slide_state : State = get_node(path_wslide)
 export var is_fall_state : bool = false
 
 
@@ -33,6 +32,5 @@ func _enter_state(new_state, old_state):
 
 func _get_transition(delta):
 	if entity.is_on_floor():return idlestate
-	if entity.is_on_wall() and is_fall_state:return wall_slide_state
 	if get_air_trans():return air_state
 	

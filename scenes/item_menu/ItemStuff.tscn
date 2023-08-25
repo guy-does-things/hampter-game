@@ -61,11 +61,8 @@ size_flags_vertical = 3
 [node name="desc" type="Label" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 margin_right = 478.0
-margin_bottom = 65.0
+margin_bottom = 14.0
 size_flags_vertical = 1
-text = "dsadaolkdsajldaldflkdasjdas
-dasjdslkdsajkldsajldsldsadsa
-dsdsaklñjdsalksdajlkdasjldsalkdsajldsakljldsalkdsa
-dsadsajdsaldsjaldajdaslkjsadlkjdsalkjdlkajljdslkajd"
+text = "no items?"
 autowrap = true
 max_lines_visible = 7

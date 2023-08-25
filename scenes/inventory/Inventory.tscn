@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://menu_cursor_handler.gd" type="Script" id=1]
 [ext_resource path="res://InventoryBorder.gd" type="Script" id=2]
 [ext_resource path="res://raw_sprites/cursorhand.png" type="Texture" id=3]
 [ext_resource path="res://raw_sprites/portraitofhampter.png" type="Texture" id=4]
+[ext_resource path="res://raw_sprites/thing.png" type="Texture" id=5]
 [ext_resource path="res://cursor_hand.gd" type="Script" id=6]
 [ext_resource path="res://scenes/item_menu/ItemStuff.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/quit_menu/quit_menu.tscn" type="PackedScene" id=8]
@@ -12,6 +13,28 @@
 [ext_resource path="res://scenes/mapscreen/mapscreen.tscn" type="PackedScene" id=11]
 [ext_resource path="res://newfonts/normal.tres" type="DynamicFont" id=12]
 [ext_resource path="res://scenes/inventory/theme.tres" type="Theme" id=13]
+
+[sub_resource type="StyleBoxTexture" id=93]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 3, 7 )
+margin_left = 1.0
+margin_right = 1.0
+margin_top = 1.0
+margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id=92]
+bg_color = Color( 0.219608, 0.211765, 0.227451, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.313726, 0.313726, 0.313726, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_size = 2
+anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id=91]
 
@@ -42,32 +65,32 @@ cursorpath = NodePath("../Cursorhand")
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 margin_right = 69.0
-margin_bottom = 12.0
+margin_bottom = 15.0
 text = "ITEMS"
 align = 0
 script = ExtResource( 9 )
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
-margin_top = 16.0
+margin_top = 19.0
 margin_right = 69.0
-margin_bottom = 28.0
+margin_bottom = 34.0
 custom_fonts/font = ExtResource( 12 )
 text = "MAP"
 align = 0
 script = ExtResource( 9 )
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
-margin_top = 32.0
+margin_top = 38.0
 margin_right = 69.0
-margin_bottom = 44.0
+margin_bottom = 53.0
 text = "SETTINGS "
 align = 0
 script = ExtResource( 9 )
 
 [node name="Button4" type="Button" parent="VBoxContainer"]
-margin_top = 48.0
+margin_top = 57.0
 margin_right = 69.0
-margin_bottom = 60.0
+margin_bottom = 72.0
 text = "EXIT"
 align = 0
 script = ExtResource( 9 )
@@ -79,28 +102,42 @@ margin_right = 295.0
 margin_bottom = 80.0
 
 [node name="Label" type="Label" parent="VBoxContainer2"]
-margin_top = 6.0
+margin_top = 2.0
 margin_right = 199.0
-margin_bottom = 18.0
+margin_bottom = 17.0
 size_flags_vertical = 6
 text = "hamptersavenamegoeshere"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
-margin_top = 28.0
+margin_top = 23.0
 margin_right = 199.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
+margin_top = 1.0
 margin_right = 24.0
-margin_bottom = 12.0
+margin_bottom = 16.0
 text = "HP:"
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer2/HBoxContainer"]
+[node name="HpBar" type="ProgressBar" parent="VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 margin_left = 28.0
 margin_right = 199.0
-margin_bottom = 12.0
+margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/fg = SubResource( 93 )
+custom_styles/bg = SubResource( 92 )
+value = 64.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer/HpBar"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "32/32"
+align = 1
+valign = 1
 
 [node name="MenuStuff" type="Panel" parent="."]
 margin_left = 120.0
@@ -120,11 +157,11 @@ visible = false
 visible = false
 
 [node name="Main" parent="MenuStuff/Settings/TabContainer" index="0"]
-visible = true
+margin_top = 17.0
 
 [node name="settings" parent="MenuStuff/Settings/TabContainer/Main" index="0"]
 margin_right = 318.0
-margin_bottom = 152.0
+margin_bottom = 149.0
 
 [node name="Label" parent="MenuStuff/Settings/TabContainer/Main/settings" index="0"]
 margin_top = 42.0
@@ -155,9 +192,6 @@ margin_bottom = 108.0
 margin_top = 112.0
 margin_right = 318.0
 margin_bottom = 128.0
-
-[node name="Keyboard" parent="MenuStuff/Settings/TabContainer" index="1"]
-visible = false
 
 [node name="settings" parent="MenuStuff/Settings/TabContainer/Keyboard" index="0"]
 margin_right = 318.0

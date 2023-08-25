@@ -36,14 +36,19 @@ func _ready():
 
 func regenerate_room_save_data():
 	for i in room_dictionary.keys():
+		
 		var room_save_info := RoomSaveInfo.new()
 		room_save_data[i] = room_save_info
-		room_save_info.room = i
+		room_save_info.room = i.resource_path
 		room_save_data[i].from_dict(SavesManager.current_save.room_data.get(i.resource_path,{}))
-		
-		room_save_info.connect("value_changed",SavesManager.current_save, "room_save_modified", [i.resource_path,room_save_info])
-		
 
+		room_save_info.connect("value_changed",SavesManager.current_save, "room_save_modified", [i.resource_path,room_save_info])
+
+func pleasekillme(thing_d):
+	print(
+		thing_d
+		
+	)
 
 
 
@@ -72,7 +77,7 @@ func load_room(room_data,_dep=null):
 	var rinstance = room_data.room_scene.instance()
 	
 	rinstance.global_position = room_data.room_position
-	get_tree().current_scene.add_child(rinstance)
+	get_tree().current_scene.call_deferred("add_child",rinstance)
 	rinstance.setup(room_data)
 	room_stack.append(rinstance)
 	emit_signal("loaded_room",rinstance)

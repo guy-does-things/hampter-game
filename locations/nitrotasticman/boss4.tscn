@@ -88,8 +88,8 @@ tile_data = PoolIntArray( 31, 4, 0, 65567, 4, 0, 131103, 4, 0, 196639, 4, 0, 262
 [node name="EnemySpawner" type="Position2D" parent="RoomObjectManager" index="0"]
 position = Vector2( 448, 768 )
 script = ExtResource( 8 )
-enemy = ExtResource( 6 )
 bossn = "assasin"
+enemy = ExtResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="RoomObjectManager/EnemySpawner" index="0"]
 collision_layer = 0
@@ -209,19 +209,11 @@ anims/transiti = SubResource( 3 )
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="." index="11"]
 position = Vector2( 458, 880 )
 frames = SubResource( 6 )
-frame = 1
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="." index="12"]
 position = Vector2( 48, 880 )
 frames = SubResource( 6 )
-frame = 1
 playing = true
 
 [connection signal="body_entered" from="RoomObjectManager/EnemySpawner/Area2D" to="RoomObjectManager/EnemySpawner" method="_on_Area2D_body_entered"]
-[connection signal="entered_hitstun" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/AnimationPlayer" method="_on_Entity_entered_hitstun"]
-[connection signal="exited_hitstun" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/AnimationPlayer" method="stop"]
-[connection signal="recharged" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/Flippables/Node2D" method="stop"]
-[connection signal="recharged" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/StateMachine/Tired" method="_on_Entity_recharged"]
-[connection signal="recharged" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/AnimationPlayer" method="_on_Entity_recharged"]
-[connection signal="tired" from="RoomObjectManager/EnemySpawner/Entity" to="RoomObjectManager/EnemySpawner/Entity/Flippables/Node2D" method="start"]

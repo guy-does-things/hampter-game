@@ -315,7 +315,7 @@ shape = SubResource( 12 )
 [node name="StatusThing" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 16 )
-MAX_HP = 215
+MAX_HP = 45
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 24 )
@@ -350,6 +350,10 @@ one_shot = true
 
 [node name="DashResetDelay" type="Timer" parent="StateMachine/DownDash"]
 wait_time = 0.3
+one_shot = true
+
+[node name="ExitDelay" type="Timer" parent="StateMachine/DownDash"]
+wait_time = 1.5
 one_shot = true
 
 [node name="Delay" type="Node" parent="StateMachine"]
@@ -471,8 +475,8 @@ shape = SubResource( 19 )
 [connection signal="postfired" from="SpitGun" to="StateMachine/FireBallz" method="_on_SpitGun_postfired"]
 [connection signal="proj_created" from="SpitGun" to="." method="_on_SpitGun_proj_created"]
 [connection signal="died" from="HurtComponent" to="." method="_on_HurtComponent_died"]
-[connection signal="hurted" from="HurtComponent" to="." method="hp_check"]
 [connection signal="hurted" from="HurtComponent" to="." method="_on_HurtComponent_hurted"]
+[connection signal="hurted" from="HurtComponent" to="." method="hp_check"]
 [connection signal="postfired" from="Flippables/BisexualGun" to="StateMachine/Fuckitburstg" method="_on_BisexualGun_postfired"]
 [connection signal="entered" from="StateMachine/DownDash" to="AnimationPlayer" method="_on_DownDash_entered"]
 [connection signal="exited" from="StateMachine/DownDash" to="AnimationPlayer" method="_on_DownDash_exited"]

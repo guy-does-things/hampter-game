@@ -125,7 +125,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 6 )
-extra_speed = 10
+extra_speed = 4
 
 [node name="Line2D2" type="Line2D" parent="."]
 position = Vector2( 672, -112 )
@@ -138,7 +138,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 6 )
-extra_speed = 10
+extra_speed = 4
 
 [node name="Line2D3" type="Line2D" parent="."]
 position = Vector2( 672, -112 )
@@ -151,7 +151,7 @@ texture_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 script = ExtResource( 6 )
-extra_speed = 10
+extra_speed = 4
 
 [node name="Label2" type="Label" parent="."]
 margin_left = -168.0

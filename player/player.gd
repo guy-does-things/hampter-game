@@ -127,13 +127,17 @@ func _physics_process(delta):
 	
 	
 	if run_time >= 1 :
-		$Circlething.show()
+		$"%HampterBOX".disabled = false
 		$AnimatedSprite2.show()
+		$Circlething.show()
 		$DashBreaker.enable()
 		$DashBreaker.cast_to.x = 40 * current_dir_x
 		$Circlething.rotation_degrees += 32
 		speed *= 2.5 if is_on_floor() else 1.25
+		$"%HampterBOX".get_parent().knockback_dir = Vector2(current_dir_x,-2)
 	else:
+		$"%HampterBOX".disabled = true
+		$"%HampterBOX".get_parent().knockback_dir = Vector2.ZERO
 		$Circlething.hide()
 		$AnimatedSprite2.hide()
 		$DashBreaker.disable()

@@ -20,8 +20,7 @@ func _on_Area2D_body_entered(body):
 	for i in get_children():
 		if i is EnemySpawner:
 			if is_instance_valid(i.enem):
-				i.enem.get_node("HurtComponent").hurt(3132123,Vector2.ZERO,0,false,512)
-	
+				i.enem.queue_free()
 
 	c = body.get_node("RoomBasedCamera")
 	Globals.can_open_menu = false
@@ -35,9 +34,8 @@ func on_cars():
 	
 	var d = NewRoomAutoload.get_data_from_packedscene(preload("res://locations/nitrotasticman/car_jumpscare_3_electric_bogaloo.tscn"))
 	NewRoomAutoload.load_room(d)
-	
-	e.global_position = NewRoomAutoload.room_stack[NewRoomAutoload.data_stack.find(d)].get_node("Psp").global_position
-	
+
+	e.global_position = d.room_position +Vector2(80,784)
 	
 	c.position = Vector2.ZERO
 	pass

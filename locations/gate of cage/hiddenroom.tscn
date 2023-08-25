@@ -12,6 +12,7 @@ extents = Vector2( 12, 72 )
 extents = Vector2( 28, 16 )
 
 [node name="A" instance=ExtResource( 1 )]
+room_area = 6
 
 [node name="RoomRect" parent="." index="0"]
 margin_left = -576.0
@@ -28,13 +29,14 @@ modulate = Color( 1, 0.466667, 0.658824, 1 )
 position = Vector2( 468, 200 )
 shape = SubResource( 1 )
 script = ExtResource( 4 )
+normal_to_ignore = Vector2( -1, 0 )
 
 [node name="bottom" type="CollisionShape2D" parent="Transitions" index="1"]
 modulate = Color( 1, 0.466667, 0.658824, 1 )
 position = Vector2( -532, 256 )
 shape = SubResource( 2 )
 script = ExtResource( 4 )
-normal_to_ignore = Vector2( -1, 0 )
+normal_to_ignore = Vector2( 0, -1 )
 
 [node name="TileMap2" type="TileMap" parent="." index="6"]
 tile_set = ExtResource( 2 )

@@ -34,6 +34,7 @@ func _ready():
 		current_save = tried_load_save
 	
 	save_settings()
+	settings.connect("changed_setting",self,"save_settings")
 	settings.load_input()
 	
 func load_settings():

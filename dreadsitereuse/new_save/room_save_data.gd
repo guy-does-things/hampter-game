@@ -4,7 +4,8 @@ extends Resource
 
 
 enum VisitStates{HIDDEN,SEEN,VISITED}
-var room : PackedScene
+var room:String
+var rands
 var visit_state = VisitStates.HIDDEN
 var pickups := {}
 var extra_flags := {}
@@ -17,9 +18,11 @@ func item_picked_up(id,defval=false):
 	return pickups.get(id,defval)
 
 
-func modify_pickup_flag(id,val):
+func modify_pickup_flag(id,val,dbg=false):
+		
 	pickups[id] = val
 	emit_signal("value_changed")
+
 
 func to_dict()-> Dictionary:
 	var dict = {
@@ -36,5 +39,5 @@ func from_dict(d:Dictionary):
 
 
 func _to_string():
-	return str("visit_state",VisitStates.keys()[visit_state]," pickups:",pickups," extra_room_flags",extra_flags)
+	return str("visit_state",VisitStates.keys()[visit_state]," pickups:",pickups," extra_room_flags",extra_flags,"room",room)
 

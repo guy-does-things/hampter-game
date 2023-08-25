@@ -66,14 +66,14 @@ theme = ExtResource( 7 )
 
 [node name="Button" type="Button" parent="CanvasLayer2/VBoxContainer"]
 margin_right = 175.0
-margin_bottom = 14.0
+margin_bottom = 15.0
 size_flags_vertical = 3
 text = "main menu"
 
 [node name="Button2" type="Button" parent="CanvasLayer2/VBoxContainer"]
-margin_top = 18.0
+margin_top = 19.0
 margin_right = 175.0
-margin_bottom = 33.0
+margin_bottom = 34.0
 size_flags_vertical = 3
 text = "continue from last save"
 

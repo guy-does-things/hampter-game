@@ -14,7 +14,6 @@ border_color = Color( 0.737255, 0.345098, 0.0627451, 1 )
 
 [node name="Control" type="Control"]
 pause_mode = 2
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -30,9 +29,9 @@ anchor_bottom = 1.0
 alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer2"]
-margin_top = 91.0
+margin_top = 88.0
 margin_right = 480.0
-margin_bottom = 179.0
+margin_bottom = 182.0
 theme = ExtResource( 1 )
 custom_styles/panel = SubResource( 86 )
 
@@ -40,7 +39,7 @@ custom_styles/panel = SubResource( 86 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 479.0
-margin_bottom = 87.0
+margin_bottom = 93.0
 
 [node name="Label" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
 margin_right = 478.0
@@ -52,23 +51,24 @@ align = 1
 [node name="Label2" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
 margin_top = 38.0
 margin_right = 478.0
-margin_bottom = 50.0
+margin_bottom = 53.0
 size_flags_vertical = 3
 text = "itemdeschere : 3"
 align = 1
 autowrap = true
 
 [node name="Control" type="Control" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
-margin_top = 54.0
+margin_top = 57.0
 margin_right = 478.0
-margin_bottom = 70.0
+margin_bottom = 73.0
 rect_min_size = Vector2( 0, 16 )
 size_flags_vertical = 3
 
-[node name="Label3" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
-margin_top = 74.0
+[node name="ExitL" type="Label" parent="VBoxContainer2/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 77.0
 margin_right = 478.0
-margin_bottom = 86.0
+margin_bottom = 92.0
 size_flags_vertical = 6
 text = "press space to exit"
 align = 1

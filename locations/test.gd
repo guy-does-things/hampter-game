@@ -32,7 +32,6 @@ func store_positions():
 	for pipe in transpipes:
 		var ra :NewestRoom = pipe.get_node(pipe.room_a)
 		var rb :NewestRoom = pipe.get_node(pipe.room_b)
-		print(ra,rb)
 		datadict.pipe_data.append({a=ra.filename,b=rb.filename,pipepos=pipe.global_position,points=pipe.points})
 	
 		
@@ -57,7 +56,7 @@ func player_setup():
 	
 	
 	
-	
+
 	$Inventory/GridContainer.playerstatus = $KinematicBody2D/StatusThing
 	$Inventory/InventoryBorder.setup_player($KinematicBody2D,$KinematicBody2D/StatusThing)
 	$KinematicBody2D/StatusThing.connect("item_unlocked",$Inventory/ItemPopup,"item_unlocked")
