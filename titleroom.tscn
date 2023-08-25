@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://realthing.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Castlev.gd" type="Script" id=17]
 [ext_resource path="res://scenes/sd_panel/sillyghampterspr.tscn" type="PackedScene" id=18]
 [ext_resource path="res://raw_sprites/tree.png" type="Texture" id=19]
+[ext_resource path="res://scenes/achivements_demo/achivements_test.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
@@ -259,8 +260,13 @@ position = Vector2( 152, 144 )
 texture = ExtResource( 11 )
 script = ExtResource( 10 )
 
+[node name="Panel6" parent="CanvasLayer2" instance=ExtResource( 20 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 448.0
+margin_bottom = 240.0
+
 [node name="GamePanel" parent="CanvasLayer2" instance=ExtResource( 8 )]
-visible = false
 
 [node name="Settings" parent="CanvasLayer2" instance=ExtResource( 13 )]
 visible = false
