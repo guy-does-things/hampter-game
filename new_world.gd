@@ -46,10 +46,10 @@ func player_setup():
 	$KinematicBody2D/StatusThing.connect("item_unlocked",$Inventory/ItemPopup,"item_unlocked")
 	
 	# i forgot to do this!!	
-	($KinematicBody2D/StatusThing as StatusThing).hp_stacks = SavesManager.current_save.hp_stacks
-	($KinematicBody2D/StatusThing as StatusThing).current_hp += SavesManager.current_save.hp_stacks
+
 	$KinematicBody2D.global_position = SavesManager.current_save.last_position
 	$KinematicBody2D/StatusThing.disabled_bitmask = SavesManager.current_save.disabled_shit
 	$KinematicBody2D/StatusThing.unlocked_item(SavesManager.current_save.current_powerups,true)
 	
 
+	($KinematicBody2D/StatusThing as StatusThing).hp_stacks = SavesManager.current_save.hp_stacks

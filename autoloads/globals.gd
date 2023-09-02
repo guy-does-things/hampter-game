@@ -67,6 +67,8 @@ enum Items{
 	HPUPONE=2048,
 }
 
+const test = 3551
+
 
 export(Array,Resource) var item_data = null
 var is_endgame = false

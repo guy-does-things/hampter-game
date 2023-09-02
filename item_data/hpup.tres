@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 item_id = 1
 item_name = "hp up"
-item_desc = "increase your HP by 2!"
+item_desc = "increase your HP by 1!"

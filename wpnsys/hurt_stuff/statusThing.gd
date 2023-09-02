@@ -36,7 +36,7 @@ func has_item(item):
 
 
 func get_max_hp():
-	return MAX_HP + hp_stacks
+	return min(12,MAX_HP + hp_stacks)
 
 func set_cur_hp(nhp):
 	current_hp = min(nhp,get_max_hp())
@@ -44,8 +44,9 @@ func set_cur_hp(nhp):
 
 func unlocked_item(item,loadedgame=false):
 	if item == GlobalData.Items.HPUP:
-		hp_stacks += 2
+		hp_stacks += 1
 		current_hp = self.MAX_HP
+		print("???")
 	if item == GlobalData.Items.HPUPONE:
 		hp_stacks += 1
 		current_hp = self.MAX_HP

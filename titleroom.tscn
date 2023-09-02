@@ -260,19 +260,17 @@ position = Vector2( 152, 144 )
 texture = ExtResource( 11 )
 script = ExtResource( 10 )
 
-[node name="Panel6" parent="CanvasLayer2" instance=ExtResource( 20 )]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 448.0
-margin_bottom = 240.0
-
 [node name="GamePanel" parent="CanvasLayer2" instance=ExtResource( 8 )]
+visible = false
 
 [node name="Settings" parent="CanvasLayer2" instance=ExtResource( 13 )]
 visible = false
 margin_left = 16.0
 margin_right = -16.0
 margin_bottom = -14.0
+
+[node name="Panel6" parent="CanvasLayer2" instance=ExtResource( 20 )]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
